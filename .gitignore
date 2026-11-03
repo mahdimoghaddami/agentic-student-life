@@ -2,3 +2,4 @@ data
 .venv
 project_doc.pdf
 .env
+.DS_Store
