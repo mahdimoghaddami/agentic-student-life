@@ -1,0 +1,38 @@
+{
+  "ema_definition_sha256": "PASTE_HASH_AFTER_REVIEWING_DEFINITIONS",
+  "streams": {
+    "sleep": {
+      "glob": "EMA/response/Sleep/*.json",
+      "observed_field": "resp_time",
+      "available_field": "resp_time",
+      "value_field": "hour",
+      "values": {
+        "9": 7
+      },
+      "missing_codes": []
+    },
+    "stress": {
+      "glob": "EMA/response/Stress/*.json",
+      "observed_field": "resp_time",
+      "available_field": "resp_time",
+      "value_field": "level",
+      "values": {
+        "2": "Definitely stressed",
+        "4": "Feeling good"
+      },
+      "missing_codes": []
+    },
+    "activity": {
+      "glob": "sensing/activity/*.csv",
+      "observed_field": "timestamp",
+      "available_field": "timestamp",
+      "value_field": "activity inference"
+    },
+    "conversation": {
+      "glob": "sensing/conversation/*.csv",
+      "observed_field": "start_timestamp",
+      "available_field": "end_timestamp",
+      "end_field": "end_timestamp"
+    }
+  }
+}

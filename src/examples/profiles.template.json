@@ -1,0 +1,10 @@
+{
+  "u00": {
+    "source": "simulated_profile",
+    "goals": [
+      "Make progress on coursework"
+    ],
+    "preferred_activity": "quiet_break",
+    "do_not_disturb": false
+  }
+}
