@@ -1,0 +1,22 @@
+[project]
+name = "agentic-student-life"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+authors = [
+    { name = "Mahdi Moghaddami", email = "mahdiman10@gmail.com" }
+]
+requires-python = ">=3.15"
+dependencies = []
+
+[project.scripts]
+agentic-student-life = "agentic_student_life:main"
+
+[build-system]
+requires = ["uv_build>=0.13.6,<0.14.0"]
+build-backend = "uv_build"
+
+[dependency-groups]
+dev = [
+    "ipykernel>=7.4.0",
+]
