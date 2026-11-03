@@ -1,0 +1,14 @@
+{
+  "name": "full",
+  "mode": "multi",
+  "planning_rounds": 1,
+  "reflection_cycles": 1,
+  "tools": true,
+  "memory": true,
+  "skills": true,
+  "provider": "mock",
+  "model": "env",
+  "temperature": 0,
+  "max_tokens": 1200,
+  "tool_turns": 3
+}

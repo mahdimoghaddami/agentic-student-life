@@ -1,0 +1,81 @@
+{
+  "ema_definition_sha256": "cabde0ae9a66a07c719a29c10dc74917babefd35ad4168c715b1787e54297083",
+  "streams": {
+    "sleep": {
+      "glob": "EMA/response/Sleep/*.json",
+      "observed_field": "resp_time",
+      "available_field": "resp_time",
+      "value_field": "hour",
+      "values": {
+        "1": "<3 hours",
+        "2": 3.5,
+        "3": 4.0,
+        "4": 4.5,
+        "5": 5.0,
+        "6": 5.5,
+        "7": 6.0,
+        "8": 6.5,
+        "9": 7.0,
+        "10": 7.5,
+        "11": 8.0,
+        "12": 8.5,
+        "13": 9.0,
+        "14": 9.5,
+        "15": 10.0,
+        "16": 10.5,
+        "17": 11.0,
+        "18": 11.5,
+        "19": 12.0
+      },
+      "missing_codes": [],
+      "skip_missing_answer": true,
+      "extra_fields": {
+        "sleep_quality": {
+          "field": "rate",
+          "values": {
+            "1": "Very good",
+            "2": "Fairly good",
+            "3": "Fairly bad",
+            "4": "Very bad"
+          }
+        },
+        "daytime_sleepiness": {
+          "field": "social",
+          "values": {
+            "1": "None",
+            "2": "Once",
+            "3": "Twice",
+            "4": "Three or more times"
+          }
+        }
+      }
+    },
+    "stress": {
+      "glob": "EMA/response/Stress/*.json",
+      "observed_field": "resp_time",
+      "available_field": "resp_time",
+      "value_field": "level",
+      "values": {
+        "1": "A little stressed",
+        "2": "Definitely stressed",
+        "3": "Stressed out",
+        "4": "Feeling good",
+        "5": "Feeling great"
+      },
+      "missing_codes": [],
+      "skip_missing_answer": true
+    },
+    "activity": {
+      "glob": "sensing/activity/*.csv",
+      "observed_field": "timestamp",
+      "available_field": "timestamp",
+      "value_field": "activity inference"
+    },
+    "conversation": {
+      "glob": "sensing/conversation/*.csv",
+      "observed_field": "start_timestamp",
+      "available_field": "end_timestamp",
+      "end_field": "end_timestamp"
+    }
+  }
+}

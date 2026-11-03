@@ -1,0 +1,20 @@
+{
+  "arguments": {
+    "dataset": "dataset",
+    "participant": null,
+    "decision_time": null,
+    "cases": "data/cases.real.jsonl",
+    "out": "data/contexts.real.jsonl",
+    "include": "ema,sensing,optional",
+    "exclude_ema": "",
+    "exclude_sensing": "",
+    "sensing_streams": "activity,conversation,phonelock,phonecharge,dark,audio",
+    "ema_days": 7,
+    "assume_syllabus_known": false,
+    "sensing_hours": 24
+  },
+  "codebook_sha256": "cabde0ae9a66a07c719a29c10dc74917babefd35ad4168c715b1787e54297083",
+  "contexts_sha256": "a8f3d90c8e86419d0690a0944cedd880d52179934f17fbe23f3de5617efda2ff",
+  "cases_sha256": "e6e220219148e52b6328af97ada6731d199862d88449a84dc26586e36f03089a",
+  "note": "Contexts are frozen per case. Retain this file for identical evidence across ablations."
+}
