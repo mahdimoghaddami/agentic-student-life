@@ -1,2 +1,5 @@
-def main() -> None:
-    print("Hello from agentic-student-life!")
+"""Multi-Agent StudentLife Stress Coach package."""
+
+from .cli import main
+
+__all__ = ["main"]

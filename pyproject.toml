@@ -1,16 +1,28 @@
 [project]
 name = "agentic-student-life"
 version = "0.1.0"
-description = "Add your description here"
+description = "Multi-agent AI stress coach on the StudentLife dataset (CSI 4900/5900 Project 1)"
 readme = "README.md"
 authors = [
-    { name = "Mahdi Moghaddami", email = "mahdiman10@gmail.com" }
+    { name = "Mahdi Moghaddami", email = "mahdiman10@gmail.com" },
+    { name = "Brett Piggot", email = "bpiggot@oakland.edu" },
 ]
 requires-python = ">=3.15"
-dependencies = []
+dependencies = [
+    "aisuite[gemini]>=0.2.0",
+    "matplotlib>=3.11.2",
+    "numpy>=2.5.4",
+    "pandas>=3.1.0",
+    "pyarrow>=26.0.1",
+    "pydantic>=2.14.2",
+    "python-dotenv>=1.2.4",
+    "scipy>=1.18.1",
+    "tqdm>=4.70.1",
+]
 
 [project.scripts]
-agentic-student-life = "agentic_student_life:main"
+asl = "agentic_student_life.cli:main"
+agentic-student-life = "agentic_student_life.cli:main"
 
 [build-system]
 requires = ["uv_build>=0.13.6,<0.14.0"]

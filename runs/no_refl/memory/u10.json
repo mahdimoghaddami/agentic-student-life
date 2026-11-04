@@ -1,0 +1,53 @@
+{
+  "participant_id": "u10",
+  "simulated": true,
+  "profile": {
+    "participant_id": "u10",
+    "simulated": true,
+    "grounding_note": "Simulated coaching profile grounded in real StudentLife pre-term surveys (PSS=20.0, PHQ-9=0.0, UCLA Loneliness=64.0, PHQ-9 item 9=0, Extraversion=2.0, Neuroticism=3.38, Conscientiousness=4.78); courses: COSC 050, BIOL 004, COSC 065.",
+    "pre_term_surveys": {
+      "pss_total": 20.0,
+      "phq9_total": 0.0,
+      "phq9_item9_selfharm": 0,
+      "bfi_extraversion": 2.0,
+      "bfi_agreeableness": 1.33,
+      "bfi_conscientiousness": 4.78,
+      "bfi_neuroticism": 3.38,
+      "bfi_openness": 3.6,
+      "loneliness_total": 64.0
+    },
+    "goals": [
+      "Decompress from back-to-back CS 50, CS 65, and BIOL 004 coursework with brief evening breaks",
+      "Maintain low-pressure social touchpoints without forced group socializing",
+      "Keep a steady sleep and walking rhythm during midterm weeks"
+    ],
+    "preferences": {
+      "activity_style": "Solo campus walks, quiet breathing/stretching breaks, or texting one close contact",
+      "tone": "Calm, matter-of-fact, respectful of introversion",
+      "preferred_times": [
+        "evening (19:30-21:30)"
+      ],
+      "dislikes": [
+        "crowded group social events",
+        "overly bubbly cheerleading"
+      ]
+    },
+    "constraints": [
+      "High pre-term loneliness score (UCLA=64.0) paired with low extraversion (2.0) and high conscientiousness (4.78)",
+      "Taking two intensive CS courses (COSC 050, COSC 065) plus BIOL 004"
+    ],
+    "learned_preferences": []
+  },
+  "episodes": [
+    {
+      "case_id": "case_004",
+      "decision_time": "2013-04-07T20:00:00-04:00",
+      "decision": "suggest",
+      "skill_used": "micro_study_break",
+      "final_message": "With deadlines for your COSC and BIOL courses coming up, you've been managing a heavy workload. Before you dive into your next study block, consider taking a 5-minute quiet reset away from your screen\u2014perhaps some simple shoulder stretches or a few slow, deep breaths to help you decompress.",
+      "simulated_feedback": null,
+      "simulated": true
+    }
+  ],
+  "learned_preferences": []
+}

@@ -1,0 +1,52 @@
+{
+  "participant_id": "u00",
+  "simulated": true,
+  "profile": {
+    "participant_id": "u00",
+    "simulated": true,
+    "grounding_note": "Simulated coaching profile grounded in real StudentLife pre-term surveys (PSS=24.0, PHQ-9=2.0, UCLA Loneliness=32.0, PHQ-9 item 9=0, Extraversion=3.75, Neuroticism=3.12, Conscientiousness=3.0); no syllabus courses listed.",
+    "pre_term_surveys": {
+      "pss_total": 24.0,
+      "phq9_total": 2.0,
+      "phq9_item9_selfharm": 0,
+      "bfi_extraversion": 3.75,
+      "bfi_agreeableness": 2.89,
+      "bfi_conscientiousness": 3.0,
+      "bfi_neuroticism": 3.12,
+      "bfi_openness": 4.5,
+      "loneliness_total": 32.0
+    },
+    "goals": [
+      "Stabilize sleep duration (avoiding <5h nights) and recover consistently across the term",
+      "Take brief movement or outdoor walks on low-activity days to manage stress (PSS=24.0)",
+      "Maintain steady daily energy and mood"
+    ],
+    "preferences": {
+      "activity_style": "Outdoor walks, light stretching, or early evening wind-downs",
+      "tone": "Supportive, conversational, grounded",
+      "preferred_times": [
+        "evening (19:00-21:00)"
+      ],
+      "dislikes": [
+        "generic advice disconnected from recent sleep or activity"
+      ]
+    },
+    "constraints": [
+      "High baseline perceived stress (PSS=24.0) with variable night-to-night sleep duration",
+      "Occasional multi-day gaps in phone sensing late in the term"
+    ],
+    "learned_preferences": []
+  },
+  "episodes": [
+    {
+      "case_id": "case_009",
+      "decision_time": "2013-06-10T20:00:00-04:00",
+      "decision": "ask",
+      "skill_used": "clarifying_question",
+      "final_message": "It's been a little while since we last checked in, and I know things can get pretty intense during finals week. How are your energy levels holding up today?",
+      "simulated_feedback": null,
+      "simulated": true
+    }
+  ],
+  "learned_preferences": []
+}

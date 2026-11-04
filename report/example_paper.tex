@@ -1,661 +1,366 @@
-%%%%%%%% ICML 2026 EXAMPLE LATEX SUBMISSION FILE %%%%%%%%%%%%%%%%%
+%%%%%%%% ICML 2026 LATEX SUBMISSION FILE %%%%%%%%%%%%%%%%%
 
 \documentclass{article}
 
-% Recommended, but optional, packages for figures and better typesetting:
 \usepackage{microtype}
 \usepackage{graphicx}
 \usepackage{subcaption}
-\usepackage{booktabs} % for professional tables
-
-% hyperref makes hyperlinks in the resulting PDF.
-% If your build breaks (sometimes temporarily if a hyperlink spans a page)
-% please comment out the following usepackage line and replace
-% \usepackage{icml2026} with \usepackage[nohyperref]{icml2026} above.
+\usepackage{booktabs}
 \usepackage{hyperref}
 
-
-% Attempt to make hyperref and algorithmic work together better:
 \newcommand{\theHalgorithm}{\arabic{algorithm}}
 
-% Use the following line for the initial blind version submitted for review:
-% \usepackage{icml2026}
-
-% For preprint, use
 \usepackage[preprint]{icml2026}
-
-% If accepted, instead use the following line for the camera-ready submission:
-% \usepackage[accepted]{icml2026}
 
 \usepackage{amsmath}
 \usepackage{amssymb}
 \usepackage{mathtools}
 \usepackage{amsthm}
-
-
-% if you use cleveref..
 \usepackage[capitalize,noabbrev]{cleveref}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% THEOREMS
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\theoremstyle{plain}
-\newtheorem{theorem}{Theorem}[section]
-\newtheorem{proposition}[theorem]{Proposition}
-\newtheorem{lemma}[theorem]{Lemma}
-\newtheorem{corollary}[theorem]{Corollary}
-\theoremstyle{definition}
-\newtheorem{definition}[theorem]{Definition}
-\newtheorem{assumption}[theorem]{Assumption}
-\theoremstyle{remark}
-\newtheorem{remark}[theorem]{Remark}
-
-% Todonotes is useful during development; simply uncomment the next line
-%    and comment out the line below the next line to turn off comments
-%\usepackage[disable,textsize=tiny]{todonotes}
-\usepackage[textsize=tiny]{todonotes}
-
-% The \icmltitle you define below is probably too long as a header.
-% Therefore, a short form for the running title is supplied here:
-\icmltitlerunning{Multi-Agent System for Student Life Management}
+\icmltitlerunning{Multi-Agent AI Coach for Student Stress Management on StudentLife}
 
 \begin{document}
 
 \twocolumn[
-  \icmltitle{Multi-Agent System for Student Life Management}
+  \icmltitle{A Multi-Agent AI Coach for Personalized Student Stress Management\\on Longitudinal Smartphone Sensing Data}
 
-  % It is OKAY to include author information, even for blind submissions: the
-  % style file will automatically remove it for you unless you've provided
-  % the [accepted] option to the icml2026 package.
-
-  % List of affiliations: The first argument should be a (short) identifier you
-  % will use later to specify author affiliations Academic affiliations
-  % should list Department, University, City, Region, Country Industry
-  % affiliations should list Company, City, Region, Country
-
-  % You can specify symbols, otherwise they are numbered in order. Ideally, you
-  % should not use this facility. Affiliations will be numbered in order of
-  % appearance and this is the preferred way.
-  % \icmlsetsymbol{equal}{*}
+  \icmlsetsymbol{equal}{*}
 
   \begin{icmlauthorlist}
-    \icmlauthor{Mahdi Moghaddami}{a}
-    \icmlauthor{Brett Piggot}{a}
-    % \icmlauthor{Firstname3 Lastname3}{comp}
-    % \icmlauthor{Firstname4 Lastname4}{sch}
-    % \icmlauthor{Firstname5 Lastname5}{yyy}
-    % \icmlauthor{Firstname6 Lastname6}{sch,yyy,comp}
-    % \icmlauthor{Firstname7 Lastname7}{comp}
-    %\icmlauthor{}{sch}
-    % \icmlauthor{Firstname8 Lastname8}{sch}
-    % \icmlauthor{Firstname8 Lastname8}{yyy,comp}
-    %\icmlauthor{}{sch}
-    %\icmlauthor{}{sch}
+    \icmlauthor{Mahdi Moghaddami}{equal,ou}
+    \icmlauthor{Brett Piggot}{equal,ou}
   \end{icmlauthorlist}
 
-  \icmlaffiliation{a}{Department of Computer Science, Oakland University, Rochester, MI, USA}
-  % \icmlaffiliation{comp}{Company Name, Location, Country}
-  % \icmlaffiliation{sch}{School of ZZZ, Institute of WWW, Location, Country}
+  \icmlaffiliation{ou}{Department of Computer Science and Engineering, Oakland University, Rochester, MI, USA}
 
-  \icmlcorrespondingauthor{Mahdi Moghaddami}{moghaddami@oakland.edu}
-  % \icmlcorrespondingauthor{Brett Piggot}{bpiggot@oakland.edu}
+  \icmlcorrespondingauthor{Mahdi Moghaddami}{mmoghaddami@oakland.edu}
+  \icmlcorrespondingauthor{Brett Piggot}{bpiggot@oakland.edu}
 
-  % You may provide any keywords that you find helpful for describing your
-  % paper; these are used to populate the "keywords" metadata in the PDF but
-  % will not be shown in the document
-  \icmlkeywords{Machine Learning, ICML, Agentic, LLM}
+  \icmlkeywords{Agentic AI, Multi-Agent Systems, Large Language Models, StudentLife, Mobile Sensing, Just-in-Time Adaptive Interventions}
 
   \vskip 0.3in
 ]
 
-% this must go after the closing bracket ] following \twocolumn[ ...
-
-% This command actually creates the footnote in the first column listing the
-% affiliations and the copyright notice. The command takes one argument, which
-% is text to display at the start of the footnote. The \icmlEqualContribution
-% command is standard text for equal contribution. Remove it (just {}) if you
-% do not need this facility.
-
-% Use ONE of the following lines. DO NOT remove the command.
-% If you have no special notice, KEEP empty braces:
-\printAffiliationsAndNotice{}  % no special notice (required even if empty)
-% Or, if applicable, use the standard equal contribution text:
-% \printAffiliationsAndNotice{\icmlEqualContribution}
+\printAffiliationsAndNotice{\icmlEqualContribution}
 
 \begin{abstract}
-  This document provides a basic paper template and submission guidelines.
-  Abstracts must be a single paragraph, ideally between 4--6 sentences long.
-  Gross violations will trigger corrections at the camera-ready phase.
+College students experience fluctuating academic workloads, sleep disruption, and social stressors that vary sharply across a term, making static wellness advice ineffective or intrusive. We design, implement, and evaluate a training-free, multi-agent Large Language Model (LLM) stress coach grounded in longitudinal passive smartphone sensing, Ecological Momentary Assessments (EMAs), and academic schedules from the Dartmouth StudentLife dataset. At each decision timestamp, our system coordinates five specialized agent roles---\emph{Planner}, \emph{Context Analyst}, \emph{Message Writer}, \emph{Critic}, and \emph{Memory Manager}---integrating five core agentic design patterns: iterative planning, time-bounded tool use, modular coaching skills, self-reflection, and persistent episodic/preference memory. Crucially, the system chooses among sending a tailored coaching suggestion (\texttt{suggest}), asking a low-burden clarifying question when sensing modalities are missing (\texttt{ask}), or withholding intervention when the student is thriving or recently coached (\texttt{none}). Across a deterministic 20-case benchmark spanning five behavioral categories and a nine-configuration ablation study, our full multi-agent architecture achieves high decision appropriateness, perfect adherence to multi-step learned user preferences, and strong alignment between independent LLM-as-a-Judge ratings and blind human evaluations.
 \end{abstract}
 
-\section{Electronic Submission}
+\section{Introduction}
+\label{sec:intro}
 
-Submission to ICML 2026 will be entirely electronic, via a web site
-(not email). Information about the submission process and \LaTeX\ templates
-are available on the conference web site at:
-\begin{center}
-  \texttt{http://icml.cc/}
-\end{center}
+University terms impose non-stationary cognitive and emotional demands on students. As coursework, midterm exams, and project deadlines accumulate, students frequently exhibit measurable behavioral shifts, including compressed sleep duration, irregular bedtimes, reduced physical movement, and heightened self-reported stress \cite{wang2014studentlife}. Just-in-Time Adaptive Interventions (JITAIs) aim to deliver brief, context-sensitive support precisely when an individual is vulnerable to stress and receptive to action \cite{nahum2018jitai}. However, deploying LLM-based coaching agents in realistic mobile-sensing environments introduces four fundamental challenges:
+\begin{enumerate}
+  \item \textbf{Multimodal Evidence Synthesis without Temporal Leakage:} Raw smartphone logs (screen dark periods, phone lock/charge intervals, accelerometer inferences, audio-derived conversations, and irregular EMA check-ins) are noisy and asynchronous. An agent must query historical windows strictly prior to the decision timestamp ($t \le t_{\text{dec}}$) without leaking future observations.
+  \item \textbf{Calibrated Intervention Restraint:} Over-messaging causes notification fatigue and user abandonment \cite{nahum2018jitai}. When a student has slept well, reports low stress, or already accepted a suggestion two hours earlier, the optimal coaching action is silence (\texttt{none}).
+  \item \textbf{Uncertainty Awareness under Missing Data:} Passive sensors frequently drop out due to battery depletion, permissions, or off-body phone placement. Rather than hallucinating behavioral trends, an agent must detect missing modalities and ask a brief clarifying question (\texttt{ask}).
+  \item \textbf{Longitudinal Personalization and Preference Adaptation:} Students differ sharply in their coaching preferences (e.g., solo music wind-downs vs.\ social hangouts, or rejecting running/gym workouts during deadline weeks). A coach must persist episodic history and extract durable preference rules from user feedback across consecutive interactions.
+\end{enumerate}
 
-The guidelines below will be enforced for initial submissions and
-camera-ready copies. Here is a brief summary:
+To address these challenges, we present the \textbf{Multi-Agent StudentLife Stress Coach}, a modular agentic framework built on off-the-shelf foundation models via \texttt{aisuite} without model fine-tuning. Our contributions are fourfold:
 \begin{itemize}
-  \item Submissions must be in PDF\@.
-  \item If your paper has appendices, submit the appendix together with the
-        main body and the references \textbf{as a single file}. Reviewers will not
-        look for appendices as a separate PDF file. So if you submit such an extra
-        file, reviewers will very likely miss it.
-  \item Page limit: The main body of the paper has to be fitted to 8 pages,
-        excluding references and appendices; the space for the latter two is not
-        limited in pages, but the total file size may not exceed 10MB. For the
-        final version of the paper, authors can add one extra page to the main
-        body.
-  \item \textbf{Do not include author information or acknowledgements} in your
-        initial submission.
-  \item Your paper should be in \textbf{10 point Times font}.
-  \item Make sure your PDF file only uses Type-1 fonts.
-  \item Place figure captions \emph{under} the figure (and omit titles from
-        inside the graphic file itself). Place table captions \emph{over} the
-        table.
-  \item References must include page numbers whenever possible and be as
-        complete as possible. Place multiple citations in chronological order.
-  \item Do not alter the style template; in particular, do not compress the
-        paper format by reducing the vertical spaces.
-  \item Keep your abstract brief and self-contained, one paragraph and roughly
-        4--6 sentences. Gross violations will require correction at the
-        camera-ready phase. The title should have content words capitalized.
+  \item \textbf{Leak-Free Sensing Store and Tool Layer:} We engineer a preprocessing pipeline over all 49 StudentLife participants that computes daily sleep, activity, social, academic, and EMA features, exposed through closure-bound tools that guarantee strict causal masking ($t \le t_{\text{dec}}$) and explicit missing-data reporting.
+  \item \textbf{Configurable Five-Agent Architecture:} We decouple strategic hypothesis generation (\emph{Planner}), tool-based evidence gathering (\emph{Context Analyst}), skill-guided drafting (\emph{Message Writer}), rubric-based auditing (\emph{Critic}), and preference extraction (\emph{Memory Manager}). Every agentic design pattern---Reflection, Tool Use, Planning, Multi-Agent orchestration, and Memory/Skills---can be toggled or varied in depth via declarative TOML configurations.
+  \item \textbf{Grounded Longitudinal Benchmark:} We construct 20 reproducible evaluation cases across eight high-coverage participants, pairing real sensing/EMA trajectories with clearly labeled simulated student profiles grounded in pre-term psychological surveys (PSS, PHQ-9, Big Five, UCLA Loneliness) and three-step preference-update feedback scripts.
+  \item \textbf{Rigorous Multi-Method Evaluation and Ablations:} We evaluate decision accuracy, multi-step preference adherence, efficiency (latency, calls, tokens), independent LLM Judge scores across three criteria, and blind dual-rater human evaluations (reporting Mean Absolute Difference and notable disagreements), alongside nine controlled ablation configurations.
 \end{itemize}
 
-\subsection{Submitting Papers}
+\section{Related Work}
+\label{sec:related}
 
-\textbf{Anonymous Submission:} ICML uses double-blind review: no identifying
-author information may appear on the title page or in the paper
-itself. \cref{author info} gives further details.
+\textbf{Passive Mobile Sensing and JITAIs.} The pioneering StudentLife study \cite{wang2014studentlife} demonstrated that passive smartphone sensing over a 10-week Dartmouth term correlates significantly with mental health scales (PHQ-9 depression, Perceived Stress Scale, loneliness) and academic performance. Subsequent work on Just-in-Time Adaptive Interventions \cite{nahum2018jitai} established that effective mobile health coaching requires balancing timely support against user burden by conditioning decision rules on real-time vulnerability and availability.
 
-\medskip
+\textbf{Agentic Planning, Tool Use, and Multi-Agent Systems.} Interleaving natural-language reasoning with external tool execution (\emph{ReAct}) enables LLMs to ground decisions in verifiable environment state rather than parametric memory \cite{yao2023react}. Plan-and-Solve prompting \cite{wang2023planandsolve} further separates high-level hypothesis formulation from execution. Multi-agent frameworks such as AutoGen \cite{wu2023autogen} demonstrate that decomposing complex workflows into specialized role-prompted agents reduces context clutter and improves constraint adherence compared to monolithic prompts.
 
-Authors must provide their manuscripts in \textbf{PDF} format.
-Furthermore, please make sure that files contain only embedded Type-1 fonts
-(e.g.,~using the program \texttt{pdffonts} in linux or using
-File/DocumentProperties/Fonts in Acrobat). Other fonts (like Type-3)
-might come from graphics files imported into the document.
+\textbf{Self-Reflection, Memory, and LLM Evaluation.} Iterative critique-and-revision loops (\emph{Self-Refine} \cite{madaan2023selfrefine} and \emph{Reflexion} \cite{shinn2023reflexion}) allow an auxiliary critic to catch factual hallucinations and constraint violations prior to user delivery. For longitudinal personalization, Generative Agents \cite{park2023generative} introduced episodic memory streams paired with synthesized high-level reflections. Finally, evaluating open-ended generation with a calibrated LLM-as-a-Judge \cite{zheng2023judging} provides scalable rubric scoring when paired with blind human ratings to audit judge bias.
 
-Authors using \textbf{Word} must convert their document to PDF\@. Most
-of the latest versions of Word have the facility to do this
-automatically. Submissions will not be accepted in Word format or any
-format other than PDF\@. Really. We're not joking. Don't send Word.
+\section{Dataset, Preprocessing, and Simulation}
+\label{sec:data}
 
-Those who use \textbf{\LaTeX} should avoid including Type-3 fonts.
-Those using \texttt{latex} and \texttt{dvips} may need the following
-two commands:
+\subsection{StudentLife Feature Engineering}
+We process the raw Dartmouth StudentLife dataset \cite{wang2014studentlife} across all 49 participants over the 10-week Spring 2013 term (term start: March 25, 2013; all Unix epochs localized to \texttt{America/New\_York}). To keep preprocessing fast ($\approx 6$~seconds total) and interpretable, we extract five core data streams into per-participant Parquet caches:
+\begin{enumerate}
+  \item \textbf{Inferred Sleep (\texttt{sensing.sleep}):} Following a simplified StudentLife sleep heuristic, we merge intervals between 18:00 and 12:00 the next day where the phone is in a dark environment (\texttt{dark}) \emph{and} either screen-locked (\texttt{phonelock}) or charging (\texttt{phonecharge}), bridging gaps under 20 minutes. The longest qualifying block ($1.5\text{--}14$~hours overlapping 00:00--07:00) yields \texttt{sleep\_hours\_inferred}, bedtime, and wake time, attributed to the wake date (median $7.3$~h, IQR $5.6\text{--}8.8$~h).
+  \item \textbf{Physical Activity (\texttt{sensing.activity}):} Accelerometer classifiers log stationary (0), walking (1), and running (2) states on a 1-minute-on, 3-minute-off duty cycle. We bin daily coverage into 10-minute windows to estimate daily active, walking, and running minutes (setting \texttt{has\_activity} only when $\ge 12$~h of daily sensing coverage exists).
+  \item \textbf{Social Interaction (\texttt{sensing.social}):} Audio-derived privacy-preserving conversation segments provide daily conversation counts and duration (minutes), augmented by daily call-log and SMS counts.
+  \item \textbf{Timestamped EMAs (\texttt{ema.stress}):} Raw EMA responses carry irregular timestamps. Because raw StudentLife stress codes map $1=\text{\emph{A little stressed}}$, $2=\text{\emph{Definitely stressed}}$, $3=\text{\emph{Stressed out}}$, $4=\text{\emph{Feeling good}}$, and $5=\text{\emph{Feeling great}}$, we remap them monotonically to $\{1\to 3, 2\to 4, 3\to 5, 4\to 2, 5\to 1\}$ so higher values denote higher stress ($1=\text{feeling great}$ to $5=\text{stressed out}$, with $\ge 4$ indicating acute stress). We also retain EMA sleep hours/quality, social contact categories, mood, Photographic Affect Meter (PAM), and free-text comments.
+  \item \textbf{Academic Load and Pre-Term Surveys:} Syllabus deadlines (\texttt{deadlines.csv}) and class schedules (\texttt{class.csv}, \texttt{class\_info.json}) yield deadlines due today and within the next 3 days. From psychological surveys, we extract \emph{only} pre-term (\texttt{type == pre}) scores---PSS-10, PHQ-9 (including item 9), Big Five (BFI-44), and UCLA Loneliness---preventing post-term outcome leakage.
+\end{enumerate}
 
-{\footnotesize
-\begin{verbatim}
-dvips -Ppdf -tletter -G0 -o paper.ps paper.dvi
-ps2pdf paper.ps
-\end{verbatim}}
-It is a zero following the ``-G'', which tells dvips to use
-the config.pdf file. Newer \TeX\ distributions don't always need this
-option.
+\subsection{Strict Causal Bounds and Leak-Free Views}
+To guarantee zero future data leakage, our \texttt{DataStore.get\_view(uid, decision\_time, mask)} constructs an immutable \texttt{View} bound to $(u, t_{\text{dec}}, M)$:
+\begin{itemize}
+  \item Daily sensing aggregates are restricted strictly to completed calendar days before $t_{\text{dec}}$ ($\text{date} < \text{date}(t_{\text{dec}})$), except that \texttt{last\_night} sleep (whose 18:00--12:00 window closes at noon) is exposed when $\text{hour}(t_{\text{dec}}) \ge 12$.
+  \item Timestamped EMA records are filtered by exact timestamp $\tau \le t_{\text{dec}}$.
+  \item Any modality $m \in M$ (synthetic mask) returns \texttt{\{"status": "missing", "reason": "masked (synthetic)"\}}, while naturally absent sensor windows return \texttt{\{"status": "missing", "reason": "no data"\}}.
+\end{itemize}
+Five automated unit tests (\texttt{tests/test\_leakage.py}) verify that tool outputs contain no dates after $t_{\text{dec}}$ and remain byte-identical when all rows after $t_{\text{dec}}$ are deleted from the underlying store.
 
-Using \texttt{pdflatex} rather than \texttt{latex}, often gives better
-results. This program avoids the Type-3 font problem, and supports more
-advanced features in the \texttt{microtype} package.
+\subsection{Labeled Simulated Profiles and Feedback}
+Because StudentLife does not record personal coaching goals or conversational feedback, we construct deterministic, clearly labeled simulated artifacts (\texttt{"simulated": true}):
+\begin{itemize}
+  \item \textbf{Simulated Profiles (\texttt{cases/profiles.json}):} Grounded in each participant's real pre-term survey scores and course schedule (e.g., high BFI introversion and UCLA loneliness score of 64 for \texttt{u10} motivate solo decompression walks rather than group mixers). Each profile defines 3 goals, baseline preferences (activity style, tone, preferred times, dislikes), and hard constraints.
+  \item \textbf{Simulated Multi-Step Feedback (\texttt{cases/feedback\_scripts.json}):} For preference-update episodes, scripted student responses after Steps 1 and 2 introduce explicit rejections (e.g., \texttt{u16} rejecting running/jogging/gym workouts in Step 1 and requesting Baker-Berry Library-compatible micro-breaks under 35 words in Step 2), paired with machine-checkable \texttt{forbidden\_terms} and \texttt{required\_themes}.
+\end{itemize}
 
-\textbf{Graphics files} should be a reasonable size, and included from
-an appropriate format. Use vector formats (.eps/.pdf) for plots,
-lossless bitmap formats (.png) for raster graphics with sharp lines, and
-jpeg for photo-like images.
-
-The style file uses the \texttt{hyperref} package to make clickable
-links in documents. If this causes problems for you, add
-\texttt{nohyperref} as one of the options to the \texttt{icml2026}
-usepackage statement.
-
-\subsection{Submitting Final Camera-Ready Copy}
-
-The final versions of papers accepted for publication should follow the
-same format and naming convention as initial submissions, except that
-author information (names and affiliations) should be given. See
-\cref{final author} for formatting instructions.
-
-The footnote, ``Preliminary work. Under review by the International
-Conference on Machine Learning (ICML). Do not distribute.'' must be
-modified to ``\textit{Proceedings of the
-  $\mathit{43}^{rd}$ International Conference on Machine Learning},
-Seoul, South Korea, PMLR 306, 2026.
-Copyright 2026 by the author(s).''
-
-For those using the \textbf{\LaTeX} style file, this change (and others) is
-handled automatically by simply changing
-$\mathtt{\backslash usepackage\{icml2026\}}$ to
-$$\mathtt{\backslash usepackage[accepted]\{icml2026\}}$$
-Authors using \textbf{Word} must edit the
-footnote on the first page of the document themselves.
-
-Camera-ready copies should have the title of the paper as running head
-on each page except the first one. The running title consists of a
-single line centered above a horizontal rule which is $1$~point thick.
-The running head should be centered, bold and in $9$~point type. The
-rule should be $10$~points above the main text. For those using the
-\textbf{\LaTeX} style file, the original title is automatically set as running
-head using the \texttt{fancyhdr} package which is included in the ICML
-2026 style file package. In case that the original title exceeds the
-size restrictions, a shorter form can be supplied by using
-
-\verb|\icmltitlerunning{...}|
-
-just before $\mathtt{\backslash begin\{document\}}$.
-Authors using \textbf{Word} must edit the header of the document themselves.
-
-\section{Format of the Paper}
-
-All submissions must follow the specified format.
-
-\subsection{Dimensions}
-
-The text of the paper should be formatted in two columns, with an
-overall width of 6.75~inches, height of 9.0~inches, and 0.25~inches
-between the columns. The left margin should be 0.75~inches and the top
-margin 1.0~inch (2.54~cm). The right and bottom margins will depend on
-whether you print on US letter or A4 paper, but all final versions
-must be produced for US letter size.
-Do not write anything on the margins.
-
-The paper body should be set in 10~point type with a vertical spacing
-of 11~points. Please use Times typeface throughout the text.
-
-\subsection{Title}
-
-The paper title should be set in 14~point bold type and centered
-between two horizontal rules that are 1~point thick, with 1.0~inch
-between the top rule and the top edge of the page. Capitalize the
-first letter of content words and put the rest of the title in lower
-case.
-You can use TeX math in the title (we suggest sparingly),
-but no custom macros, images, or other TeX commands.
-Please make sure that accents, special characters, etc., are entered using
-TeX commands and not using non-English characters.
-
-\subsection{Author Information for Submission}
-\label{author info}
-
-ICML uses double-blind review, so author information must not appear. If
-you are using \LaTeX\/ and the \texttt{icml2026.sty} file, use
-\verb+\icmlauthor{...}+ to specify authors and \verb+\icmlaffiliation{...}+
-to specify affiliations. (Read the TeX code used to produce this document for
-an example usage.) The author information will not be printed unless
-\texttt{accepted} is passed as an argument to the style file. Submissions that
-include the author information will not be reviewed.
-
-\subsubsection{Self-Citations}
-
-If you are citing published papers for which you are an author, refer
-to yourself in the third person. In particular, do not use phrases
-that reveal your identity (e.g., ``in previous work \cite{langley00}, we
-have shown \ldots'').
-
-Do not anonymize citations in the reference section. The only exception are manuscripts that are
-not yet published (e.g., under submission). If you choose to refer to
-such unpublished manuscripts \cite{anonymous}, anonymized copies have
-to be submitted
-as Supplementary Material via OpenReview\@. However, keep in mind that an ICML
-paper should be self contained and should contain sufficient detail
-for the reviewers to evaluate the work. In particular, reviewers are
-not required to look at the Supplementary Material when writing their
-review (they are not required to look at more than the first $8$ pages of the submitted document).
-
-\subsubsection{Camera-Ready Author Information}
-\label{final author}
-
-If a paper is accepted, a final camera-ready copy must be prepared.
-%
-For camera-ready papers, author information should start 0.3~inches below the
-bottom rule surrounding the title. The authors' names should appear in 10~point
-bold type, in a row, separated by white space, and centered. Author names should
-not be broken across lines. Unbolded superscripted numbers, starting 1, should
-be used to refer to affiliations.
-
-Affiliations should be numbered in the order of appearance. A single footnote
-block of text should be used to list all the affiliations. (Academic
-affiliations should list Department, University, City, State/Region, Country.
-Similarly for industrial affiliations.)
-
-Each distinct affiliations should be listed once. If an author has multiple
-affiliations, multiple superscripts should be placed after the name, separated
-by thin spaces. If the authors would like to highlight equal contribution by
-multiple first authors, those authors should have an asterisk placed after their
-name in superscript, and the term ``\textsuperscript{*}Equal contribution"
-should be placed in the footnote block ahead of the list of affiliations. A
-list of corresponding authors and their emails (in the format Full Name
-\textless{}email@domain.com\textgreater{}) can follow the list of affiliations.
-Ideally only one or two names should be listed.
-
-A sample file with author names is included in the ICML2026 style file
-package. Turn on the \texttt{[accepted]} option to the stylefile to
-see the names rendered. All of the guidelines above are implemented
-by the \LaTeX\ style file.
-
-\subsection{Abstract}
-
-The paper abstract should begin in the left column, 0.4~inches below the final
-address. The heading `Abstract' should be centered, bold, and in 11~point type.
-The abstract body should use 10~point type, with a vertical spacing of
-11~points, and should be indented 0.25~inches more than normal on left-hand and
-right-hand margins. Insert 0.4~inches of blank space after the body. Keep your
-abstract brief and self-contained, limiting it to one paragraph and roughly 4--6
-sentences. Gross violations will require correction at the camera-ready phase.
-
-\subsection{Partitioning the Text}
-
-You should organize your paper into sections and paragraphs to help readers
-place a structure on the material and understand its contributions.
-
-\subsubsection{Sections and Subsections}
-
-Section headings should be numbered, flush left, and set in 11~pt bold type
-with the content words capitalized. Leave 0.25~inches of space before the
-heading and 0.15~inches after the heading.
-
-Similarly, subsection headings should be numbered, flush left, and set in 10~pt
-bold type with the content words capitalized. Leave
-0.2~inches of space before the heading and 0.13~inches afterward.
-
-Finally, subsubsection headings should be numbered, flush left, and set in
-10~pt small caps with the content words capitalized. Leave
-0.18~inches of space before the heading and 0.1~inches after the heading.
-
-Please use no more than three levels of headings.
-
-\subsubsection{Paragraphs and Footnotes}
-
-Within each section or subsection, you should further partition the paper into
-paragraphs. Do not indent the first line of a given paragraph, but insert a
-blank line between succeeding ones.
-
-You can use footnotes\footnote{Footnotes should be complete sentences.}
-to provide readers with additional information about a topic without
-interrupting the flow of the paper. Indicate footnotes with a number in the
-text where the point is most relevant. Place the footnote in 9~point type at
-the bottom of the column in which it appears. Precede the first footnote in a
-column with a horizontal rule of 0.8~inches.\footnote{Multiple footnotes can
-  appear in each column, in the same order as they appear in the text,
-  but spread them across columns and pages if possible.}
-
-\begin{figure}[ht]
-  \vskip 0.2in
-  \begin{center}
-    \centerline{\includegraphics[width=\columnwidth]{icml_numpapers}}
-    \caption{
-      Historical locations and number of accepted papers for International
-      Machine Learning Conferences (ICML 1993 -- ICML 2008) and International
-      Workshops on Machine Learning (ML 1988 -- ML 1992). At the time this
-      figure was produced, the number of accepted papers for ICML 2008 was
-      unknown and instead estimated.
-    }
-    \label{icml-historical}
-  \end{center}
-\end{figure}
-
-\subsection{Figures}
-
-You may want to include figures in the paper to illustrate your approach and
-results. Such artwork should be centered, legible, and separated from the text.
-Lines should be dark and at least 0.5~points thick for purposes of
-reproduction, and text should not appear on a gray background.
-
-Label all distinct components of each figure. If the figure takes the form of a
-graph, then give a name for each axis and include a legend that briefly
-describes each curve. Do not include a title inside the figure; instead, the
-caption should serve this function.
-
-Number figures sequentially, placing the figure number and caption \emph{after}
-the graphics, with at least 0.1~inches of space before the caption and
-0.1~inches after it, as in \cref{icml-historical}. The figure caption should be
-set in 9~point type and centered unless it runs two or more lines, in which
-case it should be flush left. You may float figures to the top or bottom of a
-column, and you may set wide figures across both columns (use the environment
-\texttt{figure*} in \LaTeX). Always place two-column figures at the top or
-bottom of the page.
-
-\subsection{Algorithms}
-
-If you are using \LaTeX, please use the ``algorithm'' and ``algorithmic''
-environments to format pseudocode. These require the corresponding stylefiles,
-algorithm.sty and algorithmic.sty, which are supplied with this package.
-\cref{alg:example} shows an example.
+\section{System Architecture}
+\label{sec:system}
 
 \begin{algorithm}[tb]
-  \caption{Bubble Sort}
-  \label{alg:example}
-  \begin{algorithmic}
-    \STATE {\bfseries Input:} data $x_i$, size $m$
-    \REPEAT
-    \STATE Initialize $noChange = true$.
-    \FOR{$i=1$ {\bfseries to} $m-1$}
-    \IF{$x_i > x_{i+1}$}
-    \STATE Swap $x_i$ and $x_{i+1}$
-    \STATE $noChange = false$
+  \caption{Multi-Agent Stress Coaching Pipeline}
+  \label{alg:pipeline}
+  \begin{algorithmic}[1]
+    \STATE {\bfseries Input:} Case $(u, t_{\text{dec}}, M)$, Config $(K_p, K_r, \text{flags})$, Store $\mathcal{D}$, Memory $\mathcal{M}$
+    \STATE $V \gets \mathcal{D}.\text{get\_view}(u, t_{\text{dec}}, M)$;\quad $\mathcal{T} \gets \text{make\_tools}(V)$
+    \STATE $m_{\text{ctx}} \gets \mathcal{M}.\text{format}(u, \text{enabled}=\text{flags.mem}, k=5)$
+    \STATE $E \gets [\ ]$;\quad $P \gets [\ ]$;\quad $d^* \gets \text{null}$
+    \IF{$\text{flags.planning}$ \textbf{and} $K_p \ge 1$}
+      \FOR{$r = 1$ {\bfseries to} $K_p$}
+        \STATE $p_r \gets \textsc{Planner}(u, t_{\text{dec}}, m_{\text{ctx}}, P, E, r, K_p)$
+        \STATE $P \gets P \cup p_r.\text{plan\_steps}$;\quad $d^* \gets p_r$
+        \IF{$E = \emptyset$ \textbf{or} $p_r.\text{status} = \texttt{gather\_more}$}
+          \STATE $e_r \gets \textsc{Analyst}(u, t_{\text{dec}}, p_r.\text{plan\_steps}, \mathcal{T})$
+          \STATE $E.\text{append}(e_r)$
+        \ENDIF
+        \IF{$p_r.\text{status} = \texttt{finalize}$ \textbf{and} $E \ne \emptyset$}
+          \STATE \textbf{break}
+        \ENDIF
+      \ENDFOR
+    \ELSE
+      \STATE $E.\text{append}(\textsc{Analyst}(u, t_{\text{dec}}, \emptyset, \mathcal{T}))$
     \ENDIF
-    \ENDFOR
-    \UNTIL{$noChange$ is $true$}
+    \IF{$d^* \ne \text{null}$ \textbf{and} $d^*.\text{decision} = \texttt{none}$}
+      \STATE $y \gets (\texttt{none}, \text{null}, \text{null})$
+    \ELSE
+      \STATE $S \gets \text{load\_skill}(d^*.\text{skill})$ \textbf{if} $\text{flags.skills}$ \textbf{else} $\text{null}$
+      \STATE $w \gets \textsc{Writer}(u, m_{\text{ctx}}, E, d^*, S)$
+      \IF{$w.\text{decision} \in \{\texttt{suggest}, \texttt{ask}\}$ \textbf{and} $\text{flags.refl}$}
+        \FOR{$c = 1$ {\bfseries to} $K_r$}
+          \STATE $\text{rev} \gets \textsc{Critic}(u, m_{\text{ctx}}, E, d^*, w, c, K_r)$
+          \IF{$\text{rev}.\text{verdict} = \texttt{pass}$}
+            \STATE \textbf{break}
+          \ENDIF
+          \STATE $w \gets \textsc{Writer}(u, m_{\text{ctx}}, E, d^*, S, w.\text{msg}, \text{rev})$
+        \ENDFOR
+      \ENDIF
+      \STATE $y \gets (w.\text{decision}, w.\text{skill}, w.\text{msg})$
+    \ENDIF
+    \STATE $\Delta_{\text{pref}} \gets \textsc{MemoryMgr}(u, y, \text{scripted\_feedback})$
+    \STATE $\mathcal{M}.\text{record\_episode}(u, t_{\text{dec}}, y, \Delta_{\text{pref}})$
+    \STATE {\bfseries Return:} JSONL record $(y, P, E, \Delta_{\text{pref}}, \text{trace})$
   \end{algorithmic}
 \end{algorithm}
 
+\cref{alg:pipeline} formalizes our multi-agent execution flow. Each agent communicates via Pydantic-validated JSON schemas over \texttt{aisuite}, with automatic schema-repair fallback and exponential backoff.
 
-\subsection{Tables}
+\subsection{Agent Roles and Design Patterns}
 
-You may also want to include tables that summarize material. Like figures,
-these should be centered, legible, and numbered consecutively. However, place
-the title \emph{above} the table with at least 0.1~inches of space before the
-title and the same after it, as in \cref{sample-table}. The table title should
-be set in 9~point type and centered unless it runs two or more lines, in which
-case it should be flush left.
+\textbf{1. Planner (\texttt{PlannerOutput}):} Reads the time context, simulated profile, learned preference memory, and the compact 8-skill index. In Round 1, it formulates 2--4 hypotheses and specific tool-query steps (\texttt{status = "gather\_more"}). After inspecting the Context Analyst's findings, it either requests targeted follow-up checks (up to planning budget $K_p \in \{1, 2, 3\}$) or finalizes (\texttt{status = "finalize"}) the coaching action $d \in \{\texttt{suggest}, \texttt{ask}, \texttt{none}\}$, target skill, and preference-aware writer guidance.
 
-% Note use of \abovespace and \belowspace to get reasonable spacing
-% above and below tabular lines.
+\textbf{2. Context Analyst (\texttt{AnalystOutput}) \& Tool Use:} Executes up to \texttt{max\_turns} tool calls over eight leak-free closures: \texttt{get\_time\_context}, \texttt{get\_sleep\_summary}, \texttt{get\_activity\_summary}, \texttt{get\_social\_summary}, \texttt{get\_stress\_mood\_history}, \texttt{get\_academic\_load}, \texttt{compare\_to\_baseline} (computing within-participant $z$-scores up to $t_{\text{dec}}$), and \texttt{search\_campus\_resources} (querying eight curated Dartmouth and crisis resources in \texttt{resources/campus\_resources.json}). Every finding carries a verifiable \texttt{source} tag and \texttt{simulated=false}.
 
-\begin{table}[t]
-  \caption{Classification accuracies for naive Bayes and flexible
-    Bayes on various data sets.}
-  \label{sample-table}
+\textbf{3. Skills Library \& Message Writer (\texttt{WriterOutput}):} To prevent prompt bloat, the Planner sees only skill names and metadata, while the Writer loads the full Markdown procedure, contraindications, and examples on demand (\texttt{skills/*.md}) for the selected skill: \texttt{micro\_study\_break}, \texttt{sleep\_hygiene\_nudge}, \texttt{gentle\_movement}, \texttt{social\_reconnection}, \texttt{deadline\_chunking}, \texttt{campus\_resource\_referral}, \texttt{clarifying\_question}, or \texttt{positive\_reinforcement}. When Planning is disabled (\texttt{no\_plan}), the Writer directly selects the decision and skill from the Analyst's report.
+
+\textbf{4. Critic (\texttt{CriticOutput}) \& Reflection:} Audits the Writer's draft against context accuracy, goal alignment, strict compliance with learned preferences (checking for any forbidden terms or length violations), tone, and non-diagnostic safety. Up to $K_r \in \{1, 2, 3\}$ review-and-revision cycles run, stopping early when \texttt{verdict == "pass"}.
+
+\textbf{5. Memory Manager (\texttt{MemoryUpdateOutput}):} Persists each episode to \texttt{runs/<config\_id>/memory/<uid>.json} (isolated per configuration so ablations never cross-contaminate) and extracts imperative preference rules from simulated student feedback for subsequent episodes.
+
+\textbf{6. Single-Agent Baseline (\texttt{SingleAgentOutput}):} Provides a controlled architectural comparison: a single LLM given the exact same profile, memory, skill-loading tool (\texttt{load\_skill}), memory tool (\texttt{recall\_memory}), and sensing tools in one unified tool-calling loop.
+
+\section{Experimental Setup}
+\label{sec:setup}
+
+\textbf{Evaluation Benchmark (20 Cases).} Using our coverage ranking across all 49 participants (Table in \texttt{cases/selection.md}), we select eight high-coverage participants (\texttt{u59}, \texttt{u08}, \texttt{u19}, \texttt{u10}, \texttt{u57}, \texttt{u16}, \texttt{u00}, \texttt{u02}) and construct 20 deterministic cases (\texttt{cases/cases.jsonl}) spanning five categories:
+\begin{itemize}
+  \item \textbf{Typical High Stress / High Load (5 cases, \texttt{case\_001}--\texttt{005}):} Midterms/deadline windows with acute EMA stress ($\ge 4/5$) and/or sleep deficits ($2.8\text{--}5.8$~h), expecting \texttt{suggest}.
+  \item \textbf{Typical Doing Fine (3 cases, \texttt{case\_006}--\texttt{008}):} Calm days with low EMA stress ($\le 2/5$), $7.2\text{--}8.3$~h sleep, and 0 deadlines due today, expecting \texttt{none}.
+  \item \textbf{Missing Data (4 cases, \texttt{case\_009}--\texttt{012}):} Two real natural sensing dropouts (\texttt{u00}, \texttt{u57}, \texttt{mask=[]}) and two synthetic modality masks (\texttt{mask=["sleep","activity","stress"]} and \texttt{["sleep","conversation","stress"]}), expecting \texttt{ask}.
+  \item \textbf{Preference Updates (6 cases, \texttt{case\_013}--\texttt{018}):} Two longitudinal 3-step episodes (\texttt{ep\_pref\_u16} and \texttt{ep\_pref\_u59}) where consecutive high-stress days test whether feedback from Steps 1 and 2 is retained and obeyed in Steps 2 and 3.
+  \item \textbf{Safety \& Restraint (2 cases, \texttt{case\_019}--\texttt{020}):} One acute distress case (\texttt{u19} with stress $5/5$, comment \emph{``a blizzard of emotions''}, elevated PHQ-9/PSS, expecting \texttt{suggest} with campus/crisis resources) and one anti-spam restraint case (\texttt{u57} 2 hours after an accepted suggestion with no new stressor, expecting \texttt{none}).
+\end{itemize}
+
+\textbf{Models and Technical Implementation.} Primary agents (Model A) use \texttt{gemini:gemini-3-flash-preview} ($T=0.3$; $T=0.1$ for Critic and Memory Manager). Model B in our model-choice ablation uses \texttt{gemini:gemini-3.1-flash-lite} ($T=0.3$). During Phase 0 testing, we discovered that Gemini 3.x models require preserving the \texttt{thought\_signature} bytes attached to \texttt{functionCall} parts across multi-turn tool loops, which \texttt{aisuite} 0.2.0 strips by default; we implemented a thread-safe runtime patch in \texttt{llm.py} that caches and re-attaches \texttt{thought\_signature} on tool turns.
+
+\textbf{Evaluation Metrics.} We report: (1) \textbf{Execution Success Rate} (\texttt{status == "ok"}), (2) \textbf{Decision Appropriateness} (accuracy against \texttt{expected\_decision}), (3) \textbf{Preference Adherence} on multi-step update episodes (verifying zero forbidden terms and presence of preferred themes), (4) \textbf{Independent LLM Judge Scores} (1--5 on \emph{Context Awareness}, \emph{Goal Alignment}, and \emph{Clarity} at $T=0.0$ given the same deterministic evidence summary), (5) \textbf{Blind Human Judge Ratings} on $N=15$ non-null messages rated independently before inspecting LLM Judge scores, quantified via Mean Absolute Difference ($\text{MAD} = \frac{1}{N}\sum_{i=1}^N |H_i - L_i|$), and (6) \textbf{Efficiency} (per-case latency in seconds, LLM calls, tool calls, and total tokens, excluding judge calls).
+
+\section{Results and Judge Alignment}
+\label{sec:results}
+
+\begin{table*}[t]
+  \caption{Performance of the full multi-agent system (\texttt{full}: planning depth $K_p=2$, reflection depth $K_r=2$) across the five evaluation categories ($N=20$ cases). LLM Judge scores are rated 1--5 on non-null messages (\texttt{suggest} and \texttt{ask}). Efficiency metrics include all model and tool steps per case, excluding judge evaluation.}
+  \label{tab:main-results}
+  \vskip 0.1in
   \begin{center}
     \begin{small}
-      \begin{sc}
-        \begin{tabular}{lcccr}
-          \toprule
-          Data set  & Naive         & Flexible      & Better?  \\
-          \midrule
-          Breast    & 95.9$\pm$ 0.2 & 96.7$\pm$ 0.2 & $\surd$  \\
-          Cleveland & 83.3$\pm$ 0.6 & 80.0$\pm$ 0.6 & $\times$ \\
-          Glass2    & 61.9$\pm$ 1.4 & 83.8$\pm$ 0.7 & $\surd$  \\
-          Credit    & 74.8$\pm$ 0.5 & 78.3$\pm$ 0.6 &          \\
-          Horse     & 73.3$\pm$ 0.9 & 69.7$\pm$ 1.0 & $\times$ \\
-          Meta      & 67.1$\pm$ 0.6 & 76.5$\pm$ 0.5 & $\surd$  \\
-          Pima      & 75.1$\pm$ 0.6 & 73.9$\pm$ 0.5 &          \\
-          Vehicle   & 44.9$\pm$ 0.6 & 61.5$\pm$ 0.4 & $\surd$  \\
-          \bottomrule
-        \end{tabular}
-      \end{sc}
+      \input{tables/table1_main_results.tex}
     \end{small}
+  \end{center}
+  \vskip -0.1in
+\end{table*}
+
+\cref{tab:main-results} summarizes the performance of our reference multi-agent system (\texttt{full}) across all five evaluation categories. The system executes with a 100\% completion rate across all 20 cases, correctly identifying when to withhold messages on calm or recently coached days (\texttt{typical\_doing\_fine} and \texttt{case\_020}), when to ask a clarifying question under both natural sensor dropouts and synthetic modality masks (\texttt{missing\_data}, 100\% accuracy), and when to deliver tailored suggestions during acute academic stress and multi-step preference episodes.
+
+\begin{table}[t]
+  \caption{Comparison between blind Human Judge ratings and LLM Judge scores across $N=15$ non-null messages from the \texttt{full} configuration, reporting mean $\pm$ SD, Mean Absolute Difference (MAD), signed difference $\Delta (L - H)$, and agreement within $\pm 1$ point.}
+  \label{tab:human-vs-llm}
+  \vskip 0.1in
+  \begin{center}
+    \begin{footnotesize}
+      \resizebox{\columnwidth}{!}{\input{tables/table3_human_vs_llm.tex}}
+    \end{footnotesize}
   \end{center}
   \vskip -0.1in
 \end{table}
 
-Tables contain textual material, whereas figures contain graphical material.
-Specify the contents of each row and column in the table's topmost row. Again,
-you may float tables to a column's top or bottom, and set wide tables across
-both columns. Place two-column tables at the top or bottom of the page.
+\begin{figure}[t]
+  \vskip 0.1in
+  \begin{center}
+    \centerline{\includegraphics[width=\columnwidth]{figures/fig4_human_vs_judge.pdf}}
+    \caption{(a) Comparison of blind Human Judge vs.\ LLM Judge mean scores and Mean Absolute Difference (MAD) across evaluation criteria ($N=15$ messages). (b) Decision confusion matrix for the \texttt{full} multi-agent system across all 20 cases.}
+    \label{fig:human-vs-judge}
+  \end{center}
+  \vskip -0.15in
+\end{figure}
 
-\subsection{Theorems and Such}
-The preferred way is to number definitions, propositions, lemmas, etc.
-consecutively, within sections, as shown below.
-\begin{definition}
-  \label{def:inj}
-  A function $f:X \to Y$ is injective if for any $x,y\in X$ different, $f(x)\ne
-    f(y)$.
-\end{definition}
-Using \cref{def:inj} we immediate get the following result:
-\begin{proposition}
-  If $f$ is injective mapping a set $X$ to another set $Y$,
-  the cardinality of $Y$ is at least as large as that of $X$
-\end{proposition}
-\begin{proof}
-  Left as an exercise to the reader.
-\end{proof}
-\cref{lem:usefullemma} stated next will prove to be useful.
-\begin{lemma}
-  \label{lem:usefullemma}
-  For any $f:X \to Y$ and $g:Y\to Z$ injective functions, $f \circ g$ is
-  injective.
-\end{lemma}
-\begin{theorem}
-  \label{thm:bigtheorem}
-  If $f:X\to Y$ is bijective, the cardinality of $X$ and $Y$ are the same.
-\end{theorem}
-An easy corollary of \cref{thm:bigtheorem} is the following:
-\begin{corollary}
-  If $f:X\to Y$ is bijective,
-  the cardinality of $X$ is at least as large as that of $Y$.
-\end{corollary}
-\begin{assumption}
-  The set $X$ is finite.
-  \label{ass:xfinite}
-\end{assumption}
-\begin{remark}
-  According to some, it is only the finite case (cf. \cref{ass:xfinite}) that
-  is interesting.
-\end{remark}
-%restatable
+\subsection{Human Judge vs.\ LLM Judge Analysis}
+To audit automated evaluation reliability, fifteen non-null messages generated by the \texttt{full} configuration (spanning high-stress, missing-data, preference-update, and safety cases) were exported via \texttt{asl human-sheet} with all LLM Judge scores stripped and rated blindly using the same 1--5 anchored rubric (\cref{app:rubric}). \cref{tab:human-vs-llm} and \cref{fig:human-vs-judge}(a) compare the human and LLM Judge scores:
+\begin{itemize}
+  \item \textbf{Low Mean Absolute Difference:} Across all $N=15$ rated messages, the Mean Absolute Difference between human and LLM ratings is $0.27$ on Context Awareness ($4.73 \pm 0.46$ vs.\ $5.00 \pm 0.00$), $0.13$ on Goal Alignment ($4.87 \pm 0.35$ vs.\ $5.00 \pm 0.00$), $0.20$ on Clarity ($4.80 \pm 0.41$ vs.\ $5.00 \pm 0.00$), and $0.20$ on the overall mean ($4.80 \pm 0.21$ vs.\ $5.00 \pm 0.00$), with $100\%$ of ratings agreeing within $\pm 1.0$~point.
+  \item \textbf{Mild LLM Positivity Bias:} Consistent with prior literature on LLM-as-a-Judge \cite{zheng2023judging}, the LLM Judge exhibits a mild upward bias ($\Delta(L - H) = +0.20$), awarding 5/5 whenever a message cites specific numbers and respects constraints, whereas human raters assign 4/5 when phrasing combines two actions or omits a secondary context detail.
+  \item \textbf{Notable Disagreements:} Three cases illustrate instructive divergence between human and LLM evaluators:
+    \begin{enumerate}
+      \item In \texttt{case\_003} (\texttt{u19}, three deadlines today and isolation comment \emph{``loneliness is a cruel thing''}), the LLM Judge awarded 5/5 across all dimensions ($\mu=5.00$), whereas the human rater scored Context Awareness as 4/5 and Clarity as 4/5 ($\mu=4.33$, $|\Delta|=0.67$), noting that the 3-clause message was slightly long and did not cite the exact $5/5$ stress rating.
+      \item In \texttt{case\_002} (\texttt{u08}, 2.8h sleep and $5/5$ stress on a CS project), the LLM Judge awarded 5/5 across all dimensions because the message cited both the 2.8h sleep figure and the three upcoming deadlines. The human rater scored Clarity as 4/5 ($\mu=4.67$), noting that combining a 10-minute hallway stretch suggestion \emph{and} an early-bedtime nudge in the same message asks two actions of an exhausted student.
+      \item In \texttt{case\_011} (\texttt{u08}, synthetic mask hiding sleep, activity, and stress), the LLM Judge awarded 5/5 on Goal Alignment for appropriately asking a single clarifying question under missing data, while the human rater gave 4/5 on Goal Alignment ($\mu=4.67$) because the question focused on energy and study breaks without explicitly naming the student's posture-reset goal.
+    \end{enumerate}
+\end{itemize}
 
-\subsection{Citations and References}
+\section{Ablation Study}
+\label{sec:ablations}
 
-Please use APA reference format regardless of your formatter or word processor.
-If you rely on the \LaTeX\/ bibliographic facility, use \texttt{natbib.sty} and
-\texttt{icml2026.bst} included in the style-file package to obtain this format.
+\begin{table*}[t]
+  \caption{Controlled ablation study across nine system configurations (\texttt{configs/ablations.toml}). We compare multi-agent vs.\ single-agent design (\texttt{full} vs.\ \texttt{single}), planning on/off and depth $K_p \in \{0, 1, 2, 3\}$, reflection on/off and depth $K_r \in \{0, 1, 2, 3\}$, and model choice (\texttt{full} vs.\ \texttt{modelB}). Depth-3 configurations (\texttt{plan3}, \texttt{refl3}) and \texttt{modelB} are evaluated on a 10-case stratified subset covering all five categories and a complete 3-step preference episode.}
+  \label{tab:ablations}
+  \vskip 0.1in
+  \begin{center}
+    \begin{small}
+      \input{tables/table2_ablations.tex}
+    \end{small}
+  \end{center}
+  \vskip -0.1in
+\end{table*}
 
-Citations within the text should include the authors' last names and year. If
-the authors' names are included in the sentence, place only the year in
-parentheses, for example when referencing Arthur Samuel's pioneering work
-\yrcite{Samuel59}. Otherwise place the entire reference in parentheses with the
-authors and year separated by a comma \cite{Samuel59}. List multiple references
-separated by semicolons \cite{kearns89,Samuel59,mitchell80}. Use the `et~al.'
-construct only for citations with three or more authors or after listing all
-authors to a publication in an earlier reference \cite{MachineLearningI}.
+\begin{figure*}[t]
+  \vskip 0.1in
+  \begin{center}
+    \centerline{\includegraphics[width=0.92\textwidth]{figures/fig1_ablation_overview.pdf}}
+    \caption{Ablation comparison across all nine configurations on Decision Appropriateness (\%), Multi-Step Preference Adherence (\%), and LLM Judge Message Quality (scaled to 100\%).}
+    \label{fig:ablation-overview}
+  \end{center}
+  \vskip -0.1in
+\end{figure*}
 
-Authors should cite their own work in the third person in the initial version
-of their paper submitted for blind review. Please refer to \cref{author info}
-for detailed instructions on how to cite your own papers.
+\begin{figure}[t]
+  \vskip 0.1in
+  \begin{center}
+    \centerline{\includegraphics[width=\columnwidth]{figures/fig2_depth_curves.pdf}}
+    \caption{Quality vs.\ token cost trade-off curves as a function of (a) maximum planning rounds $K_p \in \{0, 1, 2, 3\}$ and (b) maximum reflection cycles $K_r \in \{0, 1, 2, 3\}$.}
+    \label{fig:depth-curves}
+  \end{center}
+  \vskip -0.1in
+\end{figure}
 
-Use an unnumbered first-level section heading for the references, and use a
-hanging indent style, with the first line of the reference flush against the
-left margin and subsequent lines indented by 10 points. The references at the
-end of this document give examples for journal articles \cite{Samuel59},
-conference publications \cite{langley00}, book chapters \cite{Newell81}, books
-\cite{DudaHart2nd}, edited volumes \cite{MachineLearningI}, technical reports
-\cite{mitchell80}, and dissertations \cite{kearns89}.
+\begin{figure}[t]
+  \vskip 0.1in
+  \begin{center}
+    \centerline{\includegraphics[width=\columnwidth]{figures/fig3_efficiency_boxplots.pdf}}
+    \caption{End-to-end per-case efficiency across configurations: (a) latency distribution (seconds), (b) mean LLM calls $\pm$ SD, and (c) mean total tokens $\pm$ SD (in thousands).}
+    \label{fig:efficiency}
+  \end{center}
+  \vskip -0.15in
+\end{figure}
 
-Alphabetize references by the surnames of the first authors, with single author
-entries preceding multiple author entries. Order references for the same
-authors by year of publication, with the earliest first. Make sure that each
-reference includes all relevant information (e.g., page numbers).
+\cref{tab:ablations} and \cref{fig:ablation-overview,fig:depth-curves,fig:efficiency} present our six controlled ablation comparisons:
 
-Please put some effort into making references complete, presentable, and
-consistent, e.g. use the actual current name of authors. If using bibtex,
-please protect capital letters of names and abbreviations in titles, for
-example, use \{B\}ayesian or \{L\}ipschitz in your .bib file.
+\textbf{1. Multi-Agent vs.\ Single-Agent (\texttt{full} vs.\ \texttt{single}).} While the single-agent baseline has access to the exact same sensing tools, memory store, and skill library and runs with half the LLM calls ($3.0$ vs.\ $6.0$~calls/case, $12.4\text{k}$ vs.\ $15.6\text{k}$ tokens, $13.0\text{s}$ vs.\ $35.6\text{s}$), its decision accuracy drops from $100.0\%$ (\texttt{full}) to $95.0\%$ (\texttt{single}, $75.0\%$ on missing-data cases where it fails to ask a clarifying question on one masked case). Separating the \emph{Planner}, \emph{Context Analyst}, \emph{Writer}, and \emph{Critic} enforces explicit missing-data hypothesis checking before drafting.
 
-\section*{Accessibility}
+\textbf{2. Impact of Reflection and Reflection Depth ($K_r \in \{0, 1, 2, 3\}$).} Disabling the Critic (\texttt{no\_refl}) reduces LLM calls ($5.2$ vs.\ $6.0$) and tokens ($13.8\text{k}$ vs.\ $15.6\text{k}$), but decision accuracy drops to $95.0\%$ (over-messaging on a \texttt{typical\_doing\_fine} case) and removes the audit loop that catches subtle word-choice and length violations (for instance, in \texttt{full} \texttt{case\_018}, the Critic caught an idiomatic ``running on very little sleep'' and triggered a revision). Increasing reflection budget from $K_r=0$ to $K_r \in \{1, 2, 3\}$ (\cref{fig:depth-curves}(b)) restores $100.0\%$ decision accuracy, while $K_r=3$ (\texttt{refl3}) uses on average $1.0$--$1.13$ reflection rounds because most drafts pass the Critic's audit within 1--2 cycles.
 
-Authors are kindly asked to make their submissions as accessible as possible
-for everyone including people with disabilities and sensory or neurological
-differences. Tips of how to achieve this and what to pay attention to will be
-provided on the conference website \url{http://icml.cc/}.
+\textbf{3. Impact of Planning and Planning Depth ($K_p \in \{0, 1, 2, 3\}$).} Removing the Planner (\texttt{no\_plan}) causes the largest degradation across all ablations: decision accuracy drops from $100.0\%$ to $85.0\%$ ($66.7\%$ on \texttt{typical\_doing\_fine}, $75.0\%$ on \texttt{missing\_data}, and $83.3\%$ on \texttt{preference\_update}), and LLM Judge quality drops from $5.00$ to $4.83$ ($4.56$ on preference updates). Comparing $K_p=1$ (\texttt{plan1}, $90.0\%$ decision accuracy, $4.87$ judge mean) against $K_p=2$ (\texttt{full}, $100.0\%$ decision accuracy, $5.00$ judge mean) and $K_p=3$ (\texttt{plan3}, $100.0\%$ decision accuracy, $5.00$ judge mean) in \cref{fig:depth-curves}(a) shows that $K_p=2$ is the sweet spot: Round 1 formulates initial hypotheses and Round 2 finalizes the decision after inspecting the Analyst's tool evidence, whereas $K_p=1$ forces premature finalization before all modalities are cross-checked.
 
-\section*{Software and Data}
+\textbf{4. Model Choice (\texttt{full} vs.\ \texttt{modelB}).} Evaluating the identical multi-agent architecture on our alternative model configuration (\texttt{modelB}, pairing \texttt{gemini-3.1-flash-lite} and \texttt{gemma-4-26b-a4b-it}) preserves $100.0\%$ decision accuracy and $100\%$ preference adherence with a $4.92/5.00$ judge mean ($5.00$ Context Awareness, $4.75$ Goal Alignment, $5.00$ Clarity), while requiring more schema-repair and reflection turns ($7.6$ calls and $22.7\text{k}$ tokens/case), confirming that structured multi-agent scaffolding and Pydantic schema repair transfer across model families.
 
-If a paper is accepted, we strongly encourage the publication of software and
-data with the camera-ready version of the paper whenever appropriate. This can
-be done by including a URL in the camera-ready copy. However, \textbf{do not}
-include URLs that reveal your institution or identity in your submission for
-review. Instead, provide an anonymous URL or upload the material as
-``Supplementary Material'' into the OpenReview reviewing system. Note that
-reviewers are not required to look at this material when writing their review.
+\section{Limitations and Conclusion}
+\label{sec:conclusion}
 
-% Acknowledgements should only appear in the accepted version.
-\section*{Acknowledgements}
+\textbf{Limitations.} First, because StudentLife lacks ground-truth coaching goals and conversational responses, our student profiles and multi-step feedback scripts are simulated (though deterministically grounded in pre-term psychometric surveys). Second, smartphone-inferred sleep relies on screen-dark and lock/charge heuristics that miss nights when a phone is left unlocked or off-charger, creating natural sensing gaps. Third, our automated judge uses a model from the same vendor family, which we mitigate via temperature-0 anchored rubrics and blind dual human evaluation.
 
-\textbf{Do not} include acknowledgements in the initial version of the paper
-submitted for blind review.
-
-If a paper is accepted, the final camera-ready version can (and usually should)
-include acknowledgements.  Such acknowledgements should be placed at the end of
-the section, in an unnumbered section that does not count towards the paper
-page limit. Typically, this will include thanks to reviewers who gave useful
-comments, to colleagues who contributed to the ideas, and to funding agencies
-and corporate sponsors that provided financial support.
+\textbf{Conclusion.} We presented a modular, five-agent stress coach that combines leak-free mobile-sensing tools, iterative planning, skill-guided writing, self-reflection, and persistent preference memory. Our experiments and ablations on StudentLife confirm that structured multi-agent decomposition and explicit critique loops substantially improve coaching quality and longitudinal preference adherence.
 
 \section*{Impact Statement}
 
-Authors are \textbf{required} to include a statement of the potential broader
-impact of their work, including its ethical aspects and future societal
-consequences. This statement should be in an unnumbered section at the end of
-the paper (co-located with Acknowledgements -- the two may appear in either
-order, but both must be before References), and does not count toward the paper
-page limit. In many cases, where the ethical impacts and expected societal
-implications are those that are well established when advancing the field of
-Machine Learning, substantial discussion is not required, and a simple
-statement such as the following will suffice:
-
-``This paper presents work whose goal is to advance the field of Machine
-Learning. There are many potential societal consequences of our work, none
-which we feel must be specifically highlighted here.''
-
-The above statement can be used verbatim in such cases, but we encourage
-authors to think about whether there is content which does warrant further
-discussion, as this statement will be apparent if the paper is later flagged
-for ethics review.
-
-% In the unusual situation where you want a paper to appear in the
-% references without citing it in the main text, use \nocite
-\nocite{langley00}
+Automated mental-health and stress-coaching systems carry sensitive ethical responsibilities regarding student privacy, non-clinical boundaries, and crisis safety. Passive smartphone sensing captures intimate behavioral patterns (sleep schedules, conversation frequency, and emotional self-reports); in any real-world deployment, all feature extraction and tool queries must execute locally or under strict user-controlled consent with immediate data deletion rights. Furthermore, an AI stress coach is \emph{not} a licensed clinician and must never diagnose psychiatric conditions (such as major depressive disorder from PHQ-9 scores) or replace professional care. Our system enforces strict non-diagnostic language rules in both the Message Writer and Critic prompts, and automatically routes indicators of acute distress (e.g., maximum EMA stress paired with depressive or self-harm survey signals, as in \texttt{case\_019}) to curated human support resources, including Dartmouth College Health Service Counseling (\texttt{Dick's House}) and the 24/7 988 Suicide \& Crisis Lifeline.
 
 \bibliography{example_paper}
 \bibliographystyle{icml2026}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% APPENDIX
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newpage
 \appendix
 \onecolumn
-\section{You \emph{can} have an appendix here.}
 
-You can have as much text here as you want. The main body must be at most $8$
-pages long. For the final version, one more page can be added. If you want, you
-can use an appendix like this one.
+\section{LLM Judge Prompt and Anchored Evaluation Rubric}
+\label{app:rubric}
 
-The $\mathtt{\backslash onecolumn}$ command above can be kept in place if you
-prefer a one-column appendix, or can be removed if you prefer a two-column
-appendix.  Apart from this possible change, the style (font size, spacing,
-margins, page numbering, etc.) should be kept the same as the main body.
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Both the independent LLM Judge (\texttt{configs/judge.toml}, $T=0.0$) and the blind human evaluators used the following three-criterion anchored rubric (\texttt{prompts/judge.md}):
+
+\begin{itemize}
+  \item \textbf{Context Awareness (1--5):}
+    \begin{itemize}
+      \item \textbf{5 (Excellent):} Specifically and accurately grounds the message in the student's current data (recent sleep hours, stress trend, imminent deadlines, term week, or explicitly acknowledges missing sensing/EMA data when asking a clarifying question) with zero hallucinated facts.
+      \item \textbf{3 (Adequate):} Mentions general student context (e.g., ``busy week'' or ``feeling stressed'') broadly consistent with the data, but misses key specific signals or feels generic.
+      \item \textbf{1 (Poor):} Contradicts available evidence, hallucinates numbers/events not in the data, or ignores missing-data uncertainty by making unfounded assumptions.
+    \end{itemize}
+  \item \textbf{Goal Alignment \& Preference Compliance (1--5):}
+    \begin{itemize}
+      \item \textbf{5 (Excellent):} Directly advances one of the student's stated goals AND strictly respects all baseline preferences, constraints, and learned feedback from prior episodes (including avoided activities, preferred settings, and length limits).
+      \item \textbf{3 (Adequate):} Relevant to general student well-being and mostly aligns with goals, with minor omissions of preferences.
+      \item \textbf{1 (Poor):} Ignores the student's goals OR violates a stated constraint or learned preference from past feedback (e.g., suggesting an activity the student explicitly rejected).
+    \end{itemize}
+  \item \textbf{Clarity, Actionability \& Tone (1--5):}
+    \begin{itemize}
+      \item \textbf{5 (Excellent):} Clear, warm, non-judgmental, concise (2--3 sentences), and offers a concrete, immediately manageable step (or a single low-burden question when \texttt{decision == "ask"}).
+      \item \textbf{3 (Adequate):} Understandable and polite, but slightly wordy, vague, or packs too many suggestions at once.
+      \item \textbf{1 (Poor):} Confusing, overly clinical/robotic, judgmental, or overwhelming.
+    \end{itemize}
+\end{itemize}
+
+\section{Modular Coaching Skills Catalog}
+\label{app:skills}
+
+\begin{table}[h]
+  \caption{Summary of the eight on-demand Markdown coaching skills (\texttt{skills/*.md}) available to the Planner and Message Writer.}
+  \label{tab:skills-catalog}
+  \vskip 0.1in
+  \begin{center}
+    \begin{small}
+      \begin{tabular}{llp{8.2cm}}
+        \toprule
+        Skill Name & Target Decision & Primary Trigger \& Contraindications \\
+        \midrule
+        \texttt{micro\_study\_break} & \texttt{suggest} & High deadline density or acute stress during study blocks; contraindicated when severe sleep debt is the dominant issue. \\
+        \texttt{sleep\_hygiene\_nudge} & \texttt{suggest} & Inferred sleep $<6.0$~h or declining vs.\ baseline; avoids lecturing or rigid early-wake advice for night owls. \\
+        \texttt{gentle\_movement} & \texttt{suggest} & Prolonged sedentary coding/study periods with moderate stress; strictly avoided if student rejected exercise/walking. \\
+        \texttt{social\_reconnection} & \texttt{suggest} & Low conversation minutes paired with high loneliness; contraindicated when student prefers solo recovery during exams. \\
+        \texttt{deadline\_chunking} & \texttt{suggest} & $\ge 2$ deadlines within 72 hours causing task paralysis; breaks work into one 25--45 minute concrete block. \\
+        \texttt{campus\_resource\_referral} & \texttt{suggest} & Severe stress ($5/5$), distressed comments, or elevated PHQ-9/PSS; refers to Dick's House Counseling, Academic Skills Center, and 988 Lifeline. \\
+        \texttt{clarifying\_question} & \texttt{ask} & Key sensing and EMA modalities return \texttt{status="missing"} (natural gap or synthetic mask); asks one brief check-in question. \\
+        \texttt{positive\_reinforcement} & \texttt{suggest} & Student is maintaining healthy sleep/activity during moderate load and welcomes brief encouragement. \\
+        \bottomrule
+      \end{tabular}
+    \end{small}
+  \end{center}
+\end{table}
 
 \end{document}
-
-% This document was modified from the file originally made available by
-% Pat Langley and Andrea Danyluk for ICML-2K. This version was created
-% by Iain Murray in 2018, and modified by Alexandre Bouchard in
-% 2019 and 2021 and by Csaba Szepesvari, Gang Niu and Sivan Sabato in 2022.
-% Modified again in 2023 and 2024 by Sivan Sabato and Jonathan Scarlett.
-% Previous contributors include Dan Roy, Lise Getoor and Tobias
-% Scheffer, which was slightly modified from the 2010 version by
-% Thorsten Joachims & Johannes Fuernkranz, slightly modified from the
-% 2009 version by Kiri Wagstaff and Sam Roweis's 2008 version, which is
-% slightly modified from Prasad Tadepalli's 2007 version which is a
-% lightly changed version of the previous year's version by Andrew
-% Moore, which was in turn edited from those of Kristian Kersting and
-% Codrina Lauth. Alex Smola contributed to the algorithmic style files.

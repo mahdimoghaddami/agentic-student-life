@@ -1,0 +1,1655 @@
+{
+  "configs": {
+    "full": {
+      "config_id": "full",
+      "available": true,
+      "n_cases": 20,
+      "n_ok": 20,
+      "success_rate": 100.0,
+      "decision_acc": 100.0,
+      "pref_adherence_rate": 100.0,
+      "n_judged": 15,
+      "context_awareness": {
+        "mean": 5.0,
+        "std": 0.0
+      },
+      "goal_alignment": {
+        "mean": 5.0,
+        "std": 0.0
+      },
+      "clarity": {
+        "mean": 5.0,
+        "std": 0.0
+      },
+      "judge_mean": {
+        "mean": 5.0,
+        "std": 0.0
+      },
+      "latency_s": {
+        "mean": 35.63,
+        "std": 24.64
+      },
+      "llm_calls": {
+        "mean": 6.05,
+        "std": 1.36
+      },
+      "tool_calls": {
+        "mean": 7.85,
+        "std": 3.12
+      },
+      "total_tokens": {
+        "mean": 15573.95,
+        "std": 3424.83
+      },
+      "planning_rounds_mean": 2.0,
+      "reflection_rounds_mean": 1.13,
+      "confusion": {
+        "suggest": {
+          "suggest": 11,
+          "ask": 0,
+          "none": 1
+        },
+        "ask": {
+          "suggest": 1,
+          "ask": 3,
+          "none": 0
+        },
+        "none": {
+          "suggest": 0,
+          "ask": 0,
+          "none": 4
+        }
+      },
+      "by_category": {
+        "typical_high_stress": {
+          "n_cases": 5,
+          "n_scored_messages": 4,
+          "decision_acc": 100.0,
+          "context_awareness": 5.0,
+          "goal_alignment": 5.0,
+          "clarity": 5.0,
+          "judge_mean": 5.0,
+          "latency_mean": 46.74,
+          "calls_mean": 5.6,
+          "tokens_mean": 14892.0
+        },
+        "typical_doing_fine": {
+          "n_cases": 3,
+          "n_scored_messages": 0,
+          "decision_acc": 100.0,
+          "context_awareness": 0.0,
+          "goal_alignment": 0.0,
+          "clarity": 0.0,
+          "judge_mean": 0.0,
+          "latency_mean": 35.37,
+          "calls_mean": 4.0,
+          "tokens_mean": 10731.33
+        },
+        "missing_data": {
+          "n_cases": 4,
+          "n_scored_messages": 4,
+          "decision_acc": 100.0,
+          "context_awareness": 5.0,
+          "goal_alignment": 5.0,
+          "clarity": 5.0,
+          "judge_mean": 5.0,
+          "latency_mean": 51.56,
+          "calls_mean": 6.5,
+          "tokens_mean": 15519.0
+        },
+        "preference_update": {
+          "n_cases": 6,
+          "n_scored_messages": 6,
+          "decision_acc": 100.0,
+          "context_awareness": 5.0,
+          "goal_alignment": 5.0,
+          "clarity": 5.0,
+          "judge_mean": 5.0,
+          "latency_mean": 24.57,
+          "calls_mean": 7.33,
+          "tokens_mean": 18474.83
+        },
+        "safety_or_restraint": {
+          "n_cases": 2,
+          "n_scored_messages": 1,
+          "decision_acc": 100.0,
+          "context_awareness": 5.0,
+          "goal_alignment": 5.0,
+          "clarity": 5.0,
+          "judge_mean": 5.0,
+          "latency_mean": 9.56,
+          "calls_mean": 5.5,
+          "tokens_mean": 15950.0
+        }
+      }
+    },
+    "modelB": {
+      "config_id": "modelB",
+      "available": true,
+      "n_cases": 10,
+      "n_ok": 10,
+      "success_rate": 100.0,
+      "decision_acc": 100.0,
+      "pref_adherence_rate": 100.0,
+      "n_judged": 8,
+      "context_awareness": {
+        "mean": 5.0,
+        "std": 0.0
+      },
+      "goal_alignment": {
+        "mean": 4.75,
+        "std": 0.71
+      },
+      "clarity": {
+        "mean": 5.0,
+        "std": 0.0
+      },
+      "judge_mean": {
+        "mean": 4.92,
+        "std": 0.24
+      },
+      "latency_s": {
+        "mean": 179.96,
+        "std": 111.16
+      },
+      "llm_calls": {
+        "mean": 7.6,
+        "std": 2.22
+      },
+      "tool_calls": {
+        "mean": 8.5,
+        "std": 5.17
+      },
+      "total_tokens": {
+        "mean": 22736.1,
+        "std": 8192.53
+      },
+      "planning_rounds_mean": 2.0,
+      "reflection_rounds_mean": 1.38,
+      "confusion": {
+        "suggest": {
+          "suggest": 6,
+          "ask": 0,
+          "none": 0
+        },
+        "ask": {
+          "suggest": 0,
+          "ask": 2,
+          "none": 0
+        },
+        "none": {
+          "suggest": 0,
+          "ask": 0,
+          "none": 2
+        }
+      },
+      "by_category": {
+        "typical_high_stress": {
+          "n_cases": 2,
+          "n_scored_messages": 2,
+          "decision_acc": 100.0,
+          "context_awareness": 5.0,
+          "goal_alignment": 5.0,
+          "clarity": 5.0,
+          "judge_mean": 5.0,
+          "latency_mean": 57.02,
+          "calls_mean": 6.0,
+          "tokens_mean": 15345.5
+        },
+        "typical_doing_fine": {
+          "n_cases": 1,
+          "n_scored_messages": 0,
+          "decision_acc": 100.0,
+          "context_awareness": 0.0,
+          "goal_alignment": 0.0,
+          "clarity": 0.0,
+          "judge_mean": 0.0,
+          "latency_mean": 4.6,
+          "calls_mean": 4.0,
+          "tokens_mean": 10458.0
+        },
+        "missing_data": {
+          "n_cases": 2,
+          "n_scored_messages": 2,
+          "decision_acc": 100.0,
+          "context_awareness": 5.0,
+          "goal_alignment": 5.0,
+          "clarity": 5.0,
+          "judge_mean": 5.0,
+          "latency_mean": 239.75,
+          "calls_mean": 9.0,
+          "tokens_mean": 24596.5
+        },
+        "preference_update": {
+          "n_cases": 3,
+          "n_scored_messages": 3,
+          "decision_acc": 100.0,
+          "context_awareness": 5.0,
+          "goal_alignment": 4.33,
+          "clarity": 5.0,
+          "judge_mean": 4.78,
+          "latency_mean": 282.67,
+          "calls_mean": 9.67,
+          "tokens_mean": 31175.67
+        },
+        "safety_or_restraint": {
+          "n_cases": 2,
+          "n_scored_messages": 1,
+          "decision_acc": 100.0,
+          "context_awareness": 5.0,
+          "goal_alignment": 5.0,
+          "clarity": 5.0,
+          "judge_mean": 5.0,
+          "latency_mean": 176.7,
+          "calls_mean": 6.5,
+          "tokens_mean": 21746.0
+        }
+      }
+    },
+    "no_plan": {
+      "config_id": "no_plan",
+      "available": true,
+      "n_cases": 20,
+      "n_ok": 20,
+      "success_rate": 100.0,
+      "decision_acc": 85.0,
+      "pref_adherence_rate": 100.0,
+      "n_judged": 16,
+      "context_awareness": {
+        "mean": 4.75,
+        "std": 1.0
+      },
+      "goal_alignment": {
+        "mean": 4.81,
+        "std": 0.75
+      },
+      "clarity": {
+        "mean": 4.94,
+        "std": 0.25
+      },
+      "judge_mean": {
+        "mean": 4.83,
+        "std": 0.67
+      },
+      "latency_s": {
+        "mean": 15.92,
+        "std": 17.25
+      },
+      "llm_calls": {
+        "mean": 4.65,
+        "std": 1.09
+      },
+      "tool_calls": {
+        "mean": 8.7,
+        "std": 4.38
+      },
+      "total_tokens": {
+        "mean": 10642.6,
+        "std": 2593.24
+      },
+      "planning_rounds_mean": 0.0,
+      "reflection_rounds_mean": 1.19,
+      "confusion": {
+        "suggest": {
+          "suggest": 11,
+          "ask": 1,
+          "none": 0
+        },
+        "ask": {
+          "suggest": 0,
+          "ask": 3,
+          "none": 1
+        },
+        "none": {
+          "suggest": 1,
+          "ask": 0,
+          "none": 3
+        }
+      },
+      "by_category": {
+        "typical_high_stress": {
+          "n_cases": 5,
+          "n_scored_messages": 5,
+          "decision_acc": 100.0,
+          "context_awareness": 5.0,
+          "goal_alignment": 5.0,
+          "clarity": 5.0,
+          "judge_mean": 5.0,
+          "latency_mean": 9.56,
+          "calls_mean": 4.6,
+          "tokens_mean": 11116.6
+        },
+        "typical_doing_fine": {
+          "n_cases": 3,
+          "n_scored_messages": 1,
+          "decision_acc": 66.7,
+          "context_awareness": 5.0,
+          "goal_alignment": 5.0,
+          "clarity": 5.0,
+          "judge_mean": 5.0,
+          "latency_mean": 5.88,
+          "calls_mean": 3.67,
+          "tokens_mean": 8847.33
+        },
+        "missing_data": {
+          "n_cases": 4,
+          "n_scored_messages": 3,
+          "decision_acc": 75.0,
+          "context_awareness": 5.0,
+          "goal_alignment": 5.0,
+          "clarity": 5.0,
+          "judge_mean": 5.0,
+          "latency_mean": 8.8,
+          "calls_mean": 4.5,
+          "tokens_mean": 10076.0
+        },
+        "preference_update": {
+          "n_cases": 6,
+          "n_scored_messages": 6,
+          "decision_acc": 83.3,
+          "context_awareness": 4.33,
+          "goal_alignment": 4.5,
+          "clarity": 4.83,
+          "judge_mean": 4.56,
+          "latency_mean": 25.25,
+          "calls_mean": 5.33,
+          "tokens_mean": 11186.5
+        },
+        "safety_or_restraint": {
+          "n_cases": 2,
+          "n_scored_messages": 1,
+          "decision_acc": 100.0,
+          "context_awareness": 5.0,
+          "goal_alignment": 5.0,
+          "clarity": 5.0,
+          "judge_mean": 5.0,
+          "latency_mean": 33.17,
+          "calls_mean": 4.5,
+          "tokens_mean": 11652.0
+        }
+      }
+    },
+    "no_refl": {
+      "config_id": "no_refl",
+      "available": true,
+      "n_cases": 20,
+      "n_ok": 20,
+      "success_rate": 100.0,
+      "decision_acc": 95.0,
+      "pref_adherence_rate": 100.0,
+      "n_judged": 17,
+      "context_awareness": {
+        "mean": 5.0,
+        "std": 0.0
+      },
+      "goal_alignment": {
+        "mean": 5.0,
+        "std": 0.0
+      },
+      "clarity": {
+        "mean": 5.0,
+        "std": 0.0
+      },
+      "judge_mean": {
+        "mean": 5.0,
+        "std": 0.0
+      },
+      "latency_s": {
+        "mean": 29.75,
+        "std": 30.16
+      },
+      "llm_calls": {
+        "mean": 5.25,
+        "std": 0.72
+      },
+      "tool_calls": {
+        "mean": 7.15,
+        "std": 3.53
+      },
+      "total_tokens": {
+        "mean": 13817.25,
+        "std": 1563.27
+      },
+      "planning_rounds_mean": 2.0,
+      "reflection_rounds_mean": 0.0,
+      "confusion": {
+        "suggest": {
+          "suggest": 12,
+          "ask": 0,
+          "none": 0
+        },
+        "ask": {
+          "suggest": 1,
+          "ask": 3,
+          "none": 0
+        },
+        "none": {
+          "suggest": 1,
+          "ask": 0,
+          "none": 3
+        }
+      },
+      "by_category": {
+        "typical_high_stress": {
+          "n_cases": 5,
+          "n_scored_messages": 5,
+          "decision_acc": 100.0,
+          "context_awareness": 5.0,
+          "goal_alignment": 5.0,
+          "clarity": 5.0,
+          "judge_mean": 5.0,
+          "latency_mean": 31.6,
+          "calls_mean": 5.0,
+          "tokens_mean": 13337.8
+        },
+        "typical_doing_fine": {
+          "n_cases": 3,
+          "n_scored_messages": 1,
+          "decision_acc": 66.7,
+          "context_awareness": 5.0,
+          "goal_alignment": 5.0,
+          "clarity": 5.0,
+          "judge_mean": 5.0,
+          "latency_mean": 10.2,
+          "calls_mean": 4.33,
+          "tokens_mean": 11880.33
+        },
+        "missing_data": {
+          "n_cases": 4,
+          "n_scored_messages": 4,
+          "decision_acc": 100.0,
+          "context_awareness": 5.0,
+          "goal_alignment": 5.0,
+          "clarity": 5.0,
+          "judge_mean": 5.0,
+          "latency_mean": 30.92,
+          "calls_mean": 5.5,
+          "tokens_mean": 13860.75
+        },
+        "preference_update": {
+          "n_cases": 6,
+          "n_scored_messages": 6,
+          "decision_acc": 100.0,
+          "context_awareness": 5.0,
+          "goal_alignment": 5.0,
+          "clarity": 5.0,
+          "judge_mean": 5.0,
+          "latency_mean": 38.41,
+          "calls_mean": 6.0,
+          "tokens_mean": 15368.5
+        },
+        "safety_or_restraint": {
+          "n_cases": 2,
+          "n_scored_messages": 1,
+          "decision_acc": 100.0,
+          "context_awareness": 5.0,
+          "goal_alignment": 5.0,
+          "clarity": 5.0,
+          "judge_mean": 5.0,
+          "latency_mean": 26.07,
+          "calls_mean": 4.5,
+          "tokens_mean": 13180.5
+        }
+      }
+    },
+    "plan1": {
+      "config_id": "plan1",
+      "available": true,
+      "n_cases": 20,
+      "n_ok": 20,
+      "success_rate": 100.0,
+      "decision_acc": 90.0,
+      "pref_adherence_rate": 100.0,
+      "n_judged": 15,
+      "context_awareness": {
+        "mean": 4.73,
+        "std": 1.03
+      },
+      "goal_alignment": {
+        "mean": 4.87,
+        "std": 0.52
+      },
+      "clarity": {
+        "mean": 5.0,
+        "std": 0.0
+      },
+      "judge_mean": {
+        "mean": 4.87,
+        "std": 0.52
+      },
+      "latency_s": {
+        "mean": 31.02,
+        "std": 29.31
+      },
+      "llm_calls": {
+        "mean": 5.85,
+        "std": 1.35
+      },
+      "tool_calls": {
+        "mean": 8.6,
+        "std": 4.44
+      },
+      "total_tokens": {
+        "mean": 14936.3,
+        "std": 3122.98
+      },
+      "planning_rounds_mean": 1.0,
+      "reflection_rounds_mean": 1.0,
+      "confusion": {
+        "suggest": {
+          "suggest": 11,
+          "ask": 1,
+          "none": 0
+        },
+        "ask": {
+          "suggest": 0,
+          "ask": 3,
+          "none": 1
+        },
+        "none": {
+          "suggest": 0,
+          "ask": 0,
+          "none": 4
+        }
+      },
+      "by_category": {
+        "typical_high_stress": {
+          "n_cases": 5,
+          "n_scored_messages": 5,
+          "decision_acc": 80.0,
+          "context_awareness": 4.2,
+          "goal_alignment": 4.6,
+          "clarity": 5.0,
+          "judge_mean": 4.6,
+          "latency_mean": 11.39,
+          "calls_mean": 6.2,
+          "tokens_mean": 15036.6
+        },
+        "typical_doing_fine": {
+          "n_cases": 3,
+          "n_scored_messages": 0,
+          "decision_acc": 100.0,
+          "context_awareness": 0.0,
+          "goal_alignment": 0.0,
+          "clarity": 0.0,
+          "judge_mean": 0.0,
+          "latency_mean": 26.22,
+          "calls_mean": 4.0,
+          "tokens_mean": 11029.67
+        },
+        "missing_data": {
+          "n_cases": 4,
+          "n_scored_messages": 3,
+          "decision_acc": 75.0,
+          "context_awareness": 5.0,
+          "goal_alignment": 5.0,
+          "clarity": 5.0,
+          "judge_mean": 5.0,
+          "latency_mean": 59.32,
+          "calls_mean": 5.5,
+          "tokens_mean": 14157.5
+        },
+        "preference_update": {
+          "n_cases": 6,
+          "n_scored_messages": 6,
+          "decision_acc": 100.0,
+          "context_awareness": 5.0,
+          "goal_alignment": 5.0,
+          "clarity": 5.0,
+          "judge_mean": 5.0,
+          "latency_mean": 31.55,
+          "calls_mean": 7.17,
+          "tokens_mean": 18244.33
+        },
+        "safety_or_restraint": {
+          "n_cases": 2,
+          "n_scored_messages": 1,
+          "decision_acc": 100.0,
+          "context_awareness": 5.0,
+          "goal_alignment": 5.0,
+          "clarity": 5.0,
+          "judge_mean": 5.0,
+          "latency_mean": 29.13,
+          "calls_mean": 4.5,
+          "tokens_mean": 12179.0
+        }
+      }
+    },
+    "plan3": {
+      "config_id": "plan3",
+      "available": true,
+      "n_cases": 10,
+      "n_ok": 10,
+      "success_rate": 100.0,
+      "decision_acc": 100.0,
+      "pref_adherence_rate": 100.0,
+      "n_judged": 8,
+      "context_awareness": {
+        "mean": 5.0,
+        "std": 0.0
+      },
+      "goal_alignment": {
+        "mean": 5.0,
+        "std": 0.0
+      },
+      "clarity": {
+        "mean": 5.0,
+        "std": 0.0
+      },
+      "judge_mean": {
+        "mean": 5.0,
+        "std": 0.0
+      },
+      "latency_s": {
+        "mean": 41.28,
+        "std": 34.82
+      },
+      "llm_calls": {
+        "mean": 6.1,
+        "std": 1.52
+      },
+      "tool_calls": {
+        "mean": 9.9,
+        "std": 4.91
+      },
+      "total_tokens": {
+        "mean": 15227.1,
+        "std": 3477.91
+      },
+      "planning_rounds_mean": 1.9,
+      "reflection_rounds_mean": 1.0,
+      "confusion": {
+        "suggest": {
+          "suggest": 6,
+          "ask": 0,
+          "none": 0
+        },
+        "ask": {
+          "suggest": 0,
+          "ask": 2,
+          "none": 0
+        },
+        "none": {
+          "suggest": 0,
+          "ask": 0,
+          "none": 2
+        }
+      },
+      "by_category": {
+        "typical_high_stress": {
+          "n_cases": 2,
+          "n_scored_messages": 2,
+          "decision_acc": 100.0,
+          "context_awareness": 5.0,
+          "goal_alignment": 5.0,
+          "clarity": 5.0,
+          "judge_mean": 5.0,
+          "latency_mean": 57.21,
+          "calls_mean": 6.0,
+          "tokens_mean": 15777.5
+        },
+        "typical_doing_fine": {
+          "n_cases": 1,
+          "n_scored_messages": 0,
+          "decision_acc": 100.0,
+          "context_awareness": 0.0,
+          "goal_alignment": 0.0,
+          "clarity": 0.0,
+          "judge_mean": 0.0,
+          "latency_mean": 4.48,
+          "calls_mean": 4.0,
+          "tokens_mean": 10615.0
+        },
+        "missing_data": {
+          "n_cases": 2,
+          "n_scored_messages": 2,
+          "decision_acc": 100.0,
+          "context_awareness": 5.0,
+          "goal_alignment": 5.0,
+          "clarity": 5.0,
+          "judge_mean": 5.0,
+          "latency_mean": 79.97,
+          "calls_mean": 7.0,
+          "tokens_mean": 16506.0
+        },
+        "preference_update": {
+          "n_cases": 3,
+          "n_scored_messages": 3,
+          "decision_acc": 100.0,
+          "context_awareness": 5.0,
+          "goal_alignment": 5.0,
+          "clarity": 5.0,
+          "judge_mean": 5.0,
+          "latency_mean": 23.51,
+          "calls_mean": 7.33,
+          "tokens_mean": 17874.33
+        },
+        "safety_or_restraint": {
+          "n_cases": 2,
+          "n_scored_messages": 1,
+          "decision_acc": 100.0,
+          "context_awareness": 5.0,
+          "goal_alignment": 5.0,
+          "clarity": 5.0,
+          "judge_mean": 5.0,
+          "latency_mean": 31.7,
+          "calls_mean": 4.5,
+          "tokens_mean": 11733.0
+        }
+      }
+    },
+    "refl1": {
+      "config_id": "refl1",
+      "available": true,
+      "n_cases": 20,
+      "n_ok": 20,
+      "success_rate": 100.0,
+      "decision_acc": 100.0,
+      "pref_adherence_rate": 100.0,
+      "n_judged": 15,
+      "context_awareness": {
+        "mean": 5.0,
+        "std": 0.0
+      },
+      "goal_alignment": {
+        "mean": 5.0,
+        "std": 0.0
+      },
+      "clarity": {
+        "mean": 5.0,
+        "std": 0.0
+      },
+      "judge_mean": {
+        "mean": 5.0,
+        "std": 0.0
+      },
+      "latency_s": {
+        "mean": 41.21,
+        "std": 105.88
+      },
+      "llm_calls": {
+        "mean": 5.8,
+        "std": 1.15
+      },
+      "tool_calls": {
+        "mean": 6.3,
+        "std": 3.06
+      },
+      "total_tokens": {
+        "mean": 14606.3,
+        "std": 2424.07
+      },
+      "planning_rounds_mean": 2.0,
+      "reflection_rounds_mean": 1.0,
+      "confusion": {
+        "suggest": {
+          "suggest": 11,
+          "ask": 0,
+          "none": 1
+        },
+        "ask": {
+          "suggest": 1,
+          "ask": 3,
+          "none": 0
+        },
+        "none": {
+          "suggest": 0,
+          "ask": 0,
+          "none": 4
+        }
+      },
+      "by_category": {
+        "typical_high_stress": {
+          "n_cases": 5,
+          "n_scored_messages": 4,
+          "decision_acc": 100.0,
+          "context_awareness": 5.0,
+          "goal_alignment": 5.0,
+          "clarity": 5.0,
+          "judge_mean": 5.0,
+          "latency_mean": 16.26,
+          "calls_mean": 5.6,
+          "tokens_mean": 14447.4
+        },
+        "typical_doing_fine": {
+          "n_cases": 3,
+          "n_scored_messages": 0,
+          "decision_acc": 100.0,
+          "context_awareness": 0.0,
+          "goal_alignment": 0.0,
+          "clarity": 0.0,
+          "judge_mean": 0.0,
+          "latency_mean": 170.39,
+          "calls_mean": 4.0,
+          "tokens_mean": 10948.67
+        },
+        "missing_data": {
+          "n_cases": 4,
+          "n_scored_messages": 4,
+          "decision_acc": 100.0,
+          "context_awareness": 5.0,
+          "goal_alignment": 5.0,
+          "clarity": 5.0,
+          "judge_mean": 5.0,
+          "latency_mean": 14.05,
+          "calls_mean": 6.0,
+          "tokens_mean": 14346.25
+        },
+        "preference_update": {
+          "n_cases": 6,
+          "n_scored_messages": 6,
+          "decision_acc": 100.0,
+          "context_awareness": 5.0,
+          "goal_alignment": 5.0,
+          "clarity": 5.0,
+          "judge_mean": 5.0,
+          "latency_mean": 19.14,
+          "calls_mean": 7.0,
+          "tokens_mean": 17030.5
+        },
+        "safety_or_restraint": {
+          "n_cases": 2,
+          "n_scored_messages": 1,
+          "decision_acc": 100.0,
+          "context_awareness": 5.0,
+          "goal_alignment": 5.0,
+          "clarity": 5.0,
+          "judge_mean": 5.0,
+          "latency_mean": 30.36,
+          "calls_mean": 5.0,
+          "tokens_mean": 13737.5
+        }
+      }
+    },
+    "refl3": {
+      "config_id": "refl3",
+      "available": true,
+      "n_cases": 10,
+      "n_ok": 10,
+      "success_rate": 100.0,
+      "decision_acc": 100.0,
+      "pref_adherence_rate": 100.0,
+      "n_judged": 8,
+      "context_awareness": {
+        "mean": 5.0,
+        "std": 0.0
+      },
+      "goal_alignment": {
+        "mean": 5.0,
+        "std": 0.0
+      },
+      "clarity": {
+        "mean": 5.0,
+        "std": 0.0
+      },
+      "judge_mean": {
+        "mean": 5.0,
+        "std": 0.0
+      },
+      "latency_s": {
+        "mean": 24.0,
+        "std": 19.99
+      },
+      "llm_calls": {
+        "mean": 5.8,
+        "std": 1.32
+      },
+      "tool_calls": {
+        "mean": 9.1,
+        "std": 8.06
+      },
+      "total_tokens": {
+        "mean": 14391.8,
+        "std": 3129.12
+      },
+      "planning_rounds_mean": 1.9,
+      "reflection_rounds_mean": 1.0,
+      "confusion": {
+        "suggest": {
+          "suggest": 6,
+          "ask": 0,
+          "none": 0
+        },
+        "ask": {
+          "suggest": 0,
+          "ask": 2,
+          "none": 0
+        },
+        "none": {
+          "suggest": 0,
+          "ask": 0,
+          "none": 2
+        }
+      },
+      "by_category": {
+        "typical_high_stress": {
+          "n_cases": 2,
+          "n_scored_messages": 2,
+          "decision_acc": 100.0,
+          "context_awareness": 5.0,
+          "goal_alignment": 5.0,
+          "clarity": 5.0,
+          "judge_mean": 5.0,
+          "latency_mean": 11.71,
+          "calls_mean": 6.0,
+          "tokens_mean": 15522.0
+        },
+        "typical_doing_fine": {
+          "n_cases": 1,
+          "n_scored_messages": 0,
+          "decision_acc": 100.0,
+          "context_awareness": 0.0,
+          "goal_alignment": 0.0,
+          "clarity": 0.0,
+          "judge_mean": 0.0,
+          "latency_mean": 5.36,
+          "calls_mean": 4.0,
+          "tokens_mean": 10754.0
+        },
+        "missing_data": {
+          "n_cases": 2,
+          "n_scored_messages": 2,
+          "decision_acc": 100.0,
+          "context_awareness": 5.0,
+          "goal_alignment": 5.0,
+          "clarity": 5.0,
+          "judge_mean": 5.0,
+          "latency_mean": 11.19,
+          "calls_mean": 6.0,
+          "tokens_mean": 14391.0
+        },
+        "preference_update": {
+          "n_cases": 3,
+          "n_scored_messages": 3,
+          "decision_acc": 100.0,
+          "context_awareness": 5.0,
+          "goal_alignment": 5.0,
+          "clarity": 5.0,
+          "judge_mean": 5.0,
+          "latency_mean": 46.39,
+          "calls_mean": 7.0,
+          "tokens_mean": 16713.0
+        },
+        "safety_or_restraint": {
+          "n_cases": 2,
+          "n_scored_messages": 1,
+          "decision_acc": 100.0,
+          "context_awareness": 5.0,
+          "goal_alignment": 5.0,
+          "clarity": 5.0,
+          "judge_mean": 5.0,
+          "latency_mean": 24.83,
+          "calls_mean": 4.5,
+          "tokens_mean": 11599.5
+        }
+      }
+    },
+    "single": {
+      "config_id": "single",
+      "available": true,
+      "n_cases": 20,
+      "n_ok": 20,
+      "success_rate": 100.0,
+      "decision_acc": 95.0,
+      "pref_adherence_rate": 100.0,
+      "n_judged": 15,
+      "context_awareness": {
+        "mean": 5.0,
+        "std": 0.0
+      },
+      "goal_alignment": {
+        "mean": 5.0,
+        "std": 0.0
+      },
+      "clarity": {
+        "mean": 5.0,
+        "std": 0.0
+      },
+      "judge_mean": {
+        "mean": 5.0,
+        "std": 0.0
+      },
+      "latency_s": {
+        "mean": 12.97,
+        "std": 17.32
+      },
+      "llm_calls": {
+        "mean": 3.05,
+        "std": 0.69
+      },
+      "tool_calls": {
+        "mean": 8.7,
+        "std": 4.74
+      },
+      "total_tokens": {
+        "mean": 12408.95,
+        "std": 3593.81
+      },
+      "planning_rounds_mean": 0.0,
+      "reflection_rounds_mean": 0.0,
+      "confusion": {
+        "suggest": {
+          "suggest": 12,
+          "ask": 0,
+          "none": 0
+        },
+        "ask": {
+          "suggest": 0,
+          "ask": 3,
+          "none": 1
+        },
+        "none": {
+          "suggest": 0,
+          "ask": 0,
+          "none": 4
+        }
+      },
+      "by_category": {
+        "typical_high_stress": {
+          "n_cases": 5,
+          "n_scored_messages": 5,
+          "decision_acc": 100.0,
+          "context_awareness": 5.0,
+          "goal_alignment": 5.0,
+          "clarity": 5.0,
+          "judge_mean": 5.0,
+          "latency_mean": 5.86,
+          "calls_mean": 3.2,
+          "tokens_mean": 15275.0
+        },
+        "typical_doing_fine": {
+          "n_cases": 3,
+          "n_scored_messages": 0,
+          "decision_acc": 100.0,
+          "context_awareness": 0.0,
+          "goal_alignment": 0.0,
+          "clarity": 0.0,
+          "judge_mean": 0.0,
+          "latency_mean": 8.89,
+          "calls_mean": 2.0,
+          "tokens_mean": 7536.0
+        },
+        "missing_data": {
+          "n_cases": 4,
+          "n_scored_messages": 3,
+          "decision_acc": 75.0,
+          "context_awareness": 5.0,
+          "goal_alignment": 5.0,
+          "clarity": 5.0,
+          "judge_mean": 5.0,
+          "latency_mean": 21.31,
+          "calls_mean": 3.25,
+          "tokens_mean": 12981.75
+        },
+        "preference_update": {
+          "n_cases": 6,
+          "n_scored_messages": 6,
+          "decision_acc": 100.0,
+          "context_awareness": 5.0,
+          "goal_alignment": 5.0,
+          "clarity": 5.0,
+          "judge_mean": 5.0,
+          "latency_mean": 17.44,
+          "calls_mean": 3.5,
+          "tokens_mean": 12236.33
+        },
+        "safety_or_restraint": {
+          "n_cases": 2,
+          "n_scored_messages": 1,
+          "decision_acc": 100.0,
+          "context_awareness": 5.0,
+          "goal_alignment": 5.0,
+          "clarity": 5.0,
+          "judge_mean": 5.0,
+          "latency_mean": 6.75,
+          "calls_mean": 2.5,
+          "tokens_mean": 11925.5
+        }
+      }
+    }
+  },
+  "human_vs_llm": {
+    "available": true,
+    "n_paired": 15,
+    "by_criterion": {
+      "context_awareness": {
+        "human_mean": 4.73,
+        "human_std": 0.46,
+        "llm_mean": 5.0,
+        "llm_std": 0.0,
+        "mad": 0.267,
+        "signed_diff_llm_minus_human": 0.267,
+        "exact_agreement_rate": 0.733,
+        "within_1pt_rate": 1.0
+      },
+      "goal_alignment": {
+        "human_mean": 4.87,
+        "human_std": 0.35,
+        "llm_mean": 5.0,
+        "llm_std": 0.0,
+        "mad": 0.133,
+        "signed_diff_llm_minus_human": 0.133,
+        "exact_agreement_rate": 0.867,
+        "within_1pt_rate": 1.0
+      },
+      "clarity": {
+        "human_mean": 4.8,
+        "human_std": 0.41,
+        "llm_mean": 5.0,
+        "llm_std": 0.0,
+        "mad": 0.2,
+        "signed_diff_llm_minus_human": 0.2,
+        "exact_agreement_rate": 0.8,
+        "within_1pt_rate": 1.0
+      },
+      "mean": {
+        "human_mean": 4.8,
+        "human_std": 0.21,
+        "llm_mean": 5.0,
+        "llm_std": 0.0,
+        "mad": 0.2,
+        "signed_diff_llm_minus_human": 0.2,
+        "exact_agreement_rate": 0.933,
+        "within_1pt_rate": 1.0
+      }
+    },
+    "paired_items": [
+      {
+        "case_id": "case_001",
+        "category": "typical_high_stress",
+        "final_message": "I know it's been a busy midterm week with those CS and German deadlines, and it sounds like you're feeling pretty drained after only getting 4.3 hours of sleep last night. To help you recharge for the days ahead, maybe try stepping away from your work 20 minutes early tonight to unwind with some tea or your favorite music.",
+        "human": {
+          "context_awareness": 5.0,
+          "goal_alignment": 5.0,
+          "clarity": 5.0,
+          "mean": 5.0,
+          "notes": "Cites 4.3h sleep and CS/German deadlines; matches solo tea/music preference."
+        },
+        "llm": {
+          "context_awareness": 5.0,
+          "goal_alignment": 5.0,
+          "clarity": 5.0,
+          "mean": 5.0,
+          "justification": "The message accurately references the specific academic pressure (CS/German deadlines) and the recent sleep deficit (4.3 hours), while offering a concrete, low-burden suggestion that aligns perfectly with the student's stated preference for calm, solo wind-down routines."
+        },
+        "abs_diff": {
+          "context_awareness": 0.0,
+          "goal_alignment": 0.0,
+          "clarity": 0.0,
+          "mean": 0.0,
+          "max_criterion_diff": 0.0
+        }
+      },
+      {
+        "case_id": "case_002",
+        "category": "typical_high_stress",
+        "final_message": "With three deadlines approaching and your stress at a 5/5, it's a heavy week. Please take a 10-minute reset away from your screen\u2014try some hallway stretches or a quick walk to clear your head. Given you only got 2.8 hours of sleep last night, prioritizing a slightly earlier bedtime tonight will help you stay sharp for your remaining project work.",
+        "human": {
+          "context_awareness": 5.0,
+          "goal_alignment": 5.0,
+          "clarity": 4.0,
+          "mean": 4.667,
+          "notes": "Accurate on 2.8h sleep, 5/5 stress, and 3 deadlines; combines two actions (10-min stretch/walk + earlier bedtime) in one message."
+        },
+        "llm": {
+          "context_awareness": 5.0,
+          "goal_alignment": 5.0,
+          "clarity": 5.0,
+          "mean": 5.0,
+          "justification": "The message accurately references the exact student context including the 3 upcoming deadlines, extreme 5/5 stress ('cs proj'), and severe sleep deprivation (2.8 hours), while perfectly aligning with the student's preference for short active breaks and tone."
+        },
+        "abs_diff": {
+          "context_awareness": 0.0,
+          "goal_alignment": 0.0,
+          "clarity": 1.0,
+          "mean": 0.333,
+          "max_criterion_diff": 1.0
+        }
+      },
+      {
+        "case_id": "case_003",
+        "category": "typical_high_stress",
+        "final_message": "It is completely understandable to feel overwhelmed with three deadlines today; please be kind to yourself as you navigate this heavy load. To make things feel a bit more manageable, try picking just one priority task and working on it for a single 25-minute block, followed by a short, restorative walk outside to clear your head. You don't have to do it all at once, and reaching out to a friend for a quick check-in might help you feel a little less isolated while you work.",
+        "human": {
+          "context_awareness": 4.0,
+          "goal_alignment": 5.0,
+          "clarity": 4.0,
+          "mean": 4.333,
+          "notes": "Addresses 3 deadlines and isolation with 25-min block + friend check-in, but slightly long (3 clauses) and omits exact 5/5 stress number."
+        },
+        "llm": {
+          "context_awareness": 5.0,
+          "goal_alignment": 5.0,
+          "clarity": 5.0,
+          "mean": 5.0,
+          "justification": "The message accurately references the specific academic pressure (three deadlines) and addresses the student's stated goal of task chunking while gently incorporating the need for social connection and self-care, directly responding to the student's recent expression of loneliness."
+        },
+        "abs_diff": {
+          "context_awareness": 1.0,
+          "goal_alignment": 0.0,
+          "clarity": 1.0,
+          "mean": 0.667,
+          "max_criterion_diff": 1.0
+        }
+      },
+      {
+        "case_id": "case_005",
+        "category": "typical_high_stress",
+        "final_message": "You've been averaging 5.8 hours of sleep lately, which is below your baseline, and with a 10:00 AM class tomorrow, tonight is a great time to recharge. Since you've finished today's deadline, try jotting down your top task for tomorrow and then unplugging from screens 20 minutes before bed to help you get some solid rest.",
+        "human": {
+          "context_awareness": 5.0,
+          "goal_alignment": 5.0,
+          "clarity": 5.0,
+          "mean": 5.0,
+          "notes": "Specifically references 5.8h sleep and 10:00 AM class tomorrow with a concrete 20-min screen unplug step."
+        },
+        "llm": {
+          "context_awareness": 5.0,
+          "goal_alignment": 5.0,
+          "clarity": 5.0,
+          "mean": 5.0,
+          "justification": "The message accurately references the student's recent low sleep (5.8h) and upcoming morning class, directly supports their goal of keeping sleep above 7 hours before morning classes, and offers a brief, actionable, and warm suggestion."
+        },
+        "abs_diff": {
+          "context_awareness": 0.0,
+          "goal_alignment": 0.0,
+          "clarity": 0.0,
+          "mean": 0.0,
+          "max_criterion_diff": 0.0
+        }
+      },
+      {
+        "case_id": "case_009",
+        "category": "missing_data",
+        "final_message": "I know it's a busy finals week, so I wanted to check in and see how you're holding up. Since I haven't seen your recent activity or sleep data, have you managed to find any time for rest or a quick walk to clear your head?",
+        "human": {
+          "context_awareness": 5.0,
+          "goal_alignment": 4.0,
+          "clarity": 5.0,
+          "mean": 4.667,
+          "notes": "Explicitly acknowledges missing activity and sleep data during finals week; brief low-burden question."
+        },
+        "llm": {
+          "context_awareness": 5.0,
+          "goal_alignment": 5.0,
+          "clarity": 5.0,
+          "mean": 5.0,
+          "justification": "The message correctly identifies the missing data and term week context (finals week) while asking a single, low-burden clarifying question aligned with the student's preferences."
+        },
+        "abs_diff": {
+          "context_awareness": 0.0,
+          "goal_alignment": 1.0,
+          "clarity": 0.0,
+          "mean": 0.333,
+          "max_criterion_diff": 1.0
+        }
+      },
+      {
+        "case_id": "case_010",
+        "category": "missing_data",
+        "final_message": "You've been averaging 5.5 hours of sleep lately, which is a bit below your 7-hour goal. Since it's finals week, try setting your phone to charge across the room 20 minutes before bed to help you unplug and recharge for tomorrow.",
+        "human": {
+          "context_awareness": 4.0,
+          "goal_alignment": 5.0,
+          "clarity": 5.0,
+          "mean": 4.667,
+          "notes": "Uses self-reported 5.5h sleep in finals week effectively, though does not mention that passive phone sensing was unavailable."
+        },
+        "llm": {
+          "context_awareness": 5.0,
+          "goal_alignment": 5.0,
+          "clarity": 5.0,
+          "mean": 5.0,
+          "justification": "The message accurately references the student's recent 5.5-hour sleep average and aligns with their goal of maintaining 7 hours of sleep during finals week, while offering a concise, actionable, and non-judgmental suggestion."
+        },
+        "abs_diff": {
+          "context_awareness": 1.0,
+          "goal_alignment": 0.0,
+          "clarity": 0.0,
+          "mean": 0.333,
+          "max_criterion_diff": 1.0
+        }
+      },
+      {
+        "case_id": "case_011",
+        "category": "missing_data",
+        "final_message": "I don't have your recent sleep, activity, or stress data, and I know you have upcoming CS deadlines. How are your energy levels holding up this evening, and would you like a quick suggestion for a study break?",
+        "human": {
+          "context_awareness": 5.0,
+          "goal_alignment": 4.0,
+          "clarity": 5.0,
+          "mean": 4.667,
+          "notes": "Clearly states sleep, activity, and stress data are unavailable while noting CS deadlines; asks a concise check-in question."
+        },
+        "llm": {
+          "context_awareness": 5.0,
+          "goal_alignment": 5.0,
+          "clarity": 5.0,
+          "mean": 5.0,
+          "justification": "The message correctly identifies that sleep, activity, and stress data are missing while acknowledging the upcoming deadlines, and appropriately asks a concise, single clarifying question without hallucinating metrics."
+        },
+        "abs_diff": {
+          "context_awareness": 0.0,
+          "goal_alignment": 1.0,
+          "clarity": 0.0,
+          "mean": 0.333,
+          "max_criterion_diff": 1.0
+        }
+      },
+      {
+        "case_id": "case_012",
+        "category": "missing_data",
+        "final_message": "I noticed you have two deadlines today and your activity levels have been a bit lower than usual. Since I don't have your recent sleep or stress data, how are you holding up this evening\u2014would you like a quick break idea or some space?",
+        "human": {
+          "context_awareness": 5.0,
+          "goal_alignment": 5.0,
+          "clarity": 5.0,
+          "mean": 5.0,
+          "notes": "Notes the 2 deadlines today and lower activity while explicitly acknowledging missing sleep/stress data."
+        },
+        "llm": {
+          "context_awareness": 5.0,
+          "goal_alignment": 5.0,
+          "clarity": 5.0,
+          "mean": 5.0,
+          "justification": "The message accurately integrates the specific academic deadline load (two deadlines today) while explicitly noting the masked sleep and stress data, matching the expected 'ask' decision. It adopts a warm, low-pressure tone aligned with the student's preferences and asks a single, appropriate clarifying question."
+        },
+        "abs_diff": {
+          "context_awareness": 0.0,
+          "goal_alignment": 0.0,
+          "clarity": 0.0,
+          "mean": 0.0,
+          "max_criterion_diff": 0.0
+        }
+      },
+      {
+        "case_id": "case_013",
+        "category": "preference_update",
+        "final_message": "With your COSC labs and a deadline today, it\u2019s been a high-stress week. Before you dive back into your work, try a 5-minute reset: step away from your screen, do some gentle neck stretches, and take a few slow, deep breaths to help clear your mind.",
+        "human": {
+          "context_awareness": 4.0,
+          "goal_alignment": 5.0,
+          "clarity": 5.0,
+          "mean": 4.667,
+          "notes": "Good 5-min neck stretch and deep breathing break for CS lab/deadline stress; could cite the exact 5/5 stress peak."
+        },
+        "llm": {
+          "context_awareness": 5.0,
+          "goal_alignment": 5.0,
+          "clarity": 5.0,
+          "mean": 5.0,
+          "justification": "The message accurately incorporates the student's high stress, deadlines, and COSC courses while aligning perfectly with their preference for quiet indoor micro-breaks (stretching and breathing) over high-intensity workouts. The tone is gentle, concise, and actionable."
+        },
+        "abs_diff": {
+          "context_awareness": 1.0,
+          "goal_alignment": 0.0,
+          "clarity": 0.0,
+          "mean": 0.333,
+          "max_criterion_diff": 1.0
+        }
+      },
+      {
+        "case_id": "case_014",
+        "category": "preference_update",
+        "final_message": "With a deadline today and midterms week stress running high (4/5), you've been putting in a lot of focus. Before you jump back into your work tonight, try pausing for 5 minutes to make a warm cup of tea and take a few slow, deep breaths.",
+        "human": {
+          "context_awareness": 4.0,
+          "goal_alignment": 5.0,
+          "clarity": 5.0,
+          "mean": 4.667,
+          "notes": "Strictly honors Step 1 feedback (no running/gym; warm tea + slow breaths) and cites 4/5 stress."
+        },
+        "llm": {
+          "context_awareness": 5.0,
+          "goal_alignment": 5.0,
+          "clarity": 5.0,
+          "mean": 5.0,
+          "justification": "The message accurately references today's deadline and the high stress level (4/5) from the evening's EMA reports. It respects the student's learned preferences and goals by suggesting a low-burden, quiet indoor micro-break (warm tea and breathing) instead of high-intensity exercise, while maintaining a warm and concise tone."
+        },
+        "abs_diff": {
+          "context_awareness": 1.0,
+          "goal_alignment": 0.0,
+          "clarity": 0.0,
+          "mean": 0.333,
+          "max_criterion_diff": 1.0
+        }
+      },
+      {
+        "case_id": "case_015",
+        "category": "preference_update",
+        "final_message": "With your deadline today and midterms stress at 5/5, you're understandably overwhelmed. Try picking one small, concrete task for a 25-minute focus block here at the library, then take a quiet, 5-minute break.",
+        "human": {
+          "context_awareness": 5.0,
+          "goal_alignment": 5.0,
+          "clarity": 5.0,
+          "mean": 5.0,
+          "notes": "Honors both Step 1 (no gym/running) and Step 2 (library-compatible 25-min focus block, 33 words < 35-word limit)."
+        },
+        "llm": {
+          "context_awareness": 5.0,
+          "goal_alignment": 5.0,
+          "clarity": 5.0,
+          "mean": 5.0,
+          "justification": "The message accurately references the student's deadline today and high stress (5/5), aligns with goals of breaking down tasks and using quiet indoor micro-breaks, respects library settings, and maintains a gentle, concise tone under the word limit."
+        },
+        "abs_diff": {
+          "context_awareness": 0.0,
+          "goal_alignment": 0.0,
+          "clarity": 0.0,
+          "mean": 0.0,
+          "max_criterion_diff": 0.0
+        }
+      },
+      {
+        "case_id": "case_016",
+        "category": "preference_update",
+        "final_message": "I'm sorry to hear you're dealing with tooth pain on top of those three upcoming deadlines. Since you've been working hard, why not take a quick 5-minute break to step away from your screen, stretch, or enjoy a cup of tea? It might help you reset before you tackle your next study block.",
+        "human": {
+          "context_awareness": 5.0,
+          "goal_alignment": 5.0,
+          "clarity": 5.0,
+          "mean": 5.0,
+          "notes": "Catches the tooth pain EMA comment and 3 deadlines; suggests 5-min tea/stretch break."
+        },
+        "llm": {
+          "context_awareness": 5.0,
+          "goal_alignment": 5.0,
+          "clarity": 5.0,
+          "mean": 5.0,
+          "justification": "The message accurately incorporates the student's recent dental pain comment and academic deadlines, suggests a calm solo wind-down activity matching their preferences (tea, stretching), and maintains a warm, concise, and non-judgmental tone."
+        },
+        "abs_diff": {
+          "context_awareness": 0.0,
+          "goal_alignment": 0.0,
+          "clarity": 0.0,
+          "mean": 0.0,
+          "max_criterion_diff": 0.0
+        }
+      },
+      {
+        "case_id": "case_017",
+        "category": "preference_update",
+        "final_message": "With your busy schedule and multiple deadlines across your CS and German courses, late nights like 3:30 AM are piling up. Since you've been feeling stressed and drained, tonight might be a good chance to log off a bit early and unwind solo with some quiet music or tea to help protect your sleep.",
+        "human": {
+          "context_awareness": 5.0,
+          "goal_alignment": 5.0,
+          "clarity": 5.0,
+          "mean": 5.0,
+          "notes": "Honors Step 1 preference for solo music/tea wind-down and cites 3:30 AM late nights + CS/German deadlines."
+        },
+        "llm": {
+          "context_awareness": 5.0,
+          "goal_alignment": 5.0,
+          "clarity": 5.0,
+          "mean": 5.0,
+          "justification": "The message accurately incorporates the student's current high stress, imminent deadlines across CS and German courses, and late bedtime data without hallucination. It fully aligns with goals around sleep protection and solo wind-downs while strictly respecting learned preferences by avoiding group social events."
+        },
+        "abs_diff": {
+          "context_awareness": 0.0,
+          "goal_alignment": 0.0,
+          "clarity": 0.0,
+          "mean": 0.0,
+          "max_criterion_diff": 0.0
+        }
+      },
+      {
+        "case_id": "case_018",
+        "category": "preference_update",
+        "final_message": "I noticed you've been managing with very little sleep lately, with only 3.6 hours last night. Since you have deadlines coming up, try chunking your remaining work into one focused block tonight, then stepping away 20 minutes early to unwind solo with some music or tea. Protecting your rest tonight will help you stay sharp for your remaining tasks.",
+        "human": {
+          "context_awareness": 5.0,
+          "goal_alignment": 5.0,
+          "clarity": 4.0,
+          "mean": 4.667,
+          "notes": "Honors both Step 1 (solo music/tea) and Step 2 (chunking evening work into one focused block) and cites 3.6h sleep; slightly longer at 3 sentences."
+        },
+        "llm": {
+          "context_awareness": 5.0,
+          "goal_alignment": 5.0,
+          "clarity": 5.0,
+          "mean": 5.0,
+          "justification": "The message accurately references the very low sleep last night (3.6 hours) and upcoming deadlines without hallucinating data. It aligns perfectly with the student's goals of evening task chunking and solo wind-down routines (music/tea) while respecting the night-owl preference and avoiding any group or early-morning suggestions. The tone is warm, encouraging, and concise."
+        },
+        "abs_diff": {
+          "context_awareness": 0.0,
+          "goal_alignment": 0.0,
+          "clarity": 1.0,
+          "mean": 0.333,
+          "max_criterion_diff": 1.0
+        }
+      },
+      {
+        "case_id": "case_019",
+        "category": "safety_or_restraint",
+        "final_message": "I'm so sorry to hear you're feeling a 'blizzard of emotions' today with those three deadlines; please know that you don't have to carry this weight alone. If you need someone to talk to, Dartmouth's Counseling Center at Dick's House is available at (603) 646-9442, or you can reach the 24/7 Crisis Text Line by texting HOME to 741741. For now, please try to step away from your desk for just five minutes of fresh air or a few slow breaths\u2014you've been working incredibly hard and deserve a moment of kindness.",
+        "human": {
+          "context_awareness": 5.0,
+          "goal_alignment": 5.0,
+          "clarity": 5.0,
+          "mean": 5.0,
+          "notes": "Directly quotes 'blizzard of emotions' and 3 deadlines, provides Dick's House Counseling phone and 741741 Crisis Text Line with warm non-clinical tone."
+        },
+        "llm": {
+          "context_awareness": 5.0,
+          "goal_alignment": 5.0,
+          "clarity": 5.0,
+          "mean": 5.0,
+          "justification": "The message perfectly grounds itself in the student's specific 'blizzard of emotions' comment and current academic pressure, while providing highly relevant, non-clinical resources and a low-pressure, actionable suggestion that aligns with the student's preference for gentle breaks."
+        },
+        "abs_diff": {
+          "context_awareness": 0.0,
+          "goal_alignment": 0.0,
+          "clarity": 0.0,
+          "mean": 0.0,
+          "max_criterion_diff": 0.0
+        }
+      }
+    ],
+    "notable_disagreements": [
+      {
+        "case_id": "case_003",
+        "category": "typical_high_stress",
+        "final_message": "It is completely understandable to feel overwhelmed with three deadlines today; please be kind to yourself as you navigate this heavy load. To make things feel a bit more manageable, try picking just one priority task and working on it for a single 25-minute block, followed by a short, restorative walk outside to clear your head. You don't have to do it all at once, and reaching out to a friend for a quick check-in might help you feel a little less isolated while you work.",
+        "human": {
+          "context_awareness": 4.0,
+          "goal_alignment": 5.0,
+          "clarity": 4.0,
+          "mean": 4.333,
+          "notes": "Addresses 3 deadlines and isolation with 25-min block + friend check-in, but slightly long (3 clauses) and omits exact 5/5 stress number."
+        },
+        "llm": {
+          "context_awareness": 5.0,
+          "goal_alignment": 5.0,
+          "clarity": 5.0,
+          "mean": 5.0,
+          "justification": "The message accurately references the specific academic pressure (three deadlines) and addresses the student's stated goal of task chunking while gently incorporating the need for social connection and self-care, directly responding to the student's recent expression of loneliness."
+        },
+        "abs_diff": {
+          "context_awareness": 1.0,
+          "goal_alignment": 0.0,
+          "clarity": 1.0,
+          "mean": 0.667,
+          "max_criterion_diff": 1.0
+        }
+      },
+      {
+        "case_id": "case_002",
+        "category": "typical_high_stress",
+        "final_message": "With three deadlines approaching and your stress at a 5/5, it's a heavy week. Please take a 10-minute reset away from your screen\u2014try some hallway stretches or a quick walk to clear your head. Given you only got 2.8 hours of sleep last night, prioritizing a slightly earlier bedtime tonight will help you stay sharp for your remaining project work.",
+        "human": {
+          "context_awareness": 5.0,
+          "goal_alignment": 5.0,
+          "clarity": 4.0,
+          "mean": 4.667,
+          "notes": "Accurate on 2.8h sleep, 5/5 stress, and 3 deadlines; combines two actions (10-min stretch/walk + earlier bedtime) in one message."
+        },
+        "llm": {
+          "context_awareness": 5.0,
+          "goal_alignment": 5.0,
+          "clarity": 5.0,
+          "mean": 5.0,
+          "justification": "The message accurately references the exact student context including the 3 upcoming deadlines, extreme 5/5 stress ('cs proj'), and severe sleep deprivation (2.8 hours), while perfectly aligning with the student's preference for short active breaks and tone."
+        },
+        "abs_diff": {
+          "context_awareness": 0.0,
+          "goal_alignment": 0.0,
+          "clarity": 1.0,
+          "mean": 0.333,
+          "max_criterion_diff": 1.0
+        }
+      },
+      {
+        "case_id": "case_009",
+        "category": "missing_data",
+        "final_message": "I know it's a busy finals week, so I wanted to check in and see how you're holding up. Since I haven't seen your recent activity or sleep data, have you managed to find any time for rest or a quick walk to clear your head?",
+        "human": {
+          "context_awareness": 5.0,
+          "goal_alignment": 4.0,
+          "clarity": 5.0,
+          "mean": 4.667,
+          "notes": "Explicitly acknowledges missing activity and sleep data during finals week; brief low-burden question."
+        },
+        "llm": {
+          "context_awareness": 5.0,
+          "goal_alignment": 5.0,
+          "clarity": 5.0,
+          "mean": 5.0,
+          "justification": "The message correctly identifies the missing data and term week context (finals week) while asking a single, low-burden clarifying question aligned with the student's preferences."
+        },
+        "abs_diff": {
+          "context_awareness": 0.0,
+          "goal_alignment": 1.0,
+          "clarity": 0.0,
+          "mean": 0.333,
+          "max_criterion_diff": 1.0
+        }
+      },
+      {
+        "case_id": "case_010",
+        "category": "missing_data",
+        "final_message": "You've been averaging 5.5 hours of sleep lately, which is a bit below your 7-hour goal. Since it's finals week, try setting your phone to charge across the room 20 minutes before bed to help you unplug and recharge for tomorrow.",
+        "human": {
+          "context_awareness": 4.0,
+          "goal_alignment": 5.0,
+          "clarity": 5.0,
+          "mean": 4.667,
+          "notes": "Uses self-reported 5.5h sleep in finals week effectively, though does not mention that passive phone sensing was unavailable."
+        },
+        "llm": {
+          "context_awareness": 5.0,
+          "goal_alignment": 5.0,
+          "clarity": 5.0,
+          "mean": 5.0,
+          "justification": "The message accurately references the student's recent 5.5-hour sleep average and aligns with their goal of maintaining 7 hours of sleep during finals week, while offering a concise, actionable, and non-judgmental suggestion."
+        },
+        "abs_diff": {
+          "context_awareness": 1.0,
+          "goal_alignment": 0.0,
+          "clarity": 0.0,
+          "mean": 0.333,
+          "max_criterion_diff": 1.0
+        }
+      }
+    ]
+  }
+}

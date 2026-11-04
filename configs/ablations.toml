@@ -1,0 +1,85 @@
+# Ablation suite for CSI 4900/5900 Project 1
+# Covers all required comparisons:
+# 1. Multi-agent vs single-agent (`full` vs `single`)
+# 2. Reflection on/off (`full` vs `no_refl`)
+# 3. Planning on/off (`full` vs `no_plan`)
+# 4. Reflection depth 1, 2, 3 (`refl1`, `full` [depth=2], `refl3`)
+# 5. Planning depth 1, 2, 3 (`plan1`, `full` [depth=2], `plan3`)
+# 6. Model choice (`full` [gemini-3-flash-preview] vs `modelB` [gemini-3.1-flash-lite])
+
+[defaults.system]
+mode = "multi_agent"
+model = "gemini:gemini-3-flash-preview"
+temperature = 0.3
+max_workers = 4
+
+[defaults.planning]
+enabled = true
+max_rounds = 2
+
+[defaults.reflection]
+enabled = true
+max_rounds = 2
+
+[defaults.memory]
+enabled = true
+history_k = 5
+
+[defaults.skills]
+enabled = true
+
+[defaults.tools]
+enabled = true
+max_turns = 5
+
+[configs.full]
+description = "Full multi-agent system (plan=2, refl=2, Gemini 3 Flash)"
+
+[configs.single]
+description = "Single-agent baseline with same tools, profile/memory, and skills"
+[configs.single.system]
+mode = "single_agent"
+
+[configs.no_refl]
+description = "Multi-agent without reflection (Critic disabled)"
+[configs.no_refl.reflection]
+enabled = false
+max_rounds = 0
+
+[configs.refl1]
+description = "Reflection depth = 1 review-and-revision cycle"
+[configs.refl1.reflection]
+enabled = true
+max_rounds = 1
+
+[configs.refl3]
+description = "Reflection depth = 3 review-and-revision cycles (10-case stratified subset)"
+case_ids = ["case_001", "case_002", "case_006", "case_009", "case_011", "case_013", "case_014", "case_015", "case_019", "case_020"]
+[configs.refl3.reflection]
+enabled = true
+max_rounds = 3
+
+[configs.no_plan]
+description = "Multi-agent without Planner (Analyst gathers evidence directly)"
+[configs.no_plan.planning]
+enabled = false
+max_rounds = 0
+
+[configs.plan1]
+description = "Planning depth = 1 round"
+[configs.plan1.planning]
+enabled = true
+max_rounds = 1
+
+[configs.plan3]
+description = "Planning depth = 3 rounds (10-case stratified subset)"
+case_ids = ["case_001", "case_002", "case_006", "case_009", "case_011", "case_013", "case_014", "case_015", "case_019", "case_020"]
+[configs.plan3.planning]
+enabled = true
+max_rounds = 3
+
+[configs.modelB]
+description = "Full multi-agent architecture on Model B (Gemma 4 26B-A4B IT / Flash-Lite, 10-case stratified subset)"
+case_ids = ["case_001", "case_002", "case_006", "case_009", "case_011", "case_013", "case_014", "case_015", "case_019", "case_020"]
+[configs.modelB.system]
+model = "gemini:gemma-4-26b-a4b-it"

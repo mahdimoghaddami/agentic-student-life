@@ -1,0 +1,67 @@
+[
+  {
+    "name": "Counseling and Human Development (Dick's House)",
+    "category": "mental_health",
+    "keywords": ["counseling", "therapy", "stress", "anxiety", "depression", "mental", "overwhelmed", "lonely", "sad", "talk"],
+    "description": "Free, confidential short-term counseling, groups and workshops for Dartmouth students (stress, anxiety, mood, relationships). Same-day urgent appointments available.",
+    "contact": "Dick's House, 7 Rope Ferry Rd; (603) 646-9442; after hours call the same number for the on-call counselor",
+    "curated": true
+  },
+  {
+    "name": "Dick's House Health Service",
+    "category": "health",
+    "keywords": ["health", "sick", "medical", "doctor", "sleep", "insomnia", "tired", "nurse"],
+    "description": "Student primary care clinic (illness, injuries, sleep problems, nutrition) with nurse advice line.",
+    "contact": "Dick's House, 7 Rope Ferry Rd; (603) 646-9400",
+    "curated": true
+  },
+  {
+    "name": "Alumni Gym",
+    "category": "exercise",
+    "keywords": ["exercise", "gym", "workout", "run", "swim", "fitness", "movement", "walk", "activity", "pool"],
+    "description": "Main campus gym with fitness center, indoor track, pool and drop-in group classes; open to students.",
+    "contact": "Alumni Gym, 6 Rope Ferry Rd; recreation.dartmouth.edu",
+    "curated": true
+  },
+  {
+    "name": "Academic Skills Center (tutoring)",
+    "category": "academic",
+    "keywords": ["tutoring", "study", "exam", "deadline", "procrastination", "time management", "homework", "class", "academic", "grades"],
+    "description": "Free peer tutoring, study-group support and coaching on time management, test preparation and procrastination.",
+    "contact": "Baker-Berry Library; (603) 646-2014",
+    "curated": true
+  },
+  {
+    "name": "Baker-Berry Library study rooms",
+    "category": "study_space",
+    "keywords": ["study", "quiet", "focus", "library", "room", "group", "space", "exam"],
+    "description": "Quiet floors and bookable group study rooms; good for focused work blocks and group projects.",
+    "contact": "Baker-Berry Library; reserve rooms via library.dartmouth.edu",
+    "curated": true
+  },
+  {
+    "name": "988 Suicide & Crisis Lifeline",
+    "category": "crisis",
+    "keywords": ["crisis", "suicide", "self-harm", "hopeless", "emergency", "unsafe", "kill", "die", "end it"],
+    "description": "Free, confidential 24/7 support for people in suicidal crisis or emotional distress (US).",
+    "contact": "Call or text 988; chat at 988lifeline.org. In immediate danger call 911.",
+    "curated": true
+  },
+  {
+    "name": "Crisis Text Line",
+    "category": "crisis",
+    "keywords": ["crisis", "text", "panic", "overwhelmed", "hopeless", "distress", "emergency"],
+    "description": "Free 24/7 text-based support with a trained crisis counselor.",
+    "contact": "Text HOME to 741741",
+    "curated": true
+  },
+  {
+    "name": "Collis Student Center",
+    "category": "social",
+    "keywords": ["social", "friends", "lonely", "events", "food", "hang out", "community", "clubs", "relax"],
+    "description": "Student center with cafe, lounges, student-organization events and activities; easy low-pressure place to connect with people.",
+    "contact": "Collis Center, 2 N Main St",
+    "curated": true
+  }
+]
+
