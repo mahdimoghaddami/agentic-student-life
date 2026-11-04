@@ -60,7 +60,6 @@ def export_human_sheet(
                 "case_id": cid,
                 "participant_id": uid,
                 "decision_time": r["decision_time"],
-                "category": r.get("category", ""),
                 "decision": r["decision"],
                 "skill_used": r.get("skill_used") or "",
                 "student_goals": "; ".join(prof.get("goals", [])),
@@ -91,7 +90,7 @@ def export_human_sheet(
         cards_html.append(
             f"""
             <div class="card">
-              <h3>Item #{row['item_num']} — <code>{html.escape(row['case_id'])}</code> ({html.escape(row['category'])})</h3>
+              <h3>Item #{row['item_num']} — <code>{html.escape(row['case_id'])}</code></h3>
               <p><strong>Participant:</strong> {html.escape(row['participant_id'])} | <strong>Time:</strong> {html.escape(row['decision_time'])} | <strong>Decision:</strong> <code>{html.escape(row['decision'])}</code> ({html.escape(row['skill_used'])})</p>
               <p><strong>Simulated Goals:</strong> {html.escape(row['student_goals'])}</p>
               <p><strong>Simulated Preferences:</strong> <code>{html.escape(row['student_preferences'])}</code></p>
@@ -120,7 +119,6 @@ body {{ font-family: -apple-system, BlinkMacSystemFont, sans-serif; max-width: 9
         template = [
             {
                 "case_id": row["case_id"],
-                "category": row["category"],
                 "decision": row["decision"],
                 "final_message": row["final_message"],
                 "message_fingerprint": row["message_fingerprint"],

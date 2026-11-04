@@ -62,16 +62,20 @@ class JudgingTests(unittest.TestCase):
     def test_human_sheet_contains_same_context_and_full_rubric(self):
         with tempfile.TemporaryDirectory() as tmp:
             records = [sample(i) for i in range(10)]
+            for rec in records:
+                rec["category"] = "hidden_category_label"
             (Path(tmp) / "outputs.jsonl").write_text("\n".join(map(json.dumps, records)))
             result = export_human_sheet(run_dir=tmp, cases_by_id={}, profiles={}, out_dir=Path(tmp)/"human")
             text = Path(result["html_path"]).read_text(encoding="utf-8")
             self.assertIn("3 (Adequate)", text)
             self.assertIn("learned feedback", text)
             self.assertNotIn("mean_score", text)
+            self.assertNotIn("hidden_category_label", text)
             import csv
             with open(result["csv_path"], encoding="utf-8", newline="") as f:
                 row = next(csv.DictReader(f))
             self.assertEqual(json.loads(row["evaluation_context"]), evaluation_payload(records[0]))
+            self.assertNotIn("category", row)
 
 
 if __name__ == "__main__":
