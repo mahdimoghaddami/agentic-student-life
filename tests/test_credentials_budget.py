@@ -43,6 +43,16 @@ class CredentialBudgetTests(unittest.TestCase):
         self.assertNotIn("secret-two", str(caught.exception))
         self.assertEqual(fake.chat.completions.create.call_count, 2)
 
+    def test_retry_delay_digits_are_not_treated_as_authentication_status(self):
+        llm = self.client()
+        create = Mock(side_effect=[RuntimeError("429 retry in 7.3401403 seconds"),
+                                   RuntimeError("429 retry in 12.403 seconds"), NS()])
+        fake = NS(chat=NS(completions=NS(create=create)))
+        with (patch.object(LLMClient, "client", new_callable=PropertyMock, return_value=fake),
+              patch("agentic_student_life.llm.time.sleep")):
+            llm._call_with_retry("gemini:test", [])
+        self.assertEqual(create.call_count, 3)
+
     def test_budget_includes_thinking_tokens_and_logs_no_prompt(self):
         with tempfile.TemporaryDirectory() as tmp:
             p = Path(tmp) / "usage.jsonl"

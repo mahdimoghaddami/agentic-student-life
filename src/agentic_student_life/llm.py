@@ -339,6 +339,10 @@ class LLMClient:
             except Exception as e:
                 last_err = e
                 err_str = str(e)
+                status = getattr(e, "code", None)
+                if status is None:
+                    match = re.match(r"\s*(401|403|429|500|503)\b", err_str)
+                    status = int(match.group(1)) if match else None
                 if "thinking_budget" in err_str or "thinking_config" in err_str or "Thinking" in err_str:
                     kwargs.pop("thinking_config", None)
                     continue
@@ -350,13 +354,13 @@ class LLMClient:
                             self._rotate_credential()):
                         continue
                     raise RuntimeError(self._redact(err_str)) from None
-                if model.startswith("gemini:") and any(
-                    token in err_str for token in ("429", "RESOURCE_EXHAUSTED", "401", "403", "API_KEY_INVALID")
+                if model.startswith("gemini:") and (
+                    status in (401, 403, 429) or "API_KEY_INVALID" in err_str
                 ):
                     slot = getattr(getattr(self, "_local", None), "credential_slot", 0)
                     rejected_slots.add(slot)
                     rotated = self._rotate_credential()
-                    if any(token in err_str for token in ("401", "403", "API_KEY_INVALID")):
+                    if status in (401, 403) or "API_KEY_INVALID" in err_str:
                         if rotated and len(rejected_slots) < len(self._gemini_credentials):
                             continue
                         raise RuntimeError(self._redact(err_str)) from None
