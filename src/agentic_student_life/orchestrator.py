@@ -110,6 +110,14 @@ def run_case(
 
             if cfg.planning.enabled and cfg.planning.max_rounds >= 1:
                 max_p = cfg.planning.max_rounds
+                if max_p == 1:
+                    # One planning call must still review evidence. Collect it first,
+                    # using the same autonomous Analyst policy as no-planning mode.
+                    analyst_reports.append(run_analyst(
+                        llm=llm, cfg=cfg, tracker=tracker, case=case,
+                        plan_steps=[], hypotheses=[], tools=base_tools,
+                        precomputed_summary=evidence_summary(view) if not cfg.tools.enabled else None,
+                    ))
                 for r_idx in range(1, max_p + 1):
                     planning_rounds_used = r_idx
                     p_out = run_planner_step(
@@ -144,23 +152,6 @@ def run_case(
                             precomputed_summary=pre_ev,
                         )
                         analyst_reports.append(a_rep)
-
-                    # If we gathered evidence on the final round, let the Planner finalize its decision
-                    if len(analyst_reports) > 0 and r_idx == max_p and p_out.status == "gather_more":
-                        planner_decision = run_planner_step(
-                            llm=llm,
-                            cfg=cfg,
-                            tracker=tracker,
-                            case=case,
-                            time_context=time_ctx,
-                            memory_text=mem_text,
-                            skill_index=s_index,
-                            round_idx=r_idx,
-                            max_rounds=max_p,
-                            prior_plans=plan_steps_all,
-                            analyst_reports=analyst_reports,
-                        )
-                        break
 
                     if p_out.status == "finalize" and len(analyst_reports) > 0:
                         break
