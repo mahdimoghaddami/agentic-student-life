@@ -71,11 +71,23 @@ class JudgingTests(unittest.TestCase):
             self.assertIn("learned feedback", text)
             self.assertNotIn("mean_score", text)
             self.assertNotIn("hidden_category_label", text)
+            self.assertIn('id="save-ratings"', text)
+            self.assertIn('data-criterion="context_awareness"', text)
             import csv
             with open(result["csv_path"], encoding="utf-8", newline="") as f:
                 row = next(csv.DictReader(f))
             self.assertEqual(json.loads(row["evaluation_context"]), evaluation_payload(records[0]))
             self.assertNotIn("category", row)
+
+    def test_human_selection_can_follow_a_predeclared_priority(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            records = [sample(i) for i in range(11)]
+            (Path(tmp) / "outputs.jsonl").write_text("\n".join(map(json.dumps, records)))
+            result = export_human_sheet(run_dir=tmp, cases_by_id={}, profiles={},
+                out_dir=Path(tmp)/"human", max_items=10, case_priority=["case_10", "case_9"])
+            ratings = json.loads(Path(result["json_path"]).read_text(encoding="utf-8"))
+            self.assertEqual(len(ratings), 10)
+            self.assertEqual([r["case_id"] for r in ratings[:2]], ["case_10", "case_9"])
 
 
 if __name__ == "__main__":

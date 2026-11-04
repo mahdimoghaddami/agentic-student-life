@@ -12,6 +12,32 @@ import numpy as np
 from .context import evaluation_payload, message_fingerprint
 from .judge import load_judge_prompt
 
+RATING_SCRIPT = """
+<script>
+document.getElementById('save-ratings').addEventListener('click', () => {
+  const records = JSON.parse(document.getElementById('rating-data').textContent);
+  const cards = new Map(Array.from(document.querySelectorAll('[data-case-id]'))
+    .map(card => [card.dataset.caseId, card]));
+  for (const rec of records) {
+    const card = cards.get(rec.case_id);
+    for (const criterion of ['context_awareness', 'goal_alignment', 'clarity']) {
+      const input = card.querySelector('[data-criterion="' + criterion + '"]');
+      if (!input.reportValidity()) return;
+      rec[criterion] = Number(input.value);
+    }
+    rec.notes = card.querySelector('textarea').value;
+  }
+  const url = URL.createObjectURL(new Blob([JSON.stringify(records, null, 2)],
+    {type: 'application/json'}));
+  const link = document.createElement('a');
+  link.href = url; link.download = 'human_ratings.json'; link.click();
+  setTimeout(() => URL.revokeObjectURL(url), 1000);
+  document.getElementById('save-status').textContent =
+    'Saved human_ratings.json. Keep it for the human versus LLM comparison.';
+});
+</script>
+"""
+
 
 def export_human_sheet(
     *,
@@ -20,6 +46,7 @@ def export_human_sheet(
     profiles: dict[str, Any],
     out_dir: str | Path = "runs_corrected/full/human_eval",
     max_items: int = 15,
+    case_priority: list[str] | None = None,
 ) -> dict[str, str]:
     """Export a blind rating sheet (CSV + HTML + JSON template) with >=10 non-null messages
     and NO LLM judge scores visible."""
@@ -37,6 +64,9 @@ def export_human_sheet(
         r for r in records
         if r.get("status") == "ok" and r.get("final_message") and str(r.get("final_message")).strip()
     ]
+    if case_priority:
+        ranks = {cid: i for i, cid in enumerate(case_priority)}
+        non_null.sort(key=lambda r: (ranks.get(r["case_id"], len(ranks)), r["case_id"]))
     selected = non_null[:max_items]
     if len(selected) < 10:
         raise ValueError("The human evaluation requires at least 10 non-null messages.")
@@ -89,17 +119,29 @@ def export_human_sheet(
     for row in rows:
         cards_html.append(
             f"""
-            <div class="card">
+            <div class="card" data-case-id="{html.escape(row['case_id'], quote=True)}">
               <h3>Item #{row['item_num']} — <code>{html.escape(row['case_id'])}</code></h3>
               <p><strong>Participant:</strong> {html.escape(row['participant_id'])} | <strong>Time:</strong> {html.escape(row['decision_time'])} | <strong>Decision:</strong> <code>{html.escape(row['decision'])}</code> ({html.escape(row['skill_used'])})</p>
               <p><strong>Simulated Goals:</strong> {html.escape(row['student_goals'])}</p>
               <p><strong>Simulated Preferences:</strong> <code>{html.escape(row['student_preferences'])}</code></p>
               <details open><summary>Frozen available context (same as LLM evaluator)</summary><pre>{html.escape(row['evaluation_context'])}</pre></details>
               <div class="msg"><strong>Coach Final Message:</strong><br>{html.escape(row['final_message'])}</div>
-              <p class="rubric">Rate 1–5 (1=Poor, 3=Adequate, 5=Excellent): Context Awareness: [ ___ ] &nbsp;|&nbsp; Goal Alignment: [ ___ ] &nbsp;|&nbsp; Clarity: [ ___ ]</p>
+              <div class="ratings">
+                <label>Context Awareness (1–5) <input data-criterion="context_awareness" type="number" min="1" max="5" step="1" required></label>
+                <label>Goal Alignment (1–5) <input data-criterion="goal_alignment" type="number" min="1" max="5" step="1" required></label>
+                <label>Clarity (1–5) <input data-criterion="clarity" type="number" min="1" max="5" step="1" required></label>
+              </div>
+              <label>Notes (optional)<textarea rows="2"></textarea></label>
             </div>
             """
         )
+    rating_template = [
+        {"case_id": row["case_id"], "decision": row["decision"], "final_message": row["final_message"],
+         "message_fingerprint": row["message_fingerprint"], "context_awareness": None,
+         "goal_alignment": None, "clarity": None, "notes": ""}
+        for row in rows
+    ]
+    rating_json = json.dumps(rating_template, ensure_ascii=False).replace("<", "\\u003c")
     html_doc = f"""<!DOCTYPE html>
 <html><head><meta charset="utf-8"><title>Blind Human Evaluation Sheet</title>
 <style>
@@ -107,11 +149,21 @@ body {{ font-family: -apple-system, BlinkMacSystemFont, sans-serif; max-width: 9
 .card {{ border: 1px solid #cbd5e1; border-radius: 8px; padding: 16px; margin-bottom: 16px; background: #f8fafc; }}
 .msg {{ background: #ffffff; border-left: 4px solid #2563eb; padding: 12px; margin: 10px 0; font-size: 1.05em; }}
 .rubric {{ font-weight: 600; color: #0f172a; }}
+pre {{ white-space: pre-wrap; overflow-wrap: anywhere; font-size: 13px; }}
+.ratings {{ display: flex; flex-wrap: wrap; gap: 16px; margin: 16px 0; }}
+label {{ display: block; }}
+input {{ display: block; width: 90px; padding: 8px; font-size: 16px; }}
+textarea {{ display: block; width: 95%; padding: 8px; font: inherit; }}
+button {{ padding: 12px 18px; font: inherit; }}
 </style></head><body>
 <h1>Blind Human Judge Evaluation Sheet ({len(rows)} Messages)</h1>
 <p>Rate each message independently from <strong>1 to 5</strong> on <em>Context Awareness</em>, <em>Goal Alignment</em>, and <em>Clarity</em> using the same rubric as the LLM Judge, <strong>before</strong> viewing LLM Judge scores.</p>
 <details open><summary>Complete anchored evaluation rubric</summary><pre>{html.escape(load_judge_prompt())}</pre></details>
 {''.join(cards_html)}
+<button id="save-ratings" type="button">Save my {len(rows)} ratings as JSON</button>
+<p id="save-status" role="status"></p>
+<script id="rating-data" type="application/json">{rating_json}</script>
+{RATING_SCRIPT}
 </body></html>"""
     html_path.write_text(html_doc, encoding="utf-8")
 

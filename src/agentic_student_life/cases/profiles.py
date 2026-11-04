@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import json
+import re
 from pathlib import Path
 
 from ..data.store import DataStore
@@ -190,6 +191,13 @@ def build_profiles(
         courses = [c["course"] for c in academic.get(uid, {}).get("classes", [])]
         course_note = f"; courses: {', '.join(courses)}" if courses else "; no syllabus courses listed"
         spec = specs[uid]
+        # The cache is authoritative for measured background scores; older
+        # hand-authored profile prose must not contradict rebuilt survey scores.
+        constraints = list(spec["constraints"])
+        if "loneliness_total" in sv:
+            constraints = [re.sub(r"UCLA=\d+(?:\.\d+)?",
+                                  f"UCLA={sv['loneliness_total']}", text)
+                           for text in constraints]
         profiles[uid] = {
             "participant_id": uid,
             "simulated": True,
@@ -200,7 +208,7 @@ def build_profiles(
             "pre_term_surveys": sv,
             "goals": spec["goals"],
             "preferences": spec["preferences"],
-            "constraints": spec["constraints"],
+            "constraints": constraints,
             "learned_preferences": [],
         }
 
