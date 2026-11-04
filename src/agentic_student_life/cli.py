@@ -27,8 +27,14 @@ def cmd_preprocess(args: argparse.Namespace) -> None:
 
 
 def cmd_cases(args: argparse.Namespace) -> None:
-    info = build_cases(cache_dir=args.cache_dir, out_dir=args.out_dir)
-    print(f"Generated {info['num_cases']} cases and {info['num_profiles']} profiles in {args.out_dir}/")
+    out = Path(args.out_dir)
+    built = build_cases(
+        cache_dir=args.cache_dir,
+        cases_path=out / "cases.jsonl",
+        profiles_path=out / "profiles.json",
+        feedback_path=out / "feedback_scripts.json",
+    )
+    print(f"Generated {len(built)} cases and {len(load_profiles(out / 'profiles.json'))} profiles in {out}/")
 
 
 def cmd_run(args: argparse.Namespace) -> None:
