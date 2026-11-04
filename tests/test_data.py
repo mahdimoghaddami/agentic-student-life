@@ -3,15 +3,28 @@ import json
 from pathlib import Path
 import tempfile
 import unittest
+from types import SimpleNamespace as NS
 
 import pandas as pd
 
 from agentic_student_life.data.features import intersect_intervals, merge_intervals
 from agentic_student_life.data.loaders import TZ, load_ema
 from agentic_student_life.data.store import DataStore
+from agentic_student_life.tools.sensing import make_time_context
+from agentic_student_life.tools.academic import make_academic_load
 
 
 class DataTests(unittest.TestCase):
+    def test_missing_course_schedule_is_reported_without_failing(self):
+        view = NS(decision_time=pd.Timestamp("2013-04-02 20:00", tz=TZ),
+                  decision_date=pd.Timestamp("2013-04-02").date(), term_week=2,
+                  academic={"classes": [{"course": "UNKNOWN"}], "deadlines": {}},
+                  is_masked=lambda *a: False)
+        self.assertIsNone(make_time_context(view)()["class_now"])
+        academic = make_academic_load(view)()
+        self.assertEqual(academic["schedule_status"], "partial")
+        self.assertEqual(academic["courses_without_schedule"], ["UNKNOWN"])
+
     def test_interval_intersection_and_bridging(self):
         self.assertEqual(intersect_intervals([(0, 10), (20, 30)], [(5, 25)]), [(5, 10), (20, 25)])
         self.assertEqual(merge_intervals([(20, 30), (0, 10)], gap=10), [(0, 30)])

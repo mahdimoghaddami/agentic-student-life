@@ -33,15 +33,21 @@ def make_academic_load(view):
         hm = view.decision_time.strftime("%H:%M")
         wd = view.decision_time.isoweekday()
         classes = sorted((p["start"], p["end"], c["course"]) for c in acad.get("classes", [])
-                         for p in c["periods"] if p["day"] == wd)
+                         for p in c.get("periods") or [] if p["day"] == wd)
         out = {"source": src, "deadlines_today": today, "deadlines_ahead": ahead,
                "deadlines_next_window": sum(ahead.values()),
                "classes_today": [f"{c} {s}-{e}" for s, e, c in classes],
                "classes_remaining_today": sum(1 for s, _, _ in classes if s > hm),
                "n_courses": len(acad.get("classes", []))}
+        missing = [c["course"] for c in acad.get("classes", []) if not c.get("periods")]
+        if missing:
+            out["schedule_status"] = "partial"
+            out["courses_without_schedule"] = missing
         out["summary"] = (f"Academic: {today} deadline(s) today, {out['deadlines_next_window']} in next "
                           f"{days_ahead} days; {len(classes)} class(es) today "
                           f"({out['classes_remaining_today']} remaining)")
+        if missing:
+            out["summary"] += f"; schedule unavailable for {', '.join(missing)}"
         return out
     return get_academic_load
 

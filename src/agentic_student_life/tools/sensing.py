@@ -25,7 +25,7 @@ def _class_now(view) -> str | None:
     t = view.decision_time
     hm = t.strftime("%H:%M")
     for c in view.academic.get("classes", []):
-        for p in c["periods"]:
+        for p in c.get("periods") or []:
             if p["day"] == t.isoweekday() and p["start"] <= hm <= p["end"]:
                 return c["course"]
     return None
