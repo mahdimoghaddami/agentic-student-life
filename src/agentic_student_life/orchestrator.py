@@ -22,6 +22,7 @@ from .agents import (
 )
 from .config import RunConfig
 from .data.store import DataStore
+from .data.loaders import local_time
 from .llm import CallTracker, LLMClient
 from .memory.store import MemoryStore
 from .skills.library import load_skill, make_load_skill_tool, skill_index_text
@@ -51,10 +52,10 @@ def run_case(
         time_ctx = tmap["get_time_context"]()
         base_tools = make_tools(view)
         mem_text = memory_store.format_for_prompt(
-            uid, enabled=cfg.memory.enabled, history_k=cfg.memory.history_k
+            uid, decision_time=dtime, enabled=cfg.memory.enabled, history_k=cfg.memory.history_k
         )
         mem_snap = memory_store.get_snapshot(
-            uid, enabled=cfg.memory.enabled, history_k=cfg.memory.history_k
+            uid, decision_time=dtime, enabled=cfg.memory.enabled, history_k=cfg.memory.history_k
         )
         s_index = skill_index_text() if cfg.skills.enabled else "Skills disabled: use general supportive coaching."
 
@@ -74,7 +75,7 @@ def run_case(
             if cfg.memory.enabled:
                 sa_tools.append(
                     memory_store.make_recall_tool(
-                        uid, enabled=cfg.memory.enabled, history_k=cfg.memory.history_k
+                        uid, decision_time=dtime, enabled=cfg.memory.enabled, history_k=cfg.memory.history_k
                     )
                 )
             sa_out = run_single_agent(
@@ -344,7 +345,7 @@ def run_suite(
     reset_memory: bool = False,
     resume: bool = True,
 ) -> dict[str, Any]:
-    """Run all cases for one `RunConfig`, preserving episode ordering for multi-step preference episodes."""
+    """Run each participant chronologically; different participants may run concurrently."""
     run_dir = Path(out_root) / cfg.config_id
     run_dir.mkdir(parents=True, exist_ok=True)
     outputs_path = run_dir / "outputs.jsonl"
@@ -357,7 +358,9 @@ def run_suite(
 
     logger = logging.getLogger(f"asl.{cfg.config_id}")
     logger.setLevel(logging.INFO)
-    logger.handlers.clear()
+    for handler in list(logger.handlers):
+        logger.removeHandler(handler)
+        handler.close()
     fh = logging.FileHandler(log_path, encoding="utf-8")
     fh.setFormatter(logging.Formatter("%(asctime)s [%(levelname)s] %(message)s"))
     logger.addHandler(fh)
@@ -369,6 +372,8 @@ def run_suite(
             outputs_path.unlink()
         if calls_path.exists():
             calls_path.unlink()
+    # Rebuild from reusable outputs rather than trusting memory left by a partial run.
+    memory_store.reset()
 
     selected_cases = list(cases)
     if cfg.case_ids:
@@ -384,13 +389,21 @@ def run_suite(
             if rec.get("status") == "ok":
                 existing_ok[rec["case_id"]] = rec
 
-    # Group cases by episode_id so steps within an episode run sequentially in step order
+    # Sharing memory requires chronological ordering across ALL of a participant's episodes.
     episodes: dict[str, list[dict[str, Any]]] = {}
     for c in selected_cases:
-        ep_id = c.get("episode_id") or c["case_id"]
+        ep_id = c["participant_id"]
         episodes.setdefault(ep_id, []).append(c)
     for ep_list in episodes.values():
-        ep_list.sort(key=lambda x: int(x.get("step", 1)))
+        ep_list.sort(key=lambda x: (local_time(x["decision_time"]), x["case_id"]))
+
+        # A missing/failed earlier output changes all later memory, so rerun that suffix.
+        prefix_complete = True
+        for c in ep_list:
+            cid = c["case_id"]
+            prefix_complete = prefix_complete and cid in existing_ok
+            if not prefix_complete:
+                existing_ok.pop(cid, None)
 
     data_store = DataStore(cache_dir=cache_dir)
     llm = LLMClient()
@@ -403,6 +416,13 @@ def run_suite(
             cid = c["case_id"]
             if cid in existing_ok:
                 logger.info("Skipping already-completed case %s", cid)
+                rec = existing_ok[cid]
+                memory_store.record_episode(
+                    uid=c["participant_id"], case_id=cid, decision_time=c["decision_time"],
+                    decision=rec["decision"], skill_used=rec.get("skill_used"),
+                    final_message=rec.get("final_message"), feedback=c.get("scripted_feedback"),
+                    new_preferences=rec.get("memory_updates", []),
+                )
                 ep_out.append(existing_ok[cid])
                 continue
             logger.info("Starting case %s (%s @ %s, category=%s)", cid, c["participant_id"], c["decision_time"], c.get("category"))
@@ -430,10 +450,15 @@ def run_suite(
             ep_out.append(res)
         return ep_out
 
-    with ThreadPoolExecutor(max_workers=max(1, cfg.max_workers)) as pool:
-        futs = [pool.submit(_run_episode, ep_list) for ep_list in episodes.values()]
-        for fut in as_completed(futs):
-            fut.result()
+    try:
+        with ThreadPoolExecutor(max_workers=max(1, cfg.max_workers)) as pool:
+            futs = [pool.submit(_run_episode, ep_list) for ep_list in episodes.values()]
+            for fut in as_completed(futs):
+                fut.result()
+    except BaseException:
+        logger.removeHandler(fh)
+        fh.close()
+        raise
 
     # Rewrite outputs.jsonl sorted by case_id for clean deterministic ordering
     ordered_records = [results_by_id[c["case_id"]] for c in selected_cases if c["case_id"] in results_by_id]
@@ -458,5 +483,7 @@ def run_suite(
         "outputs_path": str(outputs_path),
     }
     logger.info("Run %s complete: %d ok / %d failed", cfg.config_id, ok_count, len(failed))
+    logger.removeHandler(fh)
+    fh.close()
     return summary
 

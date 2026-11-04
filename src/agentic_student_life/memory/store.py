@@ -3,10 +3,13 @@
 from __future__ import annotations
 
 import json
+from copy import deepcopy
 from pathlib import Path
 import shutil
 import threading
 from typing import Any, Callable
+
+from ..data.loaders import local_time
 
 
 class MemoryStore:
@@ -16,7 +19,7 @@ class MemoryStore:
         self.mem_dir = Path(run_dir) / "memory"
         self.mem_dir.mkdir(parents=True, exist_ok=True)
         self.profiles = profiles
-        self._lock = threading.Lock()
+        self._lock = threading.RLock()
 
     def _path(self, uid: str) -> Path:
         return self.mem_dir / f"{uid}.json"
@@ -66,7 +69,8 @@ class MemoryStore:
             with p.open("w", encoding="utf-8") as f:
                 json.dump(state, f, indent=2)
 
-    def get_snapshot(self, uid: str, enabled: bool = True, history_k: int = 5) -> dict[str, Any]:
+    def get_snapshot(self, uid: str, *, decision_time: str, enabled: bool = True,
+                     history_k: int = 5) -> dict[str, Any]:
         state = self.load(uid)
         if not enabled:
             return {
@@ -76,16 +80,25 @@ class MemoryStore:
                 "recent_episodes": [],
                 "memory_enabled": False,
             }
-        return {
+        cutoff = local_time(decision_time)
+        # Feedback is delivered after its case output, so equality is excluded too.
+        episodes = sorted(
+            [e for e in state.get("episodes", []) if local_time(e["decision_time"]) < cutoff],
+            key=lambda e: (local_time(e["decision_time"]), e["case_id"]),
+        )
+        preferences = [p for p in state.get("learned_preferences", [])
+                       if local_time(p["learned_at"]) < cutoff]
+        return deepcopy({
             "participant_id": uid,
             "simulated_profile": state.get("profile", {}),
-            "learned_preferences": state.get("learned_preferences", []),
-            "recent_episodes": state.get("episodes", [])[-history_k:],
+            "learned_preferences": preferences,
+            "recent_episodes": episodes[-history_k:] if history_k > 0 else [],
             "memory_enabled": True,
-        }
+        })
 
-    def format_for_prompt(self, uid: str, enabled: bool = True, history_k: int = 5) -> str:
-        snap = self.get_snapshot(uid, enabled=enabled, history_k=history_k)
+    def format_for_prompt(self, uid: str, *, decision_time: str,
+                          enabled: bool = True, history_k: int = 5) -> str:
+        snap = self.get_snapshot(uid, decision_time=decision_time, enabled=enabled, history_k=history_k)
         prof = snap["simulated_profile"]
         lines = [
             f"### Student Profile (Participant {uid}, SIMULATED=true)",
@@ -133,6 +146,16 @@ class MemoryStore:
         feedback: dict[str, Any] | None,
         new_preferences: list[str],
     ) -> list[str]:
+        # Hold one reentrant lock across the entire read-modify-write transaction.
+        with self._lock:
+            return self._record_episode(
+                uid=uid, case_id=case_id, decision_time=decision_time, decision=decision,
+                skill_used=skill_used, final_message=final_message, feedback=feedback,
+                new_preferences=new_preferences,
+            )
+
+    def _record_episode(self, *, uid, case_id, decision_time, decision, skill_used,
+                        final_message, feedback, new_preferences):
         state = self.load(uid)
         # Avoid duplicate entries if a case is re-run
         state["episodes"] = [e for e in state.get("episodes", []) if e.get("case_id") != case_id]
@@ -147,6 +170,10 @@ class MemoryStore:
                 "simulated": True,
             }
         )
+        state["episodes"].sort(key=lambda e: (local_time(e["decision_time"]), e["case_id"]))
+        # Replacing an episode must also replace preferences previously extracted from it.
+        state["learned_preferences"] = [p for p in state.get("learned_preferences", [])
+                                        if p.get("from_case_id") != case_id]
         recorded_updates: list[str] = []
         existing_texts = {lp.get("preference", "") for lp in state.get("learned_preferences", [])}
         for pref in new_preferences:
@@ -165,14 +192,16 @@ class MemoryStore:
         self.save(uid, state)
         return recorded_updates
 
-    def make_recall_tool(self, uid: str, enabled: bool = True, history_k: int = 5) -> Callable:
+    def make_recall_tool(self, uid: str, *, decision_time: str,
+                         enabled: bool = True, history_k: int = 5) -> Callable:
         def recall_memory(query: str = "all") -> dict[str, Any]:
             """Recall the student's simulated profile, learned preferences from feedback, and recent interaction history.
 
             Args:
                 query: Topic to recall ('all', 'preferences', 'history', or 'goals').
             """
-            snap = self.get_snapshot(uid, enabled=enabled, history_k=history_k)
+            snap = self.get_snapshot(uid, decision_time=decision_time,
+                                     enabled=enabled, history_k=history_k)
             snap["source"] = "memory.store"
             snap["query"] = query
             return snap
