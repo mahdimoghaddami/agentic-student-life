@@ -168,6 +168,7 @@ class CallTracker:
         self.completion_tokens = 0
         self.total_tokens = 0
         self.per_agent: dict[str, dict[str, int]] = {}
+        self.models_used: set[str] = set()
         self.tool_records: list[dict[str, Any]] = []
         self._lock = threading.Lock()
 
@@ -186,6 +187,7 @@ class CallTracker:
     ) -> None:
         with self._lock:
             self.llm_calls += turns
+            self.models_used.add(model)
             self.tool_calls += tool_calls_made
             self.prompt_tokens += prompt_tokens
             self.completion_tokens += completion_tokens
@@ -247,6 +249,7 @@ class CallTracker:
             "total_tokens": self.total_tokens,
             "latency_s": round(latency_s, 2),
             "per_agent": self.per_agent,
+            "models_used": sorted(self.models_used),
         }
 
 

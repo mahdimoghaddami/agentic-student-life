@@ -9,14 +9,16 @@ from pathlib import Path
 from typing import Any
 
 import numpy as np
+from .context import evaluation_payload, message_fingerprint
+from .judge import load_judge_prompt
 
 
 def export_human_sheet(
     *,
-    run_dir: str | Path = "runs/full",
+    run_dir: str | Path = "runs_corrected/full",
     cases_by_id: dict[str, dict[str, Any]],
     profiles: dict[str, Any],
-    out_dir: str | Path = "runs/full/human_eval",
+    out_dir: str | Path = "runs_corrected/full/human_eval",
     max_items: int = 15,
 ) -> dict[str, str]:
     """Export a blind rating sheet (CSV + HTML + JSON template) with >=10 non-null messages
@@ -36,6 +38,10 @@ def export_human_sheet(
         if r.get("status") == "ok" and r.get("final_message") and str(r.get("final_message")).strip()
     ]
     selected = non_null[:max_items]
+    if len(selected) < 10:
+        raise ValueError("The human evaluation requires at least 10 non-null messages.")
+    for rec in selected:
+        evaluation_payload(rec)
 
     odir = Path(out_dir)
     odir.mkdir(parents=True, exist_ok=True)
@@ -47,12 +53,7 @@ def export_human_sheet(
     for idx, r in enumerate(selected, 1):
         cid = r["case_id"]
         uid = r["participant_id"]
-        case = cases_by_id.get(cid, {})
-        prof = profiles.get(uid, {})
-        ev_summaries = [
-            f"[{e.get('source')}] {e.get('detail')}"
-            for e in r.get("evidence", [])
-        ]
+        prof = r["evaluation_context"].get("simulated_profile", {})
         rows.append(
             {
                 "item_num": idx,
@@ -64,8 +65,8 @@ def export_human_sheet(
                 "skill_used": r.get("skill_used") or "",
                 "student_goals": "; ".join(prof.get("goals", [])),
                 "student_preferences": json.dumps(prof.get("preferences", {})),
-                "case_context_rationale": case.get("rationale", ""),
-                "evidence_summary": " | ".join(ev_summaries),
+                "evaluation_context": json.dumps(evaluation_payload(r), indent=2),
+                "message_fingerprint": message_fingerprint(r),
                 "final_message": r["final_message"],
                 "human_context_awareness_1_to_5": "",
                 "human_goal_alignment_1_to_5": "",
@@ -74,6 +75,11 @@ def export_human_sheet(
             }
         )
 
+    if json_path.exists():
+        previous = json.loads(json_path.read_text(encoding="utf-8"))
+        old = {r["case_id"]: r.get("message_fingerprint") for r in previous}
+        if old != {r["case_id"]: r["message_fingerprint"] for r in rows}:
+            raise ValueError("Existing human ratings belong to different messages/context; use a new output directory.")
     with csv_path.open("w", newline="", encoding="utf-8") as f:
         writer = csv.DictWriter(f, fieldnames=list(rows[0].keys()) if rows else [])
         writer.writeheader()
@@ -89,7 +95,7 @@ def export_human_sheet(
               <p><strong>Participant:</strong> {html.escape(row['participant_id'])} | <strong>Time:</strong> {html.escape(row['decision_time'])} | <strong>Decision:</strong> <code>{html.escape(row['decision'])}</code> ({html.escape(row['skill_used'])})</p>
               <p><strong>Simulated Goals:</strong> {html.escape(row['student_goals'])}</p>
               <p><strong>Simulated Preferences:</strong> <code>{html.escape(row['student_preferences'])}</code></p>
-              <p><strong>Available Context / Evidence:</strong> {html.escape(row['evidence_summary'])}</p>
+              <details open><summary>Frozen available context (same as LLM evaluator)</summary><pre>{html.escape(row['evaluation_context'])}</pre></details>
               <div class="msg"><strong>Coach Final Message:</strong><br>{html.escape(row['final_message'])}</div>
               <p class="rubric">Rate 1–5 (1=Poor, 3=Adequate, 5=Excellent): Context Awareness: [ ___ ] &nbsp;|&nbsp; Goal Alignment: [ ___ ] &nbsp;|&nbsp; Clarity: [ ___ ]</p>
             </div>
@@ -105,6 +111,7 @@ body {{ font-family: -apple-system, BlinkMacSystemFont, sans-serif; max-width: 9
 </style></head><body>
 <h1>Blind Human Judge Evaluation Sheet ({len(rows)} Messages)</h1>
 <p>Rate each message independently from <strong>1 to 5</strong> on <em>Context Awareness</em>, <em>Goal Alignment</em>, and <em>Clarity</em> using the same rubric as the LLM Judge, <strong>before</strong> viewing LLM Judge scores.</p>
+<details open><summary>Complete anchored evaluation rubric</summary><pre>{html.escape(load_judge_prompt())}</pre></details>
 {''.join(cards_html)}
 </body></html>"""
     html_path.write_text(html_doc, encoding="utf-8")
@@ -116,6 +123,7 @@ body {{ font-family: -apple-system, BlinkMacSystemFont, sans-serif; max-width: 9
                 "category": row["category"],
                 "decision": row["decision"],
                 "final_message": row["final_message"],
+                "message_fingerprint": row["message_fingerprint"],
                 "context_awareness": None,
                 "goal_alignment": None,
                 "clarity": None,
@@ -162,6 +170,12 @@ def compute_human_vs_llm(
             and h.get("clarity") is not None
         ):
             j = j_map[cid]
+            if h.get("final_message") != j.get("final_message"):
+                continue
+            if h.get("message_fingerprint") != j.get("message_fingerprint"):
+                continue
+            if any(not 1 <= float(h[k]) <= 5 for k in ("context_awareness", "goal_alignment", "clarity")):
+                raise ValueError(f"Human scores must be 1-5 for {cid}")
             h_ca = float(h["context_awareness"])
             h_ga = float(h["goal_alignment"])
             h_cl = float(h["clarity"])

@@ -11,11 +11,11 @@ from typing import Any
 from pydantic import BaseModel, Field
 
 from ..config import JudgeConfig
-from ..data.store import DataStore
-from ..llm import LLMClient
-from ..tools import evidence_summary
+from ..llm import CallTracker, LLMClient
+from ..provenance import digest
+from .context import evaluation_payload, message_fingerprint
 
-PROMPT_PATH = Path("prompts/judge.md")
+PROMPT_PATH = Path(__file__).resolve().parents[3] / "prompts/judge.md"
 
 
 class JudgeOutput(BaseModel):
@@ -29,7 +29,12 @@ class JudgeOutput(BaseModel):
 def load_judge_prompt() -> str:
     if PROMPT_PATH.exists():
         return PROMPT_PATH.read_text(encoding="utf-8")
-    return "You are an impartial LLM judge scoring coaching messages from 1 to 5."
+    raise FileNotFoundError(f"Missing judge rubric: {PROMPT_PATH}")
+
+
+def score_fingerprint(rec, cfg):
+    return digest({"message": message_fingerprint(rec), "rubric": load_judge_prompt(),
+                   "judge_model": cfg.model, "temperature": cfg.temperature})
 
 
 def judge_single_record(
@@ -37,45 +42,14 @@ def judge_single_record(
     rec: dict[str, Any],
     case: dict[str, Any],
     profile: dict[str, Any],
-    data_store: DataStore,
     llm: LLMClient,
     judge_cfg: JudgeConfig,
 ) -> dict[str, Any]:
     """Score one non-null `final_message` using the fixed Judge model."""
     uid = rec["participant_id"]
     dtime = rec["decision_time"]
-    mask = case.get("mask") or []
-    view = data_store.get_view(uid, dtime, mask=mask)
-    det_evidence = evidence_summary(view)
-
-    mem_feedback_items = [
-        ev.get("detail", "")
-        for ev in rec.get("evidence", [])
-        if ev.get("source") == "memory.feedback"
-    ]
-
-    user_prompt = (
-        f"## Case Context\n"
-        f"- Case ID: {rec['case_id']}\n"
-        f"- Category: {rec.get('category', '')}\n"
-        f"- Participant: {uid}\n"
-        f"- Decision Time: {dtime}\n"
-        f"- Masked Modalities: {json.dumps(mask)}\n"
-        f"- Expected Decision Set: {json.dumps(case.get('expected_decision', []))}\n"
-        f"- Case Rationale: {case.get('rationale', '')}\n\n"
-        f"## Student Simulated Profile (SIMULATED=true)\n"
-        f"{json.dumps(profile, indent=2)}\n\n"
-        f"## Learned Preferences in Memory at Decision Time (SIMULATED=true)\n"
-        f"{json.dumps(mem_feedback_items, indent=2)}\n\n"
-        f"## Deterministic Tool Evidence Summary up to Decision Time\n"
-        f"{json.dumps(det_evidence, indent=2)}\n\n"
-        f"## Coaching System Output to Evaluate\n"
-        f"- Decision: {rec['decision']}\n"
-        f"- Skill Used: {rec.get('skill_used')}\n"
-        f"- Final Message: {rec['final_message']!r}\n\n"
-        "Rate this message from 1 to 5 on `context_awareness`, `goal_alignment`, and `clarity`, "
-        "plus `decision_appropriate` and `justification`."
-    )
+    user_prompt = json.dumps(evaluation_payload(rec), indent=2)
+    tracker = CallTracker(rec["case_id"], rec["config_id"])
 
     out = llm.complete_json(
         agent="judge",
@@ -83,9 +57,11 @@ def judge_single_record(
         system=load_judge_prompt(),
         user=user_prompt,
         schema=JudgeOutput,
-        tracker=None,
+        tracker=tracker,
         temperature=judge_cfg.temperature,
     )
+    if tracker.models_used != {judge_cfg.model}:
+        raise ValueError("Judge call did not record the configured model")
     mean_score = round((out.context_awareness + out.goal_alignment + out.clarity) / 3.0, 3)
     return {
         "case_id": rec["case_id"],
@@ -96,6 +72,8 @@ def judge_single_record(
         "decision": rec["decision"],
         "final_message": rec["final_message"],
         "judge_model": judge_cfg.model,
+        "message_fingerprint": message_fingerprint(rec),
+        "evaluation_fingerprint": score_fingerprint(rec, judge_cfg),
         "context_awareness": out.context_awareness,
         "goal_alignment": out.goal_alignment,
         "clarity": out.clarity,
@@ -139,14 +117,15 @@ def judge_run(
                 obj = json.loads(line)
                 existing[obj["case_id"]] = obj
 
-    data_store = DataStore(cache_dir=cache_dir)
+    for rec in scorable:
+        evaluation_payload(rec)  # Reject missing context before making any paid calls.
     llm = LLMClient()
     lock = threading.Lock()
     results_map: dict[str, dict[str, Any]] = dict(existing)
 
     def _work(rec: dict[str, Any]) -> dict[str, Any]:
         cid = rec["case_id"]
-        if cid in existing:
+        if cid in existing and existing[cid].get("evaluation_fingerprint") == score_fingerprint(rec, jcfg):
             return existing[cid]
         case = cases_by_id.get(cid, {"case_id": cid, "mask": []})
         prof = profiles.get(rec["participant_id"], {})
@@ -154,7 +133,6 @@ def judge_run(
             rec=rec,
             case=case,
             profile=prof,
-            data_store=data_store,
             llm=llm,
             judge_cfg=jcfg,
         )

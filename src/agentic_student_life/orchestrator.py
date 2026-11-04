@@ -58,6 +58,14 @@ def run_case(
         mem_snap = memory_store.get_snapshot(
             uid, decision_time=dtime, enabled=cfg.memory.enabled, history_k=cfg.memory.history_k
         )
+        evaluation_context = {
+            "participant_id": uid, "decision_time": dtime,
+            "observations": evidence_summary(view),
+            "simulated_profile": mem_snap.get("simulated_profile", {}),
+            "learned_preferences": mem_snap.get("learned_preferences", []),
+            "recent_interactions": mem_snap.get("recent_episodes", []),
+            "simulated_recent_interaction_note": case.get("recent_interaction_note"),
+        }
         s_index = skill_index_text() if cfg.skills.enabled else "Skills disabled: use general supportive coaching."
 
         plan_steps_all: list[str] = []
@@ -303,6 +311,7 @@ def run_case(
             "skill_used": skill_used,
             "plan": plan_steps_all,
             "evidence": evidence_list,
+            "evaluation_context": evaluation_context,
             "final_message": final_message,
             "reflection": {"rounds_used": reflection_rounds_used, "critiques": critiques},
             "planning": {"rounds_used": planning_rounds_used},
