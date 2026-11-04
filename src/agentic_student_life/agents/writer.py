@@ -8,6 +8,7 @@ from typing import Any
 
 from ..config import RunConfig
 from ..llm import CallTracker, LLMClient
+from ..skills.library import make_load_skill_tool
 from .schemas import AnalystOutput, PlannerOutput, WriterOutput
 
 PROMPT_PATH = Path("prompts/writer.md")
@@ -68,7 +69,11 @@ def run_writer(
             f"{skill_doc.get('body', '')}\n"
         )
     else:
-        skill_blk = "## Skill Instructions: Generic supportive coaching (Skills module disabled or no specific skill loaded)."
+        skill_blk = (
+            "## Skill Instructions: Select a skill from the index and call load_skill for its full "
+            "procedure before drafting." if cfg.skills.enabled
+            else "## Skill Instructions: Generic supportive coaching (Skills module disabled)."
+        )
 
     revision_blk = ""
     if previous_draft is not None and critic_feedback is not None:
@@ -98,6 +103,9 @@ def run_writer(
         schema=WriterOutput,
         tracker=tracker,
         temperature=cfg.temperature,
+        tools=[make_load_skill_tool()] if cfg.skills.enabled and
+              (skill_doc is None or previous_draft is not None) else None,
+        max_turns=cfg.tools.max_turns,
     )
     if planner_decision is not None and previous_draft is None:
         out.decision = planner_decision.decision

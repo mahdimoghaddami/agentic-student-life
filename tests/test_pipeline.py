@@ -7,6 +7,7 @@ from agentic_student_life.agents.schemas import AnalystOutput, PlannerOutput, Wr
 from agentic_student_life.agents.schemas import CriticOutput
 from agentic_student_life.config import RunConfig
 from agentic_student_life.orchestrator import run_case
+from agentic_student_life.agents.writer import run_writer
 
 
 class PipelineTests(unittest.TestCase):
@@ -87,6 +88,19 @@ class PipelineTests(unittest.TestCase):
         result, _ = self.execute(cfg, writer=lambda **kw: WriterOutput(decision="suggest"))
         self.assertEqual(result["status"], "failed")
         self.assertIn("non-empty", result["error"])
+
+    def test_no_planner_writer_retains_access_to_full_skills(self):
+        captured = {}
+        def complete(**kw):
+            captured.update(kw)
+            return WriterOutput(decision="suggest", final_message="Break.")
+        run_writer(llm=NS(complete_json=complete), cfg=RunConfig(), tracker=None,
+                   case={"case_id": "test", "participant_id": "u00", "decision_time": "2013-04-12"},
+                   memory_text="", analyst_reports=[], planner_decision=None,
+                   skill_doc=None, skill_index="micro_study_break")
+        self.assertEqual(captured["tools"][0].__name__, "load_skill")
+        loaded = captured["tools"][0]("micro_study_break")
+        self.assertTrue(loaded["body"])
 
 
 if __name__ == "__main__":
