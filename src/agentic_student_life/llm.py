@@ -4,6 +4,7 @@ retries/backoff, Pydantic JSON parsing + repair, and per-call trace logging."""
 from __future__ import annotations
 
 import json
+import os
 from pathlib import Path
 import re
 import threading
@@ -256,16 +257,50 @@ class CallTracker:
 class LLMClient:
     """Thread-safe wrapper around aisuite.Client with retries, tool tracking, and Pydantic JSON parsing."""
 
-    def __init__(self, env_path: str = ".env"):
+    def __init__(self, env_path: str = ".env", *, max_output_tokens: int = 8192,
+                 thinking_level: str | None = None, usage_budget=None):
         load_dotenv(env_path)
         _patch_aisuite_gemini()
         self._local = threading.local()
+        self.max_output_tokens = max_output_tokens
+        self.thinking_level = thinking_level
+        self.usage_budget = usage_budget
+        self._gemini_credentials = []
+        for name in ("GEMINI_API_KEY", "GEMINI_API_KEY_FREE"):
+            value = os.getenv(name)
+            if value and value not in [key for _, key in self._gemini_credentials]:
+                self._gemini_credentials.append((name, value))
 
     @property
     def client(self) -> ai.Client:
-        if not hasattr(self._local, "client"):
-            self._local.client = ai.Client()
-        return self._local.client
+        slot = getattr(self._local, "credential_slot", 0)
+        if not hasattr(self._local, "clients"):
+            self._local.clients = {}
+        if slot not in self._local.clients:
+            client = ai.Client()
+            if self._gemini_credentials:
+                name, key = self._gemini_credentials[slot]
+                provider = gemini_provider.GeminiProvider(
+                    api_key=key, http_options={"timeout": 90_000})
+                if self.usage_budget:
+                    provider.client.models.generate_content = self.usage_budget.wrap(
+                        provider.client.models.generate_content, name)
+                client.providers["gemini"] = provider
+            self._local.clients[slot] = client
+        return self._local.clients[slot]
+
+    def _rotate_credential(self):
+        credentials = getattr(self, "_gemini_credentials", [])
+        if len(credentials) < 2:
+            return False
+        slot = getattr(self._local, "credential_slot", 0)
+        self._local.credential_slot = (slot + 1) % len(credentials)
+        return True
+
+    def _redact(self, message):
+        for _, key in getattr(self, "_gemini_credentials", []):
+            message = message.replace(key, "[REDACTED]")
+        return message
 
     def _call_with_retry(
         self,
@@ -278,6 +313,9 @@ class LLMClient:
         max_retries: int = 18,
     ) -> tuple[Any, str, float]:
         kwargs: dict[str, Any] = {"temperature": temperature}
+        kwargs["max_output_tokens"] = getattr(self, "max_output_tokens", 8192)
+        if model.startswith("gemini:") and getattr(self, "thinking_level", None):
+            kwargs["thinking_config"] = {"thinking_level": self.thinking_level}
         if tools:
             kwargs["tools"] = tools
             if max_turns is not None:
@@ -286,6 +324,7 @@ class LLMClient:
             kwargs["response_mime_type"] = "application/json"
 
         last_err: Exception | None = None
+        rejected_slots = set()
         for attempt in range(max_retries):
             # A model switch changes the experimental treatment. Retry this model only.
             cur_model = model
@@ -304,7 +343,23 @@ class LLMClient:
                     kwargs.pop("thinking_config", None)
                     continue
                 if "PerDay" in err_str or "per day" in err_str.lower():
-                    raise
+                    slot = getattr(getattr(self, "_local", None), "credential_slot", 0)
+                    rejected_slots.add(slot)
+                    if (model.startswith("gemini:") and
+                            len(rejected_slots) < len(getattr(self, "_gemini_credentials", [])) and
+                            self._rotate_credential()):
+                        continue
+                    raise RuntimeError(self._redact(err_str)) from None
+                if model.startswith("gemini:") and any(
+                    token in err_str for token in ("429", "RESOURCE_EXHAUSTED", "401", "403", "API_KEY_INVALID")
+                ):
+                    slot = getattr(getattr(self, "_local", None), "credential_slot", 0)
+                    rejected_slots.add(slot)
+                    rotated = self._rotate_credential()
+                    if any(token in err_str for token in ("401", "403", "API_KEY_INVALID")):
+                        if rotated and len(rejected_slots) < len(self._gemini_credentials):
+                            continue
+                        raise RuntimeError(self._redact(err_str)) from None
                 if any(
                     code in err_str
                     for code in (
@@ -322,9 +377,9 @@ class LLMClient:
                     sleep_s = min(30.0, 6.0 * (attempt + 1))
                     time.sleep(sleep_s)
                     continue
-                raise
+                raise RuntimeError(self._redact(err_str)) from None
         assert last_err is not None
-        raise last_err
+        raise RuntimeError(self._redact(str(last_err))) from None
 
     @staticmethod
     def _extract_usage(resp: Any) -> tuple[int, int, int, int, int]:

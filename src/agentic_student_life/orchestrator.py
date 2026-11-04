@@ -21,6 +21,7 @@ from .agents import (
     run_writer,
 )
 from .config import RunConfig
+from .budget import UsageBudget
 from .data.store import DataStore
 from .data.loaders import local_time
 from .llm import CallTracker, LLMClient
@@ -423,7 +424,18 @@ def run_suite(
                 existing_ok.pop(cid, None)
 
     data_store = DataStore(cache_dir=cache_dir)
-    llm = LLMClient()
+    usage_budget = None
+    if cfg.budget_usd is not None:
+        if cfg.input_usd_per_million <= 0 or cfg.output_usd_per_million <= 0:
+            raise ValueError("Budgeted runs require positive input and output token prices.")
+        usage_budget = UsageBudget(
+            run_dir / "api_usage.jsonl", limit_usd=cfg.budget_usd,
+            input_per_million=cfg.input_usd_per_million,
+            output_per_million=cfg.output_usd_per_million,
+            max_output_tokens=cfg.max_output_tokens,
+        )
+    llm = LLMClient(max_output_tokens=cfg.max_output_tokens,
+                    thinking_level=cfg.thinking_level, usage_budget=usage_budget)
     write_lock = threading.Lock()
     results_by_id: dict[str, dict[str, Any]] = dict(existing_ok)
 

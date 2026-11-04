@@ -46,6 +46,11 @@ class RunConfig:
     temperature: float = 0.3
     max_workers: int = 4
     case_ids: list[str] | None = None  # None = all cases in cases/cases.jsonl
+    max_output_tokens: int = 8192
+    thinking_level: str | None = None
+    budget_usd: float | None = None
+    input_usd_per_million: float = 0.0
+    output_usd_per_million: float = 0.0
     planning: PlanningConfig = field(default_factory=PlanningConfig)
     reflection: ReflectionConfig = field(default_factory=ReflectionConfig)
     memory: MemoryConfig = field(default_factory=MemoryConfig)
@@ -63,6 +68,11 @@ class RunConfig:
             temperature=float(sys_blk.get("temperature", 0.3)),
             max_workers=int(sys_blk.get("max_workers", 4)),
             case_ids=sys_blk.get("case_ids", data.get("case_ids", None)),
+            max_output_tokens=int(sys_blk.get("max_output_tokens", 8192)),
+            thinking_level=sys_blk.get("thinking_level"),
+            budget_usd=sys_blk.get("budget_usd"),
+            input_usd_per_million=float(sys_blk.get("input_usd_per_million", 0)),
+            output_usd_per_million=float(sys_blk.get("output_usd_per_million", 0)),
             planning=PlanningConfig(**data["planning"]) if "planning" in data else PlanningConfig(),
             reflection=ReflectionConfig(**data["reflection"]) if "reflection" in data else ReflectionConfig(),
             memory=MemoryConfig(**data["memory"]) if "memory" in data else MemoryConfig(),
@@ -86,6 +96,13 @@ class RunConfig:
         if self.case_ids is not None:
             ids_str = ", ".join(f'"{c}"' for c in self.case_ids)
             lines.append(f"case_ids = [{ids_str}]")
+        lines.append(f"max_output_tokens = {self.max_output_tokens}")
+        if self.thinking_level is not None:
+            lines.append(f'thinking_level = "{self.thinking_level}"')
+        if self.budget_usd is not None:
+            lines.extend([f"budget_usd = {self.budget_usd}",
+                          f"input_usd_per_million = {self.input_usd_per_million}",
+                          f"output_usd_per_million = {self.output_usd_per_million}"])
         lines.extend([
             "",
             "[planning]",
