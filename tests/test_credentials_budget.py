@@ -68,7 +68,7 @@ class CredentialBudgetTests(unittest.TestCase):
 
     def test_budget_refuses_a_request_that_cannot_be_reserved(self):
         with tempfile.TemporaryDirectory() as tmp:
-            budget = UsageBudget(Path(tmp)/"usage.jsonl", limit_usd=.1,
+            budget = UsageBudget(Path(tmp)/"usage.jsonl", limit_usd=.0001,
                                  input_per_million=.75, output_per_million=3.75)
             generate = Mock()
             with self.assertRaisesRegex(RuntimeError, "no request sent"):

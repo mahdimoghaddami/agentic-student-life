@@ -51,6 +51,7 @@ class RunConfig:
     budget_usd: float | None = None
     input_usd_per_million: float = 0.0
     output_usd_per_million: float = 0.0
+    min_request_interval_s: float = 0.0
     planning: PlanningConfig = field(default_factory=PlanningConfig)
     reflection: ReflectionConfig = field(default_factory=ReflectionConfig)
     memory: MemoryConfig = field(default_factory=MemoryConfig)
@@ -73,6 +74,7 @@ class RunConfig:
             budget_usd=sys_blk.get("budget_usd"),
             input_usd_per_million=float(sys_blk.get("input_usd_per_million", 0)),
             output_usd_per_million=float(sys_blk.get("output_usd_per_million", 0)),
+            min_request_interval_s=float(sys_blk.get("min_request_interval_s", 0)),
             planning=PlanningConfig(**data["planning"]) if "planning" in data else PlanningConfig(),
             reflection=ReflectionConfig(**data["reflection"]) if "reflection" in data else ReflectionConfig(),
             memory=MemoryConfig(**data["memory"]) if "memory" in data else MemoryConfig(),
@@ -97,6 +99,7 @@ class RunConfig:
             ids_str = ", ".join(f'"{c}"' for c in self.case_ids)
             lines.append(f"case_ids = [{ids_str}]")
         lines.append(f"max_output_tokens = {self.max_output_tokens}")
+        lines.append(f"min_request_interval_s = {self.min_request_interval_s}")
         if self.thinking_level is not None:
             lines.append(f'thinking_level = "{self.thinking_level}"')
         if self.budget_usd is not None:

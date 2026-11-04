@@ -433,6 +433,7 @@ def run_suite(
             input_per_million=cfg.input_usd_per_million,
             output_per_million=cfg.output_usd_per_million,
             max_output_tokens=cfg.max_output_tokens,
+            min_request_interval_s=cfg.min_request_interval_s,
         )
     llm = LLMClient(max_output_tokens=cfg.max_output_tokens,
                     thinking_level=cfg.thinking_level, usage_budget=usage_budget)

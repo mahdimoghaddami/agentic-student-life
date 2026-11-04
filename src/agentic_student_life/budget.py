@@ -7,7 +7,7 @@ import time
 
 class UsageBudget:
     def __init__(self, path, *, limit_usd, input_per_million, output_per_million,
-                 max_output_tokens=8192):
+                 max_output_tokens=8192, min_request_interval_s=0):
         self.path = Path(path)
         self.path.parent.mkdir(parents=True, exist_ok=True)
         self.limit = limit_usd
@@ -16,14 +16,26 @@ class UsageBudget:
         self.max_output_tokens = max_output_tokens
         self.spent = self.reserved = 0.0
         self.lock = threading.Lock()
+        self.min_request_interval_s = min_request_interval_s
+        self.next_request = {}
         if self.path.exists():
             for line in self.path.read_text(encoding="utf-8").splitlines():
                 self.spent += json.loads(line).get("estimated_cost_usd", 0)
 
     def wrap(self, generate, credential):
         def tracked(*args, **kwargs):
-            # Each selected Gemini model has a 1,048,576-token input limit.
-            reserve = (1_048_576 * self.input_rate +
+            with self.lock:
+                now = time.monotonic()
+                scheduled = max(now, self.next_request.get(credential, now))
+                self.next_request[credential] = scheduled + self.min_request_interval_s
+            pacing_wait = max(0, scheduled - time.monotonic())
+            if pacing_wait:
+                time.sleep(pacing_wait)
+            # Bound input by twice the serialized request bytes plus a generous
+            # schema/protocol allowance, capped at the model's context limit.
+            payload = json.dumps({"args": args, "kwargs": kwargs}, default=str, ensure_ascii=True)
+            input_bound = min(1_048_576, len(payload.encode("utf-8")) * 2 + 8192)
+            reserve = (input_bound * self.input_rate +
                        self.max_output_tokens * self.output_rate) / 1_000_000
             with self.lock:
                 if self.spent + self.reserved + reserve > self.limit:
@@ -41,6 +53,7 @@ class UsageBudget:
                        "credential": credential, "model": kwargs.get("model"),
                        "error_type": type(exc).__name__, "http_status": code,
                        "estimated_cost_usd": 0 if known_rejection else reserve,
+                       "pacing_wait_s": round(pacing_wait, 3),
                        "conservative_upper_bound": not known_rejection}
                 self._finish(rec, reserve, start)
                 raise
@@ -54,6 +67,7 @@ class UsageBudget:
             self._finish({"status": "ok", "credential": credential, "model": kwargs.get("model"),
                           "prompt_tokens": prompt, "candidate_tokens": candidates,
                           "thinking_tokens": thoughts, "billable_output_tokens": output,
+                          "pacing_wait_s": round(pacing_wait, 3),
                           "total_tokens": total, "estimated_cost_usd": cost}, reserve, start)
             return result
         return tracked
