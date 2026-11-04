@@ -99,7 +99,7 @@ def run_writer(
         tracker=tracker,
         temperature=cfg.temperature,
     )
-    if planner_decision is not None:
+    if planner_decision is not None and previous_draft is None:
         out.decision = planner_decision.decision
         if out.decision == "none":
             out.final_message = None

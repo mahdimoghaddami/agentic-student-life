@@ -241,7 +241,17 @@ def run_case(
                             previous_draft=w_out.final_message,
                             critic_feedback=c_out.revision_instructions or c_out.critique,
                         )
+                        decision = w_out.decision
+                        skill_used = w_out.skill_used
                         final_message = w_out.final_message
+                        if decision == "none":
+                            break
+
+        if decision == "none":
+            skill_used = None
+            final_message = None
+        elif not final_message or not final_message.strip():
+            raise ValueError(f"Decision {decision!r} requires a non-empty final message")
 
         # Append explicit simulated profile & memory evidence items
         prof = mem_snap.get("simulated_profile", {})

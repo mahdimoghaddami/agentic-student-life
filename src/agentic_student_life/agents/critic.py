@@ -36,14 +36,11 @@ def run_critic(
     ev_text = "\n\n".join(rep.model_dump_json(indent=2) for rep in analyst_reports)
     plan_txt = planner_decision.model_dump_json(indent=2) if planner_decision else "No Planner used."
 
-    strictness_note = ""
-    if round_idx < max_rounds:
-        strictness_note = (
-            f"\nNote: This is review cycle {round_idx} of {max_rounds}. Apply a rigorous standard: "
-            "if the draft can better cite a concrete number/trend from the Analyst evidence, tighten its length, "
-            "or more explicitly honor a student goal or learned preference, return `verdict = 'revise'` with "
-            "specific improvement instructions."
-        )
+    strictness_note = (
+        "Apply the same rigorous audit on every cycle, including the final cycle. "
+        "Return revise for factual errors, inappropriate decisions, or preference/clarity violations, "
+        "with specific correction instructions. A revision may change the decision or skill."
+    )
 
     user_prompt = (
         f"## Case: {case['case_id']} | Participant: {case['participant_id']} | Time: {case['decision_time']}\n\n"
