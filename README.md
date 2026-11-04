@@ -10,6 +10,14 @@ A multi-agent, LLM-powered stress-management coach evaluated on longitudinal sma
 
 ---
 
+## Reproducibility correction (November 4, 2026)
+
+The original experiments in runs/ are preserved as historical evidence. They used mixed models and inconsistent judge settings, and the original memory scheduling could expose later interactions to earlier decision times. Their tables are exploratory; they do not establish causal improvements from planning, reflection, or multiple agents.
+
+The corrected implementation restores the missing data package, bounds memory by decision time, executes each participant chronologically, fixes planning budgets and reflection consistency, and checks themes and word limits from prior feedback. Every ablation now uses the same 20 cases and one fixed configured model. API retries never switch models.
+
+New commands write to runs_corrected/ by default. A manifest fingerprints source, configuration, cases, profiles, and feature caches; incompatible or legacy outputs cannot be resumed. New messages require new human ratings. No new full evaluation or new human ratings are claimed here.
+
 ## 1. Repository Structure
 
 ```text
@@ -84,13 +92,13 @@ agentic-student-life/
 
 ## 3. How to Run
 
-All commands can be invoked via `uv run asl <subcommand>` (or `.venv/bin/asl <subcommand>`):
+All commands can be invoked via `uv run asl <subcommand>` (or the installed asl entry point):
 
 ### Step 1: Preprocess Raw StudentLife Data into Daily & EMA Feature Parquets
 ```bash
 uv run asl preprocess
 ```
-Builds `cache/features/daily_<uid>.parquet`, `cache/features/ema_<uid>.parquet`, `cache/features/surveys.json`, and `cache/features/academic.json` for all 49 participants (~6 seconds).
+Builds `cache/features/daily_<uid>.parquet`, `cache/features/ema_<uid>.parquet`, `cache/features/surveys.json`, and `cache/features/academic.json` for all 49 participants .
 
 ### Step 2: Build / Verify Deterministic Evaluation Cases & Simulated Profiles
 ```bash
@@ -100,29 +108,31 @@ Generates `cases/profiles.json`, `cases/cases.jsonl` (20 cases), `cases/feedback
 
 ### Step 3: Run the Main Evaluation (`configs/full.toml`) and LLM Judge
 ```bash
-uv run asl run --config configs/full.toml --judge
+uv run asl run --config configs/full.toml
 ```
-- Saves final outputs to `runs/full/outputs.jsonl`
-- Saves per-call LLM/tool traces to `runs/full/calls.jsonl`
-- Saves execution logs to `runs/full/run.log` and any failed cases to `runs/full/failed_cases.json`
-- Saves independent LLM Judge evaluations to `runs/full/judge_scores.jsonl`
+- Saves final outputs to `runs_corrected/full/outputs.jsonl`
+- Saves per-call LLM/tool traces to `runs_corrected/full/calls.jsonl`
+- Saves execution logs to `runs_corrected/full/run.log` and any failed cases to `runs_corrected/full/failed_cases.json`
+- Running asl judge --run-id full later saves independent evaluations to `runs_corrected/full/judge_scores.jsonl`
 
 ### Step 4: Run the Full Ablation Suite
 ```bash
-uv run asl ablate --judge
+uv run asl ablate
 ```
-Executes all configurations in `configs/ablations.toml` (`full`, `single`, `no_refl`, `refl1`, `refl3`, `no_plan`, `plan1`, `plan3`, `modelB`) and scores every non-null message with the LLM Judge. Runs are resumable by default; pass `--no-resume` or `--reset-memory` for a clean re-run.
+Executes all configurations in `configs/ablations.toml` (`full`, `single`, `no_refl`, `refl1`, `refl3`, `no_plan`, `plan1`, `plan3`, `modelB`) using fixed models on the same 20 cases. Runs are resumable by default; pass `--no-resume` or `--reset-memory` for a clean re-run.
 
 ### Step 5: Export the Blind Human Evaluation Sheet & Run Analysis
 ```bash
 uv run asl human-sheet --run-id full
+# Complete human_ratings.json independently before viewing judge scores.
+uv run asl judge --all
 uv run asl analyze
 ```
-- `human-sheet` exports `runs/full/human_eval/blind_rating_sheet.csv` and `blind_rating_sheet.html` (with LLM Judge scores hidden) plus `runs/full/human_eval/human_ratings.json`.
-- `analyze` computes all metrics (`runs/summary_metrics.json`), generates publication PDF/PNG plots in `report/figures/`, and generates booktabs LaTeX tables in `report/tables/`.
+- `human-sheet` exports `runs_corrected/full/human_eval/blind_rating_sheet.csv` and `blind_rating_sheet.html` (with LLM Judge scores hidden) plus `runs_corrected/full/human_eval/human_ratings.json`.
+- `analyze` computes all metrics (`runs_corrected/summary_metrics.json`), generates publication PDF/PNG plots in `report/figures/`, and generates booktabs LaTeX tables in `report/tables/`.
 
 ### Step 6: Memory Reset Instructions
-Each configuration run stores its episodic and learned-preference memory in an isolated directory `runs/<run_id>/memory/<uid>.json` so ablations never contaminate one another. To reset memory before a run:
+Each configuration run stores its episodic and learned-preference memory in an isolated directory `runs_corrected/<run_id>/memory/<uid>.json` so ablations never contaminate one another. To reset memory before a run:
 ```bash
 # Option A: Reset all stored memory across runs
 uv run asl reset-memory
@@ -136,12 +146,12 @@ uv run asl run --config configs/full.toml --reset-memory --no-resume
 
 ### Step 7: Run Temporal Leakage Unit Tests
 ```bash
-.venv/bin/python tests/test_leakage.py
+uv run python tests/test_leakage.py
 ```
 
 ---
 
-## 4. Output JSONL Schema (`runs/<run_id>/outputs.jsonl`)
+## 4. Output JSONL Schema (`runs_corrected/<run_id>/outputs.jsonl`)
 
 Each line in `outputs.jsonl` is a single JSON object representing one test case (`participant_id` at `decision_time`):
 
@@ -154,7 +164,7 @@ Each line in `outputs.jsonl` is a single JSON object representing one test case 
 | `episode_id` | `str` | Episode identifier grouping consecutive steps in preference-update episodes |
 | `step` | `int` | Interaction step within the episode (`1`, `2`, or `3`) |
 | `config_id` | `str` | Configuration ID (`full`, `single`, `no_refl`, `refl1`, `refl3`, `no_plan`, `plan1`, `plan3`, `modelB`) |
-| `model` | `str` | Agent LLM identifier (e.g., `"gemini:gemini-3.5-flash"`) |
+| `model` | `str` | Agent LLM identifier (the configured model; actual models also appear in trace.models_used) |
 | `status` | `str` | Execution status (`"ok"` or `"failed"`) |
 | `error` | `str \| null` | Error message if `status == "failed"`, otherwise `null` |
 | `decision` | `str` | System coaching decision: `"suggest"`, `"ask"`, or `"none"` |
@@ -162,6 +172,7 @@ Each line in `outputs.jsonl` is a single JSON object representing one test case 
 | `skill_used` | `str \| null` | Loaded coaching skill name (or `null` when `decision == "none"`) |
 | `plan` | `list[str]` | Information-gathering steps formulated by the Planner |
 | `evidence` | `list[dict]` | List of `{source, detail, simulated}` items from sensing/EMA tools (`simulated: false`) and profile/memory (`simulated: true`) |
+| evaluation_context | dict | Frozen time-bounded observations, profile, prior preferences/history, and labeled simulated interaction note shared with both evaluators; excludes expected labels, rationales, and current feedback |
 | `final_message` | `str \| null` | Final student-facing coaching message or clarifying question (`null` when `decision == "none"`) |
 | `reflection` | `dict` | `{"rounds_used": int, "critiques": list[str]}` from the Critic review loop |
 | `planning` | `dict` | `{"rounds_used": int}` from the Planner–Analyst loop |
@@ -185,5 +196,36 @@ See [`cases/selection.md`](cases/selection.md) for the full coverage table and p
 | Role | Model ID | Temperature | Notes |
 |---|---|---|---|
 | **Primary Agents (Model A)** | `gemini:gemini-3-flash-preview` | `0.3` (`0.1` for Critic & Memory Manager) | Used in `full` and structural ablations |
-| **Ablation Model B** | `gemini:gemini-3.1-flash-lite` | `0.3` | Used in `modelB` ablation under identical multi-agent configuration |
-| **Independent LLM Judge** | `gemini:gemini-3-flash-preview` | `0.0` | Fixed judge instance at temperature `0.0`; scores Context Awareness, Goal Alignment, and Clarity (1–5) |
+| **Ablation Model B** | `gemini:gemma-4-26b-a4b-it` | `0.3` | Used in `modelB` ablation under identical multi-agent configuration |
+| **Independent LLM Judge** | `gemini:gemma-4-26b-a4b-it` | `0.0` | Fixed judge instance at temperature `0.0`; scores Context Awareness, Goal Alignment, and Clarity (1–5) |
+
+## 7. Validation and interpretation
+
+Run the offline regression suite and the raw-data leakage checks:
+
+```bash
+uv run python -B -m unittest discover -s tests -v
+uv run python -B tests/test_leakage.py
+```
+
+The first command uses synthetic fixtures and mocked model responses. The second requires preprocessing. Preprocessing was validated locally on all 49 participants. The restored preprocessing source is a reconstruction; rebuilt features are not represented as byte-identical to the unavailable original implementation.
+
+A planning round is one actual Planner invocation. At depth 1, the Analyst gathers evidence first and the one Planner call decides afterward. At depths 2 and 3, the first Planner call proposes checks and later calls inspect the resulting evidence. There is no additional finalization call outside the budget.
+
+Memory includes only interactions and feedback strictly earlier than the current decision. Participant histories execute in chronological order across all episode IDs. Resume rebuilds a compatible completed prefix and reruns later cases when an earlier output is missing or failed. Memory writes use an atomic read-modify-write lock.
+
+The corrected judge and human sheet use the same saved evaluation_context and complete anchored rubric. They receive no expected decision labels, case rationales, or current-case feedback. Cached judge scores are reused only if message, context, rubric, model, and temperature match. Human scores cannot be reused for changed messages or contexts.
+
+Preference adherence checks only prior feedback: forbidden terms, at least one required theme from each applicable feedback step, and the latest word limit. A missing/failed message fails; no applicable observations are reported as unmeasured. This remains a deterministic proxy, not a complete semantic assessment.
+
+To reproduce the offline reanalysis of the original runs:
+
+```bash
+uv run asl analyze --out-root runs --fig-dir report/figures --table-dir report/tables
+```
+
+This writes runs/summary_metrics.json and runs/matched_comparisons.json. The latter compares each variant with the full run on identical case IDs. Original model mixing, inconsistent judges, memory contamination, and saturated judge scores still limit interpretation. The supplied human file contains one rating set per message; separate rater identities and the timing of blinding cannot be independently verified.
+
+The PDF report distinguishes historical results from corrected implementation behavior. For new experiments use runs_corrected/, rate at least 10 new messages before viewing automated scores, and rerun the fixed judge and analysis.
+
+Validation on November 4: 22 offline regression tests and all five supplied leakage checks passed. One user-approved live case completed successfully on the configured gemini-3-flash-preview with no model fallback (129.64 seconds, 22,453 tokens), isolated under cache/live-smoke/. This is not a full corrected benchmark run.

@@ -2,12 +2,45 @@
   "configs": {
     "full": {
       "config_id": "full",
+      "case_ids": [
+        "case_001",
+        "case_002",
+        "case_003",
+        "case_004",
+        "case_005",
+        "case_006",
+        "case_007",
+        "case_008",
+        "case_009",
+        "case_010",
+        "case_011",
+        "case_012",
+        "case_013",
+        "case_014",
+        "case_015",
+        "case_016",
+        "case_017",
+        "case_018",
+        "case_019",
+        "case_020"
+      ],
+      "protocol": "legacy",
+      "judge_models": [
+        "gemini:gemini-3-flash-preview"
+      ],
       "available": true,
       "n_cases": 20,
       "n_ok": 20,
       "success_rate": 100.0,
       "decision_acc": 100.0,
       "pref_adherence_rate": 100.0,
+      "pref_adherence_n": 4,
+      "pref_adherence_violations": {
+        "case_014": [],
+        "case_015": [],
+        "case_017": [],
+        "case_018": []
+      },
       "n_judged": 15,
       "context_awareness": {
         "mean": 5.0,
@@ -45,19 +78,19 @@
       "reflection_rounds_mean": 1.13,
       "confusion": {
         "suggest": {
-          "suggest": 11,
+          "suggest": 12,
           "ask": 0,
-          "none": 1
+          "none": 0
         },
         "ask": {
-          "suggest": 1,
+          "suggest": 0,
           "ask": 3,
           "none": 0
         },
         "none": {
           "suggest": 0,
           "ask": 0,
-          "none": 4
+          "none": 5
         }
       },
       "by_category": {
@@ -125,12 +158,34 @@
     },
     "modelB": {
       "config_id": "modelB",
+      "case_ids": [
+        "case_001",
+        "case_002",
+        "case_006",
+        "case_009",
+        "case_011",
+        "case_013",
+        "case_014",
+        "case_015",
+        "case_019",
+        "case_020"
+      ],
+      "protocol": "legacy",
+      "judge_models": [
+        "gemini:gemini-3.5-flash-lite",
+        "gemini:gemma-4-26b-a4b-it"
+      ],
       "available": true,
       "n_cases": 10,
       "n_ok": 10,
       "success_rate": 100.0,
       "decision_acc": 100.0,
       "pref_adherence_rate": 100.0,
+      "pref_adherence_n": 2,
+      "pref_adherence_violations": {
+        "case_014": [],
+        "case_015": []
+      },
       "n_judged": 8,
       "context_awareness": {
         "mean": 5.0,
@@ -248,12 +303,45 @@
     },
     "no_plan": {
       "config_id": "no_plan",
+      "case_ids": [
+        "case_001",
+        "case_002",
+        "case_003",
+        "case_004",
+        "case_005",
+        "case_006",
+        "case_007",
+        "case_008",
+        "case_009",
+        "case_010",
+        "case_011",
+        "case_012",
+        "case_013",
+        "case_014",
+        "case_015",
+        "case_016",
+        "case_017",
+        "case_018",
+        "case_019",
+        "case_020"
+      ],
+      "protocol": "legacy",
+      "judge_models": [
+        "gemini:gemini-3-flash-preview"
+      ],
       "available": true,
       "n_cases": 20,
       "n_ok": 20,
       "success_rate": 100.0,
       "decision_acc": 85.0,
       "pref_adherence_rate": 100.0,
+      "pref_adherence_n": 4,
+      "pref_adherence_violations": {
+        "case_014": [],
+        "case_015": [],
+        "case_017": [],
+        "case_018": []
+      },
       "n_judged": 16,
       "context_awareness": {
         "mean": 4.75,
@@ -371,12 +459,45 @@
     },
     "no_refl": {
       "config_id": "no_refl",
+      "case_ids": [
+        "case_001",
+        "case_002",
+        "case_003",
+        "case_004",
+        "case_005",
+        "case_006",
+        "case_007",
+        "case_008",
+        "case_009",
+        "case_010",
+        "case_011",
+        "case_012",
+        "case_013",
+        "case_014",
+        "case_015",
+        "case_016",
+        "case_017",
+        "case_018",
+        "case_019",
+        "case_020"
+      ],
+      "protocol": "legacy",
+      "judge_models": [
+        "gemini:gemini-3-flash-preview"
+      ],
       "available": true,
       "n_cases": 20,
       "n_ok": 20,
       "success_rate": 100.0,
       "decision_acc": 95.0,
       "pref_adherence_rate": 100.0,
+      "pref_adherence_n": 4,
+      "pref_adherence_violations": {
+        "case_014": [],
+        "case_015": [],
+        "case_017": [],
+        "case_018": []
+      },
       "n_judged": 17,
       "context_awareness": {
         "mean": 5.0,
@@ -414,12 +535,12 @@
       "reflection_rounds_mean": 0.0,
       "confusion": {
         "suggest": {
-          "suggest": 12,
+          "suggest": 13,
           "ask": 0,
           "none": 0
         },
         "ask": {
-          "suggest": 1,
+          "suggest": 0,
           "ask": 3,
           "none": 0
         },
@@ -494,12 +615,45 @@
     },
     "plan1": {
       "config_id": "plan1",
+      "case_ids": [
+        "case_001",
+        "case_002",
+        "case_003",
+        "case_004",
+        "case_005",
+        "case_006",
+        "case_007",
+        "case_008",
+        "case_009",
+        "case_010",
+        "case_011",
+        "case_012",
+        "case_013",
+        "case_014",
+        "case_015",
+        "case_016",
+        "case_017",
+        "case_018",
+        "case_019",
+        "case_020"
+      ],
+      "protocol": "legacy",
+      "judge_models": [
+        "gemini:gemini-3-flash-preview"
+      ],
       "available": true,
       "n_cases": 20,
       "n_ok": 20,
       "success_rate": 100.0,
       "decision_acc": 90.0,
       "pref_adherence_rate": 100.0,
+      "pref_adherence_n": 4,
+      "pref_adherence_violations": {
+        "case_014": [],
+        "case_015": [],
+        "case_017": [],
+        "case_018": []
+      },
       "n_judged": 15,
       "context_awareness": {
         "mean": 4.73,
@@ -617,12 +771,33 @@
     },
     "plan3": {
       "config_id": "plan3",
+      "case_ids": [
+        "case_001",
+        "case_002",
+        "case_006",
+        "case_009",
+        "case_011",
+        "case_013",
+        "case_014",
+        "case_015",
+        "case_019",
+        "case_020"
+      ],
+      "protocol": "legacy",
+      "judge_models": [
+        "gemini:gemini-3-flash-preview"
+      ],
       "available": true,
       "n_cases": 10,
       "n_ok": 10,
       "success_rate": 100.0,
       "decision_acc": 100.0,
       "pref_adherence_rate": 100.0,
+      "pref_adherence_n": 2,
+      "pref_adherence_violations": {
+        "case_014": [],
+        "case_015": []
+      },
       "n_judged": 8,
       "context_awareness": {
         "mean": 5.0,
@@ -740,12 +915,45 @@
     },
     "refl1": {
       "config_id": "refl1",
+      "case_ids": [
+        "case_001",
+        "case_002",
+        "case_003",
+        "case_004",
+        "case_005",
+        "case_006",
+        "case_007",
+        "case_008",
+        "case_009",
+        "case_010",
+        "case_011",
+        "case_012",
+        "case_013",
+        "case_014",
+        "case_015",
+        "case_016",
+        "case_017",
+        "case_018",
+        "case_019",
+        "case_020"
+      ],
+      "protocol": "legacy",
+      "judge_models": [
+        "gemini:gemini-3-flash-preview"
+      ],
       "available": true,
       "n_cases": 20,
       "n_ok": 20,
       "success_rate": 100.0,
       "decision_acc": 100.0,
       "pref_adherence_rate": 100.0,
+      "pref_adherence_n": 4,
+      "pref_adherence_violations": {
+        "case_014": [],
+        "case_015": [],
+        "case_017": [],
+        "case_018": []
+      },
       "n_judged": 15,
       "context_awareness": {
         "mean": 5.0,
@@ -783,19 +991,19 @@
       "reflection_rounds_mean": 1.0,
       "confusion": {
         "suggest": {
-          "suggest": 11,
+          "suggest": 12,
           "ask": 0,
-          "none": 1
+          "none": 0
         },
         "ask": {
-          "suggest": 1,
+          "suggest": 0,
           "ask": 3,
           "none": 0
         },
         "none": {
           "suggest": 0,
           "ask": 0,
-          "none": 4
+          "none": 5
         }
       },
       "by_category": {
@@ -863,12 +1071,33 @@
     },
     "refl3": {
       "config_id": "refl3",
+      "case_ids": [
+        "case_001",
+        "case_002",
+        "case_006",
+        "case_009",
+        "case_011",
+        "case_013",
+        "case_014",
+        "case_015",
+        "case_019",
+        "case_020"
+      ],
+      "protocol": "legacy",
+      "judge_models": [
+        "gemini:gemini-3-flash-preview"
+      ],
       "available": true,
       "n_cases": 10,
       "n_ok": 10,
       "success_rate": 100.0,
       "decision_acc": 100.0,
       "pref_adherence_rate": 100.0,
+      "pref_adherence_n": 2,
+      "pref_adherence_violations": {
+        "case_014": [],
+        "case_015": []
+      },
       "n_judged": 8,
       "context_awareness": {
         "mean": 5.0,
@@ -986,12 +1215,45 @@
     },
     "single": {
       "config_id": "single",
+      "case_ids": [
+        "case_001",
+        "case_002",
+        "case_003",
+        "case_004",
+        "case_005",
+        "case_006",
+        "case_007",
+        "case_008",
+        "case_009",
+        "case_010",
+        "case_011",
+        "case_012",
+        "case_013",
+        "case_014",
+        "case_015",
+        "case_016",
+        "case_017",
+        "case_018",
+        "case_019",
+        "case_020"
+      ],
+      "protocol": "legacy",
+      "judge_models": [
+        "gemini:gemini-3-flash-preview"
+      ],
       "available": true,
       "n_cases": 20,
       "n_ok": 20,
       "success_rate": 100.0,
       "decision_acc": 95.0,
       "pref_adherence_rate": 100.0,
+      "pref_adherence_n": 4,
+      "pref_adherence_violations": {
+        "case_014": [],
+        "case_015": [],
+        "case_017": [],
+        "case_018": []
+      },
       "n_judged": 15,
       "context_awareness": {
         "mean": 5.0,

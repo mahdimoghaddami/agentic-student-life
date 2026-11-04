@@ -138,7 +138,10 @@ def generate_all_plots(
 
     # Figure 3: Efficiency (Latency, LLM Calls, Total Tokens across configurations)
     fig, axes = plt.subplots(1, 3, figsize=(7.2, 2.6))
-    short_lbls = [CONFIG_LABELS.get(k, k) for k in avail_keys]
+    short_names = {"full": "Full", "single": "Single", "no_plan": "No P", "plan1": "P1",
+                   "plan3": "P3", "no_refl": "No R", "refl1": "R1", "refl3": "R3",
+                   "modelB": "Model B"}
+    short_lbls = [short_names.get(k, k) for k in avail_keys]
 
     lat_data = [all_metrics[k]["latency_s"]["values"] or [0.0] for k in avail_keys]
     call_means = [all_metrics[k]["llm_calls"]["mean"] for k in avail_keys]
@@ -151,19 +154,19 @@ def generate_all_plots(
         patch.set_facecolor("#93c5fd")
     axes[0].set_ylabel("End-to-End Latency (s)")
     axes[0].set_title("(a) Per-Case Latency (s)")
-    axes[0].tick_params(axis="x", rotation=35)
+    axes[0].tick_params(axis="x", rotation=55, labelsize=7)
     axes[0].grid(axis="y", linestyle="--", alpha=0.4)
 
     axes[1].bar(np.arange(len(avail_keys)), call_means, yerr=call_stds, capsize=2.5, color="#6ee7b7", edgecolor="#047857")
     axes[1].set_xticks(np.arange(len(avail_keys)))
-    axes[1].set_xticklabels(short_lbls, rotation=35, ha="right")
+    axes[1].set_xticklabels(short_lbls, rotation=55, ha="right", fontsize=7)
     axes[1].set_ylabel("LLM Calls / Case")
     axes[1].set_title("(b) Mean LLM Calls")
     axes[1].grid(axis="y", linestyle="--", alpha=0.4)
 
     axes[2].bar(np.arange(len(avail_keys)), tok_means, yerr=tok_stds, capsize=2.5, color="#fcd34d", edgecolor="#b45309")
     axes[2].set_xticks(np.arange(len(avail_keys)))
-    axes[2].set_xticklabels(short_lbls, rotation=35, ha="right")
+    axes[2].set_xticklabels(short_lbls, rotation=55, ha="right", fontsize=7)
     axes[2].set_ylabel("Total Tokens / Case (k)")
     axes[2].set_title("(c) Mean Total Tokens (k)")
     axes[2].grid(axis="y", linestyle="--", alpha=0.4)
