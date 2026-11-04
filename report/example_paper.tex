@@ -29,13 +29,13 @@
 
   \begin{icmlauthorlist}
     \icmlauthor{Mahdi Moghaddami}{equal,ou}
-    \icmlauthor{Brett Piggot}{equal,ou}
+    \icmlauthor{Brett Piggott}{equal,ou}
   \end{icmlauthorlist}
 
   \icmlaffiliation{ou}{Department of Computer Science and Engineering, Oakland University, Rochester, MI, USA}
 
-  \icmlcorrespondingauthor{Mahdi Moghaddami}{mmoghaddami@oakland.edu}
-  \icmlcorrespondingauthor{Brett Piggot}{bpiggot@oakland.edu}
+  \icmlcorrespondingauthor{Mahdi Moghaddami}{moghaddami@oakland.edu}
+  \icmlcorrespondingauthor{Brett Piggott}{bapiggott@oakland.edu}
 
   \icmlkeywords{Agentic AI, Multi-Agent Systems, Large Language Models, StudentLife, Mobile Sensing, Just-in-Time Adaptive Interventions}
 
@@ -45,7 +45,7 @@
 \printAffiliationsAndNotice{\icmlEqualContribution}
 
 \begin{abstract}
-We implement a training-free, multi-agent stress coach using StudentLife smartphone sensing, self-reports, and academic schedules. Five agent roles combine planning, tool use, modular coaching skills, reflection, and persistent preference memory to suggest support, ask a clarifying question, or remain silent. We preserve 150 original case records across nine configurations and reanalyze their decision accuracy, message ratings, preference compliance, and efficiency. The original full configuration matches an allowed decision in all 20 cases; its 15 messages received maximum automated ratings. A subsequent audit identified missing data-layer source, temporal memory leakage, mixed-model retries, inconsistent judge conditions, and a planning-budget counting error. We repair these implementation issues and add regression tests, but the archived results remain exploratory: fresh controlled runs and fresh human ratings are needed to evaluate the corrected system.
+  We implement a training-free, multi-agent stress coach using StudentLife smartphone sensing, self-reports, and academic schedules. Five agent roles combine planning, tool use, modular coaching skills, reflection, and persistent preference memory to suggest support, ask a clarifying question, or remain silent. We preserve 150 original case records across nine configurations and reanalyze their decision accuracy, message ratings, preference compliance, and efficiency. The original full configuration matches an allowed decision in all 20 cases; its 15 messages received maximum automated ratings. A subsequent audit identified missing data-layer source, temporal memory leakage, mixed-model retries, inconsistent judge conditions, and a planning-budget counting error. We repair these implementation issues and add regression tests, but the archived results remain exploratory: fresh controlled runs and fresh human ratings are needed to evaluate the corrected system.
 \end{abstract}
 
 \paragraph{Correction and evidence status (November 4, 2026).}
@@ -119,22 +119,22 @@ Because StudentLife does not record personal coaching goals or conversational fe
     \STATE $V\gets\text{bounded data view}(u,t)$
     \STATE $m\gets\text{memory strictly before }t$; $E\gets\emptyset$
     \IF{planning is off or $K_p=1$}
-      \STATE $E\gets\textsc{Analyst}(V,\text{default checks})$
+    \STATE $E\gets\textsc{Analyst}(V,\text{default checks})$
     \ENDIF
     \FOR{$r=1$ {\bfseries to} $K_p$ if planning is on}
-      \STATE $p\gets\textsc{Planner}(m,E,r,K_p)$
-      \IF{$p.\text{status}=\texttt{finalize}$}
-        \STATE {\bfseries break}
-      \ENDIF
-      \STATE $E\gets E\cup\textsc{Analyst}(V,p.\text{checks})$
+    \STATE $p\gets\textsc{Planner}(m,E,r,K_p)$
+    \IF{$p.\text{status}=\texttt{finalize}$}
+    \STATE {\bfseries break}
+    \ENDIF
+    \STATE $E\gets E\cup\textsc{Analyst}(V,p.\text{checks})$
     \ENDFOR
     \STATE $w\gets\textsc{WriterOrSilence}(m,E,p,\text{skills})$
     \FOR{$c=1$ {\bfseries to} $K_r$ while $w$ contains a message}
-      \STATE $q\gets\textsc{Critic}(m,E,p,w)$
-      \IF{$q.\text{verdict}=\texttt{pass}$}
-        \STATE {\bfseries break}
-      \ENDIF
-      \STATE $w\gets\textsc{WriterRevision}(m,E,p,w,q)$
+    \STATE $q\gets\textsc{Critic}(m,E,p,w)$
+    \IF{$q.\text{verdict}=\texttt{pass}$}
+    \STATE {\bfseries break}
+    \ENDIF
+    \STATE $w\gets\textsc{WriterRevision}(m,E,p,w,q)$
     \ENDFOR
     \STATE Normalize decision, skill, and message together
     \STATE Save frozen available context for both evaluators
@@ -220,11 +220,11 @@ The supplied human rating file contains one score set for 15 original non-null m
   \item \textbf{Low Mean Absolute Difference:} Across all $N=15$ rated messages, the Mean Absolute Difference between human and LLM ratings is $0.27$ on Context Awareness ($4.73 \pm 0.46$ vs.\ $5.00 \pm 0.00$), $0.13$ on Goal Alignment ($4.87 \pm 0.35$ vs.\ $5.00 \pm 0.00$), $0.20$ on Clarity ($4.80 \pm 0.41$ vs.\ $5.00 \pm 0.00$), and $0.20$ on the overall mean ($4.80 \pm 0.21$ vs.\ $5.00 \pm 0.00$), with $100\%$ of ratings agreeing within $\pm 1.0$~point.
   \item \textbf{Observed Upward Score Difference:} Consistent with prior literature on LLM-as-a-Judge \cite{zheng2023judging}, the automated scores are higher on these messages ($\Delta(L - H) = +0.20$), awarding 5/5 whenever a message cites specific numbers and respects constraints, whereas the supplied human scores assign 4/5 when phrasing combines two actions or omits a secondary context detail.
   \item \textbf{Notable Disagreements:} Three cases illustrate instructive divergence between human and LLM evaluators:
-    \begin{enumerate}
-      \item In \texttt{case\_003} (\texttt{u19}, three deadlines today and isolation comment \emph{``loneliness is a cruel thing''}), the LLM Judge awarded 5/5 across all dimensions ($\mu=5.00$), whereas the human rater scored Context Awareness as 4/5 and Clarity as 4/5 ($\mu=4.33$, $|\Delta|=0.67$), noting that the 3-clause message was slightly long and did not cite the exact $5/5$ stress rating.
-      \item In \texttt{case\_002} (\texttt{u08}, 2.8h sleep and $5/5$ stress on a CS project), the LLM Judge awarded 5/5 across all dimensions because the message cited both the 2.8h sleep figure and the three upcoming deadlines. The human rater scored Clarity as 4/5 ($\mu=4.67$), noting that combining a 10-minute hallway stretch suggestion \emph{and} an early-bedtime nudge in the same message asks two actions of an exhausted student.
-      \item In \texttt{case\_011} (\texttt{u08}, synthetic mask hiding sleep, activity, and stress), the LLM Judge awarded 5/5 on Goal Alignment for appropriately asking a single clarifying question under missing data, while the human rater gave 4/5 on Goal Alignment ($\mu=4.67$) because the question focused on energy and study breaks without explicitly naming the student's posture-reset goal.
-    \end{enumerate}
+        \begin{enumerate}
+          \item In \texttt{case\_003} (\texttt{u19}, three deadlines today and isolation comment \emph{``loneliness is a cruel thing''}), the LLM Judge awarded 5/5 across all dimensions ($\mu=5.00$), whereas the human rater scored Context Awareness as 4/5 and Clarity as 4/5 ($\mu=4.33$, $|\Delta|=0.67$), noting that the 3-clause message was slightly long and did not cite the exact $5/5$ stress rating.
+          \item In \texttt{case\_002} (\texttt{u08}, 2.8h sleep and $5/5$ stress on a CS project), the LLM Judge awarded 5/5 across all dimensions because the message cited both the 2.8h sleep figure and the three upcoming deadlines. The human rater scored Clarity as 4/5 ($\mu=4.67$), noting that combining a 10-minute hallway stretch suggestion \emph{and} an early-bedtime nudge in the same message asks two actions of an exhausted student.
+          \item In \texttt{case\_011} (\texttt{u08}, synthetic mask hiding sleep, activity, and stress), the LLM Judge awarded 5/5 on Goal Alignment for appropriately asking a single clarifying question under missing data, while the human rater gave 4/5 on Goal Alignment ($\mu=4.67$) because the question focused on energy and study breaks without explicitly naming the student's posture-reset goal.
+        \end{enumerate}
 \end{itemize}
 
 \section{Exploratory Ablation Comparisons}
@@ -310,23 +310,23 @@ The corrected LLM Judge (\texttt{configs/judge.toml}, $T=0.0$) and the corrected
 
 \begin{itemize}
   \item \textbf{Context Awareness (1--5):}
-    \begin{itemize}
-      \item \textbf{5 (Excellent):} Specifically and accurately grounds the message in the student's current data (recent sleep hours, stress trend, imminent deadlines, term week, or explicitly acknowledges missing sensing/EMA data when asking a clarifying question) with zero hallucinated facts.
-      \item \textbf{3 (Adequate):} Mentions general student context (e.g., ``busy week'' or ``feeling stressed'') broadly consistent with the data, but misses key specific signals or feels generic.
-      \item \textbf{1 (Poor):} Contradicts available evidence, hallucinates numbers/events not in the data, or ignores missing-data uncertainty by making unfounded assumptions.
-    \end{itemize}
+        \begin{itemize}
+          \item \textbf{5 (Excellent):} Specifically and accurately grounds the message in the student's current data (recent sleep hours, stress trend, imminent deadlines, term week, or explicitly acknowledges missing sensing/EMA data when asking a clarifying question) with zero hallucinated facts.
+          \item \textbf{3 (Adequate):} Mentions general student context (e.g., ``busy week'' or ``feeling stressed'') broadly consistent with the data, but misses key specific signals or feels generic.
+          \item \textbf{1 (Poor):} Contradicts available evidence, hallucinates numbers/events not in the data, or ignores missing-data uncertainty by making unfounded assumptions.
+        \end{itemize}
   \item \textbf{Goal Alignment \& Preference Compliance (1--5):}
-    \begin{itemize}
-      \item \textbf{5 (Excellent):} Directly advances one of the student's stated goals AND strictly respects all baseline preferences, constraints, and learned feedback from prior episodes (including avoided activities, preferred settings, and length limits).
-      \item \textbf{3 (Adequate):} Relevant to general student well-being and mostly aligns with goals, with minor omissions of preferences.
-      \item \textbf{1 (Poor):} Ignores the student's goals OR violates a stated constraint or learned preference from past feedback (e.g., suggesting an activity the student explicitly rejected).
-    \end{itemize}
+        \begin{itemize}
+          \item \textbf{5 (Excellent):} Directly advances one of the student's stated goals AND strictly respects all baseline preferences, constraints, and learned feedback from prior episodes (including avoided activities, preferred settings, and length limits).
+          \item \textbf{3 (Adequate):} Relevant to general student well-being and mostly aligns with goals, with minor omissions of preferences.
+          \item \textbf{1 (Poor):} Ignores the student's goals OR violates a stated constraint or learned preference from past feedback (e.g., suggesting an activity the student explicitly rejected).
+        \end{itemize}
   \item \textbf{Clarity, Actionability \& Tone (1--5):}
-    \begin{itemize}
-      \item \textbf{5 (Excellent):} Clear, warm, non-judgmental, concise (2--3 sentences), and offers a concrete, immediately manageable step (or a single low-burden question when \texttt{decision == "ask"}).
-      \item \textbf{3 (Adequate):} Understandable and polite, but slightly wordy, vague, or packs too many suggestions at once.
-      \item \textbf{1 (Poor):} Confusing, overly clinical/robotic, judgmental, or overwhelming.
-    \end{itemize}
+        \begin{itemize}
+          \item \textbf{5 (Excellent):} Clear, warm, non-judgmental, concise (2--3 sentences), and offers a concrete, immediately manageable step (or a single low-burden question when \texttt{decision == "ask"}).
+          \item \textbf{3 (Adequate):} Understandable and polite, but slightly wordy, vague, or packs too many suggestions at once.
+          \item \textbf{1 (Poor):} Confusing, overly clinical/robotic, judgmental, or overwhelming.
+        \end{itemize}
 \end{itemize}
 
 \clearpage
@@ -341,16 +341,16 @@ The corrected LLM Judge (\texttt{configs/judge.toml}, $T=0.0$) and the corrected
     \begin{small}
       \begin{tabular}{llp{8.2cm}}
         \toprule
-        Skill Name & Target Decision & Primary Trigger \& Contraindications \\
+        Skill Name                          & Target Decision  & Primary Trigger \& Contraindications                                                                                                            \\
         \midrule
-        \texttt{micro\_study\_break} & \texttt{suggest} & High deadline density or acute stress during study blocks; contraindicated when severe sleep debt is the dominant issue. \\
-        \texttt{sleep\_hygiene\_nudge} & \texttt{suggest} & Inferred sleep $<6.0$~h or declining vs.\ baseline; avoids lecturing or rigid early-wake advice for night owls. \\
-        \texttt{gentle\_movement} & \texttt{suggest} & Prolonged sedentary coding/study periods with moderate stress; strictly avoided if student rejected exercise/walking. \\
-        \texttt{social\_reconnection} & \texttt{suggest} & Low conversation minutes paired with high loneliness; contraindicated when student prefers solo recovery during exams. \\
-        \texttt{deadline\_chunking} & \texttt{suggest} & $\ge 2$ deadlines within 72 hours causing task paralysis; breaks work into one 25--45 minute concrete block. \\
+        \texttt{micro\_study\_break}        & \texttt{suggest} & High deadline density or acute stress during study blocks; contraindicated when severe sleep debt is the dominant issue.                        \\
+        \texttt{sleep\_hygiene\_nudge}      & \texttt{suggest} & Inferred sleep $<6.0$~h or declining vs.\ baseline; avoids lecturing or rigid early-wake advice for night owls.                                 \\
+        \texttt{gentle\_movement}           & \texttt{suggest} & Prolonged sedentary coding/study periods with moderate stress; strictly avoided if student rejected exercise/walking.                           \\
+        \texttt{social\_reconnection}       & \texttt{suggest} & Low conversation minutes paired with high loneliness; contraindicated when student prefers solo recovery during exams.                          \\
+        \texttt{deadline\_chunking}         & \texttt{suggest} & $\ge 2$ deadlines within 72 hours causing task paralysis; breaks work into one 25--45 minute concrete block.                                    \\
         \texttt{campus\_resource\_referral} & \texttt{suggest} & Severe stress ($5/5$), distressed comments, or elevated PHQ-9/PSS; refers to Dick's House Counseling, Academic Skills Center, and 988 Lifeline. \\
-        \texttt{clarifying\_question} & \texttt{ask} & Key sensing and EMA modalities return \texttt{status="missing"} (natural gap or synthetic mask); asks one brief check-in question. \\
-        \texttt{positive\_reinforcement} & \texttt{suggest} & Student is maintaining healthy sleep/activity during moderate load and welcomes brief encouragement. \\
+        \texttt{clarifying\_question}       & \texttt{ask}     & Key sensing and EMA modalities return \texttt{status="missing"} (natural gap or synthetic mask); asks one brief check-in question.              \\
+        \texttt{positive\_reinforcement}    & \texttt{suggest} & Student is maintaining healthy sleep/activity during moderate load and welcomes brief encouragement.                                            \\
         \bottomrule
       \end{tabular}
     \end{small}

@@ -5,76 +5,49 @@
   \providecommand{\doi}[1]{doi: #1}\else
   \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
 
-\bibitem[Madaan et~al.(2023)Madaan, Tandon, Gupta, Hallinan, Gao, Wiegreffe,
-  Alon, Dziri, Prabhumoye, Yang, et~al.]{madaan2023selfrefine}
-Madaan, A., Tandon, N., Gupta, P., Hallinan, S., Gao, L., Wiegreffe, S., Alon,
-  U., Dziri, N., Prabhumoye, S., Yang, Y., et~al.
+\bibitem[Madaan et~al.(2023)Madaan, Tandon, Gupta, Hallinan, Gao, Wiegreffe, Alon, Dziri, Prabhumoye, Yang, et~al.]{madaan2023selfrefine}
+Madaan, A., Tandon, N., Gupta, P., Hallinan, S., Gao, L., Wiegreffe, S., Alon, U., Dziri, N., Prabhumoye, S., Yang, Y., et~al.
 \newblock {Self-Refine}: Iterative refinement with self-feedback.
-\newblock In \emph{Advances in Neural Information Processing Systems
-  (NeurIPS)}, volume~36, pp.\  46534--46594, 2023.
+\newblock In \emph{Advances in Neural Information Processing Systems (NeurIPS)}, volume~36, pp.\  46534--46594, 2023.
 
-\bibitem[Nahum-Shani et~al.(2018)Nahum-Shani, Smith, Spring, Collins,
-  Witkiewitz, Tewari, and Murphy]{nahum2018jitai}
-Nahum-Shani, I., Smith, S.~N., Spring, B.~J., Collins, L.~M., Witkiewitz, K.,
-  Tewari, A., and Murphy, S.~A.
-\newblock Just-in-time adaptive interventions ({JITAIs}) in mobile health: Key
-  components and design principles for ongoing health behavior support.
-\newblock \emph{Annals of Behavioral Medicine}, 52\penalty0 (6):\penalty0
-  446--462, 2018.
+\bibitem[Nahum-Shani et~al.(2018)Nahum-Shani, Smith, Spring, Collins, Witkiewitz, Tewari, and Murphy]{nahum2018jitai}
+Nahum-Shani, I., Smith, S.~N., Spring, B.~J., Collins, L.~M., Witkiewitz, K., Tewari, A., and Murphy, S.~A.
+\newblock Just-in-time adaptive interventions ({JITAIs}) in mobile health: Key components and design principles for ongoing health behavior support.
+\newblock \emph{Annals of Behavioral Medicine}, 52\penalty0 (6):\penalty0 446--462, 2018.
 
-\bibitem[Park et~al.(2023)Park, O'Brien, Cai, Morris, Liang, and
-  Bernstein]{park2023generative}
-Park, J.~S., O'Brien, J.~C., Cai, C.~J., Morris, M.~R., Liang, P., and
-  Bernstein, M.~S.
+\bibitem[Park et~al.(2023)Park, O'Brien, Cai, Morris, Liang, and Bernstein]{park2023generative}
+Park, J.~S., O'Brien, J.~C., Cai, C.~J., Morris, M.~R., Liang, P., and Bernstein, M.~S.
 \newblock Generative agents: Interactive simulacra of human behavior.
-\newblock In \emph{Proceedings of the 36th Annual ACM Symposium on User
-  Interface Software and Technology (UIST)}, pp.\  1--22, 2023.
+\newblock In \emph{Proceedings of the 36th Annual ACM Symposium on User Interface Software and Technology (UIST)}, pp.\  1--22, 2023.
 
-\bibitem[Shinn et~al.(2023)Shinn, Cassano, Gopinath, Narasimhan, and
-  Yao]{shinn2023reflexion}
+\bibitem[Shinn et~al.(2023)Shinn, Cassano, Gopinath, Narasimhan, and Yao]{shinn2023reflexion}
 Shinn, N., Cassano, F., Gopinath, A., Narasimhan, K., and Yao, S.
 \newblock Reflexion: Language agents with verbal reinforcement learning.
-\newblock In \emph{Advances in Neural Information Processing Systems
-  (NeurIPS)}, volume~36, pp.\  8634--8652, 2023.
+\newblock In \emph{Advances in Neural Information Processing Systems (NeurIPS)}, volume~36, pp.\  8634--8652, 2023.
 
-\bibitem[Wang et~al.(2023)Wang, Xu, Lan, Hu, Lan, Lee, and
-  Lim]{wang2023planandsolve}
+\bibitem[Wang et~al.(2023)Wang, Xu, Lan, Hu, Lan, Lee, and Lim]{wang2023planandsolve}
 Wang, L., Xu, W., Lan, Y., Hu, Z., Lan, Y., Lee, R. K.-W., and Lim, E.-P.
-\newblock Plan-and-solve prompting: Improving zero-shot chain-of-thought
-  reasoning by large language models.
-\newblock In \emph{Proceedings of the 61st Annual Meeting of the Association
-  for Computational Linguistics (ACL)}, pp.\  2609--2634, 2023.
+\newblock Plan-and-solve prompting: Improving zero-shot chain-of-thought reasoning by large language models.
+\newblock In \emph{Proceedings of the 61st Annual Meeting of the Association for Computational Linguistics (ACL)}, pp.\  2609--2634, 2023.
 
-\bibitem[Wang et~al.(2014)Wang, Chen, Chen, Li, Harari, Tignor, Zhou, Ben-Zeev,
-  and Campbell]{wang2014studentlife}
-Wang, R., Chen, F., Chen, Z., Li, T., Harari, G., Tignor, S., Zhou, X.,
-  Ben-Zeev, D., and Campbell, A.~T.
-\newblock {StudentLife}: Assessing mental health, academic performance and
-  behavioral trends of college students using smartphones.
-\newblock In \emph{Proceedings of the 2014 ACM International Joint Conference
-  on Pervasive and Ubiquitous Computing (UbiComp)}, pp.\  3--14. ACM, 2014.
+\bibitem[Wang et~al.(2014)Wang, Chen, Chen, Li, Harari, Tignor, Zhou, Ben-Zeev, and Campbell]{wang2014studentlife}
+Wang, R., Chen, F., Chen, Z., Li, T., Harari, G., Tignor, S., Zhou, X., Ben-Zeev, D., and Campbell, A.~T.
+\newblock {StudentLife}: Assessing mental health, academic performance and behavioral trends of college students using smartphones.
+\newblock In \emph{Proceedings of the 2014 ACM International Joint Conference on Pervasive and Ubiquitous Computing (UbiComp)}, pp.\  3--14. ACM, 2014.
 
-\bibitem[Wu et~al.(2023)Wu, Bansal, Zhang, Wu, Li, Zhu, Jiang, Zhang, Zhang,
-  Liu, et~al.]{wu2023autogen}
-Wu, Q., Bansal, G., Zhang, J., Wu, Y., Li, B., Zhu, E., Jiang, L., Zhang, X.,
-  Zhang, S., Liu, J., et~al.
-\newblock {AutoGen}: Enabling next-gen {LLM} applications via multi-agent
-  conversation.
+\bibitem[Wu et~al.(2023)Wu, Bansal, Zhang, Wu, Li, Zhu, Jiang, Zhang, Zhang, Liu, et~al.]{wu2023autogen}
+Wu, Q., Bansal, G., Zhang, J., Wu, Y., Li, B., Zhu, E., Jiang, L., Zhang, X., Zhang, S., Liu, J., et~al.
+\newblock {AutoGen}: Enabling next-gen {LLM} applications via multi-agent conversation.
 \newblock \emph{arXiv preprint arXiv:2308.08155}, 2023.
 
-\bibitem[Yao et~al.(2023)Yao, Zhao, Yu, Du, Shafran, Narasimhan, and
-  Cao]{yao2023react}
+\bibitem[Yao et~al.(2023)Yao, Zhao, Yu, Du, Shafran, Narasimhan, and Cao]{yao2023react}
 Yao, S., Zhao, J., Yu, D., Du, N., Shafran, I., Narasimhan, K., and Cao, Y.
 \newblock {ReAct}: Synergizing reasoning and acting in language models.
-\newblock In \emph{International Conference on Learning Representations
-  (ICLR)}, 2023.
+\newblock In \emph{International Conference on Learning Representations (ICLR)}, 2023.
 
-\bibitem[Zheng et~al.(2023)Zheng, Chiang, Sheng, Zhuang, Wu, Zhuang, Lin, Li,
-  Li, Xing, et~al.]{zheng2023judging}
-Zheng, L., Chiang, W.-L., Sheng, Y., Zhuang, S., Wu, Z., Zhuang, Y., Lin, Z.,
-  Li, Z., Li, D., Xing, E.~P., et~al.
+\bibitem[Zheng et~al.(2023)Zheng, Chiang, Sheng, Zhuang, Wu, Zhuang, Lin, Li, Li, Xing, et~al.]{zheng2023judging}
+Zheng, L., Chiang, W.-L., Sheng, Y., Zhuang, S., Wu, Z., Zhuang, Y., Lin, Z., Li, Z., Li, D., Xing, E.~P., et~al.
 \newblock Judging {LLM}-as-a-judge with {MT-Bench} and {Chatbot Arena}.
-\newblock In \emph{Advances in Neural Information Processing Systems (NeurIPS)
-  Datasets and Benchmarks Track}, volume~36, 2023.
+\newblock In \emph{Advances in Neural Information Processing Systems (NeurIPS) Datasets and Benchmarks Track}, volume~36, 2023.
 
 \end{thebibliography}
