@@ -25,6 +25,7 @@ from .data.store import DataStore
 from .data.loaders import local_time
 from .llm import CallTracker, LLMClient
 from .memory.store import MemoryStore
+from .provenance import run_manifest
 from .skills.library import load_skill, make_load_skill_tool, skill_index_text
 from .tools import evidence_summary, make_tools, tool_map
 
@@ -340,7 +341,7 @@ def run_suite(
     cfg: RunConfig,
     cases: list[dict[str, Any]],
     profiles: dict[str, Any],
-    out_root: str | Path = "runs",
+    out_root: str | Path = "runs_corrected",
     cache_dir: str = "cache/features",
     reset_memory: bool = False,
     resume: bool = True,
@@ -354,7 +355,18 @@ def run_suite(
     failed_path = run_dir / "failed_cases.json"
     snap_path = run_dir / "config.snapshot.toml"
 
+    selected_cases = [c for c in cases if cfg.case_ids is None or c["case_id"] in cfg.case_ids]
+    if len({c["case_id"] for c in selected_cases}) != len(selected_cases):
+        raise ValueError("Case IDs must be unique")
+    manifest = run_manifest(cfg, selected_cases, profiles, cache_dir)
+    manifest_path = run_dir / "manifest.json"
+    if resume and not reset_memory and outputs_path.exists():
+        previous = json.loads(manifest_path.read_text()) if manifest_path.exists() else {}
+        if previous.get("fingerprint") != manifest["fingerprint"]:
+            raise ValueError("Cannot resume outputs from a different or legacy protocol. "
+                             "Use a new --out-root or --no-resume for an explicit clean rerun.")
     snap_path.write_text(cfg.to_toml(), encoding="utf-8")
+    manifest_path.write_text(json.dumps(manifest, indent=2), encoding="utf-8")
 
     logger = logging.getLogger(f"asl.{cfg.config_id}")
     logger.setLevel(logging.INFO)
@@ -374,11 +386,6 @@ def run_suite(
             calls_path.unlink()
     # Rebuild from reusable outputs rather than trusting memory left by a partial run.
     memory_store.reset()
-
-    selected_cases = list(cases)
-    if cfg.case_ids:
-        allowed = set(cfg.case_ids)
-        selected_cases = [c for c in selected_cases if c["case_id"] in allowed]
 
     existing_ok: dict[str, dict[str, Any]] = {}
     if resume and outputs_path.exists():

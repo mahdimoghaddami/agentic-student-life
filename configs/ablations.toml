@@ -5,7 +5,7 @@
 # 3. Planning on/off (`full` vs `no_plan`)
 # 4. Reflection depth 1, 2, 3 (`refl1`, `full` [depth=2], `refl3`)
 # 5. Planning depth 1, 2, 3 (`plan1`, `full` [depth=2], `plan3`)
-# 6. Model choice (`full` [gemini-3-flash-preview] vs `modelB` [gemini-3.1-flash-lite])
+# 6. Model choice (`full` [gemini-3-flash-preview] vs `modelB` [gemma-4-26b-a4b-it])
 
 [defaults.system]
 mode = "multi_agent"
@@ -53,8 +53,7 @@ enabled = true
 max_rounds = 1
 
 [configs.refl3]
-description = "Reflection depth = 3 review-and-revision cycles (10-case stratified subset)"
-case_ids = ["case_001", "case_002", "case_006", "case_009", "case_011", "case_013", "case_014", "case_015", "case_019", "case_020"]
+description = "Reflection depth = 3 review-and-revision cycles"
 [configs.refl3.reflection]
 enabled = true
 max_rounds = 3
@@ -72,14 +71,12 @@ enabled = true
 max_rounds = 1
 
 [configs.plan3]
-description = "Planning depth = 3 rounds (10-case stratified subset)"
-case_ids = ["case_001", "case_002", "case_006", "case_009", "case_011", "case_013", "case_014", "case_015", "case_019", "case_020"]
+description = "Planning depth = 3 rounds"
 [configs.plan3.planning]
 enabled = true
 max_rounds = 3
 
 [configs.modelB]
-description = "Full multi-agent architecture on Model B (Gemma 4 26B-A4B IT / Flash-Lite, 10-case stratified subset)"
-case_ids = ["case_001", "case_002", "case_006", "case_009", "case_011", "case_013", "case_014", "case_015", "case_019", "case_020"]
+description = "Full multi-agent architecture on Model B (Gemma 4 26B-A4B IT, same 20 cases)"
 [configs.modelB.system]
 model = "gemini:gemma-4-26b-a4b-it"

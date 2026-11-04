@@ -253,11 +253,6 @@ class CallTracker:
 class LLMClient:
     """Thread-safe wrapper around aisuite.Client with retries, tool tracking, and Pydantic JSON parsing."""
 
-    MODEL_POOL = [
-        "gemini:gemma-4-26b-a4b-it",
-    ]
-    _EXHAUSTED_DAILY: set[str] = set()
-
     def __init__(self, env_path: str = ".env"):
         load_dotenv(env_path)
         _patch_aisuite_gemini()
@@ -288,12 +283,9 @@ class LLMClient:
             kwargs["response_mime_type"] = "application/json"
 
         last_err: Exception | None = None
-        with _LOCK:
-            candidates = [model] + [m for m in self.MODEL_POOL if m != model]
-            candidates = [m for m in candidates if m not in self._EXHAUSTED_DAILY] or list(self.MODEL_POOL)
-
         for attempt in range(max_retries):
-            cur_model = candidates[attempt % len(candidates)]
+            # A model switch changes the experimental treatment. Retry this model only.
+            cur_model = model
             t0 = time.perf_counter()
             try:
                 resp = self.client.chat.completions.create(
@@ -309,10 +301,7 @@ class LLMClient:
                     kwargs.pop("thinking_config", None)
                     continue
                 if "PerDay" in err_str or "per day" in err_str.lower():
-                    with _LOCK:
-                        self._EXHAUSTED_DAILY.add(cur_model)
-                        candidates = [m for m in candidates if m not in self._EXHAUSTED_DAILY] or list(self.MODEL_POOL)
-                    continue
+                    raise
                 if any(
                     code in err_str
                     for code in (
