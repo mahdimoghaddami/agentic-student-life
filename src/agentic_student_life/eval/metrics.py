@@ -8,6 +8,7 @@ import re
 from typing import Any
 
 import numpy as np
+from ..data.loaders import local_time
 
 
 def _mean_std(vals: list[float]) -> tuple[float, float]:
@@ -19,25 +20,53 @@ def _mean_std(vals: list[float]) -> tuple[float, float]:
     return round(m, 2), round(s, 2)
 
 
-def check_preference_adherence(rec: dict[str, Any], case: dict[str, Any]) -> bool | None:
-    """For preference_update steps >= 2, check whether the generated message avoids
-    forbidden terms from prior feedback and includes at least one required theme."""
+def preference_violations(rec, case, cases_by_id):
+    """Apply only feedback that was available BEFORE this decision, never its reply."""
     if case.get("category") != "preference_update" or int(case.get("step", 1)) < 2:
         return None
+    previous = sorted(
+        [c for c in cases_by_id.values() if c["participant_id"] == case["participant_id"]
+         and local_time(c["decision_time"]) < local_time(case["decision_time"])
+         and c.get("scripted_feedback")],
+        key=lambda c: local_time(c["decision_time"]),
+    )
+    if not previous:
+        return None
+    violations = []
     msg = (rec.get("final_message") or "").lower()
-    if not msg:
-        return False
+    if rec.get("status", "ok") != "ok" or not msg.strip():
+        return ["missing successful final message"]
     # Strip non-exercise English idioms ('running high', 'running low', 'running on', 'running late', 'long run')
     msg_clean = re.sub(r"\brunning\s+(?:high|low|on|late|out|behind)\b", "", msg)
     msg_clean = re.sub(r"\blong\s+run\b", "", msg_clean)
-    fb = case.get("scripted_feedback") or {}
-    forbidden = fb.get("forbidden_terms") or case.get("forbidden_terms") or []
-    for term in forbidden:
-        # Word-boundary check so 'run' doesn't false-trigger on 'crunch'
-        pat = r"\b" + re.escape(term.lower()) + r"\b"
-        if re.search(pat, msg_clean):
-            return False
-    return True
+    for prior in previous:
+        fb = prior["scripted_feedback"]
+        for term in fb.get("forbidden_terms", []):
+            pat = r"\b" + re.escape(term.lower()) + r"\b"
+            if re.search(pat, msg_clean):
+                violations.append(f"forbidden term from {prior['case_id']}: {term}")
+        themes = fb.get("required_themes", [])
+        if themes and not any(re.search(r"\b" + re.escape(t.lower()) + r"(?:s|es|ing|ed)?\b", msg)
+                              for t in themes):
+            violations.append(f"missing preferred theme from {prior['case_id']}")
+        # A later explicit length preference replaces the previous length limit.
+    max_words = None
+    for prior in previous:
+        fb = prior["scripted_feedback"]
+        if fb.get("max_words") is not None:
+            max_words = int(fb["max_words"])
+        text = fb.get("feedback_text", "") + " " + str(fb.get("preference_updates", {}))
+        under = re.search(r"under\s+(\d+)\s+words", text, re.I)
+        if under:
+            max_words = int(under.group(1)) - 1
+    if max_words is not None and len(msg.split()) > max_words:
+        violations.append(f"word limit exceeded: {len(msg.split())} > {max_words}")
+    return violations
+
+
+def check_preference_adherence(rec, case, cases_by_id=None):
+    violations = preference_violations(rec, case, cases_by_id or {})
+    return None if violations is None else not violations
 
 
 def compute_run_metrics(
@@ -76,6 +105,7 @@ def compute_run_metrics(
         for exp in ("suggest", "ask", "none")
     }
     pref_checks: list[bool] = []
+    pref_details = {}
 
     for r in records:
         cid = r["case_id"]
@@ -90,9 +120,10 @@ def compute_run_metrics(
             primary_exp = pred if pred in exp_list else exp_list[0]
             if primary_exp in confusion and pred in confusion[primary_exp]:
                 confusion[primary_exp][pred] += 1
-        pa = check_preference_adherence(r, case)
-        if pa is not None:
-            pref_checks.append(pa)
+        violations = preference_violations(r, case, cases_by_id)
+        if violations is not None:
+            pref_checks.append(not violations)
+            pref_details[cid] = violations
 
     decision_acc = round(100.0 * float(np.mean(correct_flags)), 1) if correct_flags else 0.0
     pref_adherence_rate = (
@@ -167,6 +198,8 @@ def compute_run_metrics(
         "success_rate": success_rate,
         "decision_acc": decision_acc,
         "pref_adherence_rate": pref_adherence_rate,
+        "pref_adherence_n": len(pref_checks),
+        "pref_adherence_violations": pref_details,
         "n_judged": len(judge_map),
         "context_awareness": {"mean": ca_mean, "std": ca_std, "values": ca_vals},
         "goal_alignment": {"mean": ga_mean, "std": ga_std, "values": ga_vals},
