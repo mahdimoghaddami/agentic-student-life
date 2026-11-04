@@ -30,7 +30,7 @@ CONFIG_LABELS = {
     "no_refl": "No Reflection",
     "refl1": "Refl Depth=1",
     "refl3": "Refl Depth=3",
-    "modelB": "Model B (Flash-Lite)",
+    "modelB": "Model B (Alternative)",
 }
 
 
@@ -56,7 +56,8 @@ def generate_all_plots(
     w = 0.27
     labels = [CONFIG_LABELS.get(k, k) for k in avail_keys]
     dec_acc = [all_metrics[k]["decision_acc"] for k in avail_keys]
-    pref_adh = [all_metrics[k]["pref_adherence_rate"] for k in avail_keys]
+    pref_adh = [all_metrics[k]["pref_adherence_rate"] if all_metrics[k]["pref_adherence_n"] else np.nan
+                for k in avail_keys]
     judge_pct = [all_metrics[k]["judge_mean"]["mean"] * 20.0 for k in avail_keys]
 
     ax1.bar(x - w, dec_acc, width=w, label="Decision Accuracy (%)", color="#1d4ed8", alpha=0.9)

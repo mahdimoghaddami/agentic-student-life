@@ -72,6 +72,7 @@ def check_preference_adherence(rec, case, cases_by_id=None):
 def compute_run_metrics(
     run_dir: str | Path,
     cases_by_id: dict[str, dict[str, Any]],
+    case_ids: set[str] | None = None,
 ) -> dict[str, Any]:
     """Compute comprehensive metrics for a single run directory (`runs/<config_id>`)."""
     rdir = Path(run_dir)
@@ -85,6 +86,10 @@ def compute_run_metrics(
         for line in out_path.read_text(encoding="utf-8").splitlines()
         if line.strip()
     ]
+    history_cases = {r["case_id"]: cases_by_id[r["case_id"]] for r in records
+                     if r.get("status") == "ok" and r["case_id"] in cases_by_id}
+    if case_ids is not None:
+        records = [r for r in records if r["case_id"] in case_ids]
     judge_map: dict[str, dict[str, Any]] = {}
     if judge_path.exists():
         for line in judge_path.read_text(encoding="utf-8").splitlines():
@@ -92,6 +97,10 @@ def compute_run_metrics(
                 obj = json.loads(line)
                 judge_map[obj["case_id"]] = obj
 
+    # Ignore stale scores and scores for cases outside this comparison cohort.
+    scorable = {r["case_id"]: r for r in records if r.get("status") == "ok" and r.get("final_message")}
+    judge_map = {cid: j for cid, j in judge_map.items()
+                 if cid in scorable and j.get("final_message") == scorable[cid]["final_message"]}
     n_total = len(records)
     ok_recs = [r for r in records if r.get("status") == "ok"]
     n_ok = len(ok_recs)
@@ -120,7 +129,7 @@ def compute_run_metrics(
             primary_exp = pred if pred in exp_list else exp_list[0]
             if primary_exp in confusion and pred in confusion[primary_exp]:
                 confusion[primary_exp][pred] += 1
-        violations = preference_violations(r, case, cases_by_id)
+        violations = preference_violations(r, case, history_cases)
         if violations is not None:
             pref_checks.append(not violations)
             pref_details[cid] = violations
@@ -129,7 +138,7 @@ def compute_run_metrics(
     pref_adherence_rate = (
         round(100.0 * float(np.mean([1.0 if x else 0.0 for x in pref_checks])), 1)
         if pref_checks
-        else 100.0
+        else None
     )
 
     # Judge scores
@@ -192,6 +201,9 @@ def compute_run_metrics(
 
     return {
         "config_id": rdir.name,
+        "case_ids": [r["case_id"] for r in records],
+        "protocol": "corrected" if (rdir / "manifest.json").exists() else "legacy",
+        "judge_models": sorted({j.get("judge_model", "unknown") for j in judge_map.values()}),
         "available": True,
         "n_cases": n_total,
         "n_ok": n_ok,

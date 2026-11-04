@@ -78,7 +78,7 @@ def generate_all_tables(
         fmt = (lambda s: f"\\textbf{{{s}}}") if bold else (lambda s: s)
         s_succ = f"{m['success_rate']:.0f}"
         s_dacc = f"{m['decision_acc']:.1f}\\%"
-        s_padh = f"{m['pref_adherence_rate']:.0f}\\%"
+        s_padh = f"{m['pref_adherence_rate']:.0f}\\%" if m["pref_adherence_n"] else "---"
         s_ca = f"{m['context_awareness']['mean']:.2f}"
         s_ga = f"{m['goal_alignment']['mean']:.2f}"
         s_cl = f"{m['clarity']['mean']:.2f}"

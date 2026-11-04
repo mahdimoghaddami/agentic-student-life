@@ -181,6 +181,21 @@ def cmd_analyze(args: argparse.Namespace) -> None:
         json.dumps({"configs": compact, "human_vs_llm": h_vs_l}, indent=2),
         encoding="utf-8",
     )
+    # Paired comparisons always use identical IDs, including legacy 10-case runs.
+    matched = {}
+    reference_ids = set(all_metrics.get("full", {}).get("case_ids", []))
+    for cid, metrics in all_metrics.items():
+        if cid == "full":
+            continue
+        common = reference_ids & set(metrics.get("case_ids", []))
+        if common:
+            matched[cid] = {
+                "case_ids": sorted(common),
+                "full": compute_run_metrics(out_root / "full", cases_by_id, common),
+                "variant": compute_run_metrics(out_root / cid, cases_by_id, common),
+                "interpretation": "Descriptive only for legacy runs: model and judge confounds remain.",
+            }
+    (out_root / "matched_comparisons.json").write_text(json.dumps(matched, indent=2), encoding="utf-8")
 
     figs = generate_all_plots(all_metrics, h_vs_l, fig_dir=args.fig_dir)
     tbls = generate_all_tables(all_metrics, h_vs_l, table_dir=args.table_dir)
