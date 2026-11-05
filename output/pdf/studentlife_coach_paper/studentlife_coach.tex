@@ -28,27 +28,27 @@
 \icmlauthor{Mahdi Moghaddami}{equal,ou}
 \icmlauthor{Brett Piggott}{equal,ou}
 \end{icmlauthorlist}
-\icmlaffiliation{ou}{Department of Computer Science and Engineering, Oakland University, Rochester, Michigan, USA}
+\icmlaffiliation{ou}{Department of Computer Science and Engineering, Oakland University, Rochester, Michigan, United States}
 \icmlcorrespondingauthor{Mahdi Moghaddami}{moghaddami@oakland.edu}
 \icmlkeywords{Language agents, personalized coaching, StudentLife, planning, reflection, memory, evaluation}
 \vskip .25in]
 \printAffiliationsAndNotice{\icmlEqualContribution}
 
 \begin{abstract}
-Personalized student coaching requires deciding when support is useful, grounding suggestions in incomplete behavioral observations, and remembering what a student prefers. We present a training-free language-agent system that uses historical StudentLife sensing and self-report data to suggest a manageable action, ask a clarifying question, or remain silent. Five roles coordinate bounded planning, read-only tool use, skill-guided writing, critique and revision, and feedback-driven memory. Goals, coaching preferences, and student replies are explicitly simulated; behavioral observations retain their dataset provenance and temporal limits. We evaluate nine configurations on the same 20 decision cases from eight participant identifiers, including missing-data scenarios and longitudinal preference episodes. The full system produces valid outputs for all cases, matches every manually specified allowed decision, and receives a mean independent message-quality score of 4.81/5 across 16 messages. A human independently rates 10 messages, with a mean absolute human--LLM difference of 0.267 across 30 criterion scores. Ablations reveal tradeoffs rather than uniform benefits: a consolidated coach matches the full system's rounded quality mean, while a lower-cost model improves mean message quality and token efficiency but matches fewer allowed decisions. The results demonstrate a configurable architecture and support descriptive conclusions on a small offline benchmark.
+Personalized student coaching requires deciding when support is useful, grounding suggestions in incomplete behavioral observations, and remembering what a student prefers. We present a training-free system of large language model (LLM) agents that uses historical StudentLife sensing and self-report data to suggest a manageable action, ask a clarifying question, or remain silent. Five roles coordinate bounded planning, read-only tool use, skill-guided writing, critique and revision, and feedback-driven memory. Goals, coaching preferences, and student replies are explicitly simulated; behavioral observations retain their dataset provenance and temporal limits. We evaluate nine configurations on the same 20 decision cases from eight participant identifiers, including missing-data scenarios and longitudinal preference episodes. The full system produces valid outputs for all cases, matches every manually specified allowed decision, and receives a mean independent message-quality score of 4.81/5 across 16 messages. A human independently rates 10 messages, with a mean absolute human--LLM difference of 0.267 across 30 criterion scores. Ablations reveal tradeoffs rather than uniform benefits: a consolidated coach matches the full system's rounded quality mean, while a lower-cost model improves mean message quality and token efficiency but matches fewer allowed decisions. The results demonstrate a configurable architecture and support descriptive conclusions on a small offline benchmark.
 \end{abstract}
 
 \section{Introduction}
 Student stress coaching requires more than recognizing a busy week. A useful system must connect noisy observations to a manageable action, acknowledge missing information, respect individual preferences, and avoid unnecessary interruption. Short sleep before a deadline may justify a wind-down suggestion; insufficient recent observations may justify a question; comfortable conditions or a recently accepted suggestion may justify silence. Remembering which activities a student welcomes is essential to making those choices consistently over time.
 
-We present a training-free coach that combines five language-agent roles: Planner, Context Analyst, Message Writer, Critic, and Memory Manager. Read-only tools expose time-bounded StudentLife observations; reusable skills guide message generation; persistent memory stores earlier suggestions, feedback, and learned preferences. Goals and replies absent from StudentLife are explicitly simulated. The output is a structured, auditable decision at a specified participant/time point.
+We present a training-free coach that combines five large language model (LLM) agent roles: Planner, Context Analyst, Message Writer, Critic, and Memory Manager. Read-only tools expose time-bounded StudentLife observations; reusable skills guide message generation; persistent memory stores earlier suggestions, feedback, and learned preferences. Goals and replies absent from StudentLife are explicitly simulated. The output is a structured, auditable decision at a specified participant/time point.
 
 We ask three questions: can this workflow produce context-sensitive actions and retain preferences under incomplete observations; how do architecture, planning, reflection, budgets, and model choice affect quality and efficiency; and how closely do independent human and LLM ratings agree? We contribute a configurable workflow, complete tool/skill interfaces, and an evaluation of nine conditions on 20 cases from eight participant identifiers. Section 2 gives the background; Section 3 explains the method; Section 4 defines and reports evaluation; Section 5 analyzes the ablations and their limitations; Section 6 identifies the authors' contributions.
 
 \section{Background and Related Works}
 StudentLife provides longitudinal smartphone sensing, self-reported well-being, and academic context for studying college behavior \cite{wang2014studentlife}. We use it for historical coaching decisions, not for training or reproducing its outcome-prediction analyses. Its imperfect coverage makes uncertainty handling and temporal availability central to the task.
 
-ReAct interleaves reasoning with actions that retrieve external information \cite{yao2023react}; Plan-and-Solve separates a plan from its execution \cite{wang2023planandsolve}. Multi-agent frameworks such as AutoGen support specialized roles and explicit interaction policies \cite{wu2023autogen}. Our custom \texttt{aisuite} orchestrator applies these ideas through bounded checks and structured messages, without assuming that additional roles guarantee better results.
+The reasoning and acting (ReAct) method interleaves reasoning with actions that retrieve external information \cite{yao2023react}; Plan-and-Solve separates a plan from its execution \cite{wang2023planandsolve}. Multi-agent frameworks such as AutoGen support specialized roles and explicit interaction policies \cite{wu2023autogen}. Our custom \texttt{aisuite} orchestrator applies these ideas through bounded checks and structured messages, without assuming that additional roles guarantee better results.
 
 Self-Refine motivates iterative critique and refinement without further training \cite{madaan2023selfrefine}. Generative Agents combines stored experiences, retrieval, and higher-level reflections in a simulation \cite{park2023generative}. Here, draft criticism and preference extraction are separate roles: one reviews an immediate message, while the other updates future context. Memory is a timestamp-filtered file store rather than embedding retrieval.
 
@@ -60,11 +60,11 @@ For student $u$ at decision time $t$, the input is
 \begin{equation}
 I_{u,t}=(O_{u,\leq t},P_u,H_{u,<t},L_{u,<t},X_{u,t}),
 \end{equation}
-where $O$ is available observation context, $P$ a simulated baseline profile, $H$ earlier interactions, $L$ learned preference rules, and $X$ scenario information such as modality masks. Expected actions and feedback on the current output are excluded. The coach returns \texttt{suggest}, \texttt{ask}, or \texttt{none}, together with evidence, an optional skill, a message, and an execution trace. Deliberate silence has a null message and skill; an execution failure is recorded separately. Appendix~\ref{app:io} defines the JSONL fields and gives a concrete projection.
+where $O$ is available observation context, $P$ a simulated baseline profile, $H$ earlier interactions, $L$ learned preference rules, and $X$ scenario information such as modality masks. Expected actions and feedback on the current output are excluded. The coach returns \texttt{suggest}, \texttt{ask}, or \texttt{none}, together with evidence, an optional skill, a message, and an execution trace. Deliberate silence has a null message and skill; an execution failure is recorded separately. Outputs use JavaScript Object Notation (JSON) Lines (JSONL), with one record per line; Appendix~\ref{app:io} defines the fields and gives a concrete projection.
 
-The published StudentLife study describes 48 participants over a ten-week term. The supplied archive contains 49 identifiers with activity files; we preprocess those identifiers and evaluate eight. We use inferred sleep, walking/running activity, conversation and call/SMS indicators, EMA stress/mood/sleep/exercise/social responses, comments, course schedules, deadlines, and pre-term survey background. Grades, final GPA, post-term surveys, and Piazza are excluded. Dates use \texttt{America/New\_York}, with March 25, 2013 as the term-week origin.
+The published StudentLife study describes 48 participants over a ten-week term. The supplied archive contains 49 identifiers with activity files; we preprocess those identifiers and evaluate eight. We use inferred sleep, walking/running activity, conversation and call/short message service (SMS) indicators, ecological momentary assessment (EMA) stress/mood/sleep/exercise/social responses, comments, course schedules, deadlines, and pre-term survey background. Grades, final grade point average (GPA), post-term surveys, and Piazza are excluded. Dates use \texttt{America/New\_York}, with March 25, 2013 as the term-week origin.
 
-Sleep is a heuristic intersection of dark and lock/charge intervals, allowing 20-minute gaps and selecting a plausible 1.5--14-hour overnight period. Activity uses observed ten-minute bins and requires at least 72 valid bins per day. Conversation and phone events are aggregated without treating unobserved days as known zeros; phone availability uses the later event/upload time. Pre-term PSS, PHQ-9, loneliness, and Big Five scores provide background rather than current diagnoses.
+Sleep is a heuristic intersection of dark and lock/charge intervals, allowing 20-minute gaps and selecting a plausible 1.5--14-hour overnight period. Activity uses observed ten-minute bins and requires at least 72 valid bins per day. Conversation and phone events are aggregated without treating unobserved days as known zeros; phone availability uses the later event/upload time. Pre-term Perceived Stress Scale (PSS), nine-item Patient Health Questionnaire (PHQ-9), loneliness, and Big Five Inventory scores provide background rather than current diagnoses.
 
 Daily features exclude the current decision date. A same-day last-night estimate is exposed only after its noon inference window closes; EMA timestamps must be at or before $t$. Baselines use at least three complete historical days preceding the queried recent window. Missing coverage remains explicit instead of being filled with assumed behavior. Syllabus deadlines are an ex-ante exception: upcoming deadlines are treated as known calendar information. Term-phase labels are week-based heuristics, not verified exam dates.
 
@@ -89,16 +89,16 @@ Table~\ref{tab:tools} lists all eight data/resource tools. Recent windows defaul
 
 \begin{table*}[t]
 \caption{Data/resource tools available to the Context Analyst and consolidated coach. Missing or masked inputs return explicit status/reason fields rather than invented observations.}
-\label{tab:tools}\centering\small\setlength{\tabcolsep}{4pt}
+\label{tab:tools}\centering\small\setlength{\tabcolsep}{4pt}\renewcommand{\arraystretch}{.96}
 \begin{tabular}{p{5.0cm}p{3.1cm}p{7.5cm}}\toprule
 Callable & Arguments & Returned information\\\midrule
 \tool{get_time_context} & None & Date, weekday, local time, time of day, term week/phase, current scheduled class when available.\\
 \tool{get_sleep_summary} & \code{days=3} & Inferred and self-reported sleep, observation counts, available last-night estimate, bed/wake times, difference from prior baseline.\\
 \tool{get_activity_summary} & \code{days=3} & Active, walk, and run minutes; days with coverage; baseline comparison; self-reported exercise.\\
 \tool{get_social_summary} & \code{days=3} & Conversation count/duration, available calls/SMS and self-reported contact categories; missing conversation status and baseline.\\
-\tool{get_stress_mood_history} & \code{days=3} & Stress mean/max/latest and recency, mood/PAM summaries, latest comment within 14 days, pre-term background scores.\\
+\tool{get_stress_mood_history} & \code{days=3} & Stress mean/max/latest and recency, mood and Photographic Affect Meter (PAM) summaries, latest comment within 14 days, pre-term background scores.\\
 \tool{get_academic_load} & \code{days_ahead=3} & Deadlines today and by upcoming day, today's class periods, remaining classes, course count, partial-schedule indicators.\\
-\tool{compare_to_baseline} & \code{feature}, \code{days=3} & Recent mean, historical mean/SD and sample size, standardized difference, qualitative deviation label. Supports sleep, bedtime, activity, conversation, calls/SMS, stress, mood, and self-report sleep.\\
+\tool{compare_to_baseline} & \code{feature}, \code{days=3} & Recent mean, historical mean/standard deviation (SD), sample size, and standardized/qualitative deviations. Features: sleep, bedtime, activity, conversation, calls/SMS, stress, mood, self-report sleep.\\
 \tool{search_campus_resources} & \code{need} & Ranked curated resources: names, categories, descriptions, contacts, and provenance tag; up to three keyword-matched entries.\\\bottomrule
 \end{tabular}
 \end{table*}
@@ -127,7 +127,7 @@ Profiles contain goals, preferences, constraints, grounding notes, and pre-term 
 Per-student JSON stores separate \code{profile}, \code{episodes}, and \code{learned_preferences}. Episodes retain actions, messages, skills, and simulated replies. Rules carry source-case identifiers, timestamps, and simulation labels; identical text is deduplicated. Retrieval includes only timestamps strictly before the decision, with up to five recent episodes and eligible persistent rules. Current feedback is released after the coaching action and becomes usable only later. Participants execute chronologically across episode identifiers; independent students may run concurrently. Updates protect the episode/rule read-modify-write operation. The system uses neither SQLite nor a knowledge graph, and robust resolution of contradictory long-term rules is not established.
 
 \subsection{Configuration and Worked Interaction}\label{sec:example}
-The full system enables all five patterns: multi-agent interaction, tool use, planning (maximum two calls), reflection (maximum two cycles), and memory with eight skills. TOML controls \code{system.mode}, planning/reflection \code{enabled} and \code{max_rounds}, \code{tools.enabled}, \code{skills.enabled}, and memory \code{enabled/history_k}. Disabling multi-agent data-tool selection supplies the Analyst a fixed evidence summary; disabling skills supplies generic instructions; disabling memory removes earlier episodes/rules from prompts while retaining the baseline profile. The operational controls are detailed in Appendix~\ref{app:controls}.
+The full system enables all five patterns: multi-agent interaction, tool use, planning (maximum two calls), reflection (maximum two cycles), and memory with eight skills. Tom's Obvious Minimal Language (TOML) configuration files control \code{system.mode}, planning/reflection \code{enabled} and \code{max_rounds}, \code{tools.enabled}, \code{skills.enabled}, and memory \code{enabled/history_k}. Disabling multi-agent data-tool selection supplies the Analyst a fixed evidence summary; disabling skills supplies generic instructions; disabling memory removes earlier episodes/rules from prompts while retaining the baseline profile. The operational controls are detailed in Appendix~\ref{app:controls}.
 
 For \code{u16} on April 18 at 20:00 (\code{case_014}), available context includes one deadline, three-day mean stress 3.3/5 (maximum 4), and one inferred sleep observation of 6.5 hours. Earlier feedback rejects running/gym suggestions and prefers quiet indoor breathing, stretching, or tea. Two Planner calls and an Analyst pass lead to \code{suggest} with \code{micro_study_break}. The Writer proposes:
 \begin{quote}\small\input{examples/message.tex}\end{quote}
@@ -164,9 +164,9 @@ For $N$ cases with allowed sets $A_i$, decision agreement is the fraction satisf
 \begin{equation}
 Q=\frac{1}{3N_m}\sum_{i=1}^{N_m}\sum_{k=1}^{3}q_{ik}.
 \end{equation}
-Quality is also compared on common non-null case IDs, avoiding a change in the message cohort being interpreted solely as writing quality. Sending appropriateness is a separate judge percentage over messages, rather than all-case agreement with allowed labels.
+Quality is also compared on common non-null case identifiers, avoiding a change in the message cohort being interpreted solely as writing quality. Sending appropriateness is a separate judge percentage over messages, rather than all-case agreement with allowed labels.
 
-For $n=10$ human--judge pairs, we distinguish
+For $n=10$ human--judge pairs, we distinguish mean absolute difference (MAD) at the criterion and message levels:
 \begin{align}
 \mathrm{MAD}_{\mathrm{criterion}}&=\frac{1}{3n}\sum_{i,k}|h_{ik}-q_{ik}|,\\
 \mathrm{MAD}_{\mathrm{message}}&=\frac{1}{n}\sum_i|\overline h_i-\overline q_i|.
@@ -202,7 +202,7 @@ The largest disagreement is \code{case_002}: clarity is 5 from the human and 3 f
 The full condition is compared with a consolidated online coach, no reflection, no planning, reflection maxima one and three, planning maxima one and three, and Model B. Full supplies the maximum-two reference for both depth studies: nine conditions cover all six required comparison types. Table~\ref{tab:quality} reports quality, agreement, completion, and sending appropriateness; Table~\ref{tab:efficiency} reports efficiency.
 
 \begin{table*}[t]
-\caption{Nine conditions on identical case definitions. $N_m$ is the scored-message count. Agreement uses allowed actions over all 20 cases; Send OK is the independent judge's appropriateness percentage over non-null messages. Quality criteria are scored 1--5.}
+\caption{Nine conditions on identical case definitions. $N_m$ is the scored-message count. Agreement uses allowed actions over all 20 cases; The Appropriate column is the independent judge's appropriateness percentage over non-null messages. Quality criteria are scored 1--5.}
 \label{tab:quality}\centering\small\setlength{\tabcolsep}{4pt}
 \resizebox{\textwidth}{!}{\input{tables/quality.tex}}
 \end{table*}
@@ -222,7 +222,7 @@ The consolidated coach receives the same exogenous observations, baseline profil
 \label{fig:depth-tradeoffs}
 \end{figure*}
 
-Figure~\ref{fig:depth-tradeoffs} makes the budget/resource tradeoffs visible. Comparing only common non-null case IDs gives variant-minus-full quality differences of 0.000 for the consolidated coach, $-0.104$ without planning, $-0.022$ without reflection, $-0.188/+0.021$ for reflection maxima 1/3, and $-0.022/+0.067$ for planning maxima 1/3. These small, single-generation differences over 15--16 messages do not establish statistical superiority.
+Figure~\ref{fig:depth-tradeoffs} makes the budget/resource tradeoffs visible. Comparing only common non-null case identifiers gives variant-minus-full quality differences of 0.000 for the consolidated coach, $-0.104$ without planning, $-0.022$ without reflection, $-0.188/+0.021$ for reflection maxima 1/3, and $-0.022/+0.067$ for planning maxima 1/3. These small, single-generation differences over 15--16 messages do not establish statistical superiority.
 
 \paragraph{Where action agreement differs.} The no-reflection, planning-one, planning-three, and Model B conditions all choose silence for \code{case_010}, whose manually allowed actions are question or suggestion. This single post-recording-absence scenario explains each 95\% result. No reflection has a second disagreement: it suggests an action for masked \code{case_012}, where the reference allows a question. These are specific label mismatches, not four distinct patterns of degraded writing.
 
@@ -247,7 +247,7 @@ The workflow makes plans, retrieved evidence, skill instructions, critiques, and
 
 There is one generation per condition, one human rater, and no repeated-generation confidence interval. Endogenous histories and unequal tool-turn allocations limit isolated causal comparisons. The evaluator packet may omit dynamically retrieved context; the lexical preference proxy has false positives. Inferred sensing is noisy, week-phase labels are heuristic, and static campus resources are not verified at every historical date. These experiments measure offline coaching behavior, not clinical effectiveness, resource availability, academic improvement, or changes in stress.
 
-\paragraph{Interpreting quality and restraint together.} A configuration can improve its conditional message-quality mean simply by withholding a difficult response. The observed message counts differ by one across several conditions; quality therefore cannot be interpreted without the action-agreement and non-null counts beside it. Paired comparisons reduce this mismatch by using shared sent-message IDs, but they omit exactly the decisions on which a model remains silent. A deployment choice would need an explicit policy for the relative cost of an unnecessary interruption and a missed useful check-in. The present benchmark supplies allowed actions, not an empirically calibrated utility for that tradeoff.
+\paragraph{Interpreting quality and restraint together.} A configuration can improve its conditional message-quality mean simply by withholding a difficult response. The observed message counts differ by one across several conditions; quality therefore cannot be interpreted without the action-agreement and non-null counts beside it. Paired comparisons reduce this mismatch by using shared sent-message identifiers, but they omit exactly the decisions on which a model remains silent. A deployment choice would need an explicit policy for the relative cost of an unnecessary interruption and a missed useful check-in. The present benchmark supplies allowed actions, not an empirically calibrated utility for that tradeoff.
 
 \paragraph{Evidence needed for stronger personalization claims.} Persistent records demonstrate that earlier suggestions and feedback are available to later calls, while the worked examples show outputs consistent with declared preferences. Availability and consistency alone do not establish that a newly learned rule caused a later change. A stronger test would hold the initial profile and observations fixed, introduce a previously unknown preference through feedback, and compare later behavior with and without that memory update across repeated generations. Similarly, assessing the usefulness of coaching would require consented student interaction and prospective outcomes rather than scripted replies. These are boundaries of the present evidence, not outcomes inferred from high rubric scores.
 
@@ -279,7 +279,7 @@ The runtime input for \code{case_014} includes \code{u16}, April 18 at 20:00, no
 \toprule Field & Type & Meaning\\\midrule\endhead
 \code{case_id} & String & Unique participant/time evaluation identifier.\\
 \code{participant_id} & String & Dataset identifier, such as \code{u16}.\\
-\code{decision_time} & ISO timestamp & Localized decision time with UTC offset.\\
+\code{decision_time} & Timestamp & International Organization for Standardization (ISO) 8601 date/time with a Coordinated Universal Time (UTC) offset.\\
 \code{category} & String & Offline scenario category.\\
 \code{episode_id} & String & Longitudinal scenario grouping; chronological memory also spans groups for the same student.\\
 \code{step} & Integer & Position in the declared scenario episode.\\

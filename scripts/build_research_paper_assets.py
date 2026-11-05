@@ -109,7 +109,7 @@ def main():
         rows.append([LABELS[name], f"{m['success_rate']:.0f}", f"{m['decision_acc']:.0f}", str(m["n_judged"]),
                      *[f"{m[k]['mean']:.2f}" for k in ["context_awareness", "goal_alignment", "clarity", "judge_mean"]],
                      f"{m['judge_decision_appropriate_pct_nonnull']:.2f}"])
-    table("quality", "lrrrrrrrr", r"Condition & Completion (\%) & Agreement (\%) & $N_m$ & Context & Goal & Clarity & Mean & Send OK (\%)", rows)
+    table("quality", "lrrrrrrrr", r"Condition & Completion (\%) & Agreement (\%) & $N_m$ & Context & Goal & Clarity & Mean & Appropriate (\%)", rows)
     rows = []
     for name in ORDER:
         m = metrics[name]
