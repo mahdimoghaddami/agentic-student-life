@@ -1,0 +1,178 @@
+{
+  "rows": [
+    {
+      "id": "full",
+      "label": "Full",
+      "cases": 20,
+      "agreement": 100.0,
+      "matched": 20,
+      "messages": 16,
+      "quality": 4.81,
+      "calls": 6.2,
+      "tokens": 17529.25,
+      "latency": 35.59
+    },
+    {
+      "id": "single",
+      "label": "Single coach",
+      "cases": 20,
+      "agreement": 100.0,
+      "matched": 20,
+      "messages": 16,
+      "quality": 4.81,
+      "calls": 3.65,
+      "tokens": 18681.4,
+      "latency": 18.78
+    },
+    {
+      "id": "no_plan",
+      "label": "No planning",
+      "cases": 20,
+      "agreement": 100.0,
+      "matched": 20,
+      "messages": 16,
+      "quality": 4.71,
+      "calls": 6.1,
+      "tokens": 18365.65,
+      "latency": 49.63
+    },
+    {
+      "id": "no_refl",
+      "label": "No reflection",
+      "cases": 20,
+      "agreement": 90.0,
+      "matched": 18,
+      "messages": 15,
+      "quality": 4.78,
+      "calls": 5.35,
+      "tokens": 15977.25,
+      "latency": 68.54
+    },
+    {
+      "id": "plan1",
+      "label": "Planning max. 1",
+      "cases": 20,
+      "agreement": 95.0,
+      "matched": 19,
+      "messages": 15,
+      "quality": 4.78,
+      "calls": 5.4,
+      "tokens": 15303.25,
+      "latency": 46.27
+    },
+    {
+      "id": "plan3",
+      "label": "Planning max. 3",
+      "cases": 20,
+      "agreement": 95.0,
+      "matched": 19,
+      "messages": 15,
+      "quality": 4.87,
+      "calls": 6.95,
+      "tokens": 20366.3,
+      "latency": 80.79
+    },
+    {
+      "id": "refl1",
+      "label": "Reflection max. 1",
+      "cases": 20,
+      "agreement": 100.0,
+      "matched": 20,
+      "messages": 16,
+      "quality": 4.63,
+      "calls": 6.25,
+      "tokens": 17916.65,
+      "latency": 46.38
+    },
+    {
+      "id": "refl3",
+      "label": "Reflection max. 3",
+      "cases": 20,
+      "agreement": 100.0,
+      "matched": 20,
+      "messages": 16,
+      "quality": 4.83,
+      "calls": 6.1,
+      "tokens": 17352.15,
+      "latency": 52.94
+    },
+    {
+      "id": "modelB",
+      "label": "Model B",
+      "cases": 20,
+      "agreement": 95.0,
+      "matched": 19,
+      "messages": 15,
+      "quality": 4.89,
+      "calls": 5.8,
+      "tokens": 14355.75,
+      "latency": 21.6
+    }
+  ],
+  "human": {
+    "context_awareness": {
+      "human_mean": 4.7,
+      "human_std": 0.67,
+      "llm_mean": 4.8,
+      "llm_std": 0.42,
+      "mad": 0.1,
+      "signed_diff_llm_minus_human": 0.1,
+      "exact_agreement_rate": 0.9,
+      "within_1pt_rate": 1.0
+    },
+    "goal_alignment": {
+      "human_mean": 4.8,
+      "human_std": 0.42,
+      "llm_mean": 4.9,
+      "llm_std": 0.32,
+      "mad": 0.3,
+      "signed_diff_llm_minus_human": 0.1,
+      "exact_agreement_rate": 0.7,
+      "within_1pt_rate": 1.0
+    },
+    "clarity": {
+      "human_mean": 5.0,
+      "human_std": 0.0,
+      "llm_mean": 4.6,
+      "llm_std": 0.7,
+      "mad": 0.4,
+      "signed_diff_llm_minus_human": -0.4,
+      "exact_agreement_rate": 0.7,
+      "within_1pt_rate": 0.9
+    },
+    "mean": {
+      "human_mean": 4.83,
+      "human_std": 0.28,
+      "llm_mean": 4.77,
+      "llm_std": 0.45,
+      "mad": 0.133,
+      "signed_diff_llm_minus_human": -0.067,
+      "exact_agreement_rate": 0.7,
+      "within_1pt_rate": 1.0
+    }
+  },
+  "criterion_mad": 0.26666666666666666,
+  "example": {
+    "message": "Midterms and today's deadline can feel overwhelming. Take a quick 5-minute quiet pause right at your desk to sip warm tea and do a few slow, deep breaths.",
+    "words": 28,
+    "record": {
+      "case_id": "case_015",
+      "participant_id": "u16",
+      "decision": "suggest",
+      "skill_used": "micro_study_break",
+      "planning": {
+        "rounds_used": 2
+      }
+    },
+    "trace": {
+      "llm_calls": 7,
+      "total_tokens": 19326,
+      "latency_s": 26.44
+    }
+  },
+  "sources": [
+    "runs_corrected/2026-11-04_v3/comparison.csv",
+    "runs_corrected/2026-11-04_v3/summary_metrics.json",
+    "runs_corrected/2026-11-04_v3/full/outputs.jsonl"
+  ]
+}
