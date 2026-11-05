@@ -1,0 +1,12 @@
+{
+  "status": "interrupted; not a valid final experiment",
+  "reason": "Both Gemini API credentials report daily Free Tier 20-request quota exhaustion. Paid-tier activation required before a fresh complete run.",
+  "completed_case_records": 2,
+  "successful_case_records": 0,
+  "successful_response_token_cost_usd": 0.00288075,
+  "uncertain_failure_cost_upper_bound_usd": 0,
+  "judge_run": false,
+  "ablation_runs_started": false,
+  "legacy_runs_unchanged": true,
+  "legacy_files_verified": 127
+}

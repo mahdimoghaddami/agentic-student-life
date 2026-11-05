@@ -1,0 +1,53 @@
+{
+  "participant_id": "u19",
+  "simulated": true,
+  "profile": {
+    "participant_id": "u19",
+    "simulated": true,
+    "grounding_note": "Simulated coaching profile grounded in real StudentLife pre-term surveys (PSS=20.0, PHQ-9=5.0, UCLA Loneliness=56.0, PHQ-9 item 9=1, Extraversion=1.75, Neuroticism=3.62, Conscientiousness=3.44); courses: COSC 050, COSC 065, FILM 051.",
+    "pre_term_surveys": {
+      "pss_total": 20.0,
+      "phq9_total": 5.0,
+      "phq9_item9_selfharm": 1,
+      "loneliness_total": 56.0,
+      "bfi_extraversion": 1.75,
+      "bfi_agreeableness": 3.11,
+      "bfi_conscientiousness": 3.44,
+      "bfi_neuroticism": 3.62,
+      "bfi_openness": 3.2
+    },
+    "goals": [
+      "Manage overwhelm during clustered CS 50, CS 65, and FILM 51 deadlines by chunking tasks",
+      "Stay connected with supportive peers or campus resources when feeling isolated or stressed",
+      "Maintain steady ~7.5h sleep routine across midterm and late-term weeks"
+    ],
+    "preferences": {
+      "activity_style": "Gentle walks, Ultimate Frisbee / light outdoor air, or low-pressure 1-on-1 check-ins",
+      "tone": "Compassionate, validating, non-clinical, and low-pressure",
+      "preferred_times": [
+        "evening (19:00-21:00)"
+      ],
+      "dislikes": [
+        "high-pressure productivity demands",
+        "clinical or robotic phrasing"
+      ]
+    },
+    "constraints": [
+      "Elevated baseline loneliness (UCLA=56.0) and moderate perceived stress (PSS=20.0); pre-term PHQ-9 item 9=1 requires warm resource awareness when stress peaks at 5/5",
+      "Enrolled in COSC 050, COSC 065, and FILM 051"
+    ],
+    "learned_preferences": []
+  },
+  "episodes": [
+    {
+      "case_id": "case_012",
+      "decision_time": "2013-04-16T20:00:00-04:00",
+      "decision": "suggest",
+      "skill_used": "deadline_chunking",
+      "final_message": "With 2 deadlines due today in Week 4, it's completely natural if things feel a bit heavy tonight. If you're still finishing up, try picking just one small task to focus on for a low-pressure 25-30 minute block, then give yourself a well-deserved break.",
+      "simulated_feedback": null,
+      "simulated": true
+    }
+  ],
+  "learned_preferences": []
+}

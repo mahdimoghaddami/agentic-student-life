@@ -1,0 +1,102 @@
+[
+  {
+    "case_id": "case_001",
+    "decision": "suggest",
+    "final_message": "With midterms pushing hard and only 4.3 hours of sleep last night, it's no wonder you're feeling so sleepy. Try chunking tonight's remaining work into one small focused block. Afterward, consider dimming the lights and unwinding with some calm music or warm tea to protect your rest before tomorrow's deadlines.",
+    "message_fingerprint": "0eca02c7620c7109b1f73d5b8b4eaf981d8896ea4479b49804539e16e43e6ebc",
+    "context_awareness": null,
+    "goal_alignment": null,
+    "clarity": null,
+    "notes": ""
+  },
+  {
+    "case_id": "case_002",
+    "decision": "suggest",
+    "final_message": "With only 2.8 hours of sleep last night and two CS deadlines tomorrow, protecting tonight's rest is critical for your focus. Try picking a firm bedtime target tonight and wrapping up your code 20 minutes early to jot down tomorrow's first task. Unplugging briefly before bed will help you tackle those projects sharply.",
+    "message_fingerprint": "f8370e9e85cb04358e30156a851c7f3775dba3f813e93d8accf8c8ce5abee10e",
+    "context_awareness": null,
+    "goal_alignment": null,
+    "clarity": null,
+    "notes": ""
+  },
+  {
+    "case_id": "case_003",
+    "decision": "suggest",
+    "final_message": "With three deadlines today and stress peaking at 5/5, it's completely understandable if you're feeling exhausted and carrying a heavy load right now. You don't have to navigate this alone\u2014Dick's House Counseling ((603) 646-9442) offers free, confidential support and after-hours care, and the 988 Lifeline is available 24/7 by call or text at 988. For tonight, please give yourself permission to step back for a moment, grab a warm drink or get some water, and rest.",
+    "message_fingerprint": "16405bf2722864c50dad63b5bbfb5f18614e618be4bee4994299e5aab4535f29",
+    "context_awareness": null,
+    "goal_alignment": null,
+    "clarity": null,
+    "notes": ""
+  },
+  {
+    "case_id": "case_009",
+    "decision": "ask",
+    "final_message": "Since your recent sleep and activity data haven't come through over the past few days, I don't want to guess how you're doing this finals week. How are your energy and stress levels feeling tonight?",
+    "message_fingerprint": "f0dbdd135875be891243d9352711d0aac308e397de4252f93ac965d74e139e57",
+    "context_awareness": null,
+    "goal_alignment": null,
+    "clarity": null,
+    "notes": ""
+  },
+  {
+    "case_id": "case_011",
+    "decision": "ask",
+    "final_message": "I don't have your recent sleep or stress updates from the last few days, but I see you have a deadline today and another in 3 days. How are your energy and stress holding up this evening?",
+    "message_fingerprint": "c87ad01271e43d5701c40122eefbdd58aeda96fb63c809331713143446560b28",
+    "context_awareness": null,
+    "goal_alignment": null,
+    "clarity": null,
+    "notes": ""
+  },
+  {
+    "case_id": "case_012",
+    "decision": "ask",
+    "final_message": "I haven't seen your recent sleep or stress check-ins pop up today, and I know you have deadlines on your plate this evening. How are your energy and stress levels feeling right now?",
+    "message_fingerprint": "2e46740c703acbc51d80abb10c5d0a8791039ad98741a6ff24981f410b8acd2c",
+    "context_awareness": null,
+    "goal_alignment": null,
+    "clarity": null,
+    "notes": ""
+  },
+  {
+    "case_id": "case_014",
+    "decision": "suggest",
+    "final_message": "With today's deadline and midterm week in full swing, you've been working hard through a stressful day. If you need a quick reset tonight, pause for 5 minutes to take a few slow, deep breaths or pour a warm cup of tea before diving back in.",
+    "message_fingerprint": "86bf740985359659da21e3c0c65ec5a8ae98539c58af288a6b27206840149ea8",
+    "context_awareness": null,
+    "goal_alignment": null,
+    "clarity": null,
+    "notes": ""
+  },
+  {
+    "case_id": "case_015",
+    "decision": "suggest",
+    "final_message": "Midterms and today's deadline can feel overwhelming. Take a quick 5-minute quiet pause right at your desk to sip warm tea and do a few slow, deep breaths.",
+    "message_fingerprint": "c3978ff548e808d6269feb11f60fdce027fbbd044cdae5457344efb604f0faef",
+    "context_awareness": null,
+    "goal_alignment": null,
+    "clarity": null,
+    "notes": ""
+  },
+  {
+    "case_id": "case_018",
+    "decision": "suggest",
+    "final_message": "With two deadlines tomorrow during midterms and only about 3.6 hours of sleep last night, you've been pushing really hard. If you can, try wrapping up tonight's remaining work into one small focused block. Afterward, consider dimming the lights and unwinding with some calm music or tea to protect your sleep tonight.",
+    "message_fingerprint": "b34720b9fe4e37d4f7a545e9dfd8867b310225aaf8eca04a338fee1ac6b06894",
+    "context_awareness": null,
+    "goal_alignment": null,
+    "clarity": null,
+    "notes": ""
+  },
+  {
+    "case_id": "case_019",
+    "decision": "suggest",
+    "final_message": "Navigating three deadlines today on short sleep is a huge load to carry, and it is completely valid that your stress feels at a 5/5 tonight. Please know you don't have to carry this alone\u2014Dick's House Counseling ((603) 646-9442) offers free, confidential support and after-hours care, and the 988 Lifeline is available 24/7 by call or text at 988. For tonight, give yourself permission to pause, get a glass of water, and rest.",
+    "message_fingerprint": "e29fb377a4b7da2d8a82806ab10c58a80918292a76df034d23a6decb6fef0d3c",
+    "context_awareness": null,
+    "goal_alignment": null,
+    "clarity": null,
+    "notes": ""
+  }
+]

@@ -1,0 +1,9 @@
+{
+  "status": "interrupted; not a valid final experiment",
+  "reason": "Course schedule lookup raised KeyError for missing periods; code fixed in 7a95d95. Provider also reports Free Tier 5 RPM. Retry status parsing fixed in 30a608d.",
+  "completed_case_records": 13,
+  "successful_case_records": 3,
+  "successful_response_token_cost_usd": 0.11141175,
+  "uncertain_failure_cost_upper_bound_usd": 9.805824,
+  "legacy_runs_unchanged": true
+}

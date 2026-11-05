@@ -1,0 +1,41 @@
+{
+  "status": "complete; automated judging and human ratings pending",
+  "total_cases": 20,
+  "ok_cases": 20,
+  "failed_cases": 0,
+  "model": "gemini:gemini-3.6-flash",
+  "successful_api_requests": 130,
+  "request_status_counts": {
+    "ok": 130,
+    "uncertain": 15
+  },
+  "credential_status_counts": {
+    "GEMINI_API_KEY": {
+      "ok": 130,
+      "uncertain": 15
+    }
+  },
+  "successful_response_token_cost_usd": 0.410175,
+  "uncertain_failure_cost_upper_bound_usd": 0.819594,
+  "cost_note": "Token estimates include the v3 preflight. Uncertain server failures are reserved at a conservative upper bound; these are not confirmed billed charges. Earlier attempts are excluded.",
+  "prompt_tokens": 316710,
+  "billable_output_tokens": 46038,
+  "legacy_files_verified_unchanged": 127,
+  "validation": {
+    "unique_complete_cohort": true,
+    "decision_message_consistency": true,
+    "fixed_model": true,
+    "planning_and_reflection_budgets": true,
+    "memory_strictly_earlier_than_decision": true,
+    "offline_regression_tests_passed": 30,
+    "data_leakage_checks_passed": 5
+  },
+  "human_eval": {
+    "csv_path": "runs_corrected\\2026-11-04_v3\\full\\human_eval\\blind_rating_sheet.csv",
+    "html_path": "runs_corrected\\2026-11-04_v3\\full\\human_eval\\blind_rating_sheet.html",
+    "json_path": "runs_corrected\\2026-11-04_v3\\full\\human_eval\\human_ratings.json",
+    "num_items": "10"
+  },
+  "judge_run": false,
+  "ablations_run": false
+}

@@ -1,0 +1,396 @@
+{
+  "simulated": true,
+  "note": "All scripted user replies and preference updates are simulated for controlled multi-step evaluation of memory and personalization.",
+  "by_case_id": {
+    "case_013": {
+      "simulated": true,
+      "accepted": false,
+      "feedback_text": "Please don't suggest running, jogging, or going to the gym\u2014I hate working out when I have CS deadlines. I prefer quiet indoor stretching, deep breathing, or making a cup of tea.",
+      "preference_updates": {
+        "dislikes_add": [
+          "running",
+          "jogging",
+          "gym",
+          "workouts"
+        ],
+        "preferred_activities_add": [
+          "quiet indoor stretching",
+          "slow breathing",
+          "warm tea break"
+        ]
+      },
+      "forbidden_terms": [
+        "run",
+        "running",
+        "jog",
+        "jogging",
+        "gym",
+        "workout"
+      ],
+      "required_themes": [
+        "stretch",
+        "breath",
+        "tea",
+        "quiet",
+        "break",
+        "pause",
+        "water"
+      ]
+    },
+    "case_014": {
+      "simulated": true,
+      "accepted": true,
+      "feedback_text": "That quiet indoor break idea was much better. Also note that I study late at Baker-Berry Library, so keep suggestions library-compatible and super brief (under 35 words).",
+      "preference_updates": {
+        "study_location": "Baker-Berry Library",
+        "tone_constraint": "Keep messages under 35 words and quiet/library-compatible"
+      },
+      "forbidden_terms": [
+        "run",
+        "running",
+        "jog",
+        "jogging",
+        "gym",
+        "workout"
+      ],
+      "required_themes": [
+        "stretch",
+        "breath",
+        "tea",
+        "quiet",
+        "break",
+        "library",
+        "pause",
+        "water"
+      ]
+    },
+    "case_015": {
+      "simulated": true,
+      "accepted": true,
+      "feedback_text": "Thanks\u2014concise, quiet, and fits my Baker-Berry Library study session without any gym or running suggestions.",
+      "max_words": 40,
+      "forbidden_terms": [
+        "run",
+        "running",
+        "jog",
+        "jogging",
+        "gym",
+        "workout"
+      ],
+      "required_themes": [
+        "stretch",
+        "breath",
+        "tea",
+        "quiet",
+        "break",
+        "library",
+        "pause",
+        "water"
+      ]
+    },
+    "case_016": {
+      "simulated": true,
+      "accepted": false,
+      "feedback_text": "Please don't suggest group hangouts, parties, or crowded social events when I'm swamped with deadlines\u2014socializing drains me on low sleep. I prefer solo unwinding with music or an early wind-down.",
+      "preference_updates": {
+        "dislikes_add": [
+          "group hangouts",
+          "parties",
+          "crowded social events"
+        ],
+        "preferred_activities_add": [
+          "solo music wind-down",
+          "quiet rest",
+          "early sleep routine"
+        ]
+      },
+      "forbidden_terms": [
+        "party",
+        "parties",
+        "group hangout",
+        "clubs",
+        "crowd"
+      ],
+      "required_themes": [
+        "music",
+        "sleep",
+        "rest",
+        "solo",
+        "quiet",
+        "wind",
+        "break",
+        "breath"
+      ]
+    },
+    "case_017": {
+      "simulated": true,
+      "accepted": true,
+      "feedback_text": "Solo music wind-down works well for me. Also please never suggest waking up early or morning workouts\u2014I'm a night owl and prefer chunking my evening task into one small block before sleeping.",
+      "preference_updates": {
+        "dislikes_add": [
+          "waking up early",
+          "morning workouts",
+          "morning runs"
+        ],
+        "preferred_activities_add": [
+          "chunking evening homework into one small focused block before music and sleep"
+        ]
+      },
+      "forbidden_terms": [
+        "party",
+        "parties",
+        "group hangout",
+        "wake up early",
+        "morning workout",
+        "morning run"
+      ],
+      "required_themes": [
+        "music",
+        "sleep",
+        "rest",
+        "solo",
+        "quiet",
+        "wind",
+        "break",
+        "chunk",
+        "step",
+        "block"
+      ]
+    },
+    "case_018": {
+      "simulated": true,
+      "accepted": true,
+      "feedback_text": "Spot on\u2014chunked tonight's task and paired it with a solo music/sleep wind-down, with no group social push or early-morning workout advice.",
+      "forbidden_terms": [
+        "party",
+        "parties",
+        "group hangout",
+        "wake up early",
+        "morning workout",
+        "morning run"
+      ],
+      "required_themes": [
+        "music",
+        "sleep",
+        "rest",
+        "solo",
+        "quiet",
+        "wind",
+        "break",
+        "chunk",
+        "step",
+        "block"
+      ]
+    }
+  },
+  "episodes": {
+    "ep_pref_u16": [
+      {
+        "case_id": "case_013",
+        "participant_id": "u16",
+        "step": 1,
+        "decision_time": "2013-04-15T20:00:00-04:00",
+        "simulated": true,
+        "accepted": false,
+        "feedback_text": "Please don't suggest running, jogging, or going to the gym\u2014I hate working out when I have CS deadlines. I prefer quiet indoor stretching, deep breathing, or making a cup of tea.",
+        "preference_updates": {
+          "dislikes_add": [
+            "running",
+            "jogging",
+            "gym",
+            "workouts"
+          ],
+          "preferred_activities_add": [
+            "quiet indoor stretching",
+            "slow breathing",
+            "warm tea break"
+          ]
+        },
+        "forbidden_terms": [
+          "run",
+          "running",
+          "jog",
+          "jogging",
+          "gym",
+          "workout"
+        ],
+        "required_themes": [
+          "stretch",
+          "breath",
+          "tea",
+          "quiet",
+          "break",
+          "pause",
+          "water"
+        ]
+      },
+      {
+        "case_id": "case_014",
+        "participant_id": "u16",
+        "step": 2,
+        "decision_time": "2013-04-18T20:00:00-04:00",
+        "simulated": true,
+        "accepted": true,
+        "feedback_text": "That quiet indoor break idea was much better. Also note that I study late at Baker-Berry Library, so keep suggestions library-compatible and super brief (under 35 words).",
+        "preference_updates": {
+          "study_location": "Baker-Berry Library",
+          "tone_constraint": "Keep messages under 35 words and quiet/library-compatible"
+        },
+        "forbidden_terms": [
+          "run",
+          "running",
+          "jog",
+          "jogging",
+          "gym",
+          "workout"
+        ],
+        "required_themes": [
+          "stretch",
+          "breath",
+          "tea",
+          "quiet",
+          "break",
+          "library",
+          "pause",
+          "water"
+        ]
+      },
+      {
+        "case_id": "case_015",
+        "participant_id": "u16",
+        "step": 3,
+        "decision_time": "2013-04-22T20:00:00-04:00",
+        "simulated": true,
+        "accepted": true,
+        "feedback_text": "Thanks\u2014concise, quiet, and fits my Baker-Berry Library study session without any gym or running suggestions.",
+        "max_words": 40,
+        "forbidden_terms": [
+          "run",
+          "running",
+          "jog",
+          "jogging",
+          "gym",
+          "workout"
+        ],
+        "required_themes": [
+          "stretch",
+          "breath",
+          "tea",
+          "quiet",
+          "break",
+          "library",
+          "pause",
+          "water"
+        ]
+      }
+    ],
+    "ep_pref_u59": [
+      {
+        "case_id": "case_016",
+        "participant_id": "u59",
+        "step": 1,
+        "decision_time": "2013-04-12T20:00:00-04:00",
+        "simulated": true,
+        "accepted": false,
+        "feedback_text": "Please don't suggest group hangouts, parties, or crowded social events when I'm swamped with deadlines\u2014socializing drains me on low sleep. I prefer solo unwinding with music or an early wind-down.",
+        "preference_updates": {
+          "dislikes_add": [
+            "group hangouts",
+            "parties",
+            "crowded social events"
+          ],
+          "preferred_activities_add": [
+            "solo music wind-down",
+            "quiet rest",
+            "early sleep routine"
+          ]
+        },
+        "forbidden_terms": [
+          "party",
+          "parties",
+          "group hangout",
+          "clubs",
+          "crowd"
+        ],
+        "required_themes": [
+          "music",
+          "sleep",
+          "rest",
+          "solo",
+          "quiet",
+          "wind",
+          "break",
+          "breath"
+        ]
+      },
+      {
+        "case_id": "case_017",
+        "participant_id": "u59",
+        "step": 2,
+        "decision_time": "2013-04-15T20:00:00-04:00",
+        "simulated": true,
+        "accepted": true,
+        "feedback_text": "Solo music wind-down works well for me. Also please never suggest waking up early or morning workouts\u2014I'm a night owl and prefer chunking my evening task into one small block before sleeping.",
+        "preference_updates": {
+          "dislikes_add": [
+            "waking up early",
+            "morning workouts",
+            "morning runs"
+          ],
+          "preferred_activities_add": [
+            "chunking evening homework into one small focused block before music and sleep"
+          ]
+        },
+        "forbidden_terms": [
+          "party",
+          "parties",
+          "group hangout",
+          "wake up early",
+          "morning workout",
+          "morning run"
+        ],
+        "required_themes": [
+          "music",
+          "sleep",
+          "rest",
+          "solo",
+          "quiet",
+          "wind",
+          "break",
+          "chunk",
+          "step",
+          "block"
+        ]
+      },
+      {
+        "case_id": "case_018",
+        "participant_id": "u59",
+        "step": 3,
+        "decision_time": "2013-04-18T20:00:00-04:00",
+        "simulated": true,
+        "accepted": true,
+        "feedback_text": "Spot on\u2014chunked tonight's task and paired it with a solo music/sleep wind-down, with no group social push or early-morning workout advice.",
+        "forbidden_terms": [
+          "party",
+          "parties",
+          "group hangout",
+          "wake up early",
+          "morning workout",
+          "morning run"
+        ],
+        "required_themes": [
+          "music",
+          "sleep",
+          "rest",
+          "solo",
+          "quiet",
+          "wind",
+          "break",
+          "chunk",
+          "step",
+          "block"
+        ]
+      }
+    ]
+  }
+}
