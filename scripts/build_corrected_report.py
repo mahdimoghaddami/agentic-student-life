@@ -85,6 +85,8 @@ The full system has five role-prompted agents, all using Model A. The \emph{Plan
 \paragraph{Reflection.} The Critic can approve or request revision. Budgets specify maxima, so an approved message may use only one cycle even when two or three are allowed. Final decision, skill, and message are synchronized after reflection.
 \paragraph{Memory and interaction.} Per-student JSON files store episodic history and learned preferences. Reads include only interactions strictly earlier than the decision. Each participant executes chronologically across episode IDs; different participants can run concurrently. Resume reconstructs a compatible completed prefix. Atomic memory updates prevent competing writes. The single-agent baseline receives the same input definitions, profiles/history machinery, tools, and skills, combining the main reasoning roles; its memory extraction still follows the shared persistence pipeline.
 
+\paragraph{Worked example.} For \texttt{case\_009}, the available history contains natural sensing gaps. The tools expose missing recent sleep/activity evidence rather than filling it with invented values. The coach selects \texttt{ask} and acknowledges that the data have not come through before asking about current energy and stress. The writer uses the clarification skill, the critic reviews the draft, and the output preserves the evidence and execution trace. A missing observation therefore changes the response policy as well as the wording.
+
 \section{Corrected Experimental Protocol}
 Model A is \texttt{gemini-3.6-flash}; Model B is \texttt{gemini-3.5-flash-lite}. Generation uses temperature 0.3 (0.1 for Critic and Memory Manager), low thinking, and an 8,192-token output cap. Four worker threads process independent participant histories, with shared one-second request spacing per credential. Retries retain the configured model. Two Gemini credentials are supported, but only the primary key was needed for the completed full run.
 
@@ -149,7 +151,7 @@ Preference adherence checks prior feedback for forbidden words, required themes,
 \caption{Per-case efficiency from execution traces. Latency includes tools, memory, request pacing and retries, excludes judging. Calls/tokens count completed model steps; provider-ledger totals additionally capture successful responses inside attempts that later failed. Actual planning and reflection rounds show early stopping.}
 \centering\small
 \begin{tabular}{lrrrrr}\toprule
-Configuration & Latency mean $\pm$ SD (s) & Calls & Tokens & Planner rounds & Critic cycles/message\\\midrule
+Configuration & Latency $\mu\pm\sigma$ (s) & Calls & Tokens & Plan rounds & Critic cycles/msg\\\midrule
 @EFFICIENCY_ROWS@
 \bottomrule\end{tabular}
 \end{table*}
