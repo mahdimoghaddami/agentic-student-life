@@ -7,14 +7,16 @@
 #let full = rows.at(0)
 
 #show: simple-theme.with(
-  aspect-ratio: "16-9", primary: ink, header: none, header-right: none,
+  aspect-ratio: "16-9",
+  primary: ink,
+  header: none,
+  header-right: none,
   footer: none,
   footer-right: context [#text(size: page-number-size, fill: page-number-fill)[
     #counter(page).display() / #counter(page).final().first()
   ]],
   subslide-preamble: none,
-  config-page(width: 960pt, height: 540pt,
-    margin: (bottom: slide-margin, rest: slide-margin), fill: cream),
+  config-page(width: 960pt, height: 540pt, margin: (bottom: slide-margin, rest: slide-margin), fill: cream),
 )
 #show: apply-theme.with()
 #set document(title: "StudentLife Stress Coach", author: ("Mahdi Moghaddami", "Brett Piggott"))
@@ -24,15 +26,28 @@
 
 #let source(body) = text(size: 11pt, fill: ink2, body)
 #let label(body, color: olive) = text(font: heading-font, size: 23pt, weight: "bold", fill: color, body)
-#let node(x, y, w, h, body, agent: false, dark: false) = place(dx: x, dy: y,
-  rect(width: w, height: h, radius: if agent { 8pt } else { 0pt },
-    fill: if dark { olive } else { cream }, stroke: 1.5pt + olive,
-    inset: 7pt, align(center + horizon,
-      { set par(leading: 0.35em); text(size: 16pt, fill: if dark { cream } else { ink }, body) })))
-#let hline(x, y, w, color: olive, dash: false) = place(dx: x, dy: y,
-  line(length: w, stroke: (paint: color, thickness: 1.6pt, dash: if dash { "dashed" } else { "solid" })))
-#let vline(x, y, h, color: olive, dash: false) = place(dx: x, dy: y,
-  line(angle: 90deg, length: h, stroke: (paint: color, thickness: 1.6pt, dash: if dash { "dashed" } else { "solid" })))
+#let node(x, y, w, h, body, agent: false, dark: false) = place(dx: x, dy: y, rect(
+  width: w,
+  height: h,
+  radius: if agent { 8pt } else { 0pt },
+  fill: if dark { olive } else { cream },
+  stroke: 1.5pt + olive,
+  inset: 7pt,
+  align(center + horizon, {
+    set par(leading: 0.35em)
+    text(size: 16pt, fill: if dark { cream } else { ink }, body)
+  }),
+))
+#let hline(x, y, w, color: olive, dash: false) = place(dx: x, dy: y, line(length: w, stroke: (
+  paint: color,
+  thickness: 1.6pt,
+  dash: if dash { "dashed" } else { "solid" },
+)))
+#let vline(x, y, h, color: olive, dash: false) = place(dx: x, dy: y, line(angle: 90deg, length: h, stroke: (
+  paint: color,
+  thickness: 1.6pt,
+  dash: if dash { "dashed" } else { "solid" },
+)))
 #let right-arrow(x, y, w, color: olive) = {
   hline(x, y, w, color: color)
   place(dx: x + w - 7pt, dy: y - 4pt, polygon((0pt, 0pt), (7pt, 4pt), (0pt, 8pt), fill: color, stroke: none))
@@ -49,8 +64,11 @@
   vline(x, y, h, color: color)
   place(dx: x - 4pt, dy: y, polygon((0pt, 7pt), (4pt, 0pt), (8pt, 7pt), fill: color, stroke: none))
 }
-#let diagram-label(x, y, body, w: 100pt) = place(dx: x, dy: y,
-  block(width: w, fill: cream, inset: 1pt, text(size: 13pt, fill: ink2, body)))
+#let diagram-label(x, y, body, w: 100pt) = place(dx: x, dy: y, block(width: w, fill: cream, inset: 1pt, text(
+  size: 13pt,
+  fill: ink2,
+  body,
+)))
 
 // Main talk: slides 1-8, approximately five minutes.
 #slide(config: config-page(fill: olive, footer: none))[
@@ -65,30 +83,34 @@
   ]
 ]
 
-#split-slide(36%, [
-  #slide-title([The coaching\ task], color: cream)
-  #v(38pt)
-  #text(font: heading-font, size: 37pt)[Suggest\ Ask\ Stay silent]
-  #v(1fr)
-  #text(size: 20pt)[A useful message must fit the student's situation and preferences.]
-], [
-  #label[StudentLife observations]
-  #v(10pt)
-  #text(size: 21pt)[
-    - Inferred sleep, activity and social indicators
-    - EMA stress and mood
-    - Academic schedules and deadlines
-    - Pre-term survey background
-  ]
-  #v(20pt)
-  #label[Clearly labeled simulation]
-  #v(8pt)
-  #text(size: 21pt)[Goals, coaching preferences and scripted feedback fill information the dataset does not contain.]
-  #v(20pt)
-  #text(font: heading-font, size: 30pt, fill: olive)[20 cases across 8 participants]
-  #v(10pt)
-  #source[49 identifiers in the supplied activity archive. The published study describes 48 students over ten weeks.]
-])
+#split-slide(
+  36%,
+  [
+    #slide-title([The coaching\ task], color: cream)
+    #v(38pt)
+    #text(font: heading-font, size: 37pt)[Suggest\ Ask\ Stay silent]
+    #v(1fr)
+    #text(size: 20pt)[A useful message must fit the student's situation and preferences.]
+  ],
+  [
+    #label[StudentLife observations]
+    #v(10pt)
+    #text(size: 21pt)[
+      - Inferred sleep, activity and social indicators
+      - EMA stress and mood
+      - Academic schedules and deadlines
+      - Pre-term survey background
+    ]
+    #v(20pt)
+    #label[Clearly labeled simulation]
+    #v(8pt)
+    #text(size: 21pt)[Goals, coaching preferences and scripted feedback fill information the dataset does not contain.]
+    #v(20pt)
+    #text(font: heading-font, size: 30pt, fill: olive)[20 cases across 8 participants]
+    #v(10pt)
+    #source[49 identifiers in the supplied activity archive. The published study describes 48 students over ten weeks.]
+  ],
+)
 
 #slide[
   #slide-title[Five interacting roles]
@@ -115,16 +137,56 @@
     #up-arrow(80pt, 235pt, 82pt)
     #up-arrow(80pt, 95pt, 78pt)
     #node(0pt, 25pt, 160pt, 70pt, [Case snapshot\ student + time\ observations])
-    #node(220pt, 25pt, 150pt, 70pt, [#text(weight: "bold", fill: cream)[Planner]\ choose checks\ and action], agent: true, dark: true)
-    #node(430pt, 25pt, 155pt, 70pt, [#text(weight: "bold", fill: cream)[Context Analyst]\ collect findings], agent: true, dark: true)
+    #node(
+      220pt,
+      25pt,
+      150pt,
+      70pt,
+      [#text(weight: "bold", fill: cream)[Planner]\ choose checks\ and action],
+      agent: true,
+      dark: true,
+    )
+    #node(
+      430pt,
+      25pt,
+      155pt,
+      70pt,
+      [#text(weight: "bold", fill: cream)[Context Analyst]\ collect findings],
+      agent: true,
+      dark: true,
+    )
     #node(650pt, 25pt, 190pt, 70pt, [Read-only tools\ sensing, EMA,\ academic, resources])
     #node(0pt, 173pt, 160pt, 62pt, [Student memory\ profile, episodes,\ learned rules])
-    #node(430pt, 173pt, 155pt, 62pt, [#text(weight: "bold", fill: cream)[Message Writer]\ draft with a skill], agent: true, dark: true)
-    #node(650pt, 173pt, 190pt, 62pt, [#text(weight: "bold", fill: cream)[Critic]\ check and request\ a revision], agent: true, dark: true)
-    #node(220pt, 285pt, 150pt, 65pt, [#text(weight: "bold", fill: cream)[Memory Manager]\ extract rules\ from feedback], agent: true, dark: true)
+    #node(
+      430pt,
+      173pt,
+      155pt,
+      62pt,
+      [#text(weight: "bold", fill: cream)[Message Writer]\ draft with a skill],
+      agent: true,
+      dark: true,
+    )
+    #node(
+      650pt,
+      173pt,
+      190pt,
+      62pt,
+      [#text(weight: "bold", fill: cream)[Critic]\ check and request\ a revision],
+      agent: true,
+      dark: true,
+    )
+    #node(
+      220pt,
+      285pt,
+      150pt,
+      65pt,
+      [#text(weight: "bold", fill: cream)[Memory Manager]\ extract rules\ from feedback],
+      agent: true,
+      dark: true,
+    )
     #node(650pt, 285pt, 190pt, 65pt, [Final coaching action\ suggest / ask / none])
     #diagram-label(371pt, 28pt, [checks], w: 58pt)
-    #diagram-label(371pt, 84pt, [findings], w: 65pt)
+    #diagram-label(371pt, 84pt, [findings], w: 58pt)
     #diagram-label(587pt, 28pt, [query], w: 60pt)
     #diagram-label(587pt, 84pt, [result], w: 60pt)
     #diagram-label(309pt, 181pt, [strategy], w: 110pt)
@@ -145,7 +207,9 @@
   #v(20pt)
   #set text(size: 21pt)
   #set table(inset: (x: 10pt, y: 12pt), stroke: none)
-  #table(columns: (205pt, 1fr), align: left,
+  #table(
+    columns: (205pt, 1fr),
+    align: left,
     table.hline(stroke: 1.2pt + olive),
     [*Reflection*], [Critic reviews the draft and requests revisions. Maximum 2 cycles.],
     [*Tool use*], [Analyst chooses data queries. Writer can load a coaching skill.],
@@ -160,29 +224,37 @@
   #source[All patterns can be switched or varied in TOML. Full retains five recent episodes and prior rules. No training or fine-tuning.]
 ]
 
-#split-slide(36%, [
-  #slide-title([Memory across\ interactions], color: cream)
-  #v(28pt)
-  #text(size: 20pt)[#text(weight: "bold", fill: cream)[Student u16]]
-  #v(12pt)
-  #text(size: 19pt)[#text(weight: "bold", fill: cream)[April 15]\ Simulated reply prefers quiet breathing, stretching or tea.]
-  #v(18pt)
-  #text(size: 19pt)[#text(weight: "bold", fill: cream)[April 18]\ New simulated feedback requests library-compatible messages under 35 words.]
-  #v(18pt)
-  #text(size: 19pt)[#text(weight: "bold", fill: cream)[April 22]\ The next interaction can use both earlier updates.]
-], [
-  #label[April 22: a deadline and reported stress]
-  #v(18pt)
-  #text(size: 20pt)[The coach selects #text(font: mono-font, size: 17pt)[micro_study_break].]
-  #v(20pt)
-  #line(length: 100%, stroke: 1.2pt + orange)
-  #v(20pt)
-  #text(font: heading-font, size: 28pt)[“#evidence.example.message”]
-  #v(18pt)
-  #text(size: 18pt, fill: olive)[#evidence.example.words words. Quiet, desk-compatible support.]
-  #v(18pt)
-  #source[Actual full-system output, case_015. Profile preferences and replies are simulated. The baseline already favors quiet breaks, so this example does not isolate a causal memory benefit.]
-])
+#split-slide(
+  36%,
+  [
+    #slide-title([Memory across\ interactions], color: cream)
+    #v(28pt)
+    #text(size: 20pt)[#text(weight: "bold", fill: cream)[Student u16]]
+    #v(12pt)
+    #text(
+      size: 19pt,
+    )[#text(weight: "bold", fill: cream)[April 15]\ Simulated reply prefers quiet breathing, stretching or tea.]
+    #v(18pt)
+    #text(
+      size: 19pt,
+    )[#text(weight: "bold", fill: cream)[April 18]\ New simulated feedback requests library-compatible messages under 35 words.]
+    #v(18pt)
+    #text(size: 19pt)[#text(weight: "bold", fill: cream)[April 22]\ The next interaction can use both earlier updates.]
+  ],
+  [
+    #label[April 22: a deadline and reported stress]
+    #v(18pt)
+    #text(size: 20pt)[The coach selects #text(font: mono-font, size: 17pt)[micro_study_break].]
+    #v(20pt)
+    #line(length: 100%, stroke: 1.2pt + orange)
+    #v(20pt)
+    #text(font: heading-font, size: 28pt)[“#evidence.example.message”]
+    #v(18pt)
+    #text(size: 18pt, fill: olive)[#evidence.example.words words. Quiet, desk-compatible support.]
+    #v(18pt)
+    #source[Actual full-system output, case_015. Profile preferences and replies are simulated. The baseline already favors quiet breaks, so this example does not isolate a causal memory benefit.]
+  ],
+)
 
 #slide[
   #slide-title[Full-system results]
@@ -198,7 +270,9 @@
     #place(dx: 405pt, dy: 100pt, block(width: 491pt)[
       #set text(size: 19pt)
       #set table(inset: (x: 7pt, y: 7pt), stroke: none)
-      #table(columns: (1fr, auto, auto), align: (left, right, right),
+      #table(
+        columns: (1fr, auto, auto),
+        align: (left, right, right),
         table.hline(stroke: 1pt + olive),
         [Criterion], [Human], [Judge],
         table.hline(stroke: 0.5pt + olive),
@@ -211,7 +285,10 @@
     #place(dx: 405pt, dy: 247pt, text(font: heading-font, size: 27pt, fill: olive)[0.267 mean absolute difference])
     #place(dx: 405pt, dy: 290pt, text(size: 17pt)[30 criterion ratings. Largest gap: clarity.])
     #place(dy: 337pt, text(size: 20pt)[*Mean efficiency:* 35.59 seconds, 6.20 LLM calls, 17,529 tokens per case.])
-    #place(dy: 377pt, source[Rubric: context awareness, goal alignment, clarity (1-5). Silence has no quality score. Latency includes coaching/tools and excludes judging.])
+    #place(
+      dy: 377pt,
+      source[Rubric: context awareness, goal alignment, clarity (1-5). Silence has no quality score. Latency includes coaching/tools and excludes judging.],
+    )
   ]
 ]
 
@@ -222,30 +299,46 @@
   #v(18pt)
   #set text(size: 17pt)
   #set table(inset: (x: 7pt, y: 3pt), stroke: none)
-  #table(columns: (165pt, 1fr, 92pt, 1fr), align: left,
+  #table(
+    columns: (165pt, 1fr, 92pt, 1fr),
+    align: left,
     [*Configuration*], [*Quality (1-5)*], [*Allowed\ actions*], [*LLM calls/case (0-8)*],
     table.hline(stroke: 1pt + olive),
-    ..rows.map(r => {
-      let color = if r.id == "full" { orange } else { olive }
-      (
-        text(weight: if r.id == "full" { "bold" } else { "regular" }, r.label),
-        grid(columns: (190pt, auto), gutter: 8pt, align: horizon,
-          block(width: 190pt, height: 11pt, fill: olive.lighten(85%))[
-            #rect(width: r.quality / 5 * 190pt, height: 11pt, fill: color, stroke: none)
-          ], text(str(r.quality))),
-        [#r.matched / #r.cases],
-        grid(columns: (190pt, auto), gutter: 8pt, align: horizon,
-          block(width: 190pt, height: 11pt, fill: olive.lighten(85%))[
-            #rect(width: r.calls / 8 * 190pt, height: 11pt, fill: color, stroke: none)
-          ], text(str(r.calls))),
-      )
-    }).flatten(),
+    ..rows
+      .map(r => {
+        let color = if r.id == "full" { orange } else { olive }
+        (
+          text(weight: if r.id == "full" { "bold" } else { "regular" }, r.label),
+          grid(
+            columns: (190pt, auto),
+            gutter: 8pt,
+            align: horizon,
+            block(width: 190pt, height: 11pt, fill: olive.lighten(85%))[
+              #rect(width: r.quality / 5 * 190pt, height: 11pt, fill: color, stroke: none)
+            ],
+            text(str(r.quality)),
+          ),
+          [#r.matched / #r.cases],
+          grid(
+            columns: (190pt, auto),
+            gutter: 8pt,
+            align: horizon,
+            block(width: 190pt, height: 11pt, fill: olive.lighten(85%))[
+              #rect(width: r.calls / 8 * 190pt, height: 11pt, fill: color, stroke: none)
+            ],
+            text(str(r.calls)),
+          ),
+        )
+      })
+      .flatten(),
     table.hline(stroke: 1pt + olive),
   )
   #v(10pt)
   #text(font: heading-font, size: 25pt, fill: olive)[The single coach matches rounded quality with fewer calls.]
   #v(8pt)
-  #text(size: 18pt)[Larger budgets do not consistently improve results. Model B scores 4.89, with one fewer allowed decision.]
+  #text(
+    size: 18pt,
+  )[Larger budgets do not consistently improve results. Model B scores 4.89, with one fewer allowed decision.]
   #v(9pt)
   #source[Conditional quality: 15-16 messages. Histories and compute can differ. One generation per condition.]
 ]
@@ -258,13 +351,21 @@
   #v(30pt)
   #text(size: 25pt)[More roles and larger budgets did not consistently improve message quality.]
   #v(28pt)
-  #text(size: 23pt)[Small offline benchmark, simulated goals and feedback, and one human rater. We do not measure changes in student stress.]
+  #text(
+    size: 23pt,
+  )[Small offline benchmark, simulated goals and feedback, and one human rater. We do not measure changes in student stress.]
   #v(1fr)
   #line(length: 100%, stroke: 0.6pt + cream)
   #v(12pt)
-  #grid(columns: (1fr, 1fr), gutter: 30pt,
-    [#text(size: 16pt)[#text(weight: "bold", fill: cream)[Mahdi Moghaddami]\ Data, tools, orchestration and experiments. Human ratings.]],
-    [#text(size: 16pt)[#text(weight: "bold", fill: cream)[Brett Piggott]\ Writing/critique, memory, skills and automated evaluation. Figures and report.]],
+  #grid(
+    columns: (1fr, 1fr),
+    gutter: 30pt,
+    [#text(
+      size: 16pt,
+    )[#text(weight: "bold", fill: cream)[Mahdi Moghaddami]\ Data, tools, orchestration and experiments. Human ratings.]],
+    [#text(
+      size: 16pt,
+    )[#text(weight: "bold", fill: cream)[Brett Piggott]\ Writing/critique, memory, skills and automated evaluation. Figures and report.]],
   )
 ]
 
@@ -274,19 +375,28 @@
   #v(18pt)
   #set text(size: 19pt)
   #set table(inset: (x: 10pt, y: 8pt), stroke: none)
-  #table(columns: (1.6fr, 0.8fr, 0.9fr, 0.8fr, 0.9fr, 0.9fr), align: left,
+  #table(
+    columns: (1.6fr, 0.8fr, 0.9fr, 0.8fr, 0.9fr, 0.9fr),
+    align: left,
     table.hline(stroke: 1pt + olive),
     [*Configuration*], [*Quality*], [*Agreement*], [*Calls*], [*Tokens (k)*], [*Latency (s)*],
     table.hline(stroke: 0.5pt + olive),
-    ..rows.map(r => (
-      text(weight: if r.id == "full" { "bold" } else { "regular" }, r.label),
-      str(r.quality), [#r.agreement%], str(r.calls),
-      str(calc.round(r.tokens / 1000, digits: 2)), str(r.latency),
-    )).flatten(),
+    ..rows
+      .map(r => (
+        text(weight: if r.id == "full" { "bold" } else { "regular" }, r.label),
+        str(r.quality),
+        [#r.agreement%],
+        str(r.calls),
+        str(calc.round(r.tokens / 1000, digits: 2)),
+        str(r.latency),
+      ))
+      .flatten(),
     table.hline(stroke: 1pt + olive),
   )
   #v(22pt)
-  #text(size: 19pt)[*Depth finding:* reflection maxima 1, 2 and 3 each execute one review per sent message on average. Actual Planner calls average 1, 2 and 2.05 at maxima 1, 2 and 3.]
+  #text(
+    size: 19pt,
+  )[*Depth finding:* reflection maxima 1, 2 and 3 each execute one review per sent message on average. Actual Planner calls average 1, 2 and 2.05 at maxima 1, 2 and 3.]
   #v(14pt)
   #source[All values are means. Conditional quality cohorts contain 15-16 messages. Latency includes provider waits and recovery work. Each condition has its own evolving history.]
 ]
@@ -294,7 +404,9 @@
 #slide[
   #slide-title[Appendix: tools and coaching skills]
   #v(18pt)
-  #grid(columns: (1fr, 1fr), gutter: 36pt,
+  #grid(
+    columns: (1fr, 1fr),
+    gutter: 36pt,
     [
       #label[Eight data and resource tools]
       #v(15pt)
@@ -309,7 +421,10 @@
       - compare_to_baseline
       - search_campus_resources
       #v(15pt)
-      #text(font: body-font, size: 17pt)[Writer: #text(font: mono-font)[load_skill]. Single coach also has #text(font: mono-font)[recall_memory].]
+      #text(
+        font: body-font,
+        size: 17pt,
+      )[Writer: #text(font: mono-font)[load_skill]. Single coach also has #text(font: mono-font)[recall_memory].]
     ],
     [
       #label[Eight reusable skill procedures]
@@ -325,7 +440,10 @@
       - clarifying_question
       - positive_reinforcement
       #v(15pt)
-      #text(font: body-font, size: 17pt)[Skill files provide applicability guidance, constraints and writing instructions.]
+      #text(
+        font: body-font,
+        size: 17pt,
+      )[Skill files provide applicability guidance, constraints and writing instructions.]
     ],
   )
   #v(20pt)
@@ -335,7 +453,9 @@
 #slide[
   #slide-title[Appendix: models, input and output]
   #v(20pt)
-  #grid(columns: (1fr, 1fr), gutter: 40pt,
+  #grid(
+    columns: (1fr, 1fr),
+    gutter: 40pt,
     [
       #label[Exact model settings]
       #v(15pt)
@@ -360,20 +480,32 @@
     [
       #label[Participant at a decision time]
       #v(12pt)
-      #text(size: 18pt)[Input: observations available by that time, a simulated profile, and strictly earlier interactions.]
+      #text(
+        size: 18pt,
+      )[Input: observations available by that time, a simulated profile, and strictly earlier interactions.]
       #v(20pt)
       #label[One final JSONL record per case]
       #v(10pt)
       #set text(font: mono-font, size: 14pt)
-      #raw(json.encode((
-        case_id: evidence.example.record.case_id,
-        participant_id: evidence.example.record.participant_id,
-        decision: evidence.example.record.decision,
-        skill_used: evidence.example.record.skill_used,
-        trace: evidence.example.trace,
-      ), pretty: true), lang: "json", block: true)
+      #raw(
+        json.encode(
+          (
+            case_id: evidence.example.record.case_id,
+            participant_id: evidence.example.record.participant_id,
+            decision: evidence.example.record.decision,
+            skill_used: evidence.example.record.skill_used,
+            trace: evidence.example.trace,
+          ),
+          pretty: true,
+        ),
+        lang: "json",
+        block: true,
+      )
       #v(12pt)
-      #text(font: body-font, size: 17pt)[Projected actual record. Full output also stores evidence, frozen context, plans, critiques and memory updates.]
+      #text(
+        font: body-font,
+        size: 17pt,
+      )[Projected actual record. Full output also stores evidence, frozen context, plans, critiques and memory updates.]
     ],
   )
 ]

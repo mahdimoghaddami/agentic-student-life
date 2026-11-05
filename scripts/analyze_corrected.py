@@ -1,4 +1,5 @@
 """Validate and summarize the completed corrected suite, without API calls."""
+import argparse
 import csv
 import hashlib
 import json
@@ -49,13 +50,17 @@ def generation_efficiency_plot(all_metrics, figure_dir):
     plt.close(fig)
 
 
-def main():
+def main(root=ROOT):
+    ROOT = Path(root)
     cases = {c["case_id"]: c for c in load_lines(ROOT / "inputs/cases.jsonl")}
     cfg = JudgeConfig.from_toml("configs/2026-11-04/judge.toml")
     for relative, checksum in json.loads((ROOT / "baseline_preservation_sha256.json").read_text()).items():
         assert hashlib.sha256((ROOT / relative).read_bytes()).hexdigest() == checksum, relative
-    for relative, checksum in json.loads((ROOT / "legacy_runs_sha256.json").read_text()).items():
-        assert hashlib.sha256((Path("runs") / relative).read_bytes()).hexdigest() == checksum, relative
+    # Earlier experiments are optional archives, not submission dependencies.
+    legacy_checksums = ROOT / "legacy_runs_sha256.json"
+    if legacy_checksums.exists():
+        for relative, checksum in json.loads(legacy_checksums.read_text()).items():
+            assert hashlib.sha256((Path("runs") / relative).read_bytes()).hexdigest() == checksum, relative
     all_metrics, records, scores = {}, {}, {}
     for name in NAMES:
         output_rows = load_lines(ROOT / name / "outputs.jsonl")
@@ -202,4 +207,6 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--root", default=str(ROOT), help="Completed suite to validate and summarize")
+    main(parser.parse_args().root)

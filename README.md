@@ -7,6 +7,13 @@ The coach uses StudentLife observations, a simulated student profile and earlier
 
 [Report](output/pdf/studentlife_coach_paper/studentlife_coach.pdf) | [Saved evaluation results](runs_corrected/2026-11-04_v3/summary_metrics.json)
 
+To recompute the submitted metrics from saved outputs without API calls or raw data:
+
+```text
+uv run python -B scripts/analyze_corrected.py
+```
+
+
 ## Code structure
 
 - `src/agentic_student_life/`: CLI, orchestration, data processing, agents, tools, memory, skills and evaluation.
