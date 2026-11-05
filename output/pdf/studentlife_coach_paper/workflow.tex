@@ -41,7 +41,7 @@
     % Context and planning: separate incoming checks from the evidence return.
     \draw[edge] (input.south) -- (2,-1.05) -| ([xshift=-25pt]context.north);
     \draw[edge] (features.south) -- (context.north);
-    \draw[context] (memory.east) -- (3.6,-2.7) -- (3.6,-1.9) -- node[lab,above]{prior information only} (context.west);
+    \draw[context] (memory.east) -- (3.6,-2.7) -- (3.6,-1.9) -- node[lab,above,pos=.35]{prior information only} (context.west);
     \draw[edge] (context.south) -- (8,-2.85) -| (planner.north);
     \draw[context] (context.east) -| node[lab,pos=.5,above]{bounded view} (tools.north);
     \draw[edge] (resources.south) -- (16,-1.3) -- (18.2,-1.3) |- (tools.east);
