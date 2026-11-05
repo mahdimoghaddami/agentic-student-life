@@ -91,7 +91,7 @@ Table~\ref{tab:tools} lists all eight data/resource tools. Recent windows defaul
 \caption{Data/resource tools available to the Context Analyst and consolidated coach. Missing or masked inputs return explicit status/reason fields rather than invented observations.}
 \label{tab:tools}\centering\small\setlength{\tabcolsep}{4pt}\renewcommand{\arraystretch}{.96}
 \begin{tabular}{p{5.0cm}p{3.1cm}p{7.5cm}}\toprule
-Callable & Arguments & Returned information\\\midrule
+Callable & Arguments & Returned Information\\\midrule
 \tool{get_time_context} & None & Date, weekday, local time, time of day, term week/phase, current scheduled class when available.\\
 \tool{get_sleep_summary} & \code{days=3} & Inferred and self-reported sleep, observation counts, available last-night estimate, bed/wake times, difference from prior baseline.\\
 \tool{get_activity_summary} & \code{days=3} & Active, walk, and run minutes; days with coverage; baseline comparison; self-reported exercise.\\
@@ -109,7 +109,7 @@ Table~\ref{tab:skills} gives all eight Markdown skills. Each contains an applica
 \caption{The eight reusable coaching skills. Applicability statements are prompt-level guidance, not a deterministic guarantee that every output satisfies a constraint.}
 \label{tab:skills}\centering\small\setlength{\tabcolsep}{4pt}
 \begin{tabular}{p{4.6cm}p{5.4cm}p{5.6cm}}\toprule
-Skill identifier & Intended use and procedure & Principal constraints\\\midrule
+Skill Identifier & Intended Use and Procedure & Principal Constraints\\\midrule
 \tool{micro_study_break} & Elevated load/stress: acknowledge context and offer a short screen-free, breathing, stretching, or refreshment break. & Respect class/sleep context, quiet settings, preferences, and stricter length limits; avoid a long checklist.\\
 \tool{sleep_hygiene_nudge} & Short or irregular sleep: connect evidence to upcoming demands and suggest one manageable wind-down cue. & Supportive, non-diagnostic language; no rigid universal sleep prescription; usually under 65 words.\\
 \tool{gentle_movement} & Activity below baseline or suitable stress context: offer a short low-intensity walk or indoor stretch. & Respect rejected exercise types and setting; prefer indoor options late in the evening.\\
@@ -145,7 +145,7 @@ Two missing-data cases apply explicit synthetic modality masks. The two unmasked
 \caption{LLMs and generation settings. There is no training or fine-tuning. Critic and Memory Manager temperatures are 0.1; other coaching calls use 0.3.}
 \label{tab:models}\centering\small\setlength{\tabcolsep}{4pt}
 \begin{tabular}{p{2.3cm}p{6.4cm}p{3.2cm}p{3.7cm}}\toprule
-Use & Provider and exact model identifier & Reasoning setting & Output and role settings\\\midrule
+Use & Provider and Exact Model Identifier & Reasoning Setting & Output and Role Settings\\\midrule
 Model A & Google: \code{gemini-3.6-flash} & \code{thinking_level}\newline\code{low} & 8,192-token cap; all full-system and structural-ablation coaching roles\\
 Model B & Google: \code{gemini-3.5-flash-lite} & \code{thinking_level}\newline\code{low} & Same temperature/cap and full architecture as Model A\\
 Independent judge & OpenAI: \code{gpt-5.4-mini-2026-03-17} & \code{reasoning_effort}\newline\code{none} & Temperature 0; 2,048 completion-token cap; structured integer ratings\\\bottomrule
@@ -197,7 +197,7 @@ Table~\ref{tab:human} compares the same 10 messages. Human means are 4.70, 4.80,
 
 The largest disagreement is \code{case_002}: clarity is 5 from the human and 3 from the judge, which describes the bedtime suggestion as wordy and too certain. Context and goals also differ by one point. The human supplied no explanatory note, so their reasoning is unknown. Such cases show that warmth and readability do not settle judgments about brevity or preference fit. One author-rater, high scores, and ceiling effects limit claims of calibrated human agreement.
 
-\section{Ablation study}
+\section{Ablation Study}
 \subsection{Conditions and Controls}
 The full condition is compared with a consolidated online coach, no reflection, no planning, reflection maxima one and three, planning maxima one and three, and Model B. Full supplies the maximum-two reference for both depth studies: nine conditions cover all six required comparison types. Table~\ref{tab:quality} reports quality, agreement, completion, and sending appropriateness; Table~\ref{tab:efficiency} reports efficiency.
 
@@ -210,7 +210,7 @@ The full condition is compared with a consolidated online coach, no reflection, 
 The consolidated coach receives the same exogenous observations, baseline profiles, scenario scripts, tools, skills, and retrieval policy, combining analysis, action/skill selection, and writing in one online role. Shared post-feedback preference extraction remains auxiliary, so ``single coach'' does not mean that all LLM-assisted maintenance disappears. Each condition has isolated memory: earlier messages and extracted rules can diverge, making this a longitudinal workflow comparison rather than an identical-history single-prompt causal test. Tool-turn allocations also differ. No separate tool-, skill-, or memory-removal experiments are claimed.
 
 \subsection{Architecture, Planning, and Reflection Findings}
-\paragraph{Role decomposition.} The consolidated coach matches full's rounded quality mean (4.81) and allowed-label agreement (100\%). It uses fewer calls (3.65 versus 6.20) and lower observed latency (18.78 versus 35.59 seconds), but more trace tokens (18,681 versus 17,529). Fewer role calls therefore need not mean fewer tokens, and these cases establish no general quality advantage for five-role decomposition.
+\paragraph{Role Decomposition.} The consolidated coach matches full's rounded quality mean (4.81) and allowed-label agreement (100\%). It uses fewer calls (3.65 versus 6.20) and lower observed latency (18.78 versus 35.59 seconds), but more trace tokens (18,681 versus 17,529). Fewer role calls therefore need not mean fewer tokens, and these cases establish no general quality advantage for five-role decomposition.
 
 \paragraph{Planning.} Removing planning preserves 100\% agreement but lowers quality to 4.71. Maximum-one and maximum-three planning each reach 95\% agreement, with quality 4.78 and 4.87. Actual Planner calls average 1, 2, and 2.05 for maxima 1, 2, and 3; most cases do not consume a third round. Depth one also uses Analyst-first ordering, so its comparison changes scheduling as well as the call limit. The largest budget is not consistently best for action agreement.
 
@@ -224,7 +224,7 @@ The consolidated coach receives the same exogenous observations, baseline profil
 
 Figure~\ref{fig:depth-tradeoffs} makes the budget/resource tradeoffs visible. Comparing only common non-null case identifiers gives variant-minus-full quality differences of 0.000 for the consolidated coach, $-0.104$ without planning, $-0.022$ without reflection, $-0.188/+0.021$ for reflection maxima 1/3, and $-0.022/+0.067$ for planning maxima 1/3. These small, single-generation differences over 15--16 messages do not establish statistical superiority.
 
-\paragraph{Where action agreement differs.} The no-reflection, planning-one, planning-three, and Model B conditions all choose silence for \code{case_010}, whose manually allowed actions are question or suggestion. This single post-recording-absence scenario explains each 95\% result. No reflection has a second disagreement: it suggests an action for masked \code{case_012}, where the reference allows a question. These are specific label mismatches, not four distinct patterns of degraded writing.
+\paragraph{Where Action Agreement Differs.} The no-reflection, planning-one, planning-three, and Model B conditions all choose silence for \code{case_010}, whose manually allowed actions are question or suggestion. This single post-recording-absence scenario explains each 95\% result. No reflection has a second disagreement: it suggests an action for masked \code{case_012}, where the reference allows a question. These are specific label mismatches, not four distinct patterns of degraded writing.
 
 The independent judge still deems all sent no-reflection messages appropriate, including its suggestion in \code{case_012}; silence in \code{case_010} receives no quality rating. This disagreement between action-label scoring and message assessment is informative. The reference favors explicitly checking in under missing observations, whereas a model may favor restraint or a low-burden suggestion using remaining academic context. Thus allowed-label agreement records compliance with a declared evaluation policy, while the judge assesses the submitted message under its rubric. Neither should be silently substituted for the other.
 
@@ -247,12 +247,12 @@ The workflow makes plans, retrieved evidence, skill instructions, critiques, and
 
 There is one generation per condition, one human rater, and no repeated-generation confidence interval. Endogenous histories and unequal tool-turn allocations limit isolated causal comparisons. The evaluator packet may omit dynamically retrieved context; the lexical preference proxy has false positives. Inferred sensing is noisy, week-phase labels are heuristic, and static campus resources are not verified at every historical date. These experiments measure offline coaching behavior, not clinical effectiveness, resource availability, academic improvement, or changes in stress.
 
-\paragraph{Interpreting quality and restraint together.} A configuration can improve its conditional message-quality mean simply by withholding a difficult response. The observed message counts differ by one across several conditions; quality therefore cannot be interpreted without the action-agreement and non-null counts beside it. Paired comparisons reduce this mismatch by using shared sent-message identifiers, but they omit exactly the decisions on which a model remains silent. A deployment choice would need an explicit policy for the relative cost of an unnecessary interruption and a missed useful check-in. The present benchmark supplies allowed actions, not an empirically calibrated utility for that tradeoff.
+\paragraph{Interpreting Quality and Restraint Together.} A configuration can improve its conditional message-quality mean simply by withholding a difficult response. The observed message counts differ by one across several conditions; quality therefore cannot be interpreted without the action-agreement and non-null counts beside it. Paired comparisons reduce this mismatch by using shared sent-message identifiers, but they omit exactly the decisions on which a model remains silent. A deployment choice would need an explicit policy for the relative cost of an unnecessary interruption and a missed useful check-in. The present benchmark supplies allowed actions, not an empirically calibrated utility for that tradeoff.
 
-\paragraph{Evidence needed for stronger personalization claims.} Persistent records demonstrate that earlier suggestions and feedback are available to later calls, while the worked examples show outputs consistent with declared preferences. Availability and consistency alone do not establish that a newly learned rule caused a later change. A stronger test would hold the initial profile and observations fixed, introduce a previously unknown preference through feedback, and compare later behavior with and without that memory update across repeated generations. Similarly, assessing the usefulness of coaching would require consented student interaction and prospective outcomes rather than scripted replies. These are boundaries of the present evidence, not outcomes inferred from high rubric scores.
+\paragraph{Evidence Needed for Stronger Personalization Claims.} Persistent records demonstrate that earlier suggestions and feedback are available to later calls, while the worked examples show outputs consistent with declared preferences. Availability and consistency alone do not establish that a newly learned rule caused a later change. A stronger test would hold the initial profile and observations fixed, introduce a previously unknown preference through feedback, and compare later behavior with and without that memory update across repeated generations. Similarly, assessing the usefulness of coaching would require consented student interaction and prospective outcomes rather than scripted replies. These are boundaries of the present evidence, not outcomes inferred from high rubric scores.
 
 \FloatBarrier
-\section{Individual contributions}\label{sec:contributions}
+\section{Individual Contributions}\label{sec:contributions}
 The authors shared the workload approximately equally, with complementary primary responsibilities and joint review of the integrated system.
 
 \paragraph{Mahdi Moghaddami.} Led data preprocessing and feature construction, temporally bounded sensing/academic/resource tools, orchestration and planning logic, experimental configuration and execution automation, and the independent human assessment of 10 messages. Contributed to evaluation design, result interpretation, documentation, and presentation preparation.
@@ -315,7 +315,7 @@ These controls define behavior in multi-agent mode. The consolidated mode combin
 \caption{Pattern controls in multi-agent mode and the final settings. The single-coach mode consolidates online reasoning roles and bypasses the separate Planner and Critic loops.}
 \label{tab:controls}\centering\small\setlength{\tabcolsep}{4pt}
 \begin{tabular}{p{2.1cm}p{4.7cm}p{6.8cm}p{2.0cm}}\toprule
-Pattern & Configuration & Meaning of disabling/varying & Full setting\\\midrule
+Pattern & Configuration & Meaning of Disabling/Varying & Full Setting\\\midrule
 Multi-agent & \code{system.mode} & \code{single_agent} consolidates retrieval, action/skill selection, and writing into one online coach; shared feedback extraction remains auxiliary. & Five coaching roles\\
 Planning & \code{planning.enabled}, \code{max_rounds} & Off: autonomous Analyst then Writer selects action/skill. Maxima 1, 2, 3 bound actual Planner calls. & On; maximum 2\\
 Tool use & \code{tools.enabled}, \code{max_turns} & Off: multi-agent Analyst receives a fixed evidence summary instead of choosing data queries. Tool-selection autonomy is removed, not all data. & On; 5 tool-loop turns\\

@@ -117,7 +117,7 @@ def main():
                      f"${m['llm_calls']['mean']:.2f}\\pm{m['llm_calls']['std']:.2f}$",
                      f"${m['total_tokens']['mean']/1000:.2f}\\pm{m['total_tokens']['std']/1000:.2f}$",
                      f"{m['planning_rounds_mean']:.2f}", f"{m['reflection_rounds_mean']:.2f}"])
-    table("efficiency", "lrrrrr", r"Condition & Latency (s) & LLM calls & Tokens ($10^3$) & Planner calls & Critic cycles", rows)
+    table("efficiency", "lrrrrr", r"Condition & Latency (s) & LLM Calls & Tokens ($10^3$) & Planner Calls & Critic Cycles", rows)
     rows = []
     for criterion, label in [("context_awareness", "Context awareness"), ("goal_alignment", "Goal alignment"),
                              ("clarity", "Clarity"), ("mean", "Per-message average")]:
@@ -125,7 +125,7 @@ def main():
         rows.append([label, f"${b['human_mean']:.2f}\\pm{b['human_std']:.2f}$",
                      f"${b['llm_mean']:.2f}\\pm{b['llm_std']:.2f}$", f"{b['mad']:.3f}",
                      f"{b['signed_diff_llm_minus_human']:+.3f}"])
-    table("human", "lrrrr", r"Criterion & Human & LLM judge & MAD & LLM $-$ human", rows)
+    table("human", "lrrrr", r"Criterion & Human & LLM Judge & MAD & LLM $-$ Human", rows)
     paired = json.loads((DATA / "matched_comparisons.json").read_text())
     rows = [[LABELS[n], str(paired[n]["n_paired_messages"]), f"{paired[n]['full_quality_on_common']:.3f}",
              f"{paired[n]['variant_quality_on_common']:.3f}", f"{paired[n]['paired_quality_difference_variant_minus_full']:+.3f}"] for n in ORDER[1:]]
@@ -143,9 +143,9 @@ def main():
         rows.append([c["case_id"].replace("case_", ""), tex(c["participant_id"]),
                      c["decision_time"][:10], categories[c["category"]],
                      tex(", ".join(c.get("mask") or []) or "None"), tex(" / ".join(c["expected_decision"]))])
-    table("cases", "lllp{3.0cm}p{3.7cm}l", r"Case & Student & Date & Scenario & Synthetic mask & Allowed action(s)", rows)
+    table("cases", "lllp{3.0cm}p{3.7cm}l", r"Case & Student & Date & Scenario & Synthetic Mask & Allowed Action(s)", rows)
     rows = [[LABELS[n], str(metrics[n]["pref_adherence_n"]), f"{metrics[n]['pref_adherence_rate']:.0f}"] for n in ORDER]
-    table("preferences", "lrr", r"Condition & Checked steps & Lexical adherence (\%)", rows)
+    table("preferences", "lrr", r"Condition & Checked Steps & Lexical Adherence (\%)", rows)
     example = outputs["case_014"]
     obs = example["evaluation_context"]["observations"]
     input_projection = {
