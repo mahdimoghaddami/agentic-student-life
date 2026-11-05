@@ -1,0 +1,32 @@
+[system]
+config_id = "refl1"
+description = "Corrected controlled variant: refl1"
+mode = "multi_agent"
+model = "gemini:gemini-3.6-flash"
+temperature = 0.3
+max_workers = 4
+max_output_tokens = 8192
+min_request_interval_s = 1.0
+thinking_level = "low"
+budget_usd = 14.15277725
+input_usd_per_million = 0.75
+output_usd_per_million = 3.75
+
+[planning]
+enabled = true
+max_rounds = 2
+
+[reflection]
+enabled = true
+max_rounds = 1
+
+[memory]
+enabled = true
+history_k = 5
+
+[skills]
+enabled = true
+
+[tools]
+enabled = true
+max_turns = 5
