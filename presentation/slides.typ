@@ -293,54 +293,14 @@
 ]
 
 #slide[
-  #slide-title[Ablation tradeoffs]
+  #slide-title[Planning and reflection budgets]
   #v(8pt)
-  #text(size: 20pt)[Nine configurations use the same 20 case definitions. All produce 20 valid final outputs.]
-  #v(18pt)
-  #set text(size: 17pt)
-  #set table(inset: (x: 7pt, y: 3pt), stroke: none)
-  #table(
-    columns: (165pt, 1fr, 92pt, 1fr),
-    align: left,
-    [*Configuration*], [*Quality (1-5)*], [*Allowed\ actions*], [*LLM calls/case (0-8)*],
-    table.hline(stroke: 1pt + olive),
-    ..rows
-      .map(r => {
-        let color = if r.id == "full" { orange } else { olive }
-        (
-          text(weight: if r.id == "full" { "bold" } else { "regular" }, r.label),
-          grid(
-            columns: (190pt, auto),
-            gutter: 8pt,
-            align: horizon,
-            block(width: 190pt, height: 11pt, fill: olive.lighten(85%))[
-              #rect(width: r.quality / 5 * 190pt, height: 11pt, fill: color, stroke: none)
-            ],
-            text(str(r.quality)),
-          ),
-          [#r.matched / #r.cases],
-          grid(
-            columns: (190pt, auto),
-            gutter: 8pt,
-            align: horizon,
-            block(width: 190pt, height: 11pt, fill: olive.lighten(85%))[
-              #rect(width: r.calls / 8 * 190pt, height: 11pt, fill: color, stroke: none)
-            ],
-            text(str(r.calls)),
-          ),
-        )
-      })
-      .flatten(),
-    table.hline(stroke: 1pt + olive),
-  )
-  #v(10pt)
-  #text(font: heading-font, size: 25pt, fill: olive)[The single coach matches rounded quality with fewer calls.]
-  #v(8pt)
-  #text(
-    size: 18pt,
-  )[Larger budgets do not consistently improve results. Model B scores 4.89, with one fewer allowed decision.]
-  #v(9pt)
-  #source[Conditional quality: 15-16 messages. Histories and compute can differ. One generation per condition.]
+  #block(width: 896pt, height: 414pt)[
+    #place(top + center, image("assets/report-depth-tradeoffs.svg", width: 896pt, height: 308pt, fit: "contain"))
+    #place(dy: 316pt, text(size: 19pt)[Reflection maxima 1-3 each execute one review per message on average.])
+    #place(dy: 347pt, text(size: 17pt)[Single coach: 4.81 quality, 3.65 calls. Model B: 4.89 quality, 19/20 allowed actions.])
+    #place(dy: 380pt, source[Report, Figure 2. Tokens use the right axes. Planning agreement is percent / 20 (100% = 5). Quality cohorts contain 15-16 messages; one generation per condition.])
+  ]
 ]
 
 #slide(config: config-page(fill: orange, footer: none))[
@@ -457,25 +417,18 @@
     columns: (1fr, 1fr),
     gutter: 40pt,
     [
-      #label[Exact model settings]
-      #v(15pt)
-      #text(size: 18pt)[*Model A: full and structural ablations*]
-      #v(5pt)
-      #text(font: mono-font, size: 15pt)[gemini:gemini-3.6-flash]
-      #v(6pt)
-      #text(size: 17pt)[Temperature 0.3, Critic/Memory Manager 0.1. Thinking low. 8,192 output tokens.]
-      #v(20pt)
-      #text(size: 18pt)[*Model B: same full architecture*]
-      #v(5pt)
-      #text(font: mono-font, size: 15pt)[gemini:gemini-3.5-flash-lite]
-      #v(6pt)
-      #text(size: 17pt)[Same role temperatures and output cap.]
-      #v(20pt)
-      #text(size: 18pt)[*Independent judge*]
-      #v(5pt)
-      #text(font: mono-font, size: 15pt)[openai:gpt-5.4-mini-2026-03-17]
-      #v(6pt)
-      #text(size: 17pt)[Temperature 0, reasoning none, 2,048 completion tokens.]
+      #block(width: 100%, height: 392pt)[
+        #place(dy: 0pt, label[Exact model settings])
+        #place(dy: 45pt, text(size: 18pt)[*Model A: full and structural ablations*])
+        #place(dy: 73pt, text(font: mono-font, size: 15pt)[gemini:gemini-3.6-flash])
+        #place(dy: 100pt, text(size: 17pt)[Temperature 0.3, Critic/Memory Manager 0.1.\ Thinking low. 8,192 output tokens.])
+        #place(dy: 170pt, text(size: 18pt)[*Model B: same full architecture*])
+        #place(dy: 198pt, text(font: mono-font, size: 15pt)[gemini:gemini-3.5-flash-lite])
+        #place(dy: 225pt, text(size: 17pt)[Same role temperatures and output cap.])
+        #place(dy: 282pt, text(size: 18pt)[*Independent judge*])
+        #place(dy: 310pt, text(font: mono-font, size: 15pt)[openai:gpt-5.4-mini-2026-03-17])
+        #place(dy: 342pt, text(size: 17pt)[Temperature 0, reasoning none.\ 2,048 completion tokens.])
+      ]
     ],
     [
       #label[Participant at a decision time]
@@ -508,4 +461,25 @@
       )[Projected actual record. Full output also stores evidence, frozen context, plans, critiques and memory updates.]
     ],
   )
+]
+
+
+#slide[
+  #slide-title[Report workflow: context and planning]
+  #v(10pt)
+  #align(center)[#image("assets/report-workflow-planning.svg", width: 896pt, height: 315pt, fit: "contain")]
+  #v(15pt)
+  #text(size: 21pt)[The bounded view combines observations with the student's profile and earlier history.]
+  #v(12pt)
+  #source[Report, Figure 1, upper section. Original vector artwork, enlarged as an excerpt. Planning and tool queries use observations available at the decision time.]
+]
+
+#slide[
+  #slide-title[Report workflow: independent evaluation]
+  #v(10pt)
+  #align(center)[#image("assets/report-workflow-evaluation.svg", width: 896pt, height: 315pt, fit: "contain")]
+  #v(15pt)
+  #text(size: 21pt)[Judge scores non-null messages. All cases contribute execution and efficiency metrics.]
+  #v(12pt)
+  #source[Report, Figure 1, lower section. Original vector artwork, enlarged as an excerpt. Offline evaluation is excluded from coaching latency.]
 ]

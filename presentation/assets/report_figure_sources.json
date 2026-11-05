@@ -1,0 +1,33 @@
+{
+  "report-depth-tradeoffs.svg": {
+    "source": "output/pdf/studentlife_coach_paper/figures/depth_tradeoffs.pdf",
+    "page": 1,
+    "figure": "Figure 2",
+    "crop_pdf_points": null,
+    "sha256": "375300a409c00dc9eddf3f5b27e5ab1cca101c11d8f3b0b8cf55cd85e948465f"
+  },
+  "report-workflow-planning.svg": {
+    "source": "output/pdf/studentlife_coach_paper/studentlife_coach.pdf",
+    "page": 3,
+    "figure": "Figure 1, context and planning excerpt",
+    "crop_pdf_points": [
+      55,
+      70,
+      490,
+      165
+    ],
+    "sha256": "ce8af89a797f2835b384dc341f6a3a647c31868d54eb772fc9214b513e9aa7fd"
+  },
+  "report-workflow-evaluation.svg": {
+    "source": "output/pdf/studentlife_coach_paper/studentlife_coach.pdf",
+    "page": 3,
+    "figure": "Figure 1, evaluation excerpt",
+    "crop_pdf_points": [
+      155,
+      515,
+      390,
+      181
+    ],
+    "sha256": "ce8af89a797f2835b384dc341f6a3a647c31868d54eb772fc9214b513e9aa7fd"
+  }
+}

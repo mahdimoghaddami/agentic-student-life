@@ -1,6 +1,6 @@
 # StudentLife Stress Coach: speaker notes
 
-Slides 1-8 form the five-minute talk. Slides 9-11 are backup material for questions.
+Slides 1-8 form the five-minute talk. Slides 9-13 are backup material for questions.
 
 | Slide | Time | Elapsed |
 |---|---:|---:|
@@ -10,7 +10,7 @@ Slides 1-8 form the five-minute talk. Slides 9-11 are backup material for questi
 | 4. Five required design patterns | 25 s | 2:15 |
 | 5. Memory across interactions | 45 s | 3:00 |
 | 6. Full-system results | 50 s | 3:50 |
-| 7. Ablation tradeoffs | 45 s | 4:35 |
+| 7. Planning and reflection budgets | 45 s | 4:35 |
 | 8. Conclusions | 25 s | 5:00 |
 
 ## 1. Title
@@ -37,9 +37,11 @@ This is an actual saved example for participant u16. The simulated April 15 repl
 
 The full system completes all 20 cases and matches every manually allowed action. It sends 13 suggestions and three questions and stays silent four times. The independent judge gives the 16 messages an average quality of 4.81 out of five. A human independently scores 10 messages before seeing the judge scores. The table compares those same 10 messages. The mean absolute difference across 30 individual criterion ratings is 0.267; clarity has the largest mean gap. Mean latency is 35.59 seconds, with 6.20 model calls and 17,529 tokens per case. Judging is excluded from that latency.
 
-## 7. Ablation tradeoffs
+## 7. Planning and reflection budgets
 
-Nine conditions produce 180 valid final outputs. The single coach matches the full system's rounded quality and allowed-action agreement with fewer model calls. It uses more tokens, however: about 18.68 thousand versus 17.53 thousand. Model B obtains the highest mean quality, 4.89, but matches 19 of 20 allowed decisions. Increasing maximum planning or reflection budgets does not consistently improve results. These are descriptive comparisons from one generation per condition. Message cohorts, earlier generated histories and remote-service latency can differ. The consolidated coach also retains auxiliary feedback extraction.
+The report's Figure 2 compares planning and reflection maxima of one, two and three. Blue curves show message quality; red curves show tokens on the right axes. The planning panel also shows allowed-action agreement divided by 20, so five means 100 percent. Larger maximum budgets do not consistently improve results. All three reflection settings actually execute one review per sent message on average, so they do not demonstrate the effect of deeper executed review.
+
+Across all nine conditions, there are 180 valid final outputs. The single coach matches the full system's rounded quality with fewer model calls, though it uses more tokens. Model B scores 4.89 but matches 19 of 20 allowed actions. These are descriptive comparisons from one generation per condition; message cohorts and generated histories differ. The consolidated coach retains auxiliary feedback extraction.
 
 ## 8. Conclusions
 
@@ -50,6 +52,8 @@ The architecture makes the system's evidence, plans, critiques and remembered pr
 - **Slide 9:** Final completion is 100% for all conditions. Planning maximum three initially had one timeout; reported latency/calls/tokens include the preserved recovery accounting. Actual reflection depth averages one review per sent message at all three maxima. Different maximum settings therefore did not create deeper executed reviews here.
 - **Slide 10:** The Analyst has eight data/resource functions. Writer tool use consists of skill loading. The single coach also has memory recall. Campus resources are a static curated catalogue. Skill applicability rules guide generation; they are not deterministic output guarantees.
 - **Slide 11:** Model A and B share the full architecture and role temperatures. The judge uses a fixed OpenAI snapshot, temperature zero, reasoning disabled and a 2,048-token completion cap. The JSON projection is from case_015 and omits fields for readability. A complete record includes evidence, frozen context, plans, critiques and memory updates.
+- **Slide 12:** This enlarged excerpt of the report's Figure 1 shows how real observations, simulated profiles, prior memory and bounded tools reach the planning loop. It preserves the report's node shapes and arrows. The simplified diagram on slide 3 shows the complete coaching sequence.
+- **Slide 13:** This second excerpt shows the independent evaluation path. Saved JSONL outputs feed the automated judge and a separate human-rating process; comparison produces the reported metrics. Evaluation does not feed expected actions or judge scores back into the coach.
 - Daily features precede the decision date. A same-day last-night estimate becomes available after noon; EMA timestamps cannot exceed the decision time. Memory must be strictly earlier.
 - Two unmasked absence cases occur after passive recording ended; they are not demonstrated in-term sensor malfunctions. Two other cases use explicitly synthetic masks.
 - Expected actions are authored evaluation references. Agents and evaluators do not receive them. The shared evaluator packet may omit dynamically retrieved context seen by the coach.
@@ -57,6 +61,7 @@ The architecture makes the system's evidence, plans, critiques and remembered pr
 ## Sources
 
 - [Project requirements](../project_doc.pdf), especially the five-minute presentation guidance.
+- [Research paper](../output/pdf/studentlife_coach_paper/studentlife_coach.pdf), Figure 2 (page 9) on slide 7 and Figure 1 excerpts (page 3) on slides 12-13. [Figure provenance](assets/report_figure_sources.json) records source hashes and excerpt bounds; the assets preserve vector artwork.
 - [Comparison CSV](../runs_corrected/2026-11-04_v3/comparison.csv) and [detailed metrics](../runs_corrected/2026-11-04_v3/summary_metrics.json): slides 6, 7 and 9.
 - [Full outputs](../runs_corrected/2026-11-04_v3/full/outputs.jsonl), case_015: slides 5 and 11.
 - [Cases](../cases/cases.jsonl), [profiles](../cases/profiles.json) and [feedback scripts](../cases/feedback_scripts.json): slides 2 and 5.
