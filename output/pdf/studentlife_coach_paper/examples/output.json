@@ -9,20 +9,9 @@
       "source": "context.time",
       "detail": "Thursday 20:00 (evening) during term week 4 (midterms). No classes remaining today.",
       "simulated": false
-    },
-    {
-      "source": "education.deadlines",
-      "detail": "1 academic deadline today; 0 deadlines in the next 3 days. 2 classes attended today (COSC 065 and COSC 027).",
-      "simulated": false
     }
   ],
   "final_message": "With today's deadline and midterm week in full swing, you've been working hard through a stressful day. If you need a quick reset tonight, pause for 5 minutes to take a few slow, deep breaths or pour a warm cup of tea before diving back in.",
-  "planning": {
-    "rounds_used": 2
-  },
-  "reflection": {
-    "rounds_used": 1
-  },
   "trace": {
     "llm_calls": 7,
     "tool_calls": 5,

@@ -161,8 +161,7 @@ def main():
         "prior_feedback_summary": "Avoid running/gym; prefer quiet indoor breathing, stretching, or tea."
     }
     output_projection = {k: example[k] for k in ["case_id", "participant_id", "decision_time", "decision", "skill_used"]}
-    output_projection.update(evidence=example["evidence"][:2], final_message=example["final_message"],
-                             planning=example["planning"], reflection={"rounds_used": example["reflection"]["rounds_used"]},
+    output_projection.update(evidence=example["evidence"][:1], final_message=example["final_message"],
                              trace={k: example["trace"][k] for k in ["llm_calls", "tool_calls", "total_tokens", "latency_s"]})
     for name, value in [("input", input_projection), ("output", output_projection)]:
         (PAPER / "examples" / f"{name}.json").write_text(json.dumps(value, indent=2, ensure_ascii=True) + "\n")

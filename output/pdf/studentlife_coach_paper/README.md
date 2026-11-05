@@ -1,6 +1,6 @@
 # Personalized Student Stress Coaching with Language Agents
 
-The 18-page research paper covers the task, data processing, five-role architecture, tools, skills, memory, input/output contract, complete workflow, model settings, evaluation, required ablations, results, and limitations. Its appendices include structured examples, all output fields, pseudocode, the case manifest, the exact rubric, and requirement coverage.
+The paper has 10 main-text pages, one reference page, and three appendix pages (14 pages total). Its six main sections are Introduction, Background and Related Works, Methodology, Evaluation, Ablation study, and Individual contributions. It covers the task, data processing, five-role architecture, tools, skills, memory, input/output contract, workflow, model settings, evaluation, ablations, results, and limitations. The appendices retain a structured example and complete output schema, the case manifest, component controls, and the exact evaluation rubric. Implementation and reproduction instructions are documented in the repository README.
 
 - `studentlife_coach.pdf`: compiled paper.
 - `studentlife_coach.tex`: paper source.
