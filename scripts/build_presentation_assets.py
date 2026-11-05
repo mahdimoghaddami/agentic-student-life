@@ -25,11 +25,11 @@ def export_report_figures():
     with tempfile.TemporaryDirectory() as temporary:
         temporary = Path(temporary)
         specifications = [
-            ('report-depth-tradeoffs.svg', paper / 'figures/depth_tradeoffs.pdf', 1, None, 'Figure 2'),
+            ('report-depth-tradeoffs.svg', paper / 'figures/depth_tradeoffs.pdf', 1, None, 'Figure 3'),
             ('report-workflow-planning.svg', paper / 'studentlife_coach.pdf', 3,
-             (55, 70, 490, 165), 'Figure 1, context and planning excerpt'),
+             (60, 62.5, 480, 158), 'Figure 1, context and planning excerpt'),
             ('report-workflow-evaluation.svg', paper / 'studentlife_coach.pdf', 3,
-             (155, 515, 390, 181), 'Figure 1, evaluation excerpt'),
+             (70, 540.5, 465, 160), 'Figure 2, offline evaluation'),
         ]
         for name, source, page, crop, figure in specifications:
             raw = temporary / name

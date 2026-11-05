@@ -1,91 +1,83 @@
-\begin{tikzpicture}[x=1cm,y=1.02cm,
-  font=\fontsize{9}{10}\selectfont,
-  >={Latex[length=2.8mm,width=1.9mm]}, line width=.8pt,
-  agent/.style={rounded corners=4pt,draw=blue!65!black,fill=blue!8,
-      minimum height=.75cm,text width=2.8cm,align=center,inner sep=5pt},
-  proc/.style={rectangle,draw=black!65,fill=black!4,minimum height=.7cm,
-      text width=3.3cm,align=center,inner sep=4pt},
-  io/.style={trapezium,trapezium left angle=72,trapezium right angle=108,
-      draw=teal!65!black,fill=teal!5,minimum height=.75cm,text width=2.7cm,align=center,inner sep=4pt},
-  db/.style={cylinder,shape border rotate=90,aspect=.22,draw=green!45!black,
-      fill=green!7,minimum height=.9cm,text width=2.7cm,align=center,inner sep=5pt},
-  gate/.style={diamond,aspect=1.7,draw=orange!70!black,fill=orange!8,
-      text width=1.5cm,align=center,inner sep=1pt},
-  edge/.style={->,draw=black!95,line width=1.05pt},
-  context/.style={->,dashed,draw=teal!80!black,line width=1.0pt},
-  write/.style={->,dashed,draw=green!40!black,line width=1.05pt},
-  lab/.style={fill=white,inner sep=1pt,font=\fontsize{8}{9}\selectfont}]
+\begin{tikzpicture}[x=1cm,y=1cm,
+    font=\fontsize{9.5}{10.5}\selectfont,
+    >={Latex[length=2.3mm,width=1.6mm]},
+    agent/.style={rounded corners=4pt,draw=blue!65!black,fill=blue!8,
+        minimum height=.85cm,text width=2.9cm,align=center,inner sep=5pt},
+    proc/.style={rectangle,draw=black!65,fill=black!4,minimum height=.85cm,
+        text width=3.3cm,align=center,inner sep=4pt},
+    io/.style={trapezium,trapezium left angle=72,trapezium right angle=108,
+        draw=teal!65!black,fill=teal!5,minimum height=.85cm,text width=2.7cm,align=center,inner sep=4pt},
+    db/.style={cylinder,shape border rotate=90,aspect=.22,draw=green!45!black,
+        fill=green!7,minimum height=1cm,text width=2.7cm,align=center,inner sep=5pt},
+    gate/.style={diamond,aspect=1.9,draw=orange!70!black,fill=orange!8,
+        text width=1.7cm,align=center,inner sep=1pt},
+    edge/.style={->,draw=black!90,line width=.9pt,rounded corners=2pt},
+    context/.style={->,dashed,draw=teal!80!black,line width=.9pt,rounded corners=2pt},
+    write/.style={->,dashed,draw=green!40!black,line width=.9pt,rounded corners=2pt},
+    lab/.style={fill=white,inner sep=2pt,font=\fontsize{8.5}{9.5}\selectfont}]
 
-\node[io] (input) at (2,0) {Case specification\\student, time, masks};
-\node[db] (features) at (7,0) {Feature store\\sensing, EMA, schedule};
-\node[db] (resources) at (14.8,0) {Curated resource\\catalogue};
-\node[proc] (context) at (7,-1.65) {Construct time-bounded view\\and profile/history snapshot};
-\node[db,text width=2.3cm] (memory) at (1.4,-2.7) {Student memory\\profile, episodes, rules};
-\node[agent] (planner) at (4.4,-3.5) {Planner\\checks, action, skill};
-\node[agent] (analyst) at (9.6,-3.5) {Context Analyst\\structured findings};
-\node[proc,text width=2.8cm] (tools) at (14.8,-3.5) {Read-only tool service\\data queries\\resource search};
-\node[gate] (action) at (4.4,-5.5) {Send a\\message?};
-\node[agent] (writer) at (9.6,-5.5) {Message Writer\\draft or revise};
-\node[proc,text width=2.8cm] (skills) at (14.8,-5.5) {Skill library\\eight Markdown procedures};
-\node[gate] (message) at (9.6,-7.0) {Non-null\\draft?};
-\node[gate] (review) at (9.6,-8.8) {Review\\budget left?};
-\node[agent] (critic) at (14.8,-8.8) {Critic\\grounding\\preferences / clarity};
-\node[gate] (pass) at (14.8,-10.4) {Pass?};
-\node[proc] (final) at (6,-11.0) {Finalize action and message\\suggest / ask / none};
-\node[io,text width=2.2cm] (feedback) at (1.8,-12.6) {Scripted reply\\SIMULATED};
-\node[gate] (reply) at (6,-12.6) {Feedback\\available?};
-\node[agent,text width=3.0cm] (manager) at (11,-12.6) {Memory Manager\\extract rules from feedback};
-\node[proc] (persist) at (6,-14.2) {Persist episode and any rules\\after the coaching action};
-\node[io,text width=3.4cm] (output) at (6,-15.7) {JSONL record\\action, evidence, frozen context, trace};
-\node[gate] (nonnull) at (6,-17.3) {Non-null\\message?};
-\node[agent,text width=2.5cm,fill=violet!7,draw=violet!60!black] (judge) at (10.3,-17.3) {Independent LLM judge\\all non-null messages};
-\node[ellipse,draw=violet!60!black,fill=violet!7,text width=2.4cm,align=center,minimum height=.8cm] (human) at (14.8,-17.3) {Human rater\\10 blind ratings};
-\node[proc,text width=3.0cm] (ratings) at (12.3,-18.9) {Quality ratings and\\human--LLM differences};
-\node[proc] (metrics) at (6,-18.9) {Aggregate metrics\\decisions, quality,\\completion, efficiency};
-\node[io,text width=3.3cm] (results) at (6,-20.4) {Research outputs\\tables, figures, comparisons};
+    \node[io,text width=3.4cm] (input) at (2,0) {Case specification\\student, time, masks};
+    \node[db] (features) at (8,0) {Feature store\\sensing, EMA, schedule};
+    \node[db] (resources) at (16,0) {Curated resource\\catalogue};
+    \node[proc] (context) at (8,-1.9) {Time-bounded view\\profile/history snapshot};
+    \node[db,text width=2.3cm] (memory) at (1.2,-2.7) {Student memory\\profile, episodes, rules};
+    \node[agent] (planner) at (5,-3.8) {Planner\\checks, action, skill};
+    \node[agent] (analyst) at (10.5,-3.8) {Context Analyst\\structured findings};
+    \node[proc,text width=2.8cm] (tools) at (16,-3.8) {Read-only tool service\\data queries\\resource search};
+    \node[gate] (action) at (5,-5.75) {Send a\\message?};
+    \node[agent] (writer) at (10.5,-5.75) {Message Writer\\draft or revise};
+    \node[proc,text width=2.8cm] (skills) at (16,-5.75) {Skill library\\eight Markdown procedures};
+    \node[gate] (message) at (10.5,-7.55) {Non-null\\draft?};
+    \node[gate] (review) at (10.5,-9.55) {Review\\budget left?};
+    \node[agent] (critic) at (16,-9.55) {Critic\\grounding\\preferences / clarity};
+    \node[gate] (pass) at (16,-11.65) {Pass?};
+    \node[proc,text width=3.7cm] (final) at (7,-11.65) {Finalize action / message\\suggest, ask, or none};
+    \node[io,text width=2.2cm] (feedback) at (1.8,-13.6) {Scripted reply\\SIMULATED};
+    \node[gate] (reply) at (7,-13.6) {Feedback\\available?};
+    \node[agent,text width=3.0cm] (manager) at (13,-13.6) {Memory Manager\\extract rules from feedback};
+    \node[proc] (persist) at (7,-15.5) {Persist episode / rules\\after coaching action};
+    \node[io,text width=3.5cm] (output) at (13,-15.5) {JSONL record\\action, evidence,\\frozen context, trace};
 
-\draw[edge] (input.south) -- (2,-.9) -| (context.north west);
-\draw[edge] (features) -- (context);
-\draw[context] (memory.north) |- node[lab,pos=.65,above]{prior information only} (context.west);
-\draw[edge] (context.south) -- (7,-2.45) -| (planner.north);
-\draw[context] (context.east) -- (12.7,-1.65) -| node[lab,pos=.55,above]{bounded view} (tools.north west);
-\draw[edge] (resources.south) -- (tools.north east);
-\draw[edge] (planner.east) -- node[lab,above]{checks} (analyst.west);
-\draw[edge] (analyst.south) -- (9.6,-4.35) -- node[lab,below]{evidence; bounded planning loop} (4.4,-4.35) -- (planner.south);
-\draw[edge] ([yshift=3pt]analyst.east) -- node[lab,above]{query} ([yshift=3pt]tools.west);
-\draw[edge] ([yshift=-4pt]tools.west) -- node[lab,below]{results} ([yshift=-4pt]analyst.east);
-\draw[edge] (planner.south west) -- (3.2,-4.8) |- (action.west);
-\draw[edge] (action.east) -- node[lab,above]{suggest / ask} (writer.west);
-\draw[edge] (action.south) -- (4.4,-6.25) -- (3,-6.25) -- (3,-11.0) -- node[lab,above]{none} (final.west);
-\draw[context] (skills.west) -- node[lab,above]{procedure} (writer.east);
-\draw[edge] (writer) -- (message);
-\draw[edge] (message) -- node[lab,right]{yes} (review);
-\draw[edge] (message.west) -- (5.2,-7) -- node[lab,left]{none} (5.2,-9.9) -- (final.north west);
-\draw[edge] (review.west) -- (7.8,-8.8) -- (7.8,-10.0) -- node[lab,above]{off / exhausted} (6,-10.0) -- (final.north);
-\draw[edge] (review.east) -- node[lab,above]{yes} (critic.west);
-\draw[edge] (critic) -- (pass);
-\draw[edge] (pass.west) -- (12,-10.4) |- node[lab,pos=.2,above]{yes} (final.east);
-\draw[edge] (pass.east) -- (17.2,-10) -- (17.2,-6.3) -- node[lab,above]{no: revision instructions} (11.3,-6.3) -- (writer.south east);
-\draw[edge] (final) -- (reply);
-\draw[context] (feedback) -- node[lab,above]{reply} (reply);
-\draw[edge] (reply.east) -- node[lab,above]{yes} (manager.west);
-\draw[edge] (manager.south) |- (persist.east);
-\draw[edge] (reply) -- node[lab,right]{no} (persist);
-\draw[write] (persist.west) -- (-.55,-14.2) -- node[lab,rotate=90,above,pos=.45]{episode / rules for later decisions} (-.55,-2.7) -- (memory.west);
-\draw[edge] (persist) -- (output);
-\draw[edge] (output.west) -- (3.2,-15.7) -- node[lab,rotate=90,above]{all case records / traces} (3.2,-18.9) -- (metrics.west);
-\draw[edge] (output) -- (nonnull);
-\draw[edge] (nonnull.east) -- (7.7,-17.3) -- (7.7,-16.35) -- (14.8,-16.35) -- (human.north);
-\draw[edge] (10.3,-16.35) -- (judge.north);
-\node[lab] at (8.5,-16.35) {yes};
-\draw[edge] (nonnull) -- node[lab,left,pos=.3]{no quality score} (metrics);
-\draw[edge] (judge.south) |- (ratings.west);
-\draw[edge] (human.south) |- (ratings.east);
-\draw[edge] (ratings.west) -- (metrics.east);
-\draw[edge] (metrics) -- (results);
-\begin{scope}[on background layer]
-  \node[draw=violet!35,dashed,fill=violet!2,rounded corners=4pt,
-    fit=(nonnull)(judge)(human)(ratings)(metrics)(results),inner sep=9pt] (evalpanel) {};
-\end{scope}
-\node[font=\bfseries\fontsize{8.2}{9.2}\selectfont,anchor=east,fill=white] at (17,-15.85) {Offline evaluation; excluded from coaching latency};
+    % Context and planning: separate incoming checks from the evidence return.
+    \draw[edge] (input.south) -- (2,-1.05) -| ([xshift=-25pt]context.north);
+    \draw[edge] (features.south) -- (context.north);
+    \draw[context] (memory.east) -- (3.6,-2.7) -- (3.6,-1.9) -- node[lab,above]{prior information only} (context.west);
+    \draw[edge] (context.south) -- (8,-2.85) -| (planner.north);
+    \draw[context] (context.east) -| node[lab,pos=.5,above]{bounded view} (tools.north);
+    \draw[edge] (resources.south) -- (18.2,-1.3) |- (tools.east);
+    \draw[edge] (planner.east) -- node[lab,above]{checks} (analyst.west);
+    \draw[edge] (analyst.south) -- (10.5,-4.8) -- node[lab,above]{evidence; planning loop} (5,-4.8) -- (planner.south);
+    \draw[edge] ([yshift=5pt]analyst.east) -- node[lab,above]{query} ([yshift=5pt]tools.west);
+    \draw[edge] ([yshift=-5pt]tools.west) -- node[lab,below]{results} ([yshift=-5pt]analyst.east);
+    \draw[edge] (planner.west) -- (3.0,-3.8) -- (3.0,-5.75) -- (action.west);
+    \draw[edge] (action.east) -- node[lab,above]{suggest / ask} (writer.west);
+    \draw[edge] (action.south) -- (5,-6.9) -- (2.8,-6.9) -- (2.8,-11.65) -- node[lab,above]{none} (final.west);
+    \draw[context] (skills.west) -- node[lab,above]{procedure} (writer.east);
+
+    % Writing and review: every decision has a distinct, labelled exit.
+    \draw[edge] (writer.south) -- (message.north);
+    \draw[edge] (message.south) -- node[lab,right=4pt,pos=.5]{yes} (review.north);
+    \draw[edge] (message.west) -- node[lab,above]{none} (4.5,-7.55) -- (4.5,-10.65) -| ([xshift=-25pt]final.north);
+    \draw[edge] (review.west) -- node[lab,above]{off / exhausted} (7,-9.55) -- (final.north);
+    \draw[edge] (review.east) -- node[lab,above]{yes} (critic.west);
+    \draw[edge] (critic.south) -- (pass.north);
+    \draw[edge] (pass.west) -- node[lab,above]{yes} (final.east);
+    \draw[edge] (pass.east) -- (18.5,-11.65) -- (18.5,-7.0) -- node[lab,above]{no: revise} (12.7,-7.0) -- (12.7,-6.5) -| ([xshift=25pt]writer.south);
+
+    % Feedback is processed after finalizing the current coaching action.
+    \draw[edge] (final.south) -- (reply.north);
+    \draw[context] (feedback.east) -- node[lab,above]{reply} (reply.west);
+    \draw[edge] (reply.east) -- node[lab,above]{yes} (manager.west);
+    \draw[edge] (manager.south) -- (13,-14.65) -| ([xshift=25pt]persist.north);
+    \draw[edge] (reply.south) -- node[lab,right=4pt]{no} (persist.north);
+    \draw[write] (persist.west) -- (-.55,-15.5) -- node[lab,rotate=90,above,pos=.5]{episode / rules for later decisions} (-.55,-2.7) -- (memory.west);
+    \draw[edge] (persist.east) -- (output.west);
+
+    % Explicit arrow key, kept away from the process connections.
+    \draw[edge] (1,-16.5) -- (2,-16.5);
+    \node[anchor=west,font=\fontsize{8.5}{9.5}\selectfont] at (2.1,-16.5) {control / output};
+    \draw[context] (7,-16.5) -- (8,-16.5);
+    \node[anchor=west,font=\fontsize{8.5}{9.5}\selectfont] at (8.1,-16.5) {context / procedure};
+    \draw[write] (13.5,-16.5) -- (14.5,-16.5);
+    \node[anchor=west,font=\fontsize{8.5}{9.5}\selectfont] at (14.6,-16.5) {memory write};
 \end{tikzpicture}

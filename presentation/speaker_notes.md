@@ -39,7 +39,7 @@ The full system completes all 20 cases and matches every manually allowed action
 
 ## 7. Planning and reflection budgets
 
-The report's Figure 2 compares planning and reflection maxima of one, two and three. Blue curves show message quality; red curves show tokens on the right axes. The planning panel also shows allowed-action agreement divided by 20, so five means 100 percent. Larger maximum budgets do not consistently improve results. All three reflection settings actually execute one review per sent message on average, so they do not demonstrate the effect of deeper executed review.
+The report's Figure 3 compares planning and reflection maxima of one, two and three. Blue curves show message quality; red curves show tokens on the right axes. The planning panel also shows allowed-action agreement divided by 20, so five means 100 percent. Larger maximum budgets do not consistently improve results. All three reflection settings actually execute one review per sent message on average, so they do not demonstrate the effect of deeper executed review.
 
 Across all nine conditions, there are 180 valid final outputs. The single coach matches the full system's rounded quality with fewer model calls, though it uses more tokens. Model B scores 4.89 but matches 19 of 20 allowed actions. These are descriptive comparisons from one generation per condition; message cohorts and generated histories differ. The consolidated coach retains auxiliary feedback extraction.
 
@@ -53,7 +53,7 @@ The architecture makes the system's evidence, plans, critiques and remembered pr
 - **Slide 10:** The Analyst has eight data/resource functions. Writer tool use consists of skill loading. The single coach also has memory recall. Campus resources are a static curated catalogue. Skill applicability rules guide generation; they are not deterministic output guarantees.
 - **Slide 11:** Model A and B share the full architecture and role temperatures. The judge uses a fixed OpenAI snapshot, temperature zero, reasoning disabled and a 2,048-token completion cap. The JSON projection is from case_015 and omits fields for readability. A complete record includes evidence, frozen context, plans, critiques and memory updates.
 - **Slide 12:** This enlarged excerpt of the report's Figure 1 shows how real observations, simulated profiles, prior memory and bounded tools reach the planning loop. It preserves the report's node shapes and arrows. The simplified diagram on slide 3 shows the complete coaching sequence.
-- **Slide 13:** This second excerpt shows the independent evaluation path. Saved JSONL outputs feed the automated judge and a separate human-rating process; comparison produces the reported metrics. Evaluation does not feed expected actions or judge scores back into the coach.
+- **Slide 13:** The report's Figure 2 shows the independent evaluation path. Saved JSONL outputs feed the automated judge and a separate human-rating process; comparison produces the reported metrics. Evaluation does not feed expected actions or judge scores back into the coach.
 - Daily features precede the decision date. A same-day last-night estimate becomes available after noon; EMA timestamps cannot exceed the decision time. Memory must be strictly earlier.
 - Two unmasked absence cases occur after passive recording ended; they are not demonstrated in-term sensor malfunctions. Two other cases use explicitly synthetic masks.
 - Expected actions are authored evaluation references. Agents and evaluators do not receive them. The shared evaluator packet may omit dynamically retrieved context seen by the coach.
@@ -61,7 +61,7 @@ The architecture makes the system's evidence, plans, critiques and remembered pr
 ## Sources
 
 - [Project requirements](../project_doc.pdf), especially the five-minute presentation guidance.
-- [Research paper](../output/pdf/studentlife_coach_paper/studentlife_coach.pdf), Figure 2 (page 9) on slide 7 and Figure 1 excerpts (page 3) on slides 12-13. [Figure provenance](assets/report_figure_sources.json) records source hashes and excerpt bounds; the assets preserve vector artwork.
+- [Research paper](../output/pdf/studentlife_coach_paper/studentlife_coach.pdf), Figure 3 (page 9) on slide 7, a Figure 1 excerpt (page 3) on slide 12, and Figure 2 (page 3) on slide 13. [Figure provenance](assets/report_figure_sources.json) records source hashes and excerpt bounds; the assets preserve vector artwork.
 - [Comparison CSV](../runs_corrected/2026-11-04_v3/comparison.csv) and [detailed metrics](../runs_corrected/2026-11-04_v3/summary_metrics.json): slides 6, 7 and 9.
 - [Full outputs](../runs_corrected/2026-11-04_v3/full/outputs.jsonl), case_015: slides 5 and 11.
 - [Cases](../cases/cases.jsonl), [profiles](../cases/profiles.json) and [feedback scripts](../cases/feedback_scripts.json): slides 2 and 5.
