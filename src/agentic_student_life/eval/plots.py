@@ -8,6 +8,7 @@ from typing import Any
 import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
+from matplotlib.ticker import MultipleLocator
 import numpy as np
 
 plt.rcParams.update({
@@ -43,39 +44,52 @@ def generate_depth_plot(
     """Plot judge mean and tokens for planning/reflection budgets from saved metrics."""
     output_path = Path(output_path)
     output_path.parent.mkdir(parents=True, exist_ok=True)
-    fig, axes = plt.subplots(1, 2, figsize=(7.0, 2.7))
-    sequences = [
-        ([("0 (Off)", "no_plan"), ("1", "plan1"), ("2 (Full)", "full"), ("3", "plan3")],
-         "Planning Budget (Max Rounds)", "(a) Planning Depth Ablation"),
-        ([("0 (Off)", "no_refl"), ("1", "refl1"), ("2 (Full)", "full"), ("3", "refl3")],
-         "Reflection Budget (Max Cycles)", "(b) Reflection Depth Ablation"),
-    ]
-    for ax, (sequence, xlabel, title) in zip(axes, sequences):
-        present = [(label, cid) for label, cid in sequence
-                   if cid in all_metrics and all_metrics[cid].get("available")]
-        if not present:
-            continue
-        labels = [label for label, _ in present]
-        quality = [all_metrics[cid]["judge_mean"]["mean"] for _, cid in present]
-        tokens = [all_metrics[cid]["total_tokens"]["mean"] / 1000.0 for _, cid in present]
-        token_ax = ax.twinx()
-        ax.plot(labels, quality, marker="o", linewidth=2, color="#1d4ed8", label="Judge Mean (1–5)")
-        token_ax.plot(labels, tokens, marker="^", linestyle=":", linewidth=1.6,
-                      color="#b91c1c", label="Tokens (k)")
-        ax.set_ylim(2.5, 5.15)
-        ax.set_xlabel(xlabel)
-        ax.set_ylabel("Quality Score (1–5 scale)")
-        token_ax.set_ylabel("Mean Tokens / Case (k)", color="#b91c1c")
-        ax.set_title(title)
-        ax.grid(True, linestyle="--", alpha=0.4)
-        handles, names = ax.get_legend_handles_labels()
-        token_handles, token_names = token_ax.get_legend_handles_labels()
-        ax.legend(handles + token_handles, names + token_names, loc="lower right", fontsize=7)
-    fig.tight_layout()
-    fig.savefig(output_path, bbox_inches="tight")
-    if include_png:
-        fig.savefig(output_path.with_suffix(".png"), bbox_inches="tight")
-    plt.close(fig)
+    # Match the report's Times text without changing the other report figures.
+    with plt.rc_context({
+        "font.family": "serif",
+        "font.serif": ["Times New Roman", "STIXGeneral", "DejaVu Serif"],
+        "font.size": 8,
+        "axes.titlesize": 9,
+        "axes.labelsize": 8,
+        "xtick.labelsize": 7.5,
+        "ytick.labelsize": 7.5,
+        "legend.fontsize": 7,
+        "pdf.fonttype": 42,
+    }):
+        fig, axes = plt.subplots(1, 2, figsize=(7.0, 2.7))
+        sequences = [
+            ([("0 (Off)", "no_plan"), ("1", "plan1"), ("2 (Full)", "full"), ("3", "plan3")],
+             "Planning Budget (Max Rounds)", "(a) Planning Depth Ablation", 1.0),
+            ([("0 (Off)", "no_refl"), ("1", "refl1"), ("2 (Full)", "full"), ("3", "refl3")],
+             "Reflection Budget (Max Cycles)", "(b) Reflection Depth Ablation", 0.5),
+        ]
+        for ax, (sequence, xlabel, title, token_tick_step) in zip(axes, sequences):
+            present = [(label, cid) for label, cid in sequence
+                       if cid in all_metrics and all_metrics[cid].get("available")]
+            if not present:
+                continue
+            labels = [label for label, _ in present]
+            quality = [all_metrics[cid]["judge_mean"]["mean"] for _, cid in present]
+            tokens = [all_metrics[cid]["total_tokens"]["mean"] / 1000.0 for _, cid in present]
+            token_ax = ax.twinx()
+            ax.plot(labels, quality, marker="o", linewidth=2, color="#1d4ed8", label="Judge Mean (1–5)")
+            token_ax.plot(labels, tokens, marker="^", linestyle=":", linewidth=1.6,
+                          color="#b91c1c", label="Tokens (k)")
+            ax.set_ylim(2.5, 5.15)
+            ax.set_xlabel(xlabel)
+            ax.set_ylabel("Quality Score (1–5 scale)")
+            token_ax.set_ylabel("Mean Tokens / Case (k)", color="#b91c1c")
+            token_ax.yaxis.set_major_locator(MultipleLocator(token_tick_step))
+            ax.set_title(title)
+            ax.grid(True, linestyle="--", alpha=0.4)
+            handles, names = ax.get_legend_handles_labels()
+            token_handles, token_names = token_ax.get_legend_handles_labels()
+            ax.legend(handles + token_handles, names + token_names, loc="lower right", fontsize=7)
+        fig.tight_layout()
+        fig.savefig(output_path, bbox_inches="tight")
+        if include_png:
+            fig.savefig(output_path.with_suffix(".png"), bbox_inches="tight")
+        plt.close(fig)
     return str(output_path)
 
 

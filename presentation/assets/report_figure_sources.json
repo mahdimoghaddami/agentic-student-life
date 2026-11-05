@@ -4,7 +4,7 @@
     "page": 1,
     "figure": "Figure 2",
     "crop_pdf_points": null,
-    "sha256": "ed31e7726926d7b2541e63374bc6a61aa4425b3dc904a8ed84a24bfd0bd5195f"
+    "sha256": "721996347c93d12bbf2c92102e69e08da5282f3003632ed545a5fa174fc51d27"
   },
   "report-workflow-planning.svg": {
     "source": "output/pdf/studentlife_coach_paper/studentlife_coach.pdf",
@@ -16,7 +16,7 @@
       480,
       158
     ],
-    "sha256": "1dc90377f36773af1e0fed1719a6b2801f12173dedd0d2533fae631995e21c66"
+    "sha256": "3c93ae75450d9c796d1f89c5549bec513bb0444a0de78d150b0002b01dca5594"
   },
   "report-workflow-evaluation.svg": {
     "source": "output/pdf/studentlife_coach_paper/studentlife_coach.pdf",
@@ -28,6 +28,6 @@
       465,
       155
     ],
-    "sha256": "1dc90377f36773af1e0fed1719a6b2801f12173dedd0d2533fae631995e21c66"
+    "sha256": "3c93ae75450d9c796d1f89c5549bec513bb0444a0de78d150b0002b01dca5594"
   }
 }
