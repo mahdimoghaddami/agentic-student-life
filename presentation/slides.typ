@@ -299,7 +299,7 @@
     #place(top + center, image("assets/report-depth-tradeoffs.svg", width: 896pt, height: 308pt, fit: "contain"))
     #place(dy: 316pt, text(size: 19pt)[Reflection maxima 1-3 each execute one review per message on average.])
     #place(dy: 347pt, text(size: 17pt)[Single coach: 4.81 quality, 3.65 calls. Model B: 4.89 quality, 19/20 allowed actions.])
-    #place(dy: 380pt, source[Report, Figure 3. Tokens use the right axes. Planning agreement is percent / 20 (100% = 5). Quality cohorts contain 15-16 messages; one generation per condition.])
+    #place(dy: 380pt, source[Report, Figure 2. Tokens use the right axes. Planning agreement is percent / 20 (100% = 5). Quality cohorts contain 15-16 messages; one generation per condition.])
   ]
 ]
 
@@ -481,5 +481,5 @@
   #v(15pt)
   #text(size: 21pt)[Judge scores non-null messages. All cases contribute execution and efficiency metrics.]
   #v(12pt)
-  #source[Report, Figure 2. Original vector artwork. Offline evaluation is excluded from coaching latency.]
+  #source[Report, Figure 1, lower section. Original vector artwork, enlarged as an excerpt. Offline evaluation is excluded from coaching latency.]
 ]

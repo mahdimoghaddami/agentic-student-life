@@ -69,18 +69,14 @@ Sleep is a heuristic intersection of dark and lock/charge intervals, allowing 20
 Daily features exclude the current decision date. A same-day last-night estimate is exposed only after its noon inference window closes; EMA timestamps must be at or before $t$. Baselines use at least three complete historical days preceding the queried recent window. Missing coverage remains explicit instead of being filled with assumed behavior. Syllabus deadlines are an ex-ante exception: upcoming deadlines are treated as known calendar information. Term-phase labels are week-based heuristics, not verified exam dates.
 
 \subsection{Five-Role Workflow}
-Figure~\ref{fig:workflow} shows the full coaching configuration; Figure~\ref{fig:evaluation-workflow} separates its offline evaluation. A deterministic orchestrator passes Pydantic-validated structured objects between role-prompted LLM calls. Rounded boxes represent agents, rectangles processing, diamonds decisions, cylinders persistent stores, and parallelograms inputs/outputs. The human evaluator is an ellipse. Offline evaluation follows serialization and is outside coaching latency.
+Figure~\ref{fig:workflow} shows the full coaching configuration and its independent offline evaluation. A deterministic orchestrator passes Pydantic-validated structured objects between role-prompted LLM calls. Rounded boxes represent agents, rectangles processing, diamonds decisions, cylinders persistent stores, and parallelograms inputs/outputs. The human evaluator is an ellipse. Offline evaluation follows serialization and is outside coaching latency.
 
 \begin{figure*}[p]
 \centering\resizebox{.99\textwidth}{!}{\input{workflow.tex}}
-\caption{The end-to-end workflow for the full five-role configuration.}
-\label{fig:workflow}
-\end{figure*}
-
-\begin{figure*}[p]
+\par\vspace{10pt}
 \centering\resizebox{.92\textwidth}{!}{\input{evaluation_workflow.tex}}
-\caption{Independent offline evaluation. Silence has no message-quality score; judging is excluded from coaching latency.}
-\label{fig:evaluation-workflow}
+\caption{The full five-role coaching workflow and independent offline evaluation.}
+\label{fig:workflow}
 \end{figure*}
 
 The \textbf{Planner} receives time context, profile/history, skill index, and earlier findings; it returns hypotheses, checks, a gather/finalize status, action, selected skill, target goal, and writing guidance. The \textbf{Context Analyst} receives those checks and bounded tools, returning source-tagged findings, missing modalities, a stress assessment, and a summary. The \textbf{Message Writer} combines reports, memory, guidance, and a skill procedure to return an action, skill, message, and rationale. The \textbf{Critic} receives the draft and relevant context, returning pass/revise and specific instructions. The \textbf{Memory Manager} receives a finalized interaction and scripted reply, extracting one to three actionable preference rules. It runs only when memory is enabled and nonempty feedback exists; five roles do not imply five calls in every case.
