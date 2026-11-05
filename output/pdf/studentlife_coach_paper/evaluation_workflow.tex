@@ -1,23 +1,21 @@
-\begin{tikzpicture}[x=1cm,y=1cm,font=\fontsize{9.5}{10.5}\selectfont,
-    >={Latex[length=2.3mm,width=1.6mm]},
+% Included inside the coaching TikZ picture so the serialized output has a real connecting edge.
+\begin{scope}[
     proc/.style={rectangle,draw=black!65,fill=black!4,text width=3.0cm,align=center,inner sep=5pt,minimum height=.9cm},
     io/.style={trapezium,trapezium left angle=72,trapezium right angle=108,draw=teal!65!black,fill=teal!5,text width=2.6cm,align=center,inner sep=4pt},
-    judge/.style={rounded corners=4pt,draw=violet!60!black,fill=violet!7,text width=3.0cm,align=center,inner sep=5pt},
-    edge/.style={->,draw=black!90,line width=.9pt,rounded corners=2pt},
-    lab/.style={fill=white,inner sep=2pt,font=\fontsize{8.5}{9.5}\selectfont}]
-    \node[io] (records) at (1.7,0) {Saved JSONL\\all case records};
-    \node[judge] (judge) at (7.2,0) {Independent LLM judge\\all non-null messages};
-    \node[ellipse,draw=violet!60!black,fill=violet!7,text width=3.0cm,align=center,inner sep=5pt] (human) at (13.4,0) {Human rater\\10 blind ratings};
-    \node[proc] (metrics) at (1.7,-2.7) {Aggregate metrics\\decisions, completion,\\efficiency, quality};
-    \node[proc] (scores) at (7.2,-2.7) {Quality ratings\\human--LLM differences};
-    \node[io,text width=3cm] (results) at (13.4,-2.7) {Research outputs\\tables, figures, comparisons};
+    judge/.style={rounded corners=4pt,draw=violet!60!black,fill=violet!7,text width=3.0cm,align=center,inner sep=5pt}]
+    \node[io] (records) at (2,-18.25) {Saved outputs\\all configurations};
+    \node[judge] (judge) at (8.5,-18.25) {Independent LLM judge\\all non-null messages};
+    \node[ellipse,draw=violet!60!black,fill=violet!7,text width=3.0cm,align=center,inner sep=5pt] (human) at (16,-18.25) {Human rater\\10 blind ratings};
+    \node[proc] (metrics) at (2,-20.95) {Aggregate metrics\\decisions, completion,\\efficiency, quality};
+    \node[proc] (scores) at (8.5,-20.95) {Quality ratings\\human--LLM differences};
+    \node[io,text width=3cm] (results) at (16,-20.95) {Research outputs\\tables, figures, comparisons};
 
-    \draw[edge] (records.east) -- node[lab,above]{non-null} (judge.west);
-    \draw[edge] (records.north) -- (1.7,1.15) -- node[lab,above]{10 selected full-system messages} (13.4,1.15) -- (human.north);
+    \draw[edge] (records.east) -- node[lab,above]{non-null messages} (judge.west);
+    \draw[edge] (records.north) -- (2,-17.1) -- node[lab,above]{10 of 16 full-system messages} (16,-17.1) -- (human.north);
     \draw[edge] (records.south) -- node[lab,right]{all cases} (metrics.north);
     \draw[edge] (judge.south) -- (scores.north);
-    \draw[edge] (human.south) -- (13.4,-1.45) -| ([xshift=30pt]scores.north);
+    \draw[edge] (human.south) -- (16,-19.7) -| ([xshift=30pt]scores.north);
     \draw[edge] (scores.west) -- node[lab,above]{quality} (metrics.east);
-    \draw[edge] (metrics.south) -- (1.7,-4.0) -- (13.4,-4.0) -- (results.south);
+    \draw[edge] (metrics.south) -- (2,-22.3) -- (16,-22.3) -- (results.south);
     \draw[edge] (scores.east) -- (results.west);
-\end{tikzpicture}
+\end{scope}

@@ -73,11 +73,15 @@
     \draw[write] (persist.west) -- (-.55,-15.5) -- node[lab,rotate=90,above,pos=.5]{episode / rules for later decisions} (-.55,-2.7) -- (memory.west);
     \draw[edge] (persist.east) -- (output.west);
 
+    % Serialization feeds offline evaluation; no evaluation data return to the coach.
+    \input{evaluation_workflow.tex}
+    \draw[edge] (output.south) -- (13,-16.6) -- node[lab,above]{saved outputs from each configuration} (0,-16.6) |- (records.west);
+
     % Explicit arrow key, kept away from the process connections.
-    \draw[edge] (1,-16.5) -- (2,-16.5);
-    \node[anchor=west,font=\fontsize{8.5}{9.5}\selectfont] at (2.1,-16.5) {control / output};
-    \draw[context] (7,-16.5) -- (8,-16.5);
-    \node[anchor=west,font=\fontsize{8.5}{9.5}\selectfont] at (8.1,-16.5) {context / procedure};
-    \draw[write] (13.5,-16.5) -- (14.5,-16.5);
-    \node[anchor=west,font=\fontsize{8.5}{9.5}\selectfont] at (14.6,-16.5) {memory write};
+    \draw[edge] (1,-23.1) -- (2,-23.1);
+    \node[anchor=west,font=\fontsize{8.5}{9.5}\selectfont] at (2.1,-23.1) {control / output};
+    \draw[context] (7,-23.1) -- (8,-23.1);
+    \node[anchor=west,font=\fontsize{8.5}{9.5}\selectfont] at (8.1,-23.1) {context / procedure};
+    \draw[write] (13.5,-23.1) -- (14.5,-23.1);
+    \node[anchor=west,font=\fontsize{8.5}{9.5}\selectfont] at (14.6,-23.1) {memory write};
 \end{tikzpicture}
