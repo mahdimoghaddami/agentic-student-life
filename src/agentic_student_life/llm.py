@@ -22,6 +22,8 @@ from pydantic import BaseModel, ValidationError
 T = TypeVar("T", bound=BaseModel)
 
 _LOCK = threading.Lock()
+# Trackers are per case; their append target is shared by concurrent cases.
+_CALL_LOG_LOCK = threading.Lock()
 _THOUGHT_SIGS: dict[str, Any] = {}
 _PATCHED = False
 
@@ -211,7 +213,7 @@ class CallTracker:
                     "prompt_preview": prompt_preview[:400],
                     "response_preview": response_preview[:500],
                 }
-                with self.calls_log_path.open("a", encoding="utf-8") as f:
+                with _CALL_LOG_LOCK, self.calls_log_path.open("a", encoding="utf-8") as f:
                     f.write(json.dumps(rec) + "\n")
 
     def wrap_tools(self, tools: list[Callable]) -> list[Callable]:
