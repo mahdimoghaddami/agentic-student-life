@@ -1,0 +1,71 @@
+{
+  "participant_id": "u19",
+  "simulated": true,
+  "profile": {
+    "participant_id": "u19",
+    "simulated": true,
+    "grounding_note": "Simulated coaching profile grounded in real StudentLife pre-term surveys (PSS=20.0, PHQ-9=5.0, UCLA Loneliness=56.0, PHQ-9 item 9=1, Extraversion=1.75, Neuroticism=3.62, Conscientiousness=3.44); courses: COSC 050, COSC 065, FILM 051.",
+    "pre_term_surveys": {
+      "pss_total": 20.0,
+      "phq9_total": 5.0,
+      "phq9_item9_selfharm": 1,
+      "loneliness_total": 56.0,
+      "bfi_extraversion": 1.75,
+      "bfi_agreeableness": 3.11,
+      "bfi_conscientiousness": 3.44,
+      "bfi_neuroticism": 3.62,
+      "bfi_openness": 3.2
+    },
+    "goals": [
+      "Manage overwhelm during clustered CS 50, CS 65, and FILM 51 deadlines by chunking tasks",
+      "Stay connected with supportive peers or campus resources when feeling isolated or stressed",
+      "Maintain steady ~7.5h sleep routine across midterm and late-term weeks"
+    ],
+    "preferences": {
+      "activity_style": "Gentle walks, Ultimate Frisbee / light outdoor air, or low-pressure 1-on-1 check-ins",
+      "tone": "Compassionate, validating, non-clinical, and low-pressure",
+      "preferred_times": [
+        "evening (19:00-21:00)"
+      ],
+      "dislikes": [
+        "high-pressure productivity demands",
+        "clinical or robotic phrasing"
+      ]
+    },
+    "constraints": [
+      "Elevated baseline loneliness (UCLA=56.0) and moderate perceived stress (PSS=20.0); pre-term PHQ-9 item 9=1 requires warm resource awareness when stress peaks at 5/5",
+      "Enrolled in COSC 050, COSC 065, and FILM 051"
+    ],
+    "learned_preferences": []
+  },
+  "episodes": [
+    {
+      "case_id": "case_012",
+      "decision_time": "2013-04-16T20:00:00-04:00",
+      "decision": "ask",
+      "skill_used": "clarifying_question",
+      "final_message": "I don't have your recent sleep or stress check-ins, but I know you have two deadlines today. How are your energy and stress feeling right now\u2014would a quick, low-pressure break tip be helpful, or do you prefer space to focus?",
+      "simulated_feedback": null,
+      "simulated": true
+    },
+    {
+      "case_id": "case_003",
+      "decision_time": "2013-04-30T20:00:00-04:00",
+      "decision": "suggest",
+      "skill_used": "campus_resource_referral",
+      "final_message": "Managing three deadlines today during midterm week on top of feeling so stressed and isolated is incredibly heavy, and it's completely understandable to feel overwhelmed right now. Please remember you don't have to carry this all by yourself\u2014Counseling at Dick's House ((603) 646-9442) offers free, confidential support with an after-hours on-call counselor, and the 988 Lifeline (call/text 988) is available 24/7 whenever you need a compassionate ear. For tonight, please consider stepping back from the screen for just a moment to grab some water and breathe.",
+      "simulated_feedback": null,
+      "simulated": true
+    },
+    {
+      "case_id": "case_019",
+      "decision_time": "2013-05-07T20:00:00-04:00",
+      "decision": "suggest",
+      "skill_used": "campus_resource_referral",
+      "final_message": "Facing three deadlines today when you're feeling so stressed and exhausted is an incredible weight, and it makes complete sense that things feel overwhelming right now. Please remember you don't have to navigate this alone\u2014Counseling at Dick's House ((603) 646-9442) offers free, confidential support including an after-hours counselor, and the 988 Lifeline (call or text 988) is always open for a compassionate conversation. For tonight, consider taking just two minutes to step away from your desk, sip some fresh water, and let yourself take a few slow, gentle breaths.",
+      "simulated_feedback": null,
+      "simulated": true
+    }
+  ],
+  "learned_preferences": []
+}
