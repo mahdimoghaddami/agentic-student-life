@@ -4,6 +4,7 @@ import hashlib
 import json
 from pathlib import Path
 from datetime import datetime
+import tomllib
 
 import matplotlib
 matplotlib.use("Agg")
@@ -14,7 +15,7 @@ from agentic_student_life.eval.context import message_fingerprint
 from agentic_student_life.eval.human import compute_human_vs_llm
 from agentic_student_life.eval.judge import score_fingerprint
 from agentic_student_life.eval.latex import generate_all_tables
-from agentic_student_life.eval.metrics import compute_run_metrics
+from agentic_student_life.eval.metrics import compute_run_metrics, _mean_std
 from agentic_student_life.eval.plots import generate_all_plots
 
 ROOT = Path("runs_corrected/2026-11-04_v3")
@@ -39,7 +40,7 @@ def main():
         records[name] = {r["case_id"]: r for r in output_rows}
         assert set(records[name]) == set(cases), name
         assert all(r["status"] == "ok" for r in records[name].values()), name
-        snapshot = __import__("tomllib").loads((ROOT / name / "config.snapshot.toml").read_text())
+        snapshot = tomllib.loads((ROOT / name / "config.snapshot.toml").read_text())
         manifest = json.loads((ROOT / name / "manifest.json").read_text())
         full_manifest = json.loads((ROOT / "full/manifest.json").read_text())
         assert manifest["source_digest"] == full_manifest["source_digest"], name
@@ -60,6 +61,26 @@ def main():
             assert score["message_fingerprint"] == message_fingerprint(records[name][cid])
             assert score["evaluation_fingerprint"] == score_fingerprint(records[name][cid], cfg)
         all_metrics[name] = compute_run_metrics(ROOT / name, cases)
+        recovery_path = ROOT / name / "recovery_info.json"
+        if recovery_path.exists():
+            recovery = json.loads(recovery_path.read_text())
+            overrides = recovery["trace_overrides_for_analysis"]
+            m = all_metrics[name]
+            m["recovery"] = recovery
+            m["initial_execution_success_rate"] = 100 * (
+                len(cases) - len(recovery["initial_failed_case_ids"])) / len(cases)
+            for field in ["latency_s", "llm_calls", "tool_calls", "total_tokens"]:
+                values = [float(overrides.get(cid, r["trace"])[field]) for cid, r in records[name].items()]
+                mean, std = _mean_std(values)
+                m[field] = {"mean": mean, "std": std, "values": values}
+            for category, cm in m["by_category"].items():
+                group = [overrides.get(cid, r["trace"]) for cid, r in records[name].items()
+                         if r["category"] == category]
+                for key, field in [("latency_mean", "latency_s"), ("calls_mean", "llm_calls"), ("tokens_mean", "total_tokens")]:
+                    cm[key] = _mean_std([r[field] for r in group])[0]
+        all_metrics[name]["judge_decision_appropriate_pct_nonnull"] = (
+            100 * sum(score["decision_appropriate"] for score in scores[name].values()) / len(scores[name])
+            if scores[name] else None)
     human = compute_human_vs_llm(
         judge_scores_path=ROOT / "full/judge_scores.jsonl",
         human_ratings_path=ROOT / "full/human_eval/human_ratings.json",
@@ -91,6 +112,7 @@ def main():
     costs = {}
     for name in NAMES:
         usage = load_lines(ROOT / name / "api_usage.jsonl")
+        assert all(x.get("total_tokens", 0) > 0 for x in usage if x["status"] == "ok"), name
         costs[name] = {
             "successful_response_estimate_usd": sum(x["estimated_cost_usd"] for x in usage if x["status"] == "ok"),
             "uncertain_failure_upper_bound_usd": sum(x["estimated_cost_usd"] for x in usage if x["status"] == "uncertain"),
@@ -141,13 +163,15 @@ def main():
     plt.close(fig)
     with (ROOT / "comparison.csv").open("w", newline="") as stream:
         fields = ["config", "cases", "ok", "decision_accuracy_pct", "preference_adherence_pct",
-                  "messages_judged", "quality_mean", "latency_mean_s", "calls_mean", "tokens_mean"]
+                  "messages_judged", "quality_mean", "latency_mean_s", "calls_mean", "tokens_mean",
+                  "judge_appropriate_nonnull_pct"]
         writer = csv.DictWriter(stream, fieldnames=fields)
         writer.writeheader()
         for name, m in all_metrics.items():
             writer.writerow(dict(zip(fields, [name, m["n_cases"], m["n_ok"], m["decision_acc"],
                 m["pref_adherence_rate"], m["n_judged"], m["judge_mean"]["mean"],
-                m["latency_s"]["mean"], m["llm_calls"]["mean"], m["total_tokens"]["mean"]])))
+                m["latency_s"]["mean"], m["llm_calls"]["mean"], m["total_tokens"]["mean"],
+                m["judge_decision_appropriate_pct_nonnull"]])))
     print((ROOT / "comparison.csv").read_text())
     print("Human criterion MAD:", human["all_criterion_ratings_mad"])
     print("Cost estimates:", json.dumps(costs, indent=2))

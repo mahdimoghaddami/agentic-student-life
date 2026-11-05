@@ -1,5 +1,6 @@
 """Run only the eight missing required variants, reusing the saved full baseline."""
 import copy
+import argparse
 import json
 from pathlib import Path
 import tomllib
@@ -29,7 +30,7 @@ def google_guard_total():
                for line in path.read_text().splitlines() if line.strip())
 
 
-def main():
+def main(only=None):
     with open("configs/2026-11-04/full-paid.toml", "rb") as stream:
         base = tomllib.load(stream)
     baseline = json.loads((ROOT / "full/manifest.json").read_text())
@@ -38,6 +39,8 @@ def main():
     cases = [json.loads(line) for line in (ROOT / "inputs/cases.jsonl").read_text().splitlines()]
     profiles = json.loads((ROOT / "inputs/profiles.json").read_text())
     for name, changes in VARIANTS.items():
+        if only and name not in only:
+            continue
         config_path = Path("configs/2026-11-04") / f"{name}.toml"
         # Persist the exact initial spending allocation for deterministic resume.
         if config_path.exists():
@@ -64,4 +67,6 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--only", nargs="+", choices=list(VARIANTS))
+    main(parser.parse_args().only)

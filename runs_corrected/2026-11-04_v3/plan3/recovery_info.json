@@ -1,0 +1,94 @@
+{
+  "reason": "Transient provider HTTP 504; generation code and settings unchanged",
+  "initial_failed_case_ids": [
+    "case_011"
+  ],
+  "replayed_case_ids": [
+    "case_002",
+    "case_011"
+  ],
+  "reused_case_ids": [
+    "case_001",
+    "case_003",
+    "case_004",
+    "case_005",
+    "case_006",
+    "case_007",
+    "case_008",
+    "case_009",
+    "case_010",
+    "case_012",
+    "case_013",
+    "case_014",
+    "case_015",
+    "case_016",
+    "case_017",
+    "case_018",
+    "case_019",
+    "case_020"
+  ],
+  "original_outputs": "attempt1_outputs.jsonl",
+  "trace_overrides_for_analysis": {
+    "case_002": {
+      "llm_calls": 13,
+      "tool_calls": 15,
+      "prompt_tokens": 32427,
+      "completion_tokens": 2957,
+      "total_tokens": 37931,
+      "latency_s": 352.157,
+      "per_agent": {
+        "planner": {
+          "calls": 2,
+          "tokens": 6172
+        },
+        "analyst": {
+          "calls": 2,
+          "tokens": 6184
+        },
+        "writer": {
+          "calls": 1,
+          "tokens": 2487
+        },
+        "critic": {
+          "calls": 1,
+          "tokens": 1911
+        }
+      },
+      "models_used": [
+        "gemini:gemini-3.6-flash"
+      ],
+      "active_attempt_latency_s": 143.95
+    },
+    "case_011": {
+      "llm_calls": 11,
+      "tool_calls": 14,
+      "prompt_tokens": 25017,
+      "completion_tokens": 2387,
+      "total_tokens": 28495,
+      "latency_s": 407.068,
+      "per_agent": {
+        "planner": {
+          "calls": 2,
+          "tokens": 6135
+        },
+        "analyst": {
+          "calls": 2,
+          "tokens": 5309
+        },
+        "writer": {
+          "calls": 1,
+          "tokens": 2004
+        },
+        "critic": {
+          "calls": 1,
+          "tokens": 1650
+        }
+      },
+      "models_used": [
+        "gemini:gemini-3.6-flash"
+      ],
+      "active_attempt_latency_s": 133.91
+    }
+  },
+  "latency_note": "Derived latency spans the first case start through the final valid output, including outer recovery waits. Calls and tokens sum recorded completed steps across both attempts. Raw final output traces remain unchanged; planning/reflection round budgets refer to the final attempt."
+}

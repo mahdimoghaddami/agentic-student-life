@@ -115,7 +115,7 @@ Mahdi independently rated 10 messages on the same three criteria and committed t
 \centering\resizebox{\textwidth}{!}{\input{tables/table3_human_vs_llm.tex}}
 \end{table*}
 
-The full configuration completes 20/20 cases, matches an allowed decision in 20/20, and satisfies the four applicable preference proxy checks. Its @JUDGED@ messages score @QUALITY@/5 on average. This is a selected software benchmark with expected labels authored by the project, not independently measured decision correctness in a deployed setting.
+The full configuration completes 20/20 cases, matches an allowed decision in 20/20, and satisfies the four applicable preference proxy checks. Its @JUDGED@ messages score @QUALITY@/5 on average. The independent judge considers @SEND_OK@\% of its sent messages appropriate; silent decisions are assessed through the allowed-label comparison. This is a selected software benchmark with expected labels authored by the project, not independently measured decision correctness in a deployed setting.
 
 Across the 30 human--judge criterion pairs, MAD is @MAD@ points. Per-criterion MADs are 0.10 for context awareness, 0.30 for goal alignment, and 0.40 for clarity. The largest difference is \texttt{case\_002}: human clarity 5 versus judge clarity 3. The judge describes the bedtime suggestion as wordy and overly certain; the human recorded no explanatory note, so we cannot infer their reasoning. Other one-point disagreements show that high average agreement can coexist with different views of concision and preference alignment.
 
@@ -140,6 +140,8 @@ Variant & $N$ & Full & Variant & $\Delta$\\\midrule
 
 The prespecified full condition remains the final configuration and retains five interacting roles and all five requested patterns. These runs expose tradeoffs; a small, unrepeated benchmark with ceiling effects is insufficient to select a globally best design or claim that extra agents or cycles reliably improve outcomes. Model B is evaluated under the same architecture; its results should be read alongside efficiency and any behavioral differences, not latency alone.
 
+The single-agent condition scores @SINGLE_QUALITY@/5 overall with @SINGLE_DEC@\% allowed-decision agreement. Removing planning scores @NO_PLAN_QUALITY@/5 with @NO_PLAN_DEC@\% agreement; removing reflection yields @NO_REFL_DEC@\% agreement. Model B scores @MODEL_B_QUALITY@/5 with @MODEL_B_DEC@\% agreement and @MODEL_B_LATENCY@ seconds mean latency. Overall quality means are descriptive; the paired table controls the set of non-null case IDs. In particular, the no-planning result does not establish a benefit from retaining planning on this cohort. Keeping the full condition as the final demonstration is a prespecified design choice, not a claim that every enabled component improved every metric.
+
 \subsection{Preference Proxy Review}
 Preference adherence checks prior feedback for forbidden words, required themes, and the latest length limit. It is measured on four later preference steps. The single-agent \texttt{case\_014} contains ``stress running elevated,'' which the lexical check flags as forbidden ``running'' despite offering indoor tea, stretching, or breathing. We retain the proxy result and identify this false positive rather than rerun the model or silently change the benchmark. All recorded proxy flags follow; their meaning requires reading the message and prior feedback.
 \begin{itemize}
@@ -157,12 +159,14 @@ Configuration & Latency $\mu\pm\sigma$ (s) & Calls & Tokens & Plan rounds & Crit
 \end{table*}
 Full-system latency averages @LATENCY@ seconds per case, with @CALLS@ completed model calls and @TOKENS@ trace tokens on average. The provider logs separately record @SUCCESS_REQUESTS@ successful generation requests and @FAILED_ATTEMPTS@ failed attempts across the nine conditions. Transient server errors affect wall-clock comparisons; this is not an isolated hardware benchmark. No additional samples were generated to improve the reported scores.
 
+Planning budget three initially completed 19/20 cases: \texttt{case\_011} received a provider HTTP 504 deadline error. A single recovery reused 18 cases and replayed only that failed case and its later same-student dependent case, \texttt{case\_002}. Initial outputs and the failure record are archived in that condition's directory. Derived efficiency sums recorded calls/tokens across both attempts for those two cases and measures wall latency from the first start to the final valid output, including the recovery wait. Raw final-attempt traces remain unchanged; \texttt{recovery\_info.json} provides the adjustments. Thus 180 final outputs require 182 case attempts, and the planning-three latency must not be attributed solely to deeper planning.
+
 Successful-response generation charges are estimated at \$@GEN_COST@ across the nine conditions, excluding preflight and interrupted attempts. The ledger assigns a further \$@UNCERTAIN@ conservative upper bound to uncertain failures; this is not confirmed billed spend. Automated judging costs an estimated \$@JUDGE_COST@. Estimates use token prices without cached-input discounts and do not verify account credit balances. Preflight and earlier-attempt ledgers remain separate.
 
 \section{Limitations and Responsible Interpretation}
 Cases were selected for scenario coverage and include repeated participants. Simulated goals and scripted feedback are not evidence of real student preferences or acceptance. Sleep/activity inferences and sparse EMA observations can be noisy. The deterministic preference proxy has lexical false positives; the allowed-decision test and LLM judge have their own author and model biases. One rater and one generation per condition do not support reliable population-level or causal superiority claims. Scores near the top of the rubric can mask meaningful message differences.
 
-Curated campus-resource entries are demonstration content and are not continuously verified institutional service data. The historical timeline also differs from the present-day language-model environment. This is an offline educational coach simulation, not a deployed clinical service or evidence of improved mental health. A deployment would require consent, institutional resource validation, privacy controls, and prospective evaluation.
+Curated campus-resource entries are demonstration content and are not continuously verified institutional service data. The historical timeline also differs from the present-day language-model environment. The experiment measures an offline educational coach simulation; it does not measure service availability, clinical effectiveness, or changes in student mental health.
 
 \section{Reproducibility and Conclusion}
 The valid outputs, call traces, memory snapshots, generation configuration snapshots, manifests, per-request usage ledgers, human ratings, and judge scores are under \texttt{runs\_corrected/2026-11-04\_v3/}. The repository includes resume-safe scripts for only the eight missing ablations, judging saved messages, offline analysis, and report generation. Thirty offline regression tests and five leakage checks pass. Hash checks preserve all 127 original run files plus the full corrected baseline and human ratings.
@@ -195,7 +199,13 @@ Each configuration's \texttt{outputs.jsonl} has one final object per case; \text
         "TOKENS": f"{full['total_tokens']['mean']:,.0f}", "GEN_COST": f"{generation_cost:.3f}",
         "UNCERTAIN": f"{uncertain:.3f}", "JUDGE_COST": f"{cost['judge']['estimated_usd']:.3f}",
         "SUCCESS_REQUESTS": successful_requests, "FAILED_ATTEMPTS": attempts,
+        "SEND_OK": f"{full['judge_decision_appropriate_pct_nonnull']:.1f}",
     }
+    for name in ["single", "no_plan", "no_refl", "modelB"]:
+        prefix = "MODEL_B" if name == "modelB" else name.upper()
+        values[f"{prefix}_QUALITY"] = f"{metrics[name]['judge_mean']['mean']:.2f}"
+        values[f"{prefix}_DEC"] = f"{metrics[name]['decision_acc']:.1f}"
+        values[f"{prefix}_LATENCY"] = f"{metrics[name]['latency_s']['mean']:.2f}"
     for key, value in values.items():
         text = text.replace(f"@{key}@", str(value))
     assert "@PAIRED" not in text
