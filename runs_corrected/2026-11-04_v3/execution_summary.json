@@ -1,5 +1,5 @@
 {
-  "status": "complete; automated judging and human ratings pending",
+  "status": "Full configuration complete, independently judged, and human-rated; ablations in progress",
   "total_cases": 20,
   "ok_cases": 20,
   "failed_cases": 0,
@@ -36,6 +36,8 @@
     "json_path": "runs_corrected\\2026-11-04_v3\\full\\human_eval\\human_ratings.json",
     "num_items": "10"
   },
-  "judge_run": false,
-  "ablations_run": false
+  "judge_run": true,
+  "ablations_run": true,
+  "human_ratings_complete": true,
+  "ablations_complete": false
 }

@@ -3,6 +3,11 @@ import csv
 import hashlib
 import json
 from pathlib import Path
+from datetime import datetime
+
+import matplotlib
+matplotlib.use("Agg")
+import matplotlib.pyplot as plt
 
 from agentic_student_life.config import JudgeConfig
 from agentic_student_life.eval.context import message_fingerprint
@@ -29,9 +34,25 @@ def main():
         assert hashlib.sha256((Path("runs") / relative).read_bytes()).hexdigest() == checksum, relative
     all_metrics, records, scores = {}, {}, {}
     for name in NAMES:
-        records[name] = {r["case_id"]: r for r in load_lines(ROOT / name / "outputs.jsonl")}
+        output_rows = load_lines(ROOT / name / "outputs.jsonl")
+        assert len(output_rows) == len(cases), name
+        records[name] = {r["case_id"]: r for r in output_rows}
         assert set(records[name]) == set(cases), name
         assert all(r["status"] == "ok" for r in records[name].values()), name
+        snapshot = __import__("tomllib").loads((ROOT / name / "config.snapshot.toml").read_text())
+        manifest = json.loads((ROOT / name / "manifest.json").read_text())
+        full_manifest = json.loads((ROOT / "full/manifest.json").read_text())
+        assert manifest["source_digest"] == full_manifest["source_digest"], name
+        assert manifest["data_digest"] == full_manifest["data_digest"], name
+        for cid, record in records[name].items():
+            assert record["participant_id"] == cases[cid]["participant_id"]
+            assert record["decision_time"] == cases[cid]["decision_time"]
+            assert bool(record["final_message"]) == (record["decision"] != "none")
+            assert record["trace"]["models_used"] == [snapshot["system"]["model"]]
+            assert record["planning"]["rounds_used"] <= snapshot["planning"]["max_rounds"]
+            assert record["reflection"]["rounds_used"] <= snapshot["reflection"]["max_rounds"]
+            for previous in record["evaluation_context"]["recent_interactions"]:
+                assert datetime.fromisoformat(previous["decision_time"]) < datetime.fromisoformat(record["decision_time"])
         scores[name] = {r["case_id"]: r for r in load_lines(ROOT / name / "judge_scores.jsonl")}
         nonnull = {cid for cid, r in records[name].items() if r.get("final_message")}
         assert set(scores[name]) == nonnull, name
@@ -49,6 +70,10 @@ def main():
         item["abs_diff"][criterion] for item in pairs
         for criterion in ("context_awareness", "goal_alignment", "clarity")) / (3 * len(pairs))
     human["note"] = "MAD of individual criterion ratings differs from MAD after averaging each message's three scores."
+    # The legacy helper calls a <=0.34 tolerance 'exact' for mean scores.
+    # Report literal equality here, without changing frozen generation source.
+    human["by_criterion"]["mean"]["exact_agreement_rate"] = sum(
+        item["human"]["mean"] == item["llm"]["mean"] for item in pairs) / len(pairs)
     comparisons = {}
     for name in NAMES[1:]:
         common = sorted(set(scores["full"]) & set(scores[name]))
@@ -83,6 +108,37 @@ def main():
     (ROOT / "matched_comparisons.json").write_text(json.dumps(comparisons, indent=2) + "\n")
     generate_all_plots(all_metrics, human, ROOT / "report/figures")
     generate_all_tables(all_metrics, human, ROOT / "report/tables")
+    figure_dir = ROOT / "report/figures"
+    labels = NAMES[1:]
+    fig, ax = plt.subplots(figsize=(7, 3.2))
+    differences = [comparisons[n]["paired_quality_difference_variant_minus_full"] for n in labels]
+    ax.barh(labels, differences, color=["#0f766e" if x >= 0 else "#b45309" for x in differences])
+    ax.axvline(0, color="#475569", linewidth=1)
+    ax.set_xlabel("Variant minus full: quality on common non-null cases (1–5)")
+    ax.invert_yaxis(); fig.tight_layout()
+    fig.savefig(figure_dir / "fig5_paired_quality.pdf")
+    fig.savefig(figure_dir / "fig5_paired_quality.png", dpi=160)
+    plt.close(fig)
+    fig, ax = plt.subplots(figsize=(7, 3))
+    ax.bar(NAMES, [costs[n]["successful_response_estimate_usd"] for n in NAMES], label="Successful-response estimate")
+    ax.bar(NAMES, [costs[n]["uncertain_failure_upper_bound_usd"] for n in NAMES],
+           bottom=[costs[n]["successful_response_estimate_usd"] for n in NAMES],
+           color="#cbd5e1", label="Uncertain failure upper bound (not confirmed charge)")
+    ax.set_ylabel("USD"); ax.tick_params(axis="x", rotation=25)
+    ax.legend(fontsize=7); fig.tight_layout()
+    fig.savefig(figure_dir / "fig6_usage_cost.pdf")
+    fig.savefig(figure_dir / "fig6_usage_cost.png", dpi=160)
+    plt.close(fig)
+    fig, ax = plt.subplots(figsize=(7, 3))
+    depth_names = ["no_plan", "plan1", "full", "plan3", "no_refl", "refl1", "refl3"]
+    x = list(range(len(depth_names)))
+    ax.bar([v-.17 for v in x], [all_metrics[n]["planning_rounds_mean"] for n in depth_names], width=.34, label="Actual planner calls / case")
+    ax.bar([v+.17 for v in x], [all_metrics[n]["reflection_rounds_mean"] for n in depth_names], width=.34, label="Actual critic cycles / message")
+    ax.set_xticks(x, depth_names); ax.set_ylabel("Observed mean rounds")
+    ax.legend(fontsize=8); fig.tight_layout()
+    fig.savefig(figure_dir / "fig7_effective_rounds.pdf")
+    fig.savefig(figure_dir / "fig7_effective_rounds.png", dpi=160)
+    plt.close(fig)
     with (ROOT / "comparison.csv").open("w", newline="") as stream:
         fields = ["config", "cases", "ok", "decision_accuracy_pct", "preference_adherence_pct",
                   "messages_judged", "quality_mean", "latency_mean_s", "calls_mean", "tokens_mean"]

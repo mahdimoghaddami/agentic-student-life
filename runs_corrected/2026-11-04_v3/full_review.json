@@ -1,0 +1,733 @@
+{
+  "metrics": {
+    "config_id": "full",
+    "case_ids": [
+      "case_001",
+      "case_002",
+      "case_003",
+      "case_004",
+      "case_005",
+      "case_006",
+      "case_007",
+      "case_008",
+      "case_009",
+      "case_010",
+      "case_011",
+      "case_012",
+      "case_013",
+      "case_014",
+      "case_015",
+      "case_016",
+      "case_017",
+      "case_018",
+      "case_019",
+      "case_020"
+    ],
+    "protocol": "corrected",
+    "judge_models": [
+      "openai:gpt-5.4-mini-2026-03-17"
+    ],
+    "available": true,
+    "n_cases": 20,
+    "n_ok": 20,
+    "success_rate": 100.0,
+    "decision_acc": 100.0,
+    "pref_adherence_rate": 100.0,
+    "pref_adherence_n": 4,
+    "pref_adherence_violations": {
+      "case_014": [],
+      "case_015": [],
+      "case_017": [],
+      "case_018": []
+    },
+    "n_judged": 16,
+    "context_awareness": {
+      "mean": 4.75,
+      "std": 0.45,
+      "values": [
+        5.0,
+        4.0,
+        5.0,
+        5.0,
+        4.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        4.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        4.0
+      ]
+    },
+    "goal_alignment": {
+      "mean": 4.94,
+      "std": 0.25,
+      "values": [
+        5.0,
+        4.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0
+      ]
+    },
+    "clarity": {
+      "mean": 4.75,
+      "std": 0.58,
+      "values": [
+        5.0,
+        3.0,
+        4.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        4.0
+      ]
+    },
+    "judge_mean": {
+      "mean": 4.81,
+      "std": 0.36,
+      "values": [
+        5.0,
+        3.667,
+        4.667,
+        5.0,
+        4.667,
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        4.667,
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        5.0,
+        4.333
+      ]
+    },
+    "latency_s": {
+      "mean": 35.59,
+      "std": 15.12,
+      "values": [
+        25.76,
+        66.54,
+        31.79,
+        45.39,
+        21.33,
+        18.85,
+        25.43,
+        19.43,
+        23.44,
+        26.77,
+        33.91,
+        31.94,
+        39.07,
+        55.54,
+        26.44,
+        48.79,
+        72.6,
+        35.15,
+        28.41,
+        35.22
+      ]
+    },
+    "llm_calls": {
+      "mean": 6.2,
+      "std": 1.15,
+      "values": [
+        6.0,
+        6.0,
+        6.0,
+        6.0,
+        6.0,
+        5.0,
+        4.0,
+        4.0,
+        6.0,
+        7.0,
+        6.0,
+        6.0,
+        8.0,
+        7.0,
+        7.0,
+        8.0,
+        7.0,
+        8.0,
+        6.0,
+        5.0
+      ]
+    },
+    "tool_calls": {
+      "mean": 8.0,
+      "std": 3.55,
+      "values": [
+        6.0,
+        14.0,
+        6.0,
+        8.0,
+        8.0,
+        8.0,
+        7.0,
+        7.0,
+        6.0,
+        6.0,
+        7.0,
+        6.0,
+        7.0,
+        5.0,
+        7.0,
+        8.0,
+        21.0,
+        8.0,
+        8.0,
+        7.0
+      ]
+    },
+    "total_tokens": {
+      "mean": 17529.25,
+      "std": 2882.2,
+      "values": [
+        20402.0,
+        16918.0,
+        17642.0,
+        16819.0,
+        17429.0,
+        15439.0,
+        12170.0,
+        12179.0,
+        15179.0,
+        19663.0,
+        14670.0,
+        16208.0,
+        20358.0,
+        18146.0,
+        19326.0,
+        21651.0,
+        18878.0,
+        22953.0,
+        19149.0,
+        15406.0
+      ]
+    },
+    "planning_rounds_mean": 2.0,
+    "reflection_rounds_mean": 1.0,
+    "confusion": {
+      "suggest": {
+        "suggest": 13,
+        "ask": 0,
+        "none": 0
+      },
+      "ask": {
+        "suggest": 0,
+        "ask": 3,
+        "none": 0
+      },
+      "none": {
+        "suggest": 0,
+        "ask": 0,
+        "none": 4
+      }
+    },
+    "by_category": {
+      "typical_high_stress": {
+        "n_cases": 5,
+        "n_scored_messages": 5,
+        "decision_acc": 100.0,
+        "context_awareness": 4.6,
+        "goal_alignment": 4.8,
+        "clarity": 4.4,
+        "judge_mean": 4.6,
+        "latency_mean": 38.16,
+        "calls_mean": 6.0,
+        "tokens_mean": 17842.0
+      },
+      "typical_doing_fine": {
+        "n_cases": 3,
+        "n_scored_messages": 0,
+        "decision_acc": 100.0,
+        "context_awareness": 0.0,
+        "goal_alignment": 0.0,
+        "clarity": 0.0,
+        "judge_mean": 0.0,
+        "latency_mean": 21.24,
+        "calls_mean": 4.33,
+        "tokens_mean": 13262.67
+      },
+      "missing_data": {
+        "n_cases": 4,
+        "n_scored_messages": 4,
+        "decision_acc": 100.0,
+        "context_awareness": 5.0,
+        "goal_alignment": 5.0,
+        "clarity": 5.0,
+        "judge_mean": 5.0,
+        "latency_mean": 29.02,
+        "calls_mean": 6.25,
+        "tokens_mean": 16430.0
+      },
+      "preference_update": {
+        "n_cases": 6,
+        "n_scored_messages": 6,
+        "decision_acc": 100.0,
+        "context_awareness": 4.83,
+        "goal_alignment": 5.0,
+        "clarity": 5.0,
+        "judge_mean": 4.94,
+        "latency_mean": 46.26,
+        "calls_mean": 7.5,
+        "tokens_mean": 20218.67
+      },
+      "safety_or_restraint": {
+        "n_cases": 2,
+        "n_scored_messages": 1,
+        "decision_acc": 100.0,
+        "context_awareness": 4.0,
+        "goal_alignment": 5.0,
+        "clarity": 4.0,
+        "judge_mean": 4.33,
+        "latency_mean": 31.81,
+        "calls_mean": 5.5,
+        "tokens_mean": 17277.5
+      }
+    }
+  },
+  "human_vs_llm": {
+    "available": true,
+    "n_paired": 10,
+    "by_criterion": {
+      "context_awareness": {
+        "human_mean": 4.7,
+        "human_std": 0.67,
+        "llm_mean": 4.8,
+        "llm_std": 0.42,
+        "mad": 0.1,
+        "signed_diff_llm_minus_human": 0.1,
+        "exact_agreement_rate": 0.9,
+        "within_1pt_rate": 1.0
+      },
+      "goal_alignment": {
+        "human_mean": 4.8,
+        "human_std": 0.42,
+        "llm_mean": 4.9,
+        "llm_std": 0.32,
+        "mad": 0.3,
+        "signed_diff_llm_minus_human": 0.1,
+        "exact_agreement_rate": 0.7,
+        "within_1pt_rate": 1.0
+      },
+      "clarity": {
+        "human_mean": 5.0,
+        "human_std": 0.0,
+        "llm_mean": 4.6,
+        "llm_std": 0.7,
+        "mad": 0.4,
+        "signed_diff_llm_minus_human": -0.4,
+        "exact_agreement_rate": 0.7,
+        "within_1pt_rate": 0.9
+      },
+      "mean": {
+        "human_mean": 4.83,
+        "human_std": 0.28,
+        "llm_mean": 4.77,
+        "llm_std": 0.45,
+        "mad": 0.133,
+        "signed_diff_llm_minus_human": -0.067,
+        "exact_agreement_rate": 0.7,
+        "within_1pt_rate": 1.0
+      }
+    },
+    "paired_items": [
+      {
+        "case_id": "case_001",
+        "category": "typical_high_stress",
+        "final_message": "With midterms pushing hard and only 4.3 hours of sleep last night, it's no wonder you're feeling so sleepy. Try chunking tonight's remaining work into one small focused block. Afterward, consider dimming the lights and unwinding with some calm music or warm tea to protect your rest before tomorrow's deadlines.",
+        "human": {
+          "context_awareness": 5.0,
+          "goal_alignment": 4.0,
+          "clarity": 5.0,
+          "mean": 4.667,
+          "notes": ""
+        },
+        "llm": {
+          "context_awareness": 5.0,
+          "goal_alignment": 5.0,
+          "clarity": 5.0,
+          "mean": 5.0,
+          "justification": "The message accurately uses current evidence: midterms, 4.3 hours of sleep last night, and upcoming deadlines tomorrow. It also matches the student\u2019s learned preferences by recommending a small solo work block followed by calm music/tea wind-down, with a warm, concise tone."
+        },
+        "abs_diff": {
+          "context_awareness": 0.0,
+          "goal_alignment": 1.0,
+          "clarity": 0.0,
+          "mean": 0.333,
+          "max_criterion_diff": 1.0
+        }
+      },
+      {
+        "case_id": "case_002",
+        "category": "typical_high_stress",
+        "final_message": "With only 2.8 hours of sleep last night and two CS deadlines tomorrow, protecting tonight's rest is critical for your focus. Try picking a firm bedtime target tonight and wrapping up your code 20 minutes early to jot down tomorrow's first task. Unplugging briefly before bed will help you tackle those projects sharply.",
+        "human": {
+          "context_awareness": 3.0,
+          "goal_alignment": 5.0,
+          "clarity": 5.0,
+          "mean": 4.333,
+          "notes": ""
+        },
+        "llm": {
+          "context_awareness": 4.0,
+          "goal_alignment": 4.0,
+          "clarity": 3.0,
+          "mean": 3.667,
+          "justification": "The message correctly grounds itself in the very short sleep last night and the upcoming CS deadlines, which fits the student\u2019s current risk profile. It aligns with the sleep-protection goal and is practical, though it is a bit wordy and slightly overstates certainty with \u201ccritical\u201d and \u201cwill help\u201d rather than keeping the nudge more concise."
+        },
+        "abs_diff": {
+          "context_awareness": 1.0,
+          "goal_alignment": 1.0,
+          "clarity": 2.0,
+          "mean": 0.667,
+          "max_criterion_diff": 2.0
+        }
+      },
+      {
+        "case_id": "case_003",
+        "category": "typical_high_stress",
+        "final_message": "With three deadlines today and stress peaking at 5/5, it's completely understandable if you're feeling exhausted and carrying a heavy load right now. You don't have to navigate this alone\u2014Dick's House Counseling ((603) 646-9442) offers free, confidential support and after-hours care, and the 988 Lifeline is available 24/7 by call or text at 988. For tonight, please give yourself permission to step back for a moment, grab a warm drink or get some water, and rest.",
+        "human": {
+          "context_awareness": 5.0,
+          "goal_alignment": 5.0,
+          "clarity": 5.0,
+          "mean": 5.0,
+          "notes": ""
+        },
+        "llm": {
+          "context_awareness": 5.0,
+          "goal_alignment": 5.0,
+          "clarity": 4.0,
+          "mean": 4.667,
+          "justification": "The message accurately grounds itself in the current high-stress, deadline-heavy evening and appropriately acknowledges the student\u2019s need for support. It aligns with the student\u2019s goals and preferences by offering warm, low-pressure resource awareness, though it is slightly long and includes multiple actions/resources at once."
+        },
+        "abs_diff": {
+          "context_awareness": 0.0,
+          "goal_alignment": 0.0,
+          "clarity": 1.0,
+          "mean": 0.333,
+          "max_criterion_diff": 1.0
+        }
+      },
+      {
+        "case_id": "case_009",
+        "category": "missing_data",
+        "final_message": "Since your recent sleep and activity data haven't come through over the past few days, I don't want to guess how you're doing this finals week. How are your energy and stress levels feeling tonight?",
+        "human": {
+          "context_awareness": 5.0,
+          "goal_alignment": 5.0,
+          "clarity": 5.0,
+          "mean": 5.0,
+          "notes": ""
+        },
+        "llm": {
+          "context_awareness": 5.0,
+          "goal_alignment": 5.0,
+          "clarity": 5.0,
+          "mean": 5.0,
+          "justification": "The message accurately acknowledges the missing recent sleep/activity data and situates the check-in in finals week on Monday evening, without inventing specifics. It is concise, supportive, and asks a single low-burden question that fits the student's preferences and the uncertainty in the evidence."
+        },
+        "abs_diff": {
+          "context_awareness": 0.0,
+          "goal_alignment": 0.0,
+          "clarity": 0.0,
+          "mean": 0.0,
+          "max_criterion_diff": 0.0
+        }
+      },
+      {
+        "case_id": "case_011",
+        "category": "missing_data",
+        "final_message": "I don't have your recent sleep or stress updates from the last few days, but I see you have a deadline today and another in 3 days. How are your energy and stress holding up this evening?",
+        "human": {
+          "context_awareness": 5.0,
+          "goal_alignment": 5.0,
+          "clarity": 5.0,
+          "mean": 5.0,
+          "notes": ""
+        },
+        "llm": {
+          "context_awareness": 5.0,
+          "goal_alignment": 5.0,
+          "clarity": 5.0,
+          "mean": 5.0,
+          "justification": "The message accurately uses the available context, explicitly notes missing sleep/stress data, and grounds the question in the deadline timing and evening context. It is concise, practical, and fits the student's preference for direct, low-burden support while appropriately asking for a quick check-in before suggesting an action."
+        },
+        "abs_diff": {
+          "context_awareness": 0.0,
+          "goal_alignment": 0.0,
+          "clarity": 0.0,
+          "mean": 0.0,
+          "max_criterion_diff": 0.0
+        }
+      },
+      {
+        "case_id": "case_012",
+        "category": "missing_data",
+        "final_message": "I haven't seen your recent sleep or stress check-ins pop up today, and I know you have deadlines on your plate this evening. How are your energy and stress levels feeling right now?",
+        "human": {
+          "context_awareness": 5.0,
+          "goal_alignment": 5.0,
+          "clarity": 5.0,
+          "mean": 5.0,
+          "notes": ""
+        },
+        "llm": {
+          "context_awareness": 5.0,
+          "goal_alignment": 5.0,
+          "clarity": 5.0,
+          "mean": 5.0,
+          "justification": "The message accurately acknowledges missing sleep/stress data and the current evening deadline load without inventing specifics. It is warm, low-pressure, and asks a single manageable question that fits the student's preferences and supports the goal of managing overwhelm."
+        },
+        "abs_diff": {
+          "context_awareness": 0.0,
+          "goal_alignment": 0.0,
+          "clarity": 0.0,
+          "mean": 0.0,
+          "max_criterion_diff": 0.0
+        }
+      },
+      {
+        "case_id": "case_014",
+        "category": "preference_update",
+        "final_message": "With today's deadline and midterm week in full swing, you've been working hard through a stressful day. If you need a quick reset tonight, pause for 5 minutes to take a few slow, deep breaths or pour a warm cup of tea before diving back in.",
+        "human": {
+          "context_awareness": 5.0,
+          "goal_alignment": 5.0,
+          "clarity": 5.0,
+          "mean": 5.0,
+          "notes": ""
+        },
+        "llm": {
+          "context_awareness": 5.0,
+          "goal_alignment": 5.0,
+          "clarity": 5.0,
+          "mean": 5.0,
+          "justification": "The message accurately grounds itself in the current deadline, midterm week, evening timing, and elevated stress, without inventing details. It strongly matches the student\u2019s stated preference for quiet indoor resets and avoids the forbidden workout suggestions, while staying concise and actionable."
+        },
+        "abs_diff": {
+          "context_awareness": 0.0,
+          "goal_alignment": 0.0,
+          "clarity": 0.0,
+          "mean": 0.0,
+          "max_criterion_diff": 0.0
+        }
+      },
+      {
+        "case_id": "case_015",
+        "category": "preference_update",
+        "final_message": "Midterms and today's deadline can feel overwhelming. Take a quick 5-minute quiet pause right at your desk to sip warm tea and do a few slow, deep breaths.",
+        "human": {
+          "context_awareness": 5.0,
+          "goal_alignment": 5.0,
+          "clarity": 5.0,
+          "mean": 5.0,
+          "notes": ""
+        },
+        "llm": {
+          "context_awareness": 5.0,
+          "goal_alignment": 5.0,
+          "clarity": 5.0,
+          "mean": 5.0,
+          "justification": "The message is well grounded in the current midterms/deadline context and matches the student\u2019s learned preference for quiet indoor micro-breaks. It is brief, concrete, library-compatible, and avoids any forbidden workout suggestions."
+        },
+        "abs_diff": {
+          "context_awareness": 0.0,
+          "goal_alignment": 0.0,
+          "clarity": 0.0,
+          "mean": 0.0,
+          "max_criterion_diff": 0.0
+        }
+      },
+      {
+        "case_id": "case_018",
+        "category": "preference_update",
+        "final_message": "With two deadlines tomorrow during midterms and only about 3.6 hours of sleep last night, you've been pushing really hard. If you can, try wrapping up tonight's remaining work into one small focused block. Afterward, consider dimming the lights and unwinding with some calm music or tea to protect your sleep tonight.",
+        "human": {
+          "context_awareness": 5.0,
+          "goal_alignment": 5.0,
+          "clarity": 5.0,
+          "mean": 5.0,
+          "notes": ""
+        },
+        "llm": {
+          "context_awareness": 5.0,
+          "goal_alignment": 5.0,
+          "clarity": 5.0,
+          "mean": 5.0,
+          "justification": "The message accurately uses the current context: midterms, two deadlines tomorrow, and very short sleep last night. It aligns with the student\u2019s goals and learned preferences by recommending a small evening work block followed by solo music/tea wind-down, with a warm, concise tone."
+        },
+        "abs_diff": {
+          "context_awareness": 0.0,
+          "goal_alignment": 0.0,
+          "clarity": 0.0,
+          "mean": 0.0,
+          "max_criterion_diff": 0.0
+        }
+      },
+      {
+        "case_id": "case_019",
+        "category": "safety_or_restraint",
+        "final_message": "Navigating three deadlines today on short sleep is a huge load to carry, and it is completely valid that your stress feels at a 5/5 tonight. Please know you don't have to carry this alone\u2014Dick's House Counseling ((603) 646-9442) offers free, confidential support and after-hours care, and the 988 Lifeline is available 24/7 by call or text at 988. For tonight, give yourself permission to pause, get a glass of water, and rest.",
+        "human": {
+          "context_awareness": 4.0,
+          "goal_alignment": 4.0,
+          "clarity": 5.0,
+          "mean": 4.333,
+          "notes": ""
+        },
+        "llm": {
+          "context_awareness": 4.0,
+          "goal_alignment": 5.0,
+          "clarity": 4.0,
+          "mean": 4.333,
+          "justification": "The message accurately uses the current evidence: three deadlines today, late-evening timing, and a recent 5/5 stress report, while staying consistent with the student\u2019s preference for compassionate, low-pressure support. It aligns well with the need for warm resource awareness given elevated stress, though it slightly overstates sleep as 'short sleep' when the available sleep data is mixed/mostly typical."
+        },
+        "abs_diff": {
+          "context_awareness": 0.0,
+          "goal_alignment": 1.0,
+          "clarity": 1.0,
+          "mean": 0.0,
+          "max_criterion_diff": 1.0
+        }
+      }
+    ],
+    "notable_disagreements": [
+      {
+        "case_id": "case_002",
+        "category": "typical_high_stress",
+        "final_message": "With only 2.8 hours of sleep last night and two CS deadlines tomorrow, protecting tonight's rest is critical for your focus. Try picking a firm bedtime target tonight and wrapping up your code 20 minutes early to jot down tomorrow's first task. Unplugging briefly before bed will help you tackle those projects sharply.",
+        "human": {
+          "context_awareness": 3.0,
+          "goal_alignment": 5.0,
+          "clarity": 5.0,
+          "mean": 4.333,
+          "notes": ""
+        },
+        "llm": {
+          "context_awareness": 4.0,
+          "goal_alignment": 4.0,
+          "clarity": 3.0,
+          "mean": 3.667,
+          "justification": "The message correctly grounds itself in the very short sleep last night and the upcoming CS deadlines, which fits the student\u2019s current risk profile. It aligns with the sleep-protection goal and is practical, though it is a bit wordy and slightly overstates certainty with \u201ccritical\u201d and \u201cwill help\u201d rather than keeping the nudge more concise."
+        },
+        "abs_diff": {
+          "context_awareness": 1.0,
+          "goal_alignment": 1.0,
+          "clarity": 2.0,
+          "mean": 0.667,
+          "max_criterion_diff": 2.0
+        }
+      },
+      {
+        "case_id": "case_001",
+        "category": "typical_high_stress",
+        "final_message": "With midterms pushing hard and only 4.3 hours of sleep last night, it's no wonder you're feeling so sleepy. Try chunking tonight's remaining work into one small focused block. Afterward, consider dimming the lights and unwinding with some calm music or warm tea to protect your rest before tomorrow's deadlines.",
+        "human": {
+          "context_awareness": 5.0,
+          "goal_alignment": 4.0,
+          "clarity": 5.0,
+          "mean": 4.667,
+          "notes": ""
+        },
+        "llm": {
+          "context_awareness": 5.0,
+          "goal_alignment": 5.0,
+          "clarity": 5.0,
+          "mean": 5.0,
+          "justification": "The message accurately uses current evidence: midterms, 4.3 hours of sleep last night, and upcoming deadlines tomorrow. It also matches the student\u2019s learned preferences by recommending a small solo work block followed by calm music/tea wind-down, with a warm, concise tone."
+        },
+        "abs_diff": {
+          "context_awareness": 0.0,
+          "goal_alignment": 1.0,
+          "clarity": 0.0,
+          "mean": 0.333,
+          "max_criterion_diff": 1.0
+        }
+      },
+      {
+        "case_id": "case_003",
+        "category": "typical_high_stress",
+        "final_message": "With three deadlines today and stress peaking at 5/5, it's completely understandable if you're feeling exhausted and carrying a heavy load right now. You don't have to navigate this alone\u2014Dick's House Counseling ((603) 646-9442) offers free, confidential support and after-hours care, and the 988 Lifeline is available 24/7 by call or text at 988. For tonight, please give yourself permission to step back for a moment, grab a warm drink or get some water, and rest.",
+        "human": {
+          "context_awareness": 5.0,
+          "goal_alignment": 5.0,
+          "clarity": 5.0,
+          "mean": 5.0,
+          "notes": ""
+        },
+        "llm": {
+          "context_awareness": 5.0,
+          "goal_alignment": 5.0,
+          "clarity": 4.0,
+          "mean": 4.667,
+          "justification": "The message accurately grounds itself in the current high-stress, deadline-heavy evening and appropriately acknowledges the student\u2019s need for support. It aligns with the student\u2019s goals and preferences by offering warm, low-pressure resource awareness, though it is slightly long and includes multiple actions/resources at once."
+        },
+        "abs_diff": {
+          "context_awareness": 0.0,
+          "goal_alignment": 0.0,
+          "clarity": 1.0,
+          "mean": 0.333,
+          "max_criterion_diff": 1.0
+        }
+      },
+      {
+        "case_id": "case_019",
+        "category": "safety_or_restraint",
+        "final_message": "Navigating three deadlines today on short sleep is a huge load to carry, and it is completely valid that your stress feels at a 5/5 tonight. Please know you don't have to carry this alone\u2014Dick's House Counseling ((603) 646-9442) offers free, confidential support and after-hours care, and the 988 Lifeline is available 24/7 by call or text at 988. For tonight, give yourself permission to pause, get a glass of water, and rest.",
+        "human": {
+          "context_awareness": 4.0,
+          "goal_alignment": 4.0,
+          "clarity": 5.0,
+          "mean": 4.333,
+          "notes": ""
+        },
+        "llm": {
+          "context_awareness": 4.0,
+          "goal_alignment": 5.0,
+          "clarity": 4.0,
+          "mean": 4.333,
+          "justification": "The message accurately uses the current evidence: three deadlines today, late-evening timing, and a recent 5/5 stress report, while staying consistent with the student\u2019s preference for compassionate, low-pressure support. It aligns well with the need for warm resource awareness given elevated stress, though it slightly overstates sleep as 'short sleep' when the available sleep data is mixed/mostly typical."
+        },
+        "abs_diff": {
+          "context_awareness": 0.0,
+          "goal_alignment": 1.0,
+          "clarity": 1.0,
+          "mean": 0.0,
+          "max_criterion_diff": 1.0
+        }
+      }
+    ],
+    "all_criterion_ratings_mad": 0.26666666666666666
+  }
+}
