@@ -2,7 +2,7 @@
 
 Research paper: [Personalized Student Stress Coaching with Language Agents](output/pdf/studentlife_coach_paper/studentlife_coach.pdf), with [LaTeX source](output/pdf/studentlife_coach_paper/studentlife_coach.tex) and [TikZ workflow](output/pdf/studentlife_coach_paper/workflow.tex).
 
-**Authors:** Mahdi Moghaddami (`mmoghaddami@oakland.edu`) and Brett Piggot (`bpiggot@oakland.edu`)  
+**Authors:** Mahdi Moghaddami (`mmoghaddami@oakland.edu`) and Brett Piggott (`bpiggot@oakland.edu`)  
 **Course:** CSI 4900/5900 — Agentic AI (Fall 2026), Oakland University
 
 A multi-agent, LLM-powered stress-management coach evaluated on longitudinal smartphone sensing, Ecological Momentary Assessment (EMA), survey, and academic schedule data from the **Dartmouth StudentLife dataset** (49 participants over a 10-week spring term). Given a participant at a specific `decision_time`, the system inspects only historical observations up to that timestamp (`t <= decision_time`), consults the student's simulated profile and episodic/preference memory, and decides whether to:

@@ -5,7 +5,7 @@ description = "Multi-agent AI stress coach on the StudentLife dataset (CSI 4900/
 readme = "README.md"
 authors = [
     { name = "Mahdi Moghaddami", email = "mahdiman10@gmail.com" },
-    { name = "Brett Piggot", email = "bpiggot@oakland.edu" },
+    { name = "Brett Piggott", email = "bpiggot@oakland.edu" },
 ]
 requires-python = ">=3.15"
 dependencies = [
