@@ -16,7 +16,7 @@
       480,
       158
     ],
-    "sha256": "a0c7e2d54bc1a6e074f6950ff9feb788df7c112ee4882ceab2a8e5e579751420"
+    "sha256": "988ee8f0710cbf1058d490503a2a0d23a314dd1e12290b4d90064e397ddbcfa1"
   },
   "report-workflow-evaluation.svg": {
     "source": "output/pdf/studentlife_coach_paper/studentlife_coach.pdf",
@@ -28,6 +28,6 @@
       465,
       155
     ],
-    "sha256": "a0c7e2d54bc1a6e074f6950ff9feb788df7c112ee4882ceab2a8e5e579751420"
+    "sha256": "988ee8f0710cbf1058d490503a2a0d23a314dd1e12290b4d90064e397ddbcfa1"
   }
 }

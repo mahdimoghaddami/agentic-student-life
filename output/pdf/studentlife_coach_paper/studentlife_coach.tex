@@ -43,7 +43,7 @@ Student stress coaching requires more than recognizing a busy week. A useful sys
 
 We present a training-free coach that combines five large language model (LLM) agent roles: Planner, Context Analyst, Message Writer, Critic, and Memory Manager. Read-only tools expose time-bounded StudentLife observations; reusable skills guide message generation; persistent memory stores earlier suggestions, feedback, and learned preferences. Goals and replies absent from StudentLife are explicitly simulated. The output is a structured, auditable decision at a specified participant/time point.
 
-We ask three questions: can this workflow produce context-sensitive actions and retain preferences under incomplete observations; how do architecture, planning, reflection, budgets, and model choice affect quality and efficiency; and how closely do independent human and LLM ratings agree? We contribute a configurable workflow, complete tool/skill interfaces, and an evaluation of nine conditions on 20 cases from eight participant identifiers. Section 2 gives the background; Section 3 explains the method; Section 4 defines and reports evaluation; Section 5 analyzes the ablations and their limitations; Section 6 identifies the authors' contributions.
+We ask three questions: can this workflow produce context-sensitive actions and retain preferences under incomplete observations; how do architecture, planning, reflection, budgets, and model choice affect quality and efficiency; and how closely do independent human and LLM ratings agree? We contribute a configurable workflow, complete tool/skill interfaces, and an evaluation of nine conditions on 20 cases from eight participant identifiers. Section 2 gives the background; Section 3 explains the method; Section 4 defines and reports evaluation; Section 5 analyzes the ablations and their limitations; Section 6 identifies the authors' contributions; Section 7 discloses artificial intelligence (AI) assistance.
 
 \section{Background and Related Works}
 StudentLife provides longitudinal smartphone sensing, self-reported well-being, and academic context for studying college behavior \cite{wang2014studentlife}. We use it for historical coaching decisions, not for training or reproducing its outcome-prediction analyses. Its imperfect coverage makes uncertainty handling and temporal availability central to the task.
@@ -260,6 +260,9 @@ The authors shared the workload approximately equally, with complementary primar
 \paragraph{Brett Piggott.} Led the writing and critique agents, reusable coaching skills, memory/profile and feedback scenarios, automated evaluation and metric analysis, and figures, workflow visualization, and research-paper preparation. Contributed to evaluation design, result interpretation, documentation, and presentation preparation.
 
 Both authors jointly reviewed architecture decisions, checked consistency between implementation and reported results, interpreted limitations, and prepared the final project materials. The division balances data/agent infrastructure and experimental execution with personalization, evaluation, and scientific communication.
+
+\section{AI Use Disclaimer}\label{sec:ai-use}
+GPT 6.1 Sol was used to generate draft report text and figures based on the project's existing workflow and code. The authors reviewed and edited all text, figures, and tables to ensure accuracy and consistency with the implementation and experimental results, and retain responsibility for the final report.
 \label{main:last}
 \clearpage
 \renewcommand{\bibfont}{\small}
