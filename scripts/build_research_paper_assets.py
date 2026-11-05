@@ -3,6 +3,7 @@ from pathlib import Path
 import hashlib
 import json
 import re
+import shutil
 
 ROOT = Path(__file__).resolve().parents[1]
 DATA = ROOT / "runs_corrected/2026-11-04_v3"
@@ -171,6 +172,7 @@ def main():
     (PAPER / "judge_rubric.txt").write_text(rubric, encoding="utf-8")
     (PAPER / "judge_rubric.tex").write_text(format_rubric(rubric), encoding="utf-8")
     figures(metrics, paired)
+    shutil.copy2(DATA / "report/figures/fig2_depth_curves.pdf", PAPER / "figures/depth_tradeoffs.pdf")
     # This provenance file is an artifact aid, not part of the research narrative.
     names = ["summary_metrics.json", "matched_comparisons.json", "full/outputs.jsonl", "inputs/cases.jsonl",
              "inputs/profiles.json", "full/human_eval/human_ratings.json"]

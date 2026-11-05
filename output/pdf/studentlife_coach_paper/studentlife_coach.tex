@@ -303,6 +303,14 @@ Table~\ref{tab:quality} presents all required conditions. Each condition has 20 
 
 \paragraph{Reflection.} Removing the Critic yields 90\% allowed-label agreement and 4.78 mean quality. Maximum-one, full maximum-two, and maximum-three reflection obtain quality means 4.63, 4.81, and 4.83, all with 100\% allowed-label agreement. However, all three average exactly one executed Critic cycle per sent message. The larger maxima do not create deeper actual review trajectories in these observations; score differences cannot be confidently attributed to additional executed reflection. Stochastic generation, differing drafts, and downstream histories remain explanations.
 
+Figure~\ref{fig:depth-tradeoffs} brings the depth comparisons together, showing quality and token use against the configured maximum budgets. The token curves provide a resource perspective alongside the action and message-quality results. The full and maximum-three reflection conditions consume similar numbers of tokens, consistent with their similar observed review counts; the quality differences remain descriptive.
+
+\begin{figure*}[t]
+\centering\includegraphics[width=\textwidth]{figures/depth_tradeoffs.pdf}
+\caption{Planning and reflection budget tradeoffs. Left: message quality, allowed-action agreement, and mean tokens as planning maxima vary. Right: message quality, goal alignment, and mean tokens as reflection maxima vary. Tokens use the right-hand axes. For display on the left quality axis, agreement in percent is divided by 20 (100\% becomes 5); this transformed curve is not a message-quality rating. Budgets are maxima, not necessarily the number of rounds executed. Quality uses each condition's non-null messages; Figure~\ref{fig:paired} reports common-case comparisons.}
+\label{fig:depth-tradeoffs}
+\end{figure*}
+
 \begin{figure*}[t]
 \centering
 \begin{minipage}{.49\textwidth}\includegraphics[width=\linewidth]{figures/paired_quality.pdf}\end{minipage}\hfill
