@@ -1,5 +1,7 @@
 # Multi-Agent StudentLife Stress Coach (CSI 4900/5900 Project 1)
 
+Research paper: [Personalized Student Stress Coaching with Language Agents](output/pdf/studentlife_coach_paper/studentlife_coach.pdf), with [LaTeX source](output/pdf/studentlife_coach_paper/studentlife_coach.tex) and [TikZ workflow](output/pdf/studentlife_coach_paper/workflow.tex).
+
 **Authors:** Mahdi Moghaddami (`mmoghaddami@oakland.edu`) and Brett Piggot (`bpiggot@oakland.edu`)  
 **Course:** CSI 4900/5900 — Agentic AI (Fall 2026), Oakland University
 

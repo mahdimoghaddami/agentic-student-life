@@ -1,0 +1,11 @@
+{
+  "source_directory": "runs_corrected\\2026-11-04_v3",
+  "sha256": {
+    "summary_metrics.json": "5fe491c357a4d89b99aea173a6c50bc7f360d128353cf1d5708b468af701c0dc",
+    "matched_comparisons.json": "50fa1157cd145e687f2ffb172318e2bf570f32f9f888d6e13a259c7ef2c90c38",
+    "full/outputs.jsonl": "6ec4ee2c8712a438d160b4fd63cfff1f226e818da0875b2717383e4b267903b9",
+    "inputs/cases.jsonl": "0be40706820caf740ca3c53276ddb71af358186a5bc4f1757f772a1bc7926d4a",
+    "inputs/profiles.json": "117d135269bc049b96e945377519f9ee0e4c5984b739ba56d0e5f3cd5f4f24c3",
+    "full/human_eval/human_ratings.json": "eb02a8d41755d6157bf77c8a067aeef0b9a931476bed1e59bf97dcd0c2d2ce06"
+  }
+}
