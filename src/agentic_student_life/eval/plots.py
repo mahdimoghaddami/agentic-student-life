@@ -34,6 +34,51 @@ CONFIG_LABELS = {
 }
 
 
+def generate_depth_plot(
+    all_metrics: dict[str, dict[str, Any]],
+    output_path: str | Path,
+    *,
+    include_png: bool = False,
+) -> str:
+    """Plot judge mean and tokens for planning/reflection budgets from saved metrics."""
+    output_path = Path(output_path)
+    output_path.parent.mkdir(parents=True, exist_ok=True)
+    fig, axes = plt.subplots(1, 2, figsize=(7.0, 2.7))
+    sequences = [
+        ([("0 (Off)", "no_plan"), ("1", "plan1"), ("2 (Full)", "full"), ("3", "plan3")],
+         "Planning Budget (Max Rounds)", "(a) Planning Depth Ablation"),
+        ([("0 (Off)", "no_refl"), ("1", "refl1"), ("2 (Full)", "full"), ("3", "refl3")],
+         "Reflection Budget (Max Cycles)", "(b) Reflection Depth Ablation"),
+    ]
+    for ax, (sequence, xlabel, title) in zip(axes, sequences):
+        present = [(label, cid) for label, cid in sequence
+                   if cid in all_metrics and all_metrics[cid].get("available")]
+        if not present:
+            continue
+        labels = [label for label, _ in present]
+        quality = [all_metrics[cid]["judge_mean"]["mean"] for _, cid in present]
+        tokens = [all_metrics[cid]["total_tokens"]["mean"] / 1000.0 for _, cid in present]
+        token_ax = ax.twinx()
+        ax.plot(labels, quality, marker="o", linewidth=2, color="#1d4ed8", label="Judge Mean (1–5)")
+        token_ax.plot(labels, tokens, marker="^", linestyle=":", linewidth=1.6,
+                      color="#b91c1c", label="Tokens (k)")
+        ax.set_ylim(2.5, 5.15)
+        ax.set_xlabel(xlabel)
+        ax.set_ylabel("Quality Score (1–5 scale)")
+        token_ax.set_ylabel("Mean Tokens / Case (k)", color="#b91c1c")
+        ax.set_title(title)
+        ax.grid(True, linestyle="--", alpha=0.4)
+        handles, names = ax.get_legend_handles_labels()
+        token_handles, token_names = token_ax.get_legend_handles_labels()
+        ax.legend(handles + token_handles, names + token_names, loc="lower right", fontsize=7)
+    fig.tight_layout()
+    fig.savefig(output_path, bbox_inches="tight")
+    if include_png:
+        fig.savefig(output_path.with_suffix(".png"), bbox_inches="tight")
+    plt.close(fig)
+    return str(output_path)
+
+
 def generate_all_plots(
     all_metrics: dict[str, dict[str, Any]],
     human_vs_llm: dict[str, Any],
@@ -78,63 +123,8 @@ def generate_all_plots(
     plt.close(fig)
     saved.append(str(p1))
 
-    # Figure 2: Planning Depth (0,1,2,3) and Reflection Depth (0,1,2,3) Curves
-    fig, (ax_p, ax_r) = plt.subplots(1, 2, figsize=(7.0, 2.7))
-
-    plan_seq = [("0 (Off)", "no_plan"), ("1", "plan1"), ("2 (Full)", "full"), ("3", "plan3")]
-    p_x, p_q, p_acc, p_tok = [], [], [], []
-    for lbl, cid in plan_seq:
-        if cid in all_metrics and all_metrics[cid].get("available"):
-            p_x.append(lbl)
-            p_q.append(all_metrics[cid]["judge_mean"]["mean"])
-            p_acc.append(all_metrics[cid]["decision_acc"] / 20.0)
-            p_tok.append(all_metrics[cid]["total_tokens"]["mean"] / 1000.0)
-
-    if p_x:
-        ax_p2 = ax_p.twinx()
-        ax_p.plot(p_x, p_q, marker="o", linewidth=2, color="#1d4ed8", label="Judge Mean (1–5)")
-        ax_p.plot(p_x, p_acc, marker="s", linestyle="--", linewidth=1.6, color="#0f766e", label="Decision Acc (/20)")
-        ax_p2.plot(p_x, p_tok, marker="^", linestyle=":", linewidth=1.6, color="#b91c1c", label="Tokens (k)")
-        ax_p.set_ylim(2.5, 5.15)
-        ax_p.set_xlabel("Planning Budget (Max Rounds)")
-        ax_p.set_ylabel("Quality Score (1–5 scale)")
-        ax_p2.set_ylabel("Mean Tokens / Case (k)", color="#b91c1c")
-        ax_p.set_title("(a) Planning Depth Ablation")
-        ax_p.grid(True, linestyle="--", alpha=0.4)
-        h1, l1 = ax_p.get_legend_handles_labels()
-        h2, l2 = ax_p2.get_legend_handles_labels()
-        ax_p.legend(h1 + h2, l1 + l2, loc="lower right", fontsize=7)
-
-    refl_seq = [("0 (Off)", "no_refl"), ("1", "refl1"), ("2 (Full)", "full"), ("3", "refl3")]
-    r_x, r_q, r_ga, r_tok = [], [], [], []
-    for lbl, cid in refl_seq:
-        if cid in all_metrics and all_metrics[cid].get("available"):
-            r_x.append(lbl)
-            r_q.append(all_metrics[cid]["judge_mean"]["mean"])
-            r_ga.append(all_metrics[cid]["goal_alignment"]["mean"])
-            r_tok.append(all_metrics[cid]["total_tokens"]["mean"] / 1000.0)
-
-    if r_x:
-        ax_r2 = ax_r.twinx()
-        ax_r.plot(r_x, r_q, marker="o", linewidth=2, color="#1d4ed8", label="Judge Mean (1–5)")
-        ax_r.plot(r_x, r_ga, marker="D", linestyle="--", linewidth=1.6, color="#7c3aed", label="Goal Alignment (1–5)")
-        ax_r2.plot(r_x, r_tok, marker="^", linestyle=":", linewidth=1.6, color="#b91c1c", label="Tokens (k)")
-        ax_r.set_ylim(2.5, 5.15)
-        ax_r.set_xlabel("Reflection Budget (Max Cycles)")
-        ax_r.set_ylabel("Quality Score (1–5 scale)")
-        ax_r2.set_ylabel("Mean Tokens / Case (k)", color="#b91c1c")
-        ax_r.set_title("(b) Reflection Depth Ablation")
-        ax_r.grid(True, linestyle="--", alpha=0.4)
-        h1, l1 = ax_r.get_legend_handles_labels()
-        h2, l2 = ax_r2.get_legend_handles_labels()
-        ax_r.legend(h1 + h2, l1 + l2, loc="lower right", fontsize=7)
-
-    fig.tight_layout()
-    p2 = fdir / "fig2_depth_curves.pdf"
-    fig.savefig(p2, bbox_inches="tight")
-    fig.savefig(fdir / "fig2_depth_curves.png", bbox_inches="tight")
-    plt.close(fig)
-    saved.append(str(p2))
+    # Figure 2: Judge mean and token use under planning/reflection budgets.
+    saved.append(generate_depth_plot(all_metrics, fdir / "fig2_depth_curves.pdf", include_png=True))
 
     # Figure 3: Efficiency (Latency, LLM Calls, Total Tokens across configurations)
     fig, axes = plt.subplots(1, 3, figsize=(7.2, 2.6))

@@ -131,7 +131,7 @@ Variant & $N$ & Full & Variant & $\Delta$\\\midrule
 \end{table}
 \begin{figure*}[t]\centering
 \includegraphics[width=.95\textwidth]{figures/fig2_depth_curves.pdf}
-\caption{Planning and reflection \emph{maximum} budgets, with quality and token use. Decision accuracy is divided by 20 for plotting on the quality axis; it remains a percentage-based benchmark proxy.}
+\caption{Planning and reflection \emph{maximum} budgets, with mean judge quality on the left axes and mean tokens per case on the right axes.}
 \end{figure*}
 \begin{figure}[t]\centering
 \includegraphics[width=\columnwidth]{figures/fig7_effective_rounds.pdf}

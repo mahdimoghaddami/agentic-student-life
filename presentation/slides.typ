@@ -299,7 +299,7 @@
     #place(top + center, image("assets/report-depth-tradeoffs.svg", width: 896pt, height: 308pt, fit: "contain"))
     #place(dy: 316pt, text(size: 19pt)[Reflection maxima 1-3 each execute one review per message on average.])
     #place(dy: 347pt, text(size: 17pt)[Single coach: 4.81 quality, 3.65 calls. Model B: 4.89 quality, 19/20 allowed actions.])
-    #place(dy: 380pt, source[Report, Figure 2. Tokens use the right axes. Planning agreement is percent / 20 (100% = 5). Quality cohorts contain 15-16 messages; one generation per condition.])
+    #place(dy: 380pt, source[Report, Figure 2. Judge Mean uses the left axes; tokens use the right axes. Quality cohorts contain 15-16 messages; one generation per condition.])
   ]
 ]
 

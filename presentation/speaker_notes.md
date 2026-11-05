@@ -39,7 +39,7 @@ The full system completes all 20 cases and matches every manually allowed action
 
 ## 7. Planning and reflection budgets
 
-The report's Figure 2 compares planning and reflection maxima of one, two and three. Blue curves show message quality; red curves show tokens on the right axes. The planning panel also shows allowed-action agreement divided by 20, so five means 100 percent. Larger maximum budgets do not consistently improve results. All three reflection settings actually execute one review per sent message on average, so they do not demonstrate the effect of deeper executed review.
+The report's Figure 2 compares planning and reflection maxima of one, two and three, alongside the disabled conditions. Blue curves show mean judge quality on the left axes; red curves show mean tokens per case on the right axes. Larger maximum budgets do not consistently improve results. All three reflection settings actually execute one review per sent message on average, so they do not demonstrate the effect of deeper executed review.
 
 Across all nine conditions, there are 180 valid final outputs. The single coach matches the full system's rounded quality with fewer model calls, though it uses more tokens. Model B scores 4.89 but matches 19 of 20 allowed actions. These are descriptive comparisons from one generation per condition; message cohorts and generated histories differ. The consolidated coach retains auxiliary feedback extraction.
 
