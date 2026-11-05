@@ -1,265 +1,290 @@
-# Multi-Agent StudentLife Stress Coach (CSI 4900/5900 Project 1)
+# Multi-Agent StudentLife Stress Coach
 
-Research paper: [Personalized Student Stress Coaching with Language Agents](output/pdf/studentlife_coach_paper/studentlife_coach.pdf), with [LaTeX source](output/pdf/studentlife_coach_paper/studentlife_coach.tex) and [TikZ workflow](output/pdf/studentlife_coach_paper/workflow.tex).
+**Authors:** Mahdi Moghaddami and **Brett Piggott**
 
-**Authors:** Mahdi Moghaddami (`mmoghaddami@oakland.edu`) and Brett Piggott (`bpiggot@oakland.edu`)  
-**Course:** CSI 4900/5900 — Agentic AI (Fall 2026), Oakland University
+**Course:** CSI 4900/5900 Agentic AI, Oakland University, Fall 2026
 
-A multi-agent, LLM-powered stress-management coach evaluated on longitudinal smartphone sensing, Ecological Momentary Assessment (EMA), survey, and academic schedule data from the **Dartmouth StudentLife dataset** (49 participants over a 10-week spring term). Given a participant at a specific `decision_time`, the system inspects only historical observations up to that timestamp (`t <= decision_time`), consults the student's simulated profile and episodic/preference memory, and decides whether to:
-- `suggest`: send a brief, supportive, personalized coaching suggestion (study break, sleep hygiene nudge, gentle movement, social reconnection, deadline chunking, or curated Dartmouth campus resource referral),
-- `ask`: ask a low-burden clarifying question when key sensing/self-report modalities are missing or masked, or
-- `none`: send no message (`final_message = null`) when the student is doing well or has recently received coaching.
+[Research paper (PDF)](output/pdf/studentlife_coach_paper/studentlife_coach.pdf) · [LaTeX source](output/pdf/studentlife_coach_paper/studentlife_coach.tex) · [Project requirements](project_doc.pdf)
 
----
+The coach uses historical StudentLife observations, a clearly labeled simulated student profile, and earlier interactions to choose `suggest`, `ask`, or `none`. A sent message is a brief supportive suggestion or clarifying question; deliberate silence has `final_message: null`. This is an offline simulation, with no model training or fine-tuning.
 
-## Reproducibility correction (November 4, 2026)
+The published study describes 48 students over a ten-week term. The supplied archive has **49 identifiers with activity files**; preprocessing covers those 49 identifiers. Evaluation uses **20 cases from eight identifiers**, not 49 complete student records at every time point.
 
-The original experiments in runs/ are preserved as historical evidence. They used mixed models and inconsistent judge settings, and the original memory scheduling could expose later interactions to earlier decision times. Their tables are exploratory; they do not establish causal improvements from planning, reflection, or multiple agents.
-
-The corrected implementation restores the missing data package, bounds memory by decision time, executes each participant chronologically, fixes planning budgets and reflection consistency, and checks themes and word limits from prior feedback. Every ablation now uses the same 20 cases and one fixed configured model. API retries never switch models.
-
-New commands write to runs_corrected/ by default. A manifest fingerprints source, configuration, cases, profiles, and feature caches; incompatible or legacy outputs cannot be resumed. The corrected full run in `runs_corrected/2026-11-04_v3/full/` completed all 20 cases successfully. Ten new human ratings were committed before automated judging, which scored all 16 non-null messages. See `full_review.json` in that experiment directory.
-
-### Current corrected experiment
-
-The completed suite has **nine configurations × 20 cases = 180 valid final outputs**, with all 140 non-null messages judged. One transient planning-three timeout required replaying two dependent cases; 182 total case attempts are preserved. The original full outputs and your 10 ratings were reused unchanged.
-
-- [Corrected six-page report](runs_corrected/2026-11-04_v3/report/corrected_report.pdf)
-- [Comparison CSV](runs_corrected/2026-11-04_v3/comparison.csv)
-- [Detailed metrics and human comparison](runs_corrected/2026-11-04_v3/summary_metrics.json)
-- [Execution and cost summary](runs_corrected/2026-11-04_v3/execution_summary.json)
-
-The full system scores 4.81/5 on message quality and matches 20/20 allowed decisions. Human--judge criterion MAD is 0.267 across 30 ratings. Preference proxy scores include three documented false positives; see `preference_proxy_review.json`. Latency includes server waits, and derived planning-three efficiency includes the archived recovery work. The standalone latency figure shows all outliers. PDF compilation requires a LaTeX installation with `latexmk`.
-
-The dated configurations in `configs/2026-11-04/` and scripts below reproduce the current experiment. The original `configs/full.toml`, `configs/ablations.toml`, and `configs/judge.toml` are retained legacy configurations; the generic CLI examples later in this README use those older defaults.
-
-```bash
-# Offline analysis and report source generation: no API calls.
-# Run after all required variants have completed and been judged.
-uv run python -B scripts/analyze_corrected.py
-uv run python -B scripts/build_corrected_report.py
-latexmk -pdf -interaction=nonstopmode -halt-on-error -cd runs_corrected/2026-11-04_v3/report/corrected_report.tex
-
-# Generation entry point: only the eight required variants; full is reused.
-# Compatible completed prefixes are reused. No reset/no-resume flag is needed.
-uv run python -B scripts/run_corrected_ablations.py
-
-# Judge saved messages; matching cached scores make no new API calls.
-uv run python -B scripts/judge_corrected.py --runs full single no_refl no_plan refl1 refl3 plan1 plan3 modelB
-```
-
-The ablation runner uses the exact v3 case/profile snapshots and frozen generation source. A shared conservative Google guard covers $20 of v3 generation estimates; judging has a separate shared $2 guard. Prices use the November 2026 rates in the dated configurations. Retry failures can carry conservative reservations that are not confirmed charges. Neither guard reads actual account balances. The OpenAI judge uses the standard-library HTTP client and needs no additional SDK.
-
-`v1` is an interrupted attempt before schedule/retry fixes; `v2` stopped at the daily free-tier quota. They are archived attempts, not additional experimental conditions. Original `runs/` files and the earlier report remain historical evidence.
-
-## 1. Repository Structure
+## 1. Repository structure
 
 ```text
-agentic-student-life/
-├─ pyproject.toml                # Dependencies and `asl` CLI entry point
-├─ .env.example                  # Environment variable template (GEMINI_API_KEY)
-├─ README.md                     # Documentation, schema reference, and run instructions
-├─ configs/
-│  ├─ full.toml                  # Reference multi-agent configuration (plan=2, refl=2)
-│  ├─ ablations.toml             # All 9 ablation configurations
-│  └─ judge.toml                 # Fixed independent LLM Judge configuration
-├─ cases/
-│  ├─ profiles.json              # SIMULATED student profiles grounded in pre-term surveys
-│  ├─ cases.jsonl                # 20 deterministic evaluation cases across 5 categories
-│  ├─ feedback_scripts.json      # SIMULATED multi-step preference-update feedback scripts
-│  └─ selection.md               # Participant coverage ranking & case selection rationale
-├─ resources/
-│  └─ campus_resources.json      # Curated Dartmouth & 24/7 crisis support resources
-├─ skills/                       # 8 modular Markdown coaching skills with TOML headers
-│  ├─ micro_study_break.md
-│  ├─ sleep_hygiene_nudge.md
-│  ├─ gentle_movement.md
-│  ├─ social_reconnection.md
-│  ├─ deadline_chunking.md
-│  ├─ campus_resource_referral.md
-│  ├─ clarifying_question.md
-│  └─ positive_reinforcement.md
-├─ prompts/                      # System prompts for each agent role and the LLM Judge
-│  ├─ planner.md
-│  ├─ analyst.md
-│  ├─ writer.md
-│  ├─ critic.md
-│  ├─ memory.md
-│  ├─ single_agent.md
-│  └─ judge.md
-├─ src/agentic_student_life/
-│  ├─ cli.py                     # CLI (`asl preprocess|cases|run|ablate|judge|human-sheet|analyze|reset-memory`)
-│  ├─ config.py                  # TOML config loaders and dataclasses
-│  ├─ llm.py                     # aisuite wrapper, Gemini 3 thought_signature patch, retries, JSON repair, tracing
-│  ├─ orchestrator.py            # Multi-agent & single-agent pipeline orchestrator
-│  ├─ data/                      # Raw StudentLife loaders, daily feature engineering, leak-free View store
-│  ├─ tools/                     # Time-bounded sensing, academic, and campus resource tools
-│  ├─ memory/                    # Per-run persistent episodic & learned-preference memory store
-│  ├─ skills/                    # Skill index and on-demand Markdown skill loader
-│  ├─ agents/                    # Planner, Context Analyst, Message Writer, Critic, Memory Manager, Single-Agent
-│  ├─ cases/                     # Coverage ranking, simulated profile generator, and 20-case builder
-│  └─ eval/                      # LLM Judge, blind human sheet exporter, MAD analyzer, plots, LaTeX tables
-├─ tests/
-│  └─ test_leakage.py            # Unit tests verifying strict temporal bounds (no future data leakage)
-├─ runs/                         # Saved JSONL outputs, call traces, judge scores, human ratings, logs
-└─ report/                       # ICML 2026 LaTeX paper (`example_paper.tex`, `example_paper.pdf`, `figures/`, `tables/`)
+src/agentic_student_life/
+  cli.py                  CLI commands
+  config.py               TOML loaders and component controls
+  orchestrator.py         Role coordination, chronological execution, resume
+  llm.py, budget.py       Model transport, retries, token/cost accounting
+  provenance.py           Configuration/source/data fingerprints
+  data/                   StudentLife loaders, feature engineering, bounded views
+  agents/                 Planner, Analyst, Writer, Critic, Memory Manager, baseline
+  tools/                  Read-only sensing, academic and resource tools
+  memory/                 Per-participant JSON episodes and learned preferences
+  skills/                 Markdown skill index and loader
+  cases/                  Deterministic case and simulated-profile builders
+  eval/                   Judge, human sheets, metrics, plots and tables
+configs/
+  evaluation.toml         Current nine-condition suite; matches dated presets
+  2026-11-04/             Exact individual model/configuration presets
+cases/                    Case definitions, profiles, feedback, selection notes
+prompts/                  Role prompts and complete judge rubric
+skills/                   Eight reusable coaching procedures
+resources/                Curated campus-resource catalogue
+scripts/                  Experiment, judging, analysis and paper-asset scripts
+tests/                    Offline regressions and data-dependent leakage checks
+runs_corrected/2026-11-04_v3/  Saved evaluated suite and human ratings
+output/pdf/studentlife_coach_paper/  Final paper, source and figure assets
 ```
 
----
+`runs/` and the other dated directories under `runs_corrected/` are archived evidence. The commands below write new evaluations to **`runs_local/`**, leaving those archives alone. Run every command from the repository root. The Python/uv commands work in PowerShell or a POSIX shell.
 
-## 2. Dependencies & Setup
+## 2. Dependencies, credentials and dataset
 
-1. **Python & Package Manager:** Requires Python `>=3.15` and [`uv`](https://docs.astral.sh/uv/).
-   - Core dependencies (`pyproject.toml`): `aisuite[gemini]`, `pandas`, `pyarrow`, `numpy`, `pydantic`, `matplotlib`, `scipy`, `python-dotenv`, `tqdm`.
-2. **Install environment:**
-   ```bash
-   uv sync
-   ```
-3. **Configure API Key:** Copy `.env.example` to `.env` and set your Gemini API key:
-   ```bash
-   cp .env.example .env
-   # Edit .env and set GEMINI_API_KEY=your_api_key_here
-   ```
-4. **Dataset Location:** Place the raw Kaggle StudentLife dataset under `data/` (`data/sensing/`, `data/EMA/`, `data/education/`, `data/survey/`, `data/call_log/`, `data/sms/`).
+The project requires **Python >=3.15** and **uv**. The lockfile pins the tested environment; `pyproject.toml` lists `aisuite[gemini]`, pandas, PyArrow, NumPy, Pydantic, Matplotlib, SciPy, python-dotenv and tqdm. The specialized OpenAI judging script uses Python's standard-library HTTP client, so an additional OpenAI SDK is unnecessary. A LaTeX installation with TikZ and `latexmk` is needed only to rebuild the PDF.
 
----
-
-## 3. How to Run
-
-All commands can be invoked via `uv run asl <subcommand>` (or the installed asl entry point):
-
-### Step 1: Preprocess Raw StudentLife Data into Daily & EMA Feature Parquets
-```bash
-uv run asl preprocess
-```
-Builds `cache/features/daily_<uid>.parquet`, `cache/features/ema_<uid>.parquet`, `cache/features/surveys.json`, and `cache/features/academic.json` for all 49 participants .
-
-### Step 2: Build / Verify Deterministic Evaluation Cases & Simulated Profiles
-```bash
-uv run asl cases
-```
-Generates `cases/profiles.json`, `cases/cases.jsonl` (20 cases), `cases/feedback_scripts.json`, and `cases/selection.md`.
-
-### Step 3: Run the Main Evaluation (`configs/full.toml`) and LLM Judge
-```bash
-uv run asl run --config configs/full.toml
-```
-- Saves final outputs to `runs_corrected/full/outputs.jsonl`
-- Saves per-call LLM/tool traces to `runs_corrected/full/calls.jsonl`
-- Saves execution logs to `runs_corrected/full/run.log` and any failed cases to `runs_corrected/full/failed_cases.json`
-- Running asl judge --run-id full later saves independent evaluations to `runs_corrected/full/judge_scores.jsonl`
-
-### Step 4: Run the Full Ablation Suite
-```bash
-uv run asl ablate
-```
-Executes all configurations in `configs/ablations.toml` (`full`, `single`, `no_refl`, `refl1`, `refl3`, `no_plan`, `plan1`, `plan3`, `modelB`) using fixed models on the same 20 cases. Runs are resumable by default; pass `--no-resume` or `--reset-memory` for a clean re-run.
-
-### Step 5: Export the Blind Human Evaluation Sheet & Run Analysis
-```bash
-uv run asl human-sheet --run-id full
-# Complete human_ratings.json independently before viewing judge scores.
-uv run asl judge --all
-uv run asl analyze
-```
-- `human-sheet` exports `runs_corrected/full/human_eval/blind_rating_sheet.csv` and `blind_rating_sheet.html` (with LLM Judge scores hidden) plus `runs_corrected/full/human_eval/human_ratings.json`.
-- `analyze` computes all metrics (`runs_corrected/summary_metrics.json`), generates publication PDF/PNG plots in `report/figures/`, and generates booktabs LaTeX tables in `report/tables/`.
-
-### Step 6: Memory Reset Instructions
-Each configuration run stores its episodic and learned-preference memory in an isolated directory `runs_corrected/<run_id>/memory/<uid>.json` so ablations never contaminate one another. To reset memory before a run:
-```bash
-# Option A: Reset all stored memory across runs
-uv run asl reset-memory
-
-# Option B: Reset memory for a single run ID
-uv run asl reset-memory --run-id full
-
-# Option C: Pass --reset-memory directly when running cases
-uv run asl run --config configs/full.toml --reset-memory --no-resume
+```text
+uv sync --locked
+uv run asl --help
 ```
 
-### Step 7: Run Temporal Leakage Unit Tests
-```bash
-uv run python tests/test_leakage.py
+Create `.env` from the template without replacing an existing file:
+
+```text
+uv run python -c "from pathlib import Path; p=Path('.env'); p.exists() or p.write_bytes(Path('.env.example').read_bytes())"
 ```
 
----
+Edit `.env` locally:
 
-## 4. Output JSONL Schema (`runs_corrected/<run_id>/outputs.jsonl`)
+```dotenv
+GEMINI_API_KEY=your_primary_google_key
+GEMINI_API_KEY_FREE=your_optional_second_google_key
+OPENAI_API_KEY=your_openai_judge_key
+```
 
-Each line in `outputs.jsonl` is a single JSON object representing one test case (`participant_id` at `decision_time`):
+At least one Gemini key is needed for generation. The optional second key is tried on eligible quota/transient failures; retries keep the configured model. OpenAI credentials are needed only for judging. Offline analysis, preprocessing and tests do not require API credentials. Budget ledgers estimate usage from the configured prices and reserve for uncertain failures; they do not read account balances. Generation limits in the presets are **per run**, not a shared cap for a new nine-condition suite. The judge script has a shared $2 estimated-usage limit within its output root. Preset prices are the experiment's accounting assumptions, not a promise about future billing.
 
-| Field | Type | Description |
+Download/extract the StudentLife archive specified in the assignment. Its contents must be directly under `data/`, not nested in an extra `dataset/` directory:
+
+```text
+data/
+  sensing/activity/activity_u00.csv   # and other participant/modality files
+  sensing/dark/                      # sleep-inference inputs
+  sensing/phonelock/
+  sensing/phonecharge/
+  sensing/conversation/
+  EMA/response/                      # Stress, Sleep, Exercise, Social, etc.
+  education/class_info.json          # plus course/deadline files
+  survey/                            # pre-term psychological/personality surveys
+  call_log/
+  sms/
+```
+
+The implementation uses inferred sleep, activity, conversations, phone-event counts, EMA stress/mood/sleep/exercise/social responses and comments, academic schedules/deadlines, and pre-term PSS, PHQ-9, loneliness and Big Five background. It excludes grades/GPA, Piazza and post-term surveys. Daily features precede the decision date; the same-day last-night sleep estimate is available only after noon. EMA timestamps must be at or before the decision, and memory must be strictly earlier. Upcoming syllabus deadlines are assumed known calendar information. Term-phase labels are week-based heuristics. Missing observations remain missing.
+
+## 3. Run the full evaluation and save outputs/logs
+
+### Prepare features and input snapshots (offline)
+
+```text
+uv run asl preprocess --data-dir data --out-dir cache/features
+uv run asl cases --cache-dir cache/features --out-dir runs_local/inputs
+```
+
+Preprocessing writes `daily_<uid>.parquet`, `ema_<uid>.parquet`, `academic.json` and `surveys.json`. The second command writes **20 cases**, **eight simulated profiles**, and `feedback_scripts.json` to `runs_local/inputs/`. It does not generate `selection.md`; the repository's selection notes are separately maintained. Repeat input generation only when intentionally preparing that input set; use a different output root for different experiments.
+
+### Generate the 20 full-system cases (Gemini API calls)
+
+```text
+uv run asl run --config configs/2026-11-04/full-paid.toml --cases runs_local/inputs/cases.jsonl --profiles runs_local/inputs/profiles.json --cache-dir cache/features --out-root runs_local
+```
+
+The `full-paid.toml` filename identifies the exact paced preset used for the reported full configuration; it does not itself enable billing on a Google account. Successful API access to the configured model is required.
+
+The run writes:
+
+| Path under `runs_local/full/` | Contents |
+|---|---|
+| `outputs.jsonl` | One final record per selected case, including failed cases |
+| `calls.jsonl` | Recorded LLM-turn/tool-count, token, latency and preview traces |
+| `run.log` | Case start/completion, decisions, failures and resume skips |
+| `failed_cases.json` | Failure details; `[]` when all cases succeed |
+| `config.snapshot.toml`, `manifest.json` | Exact settings and source/data/input fingerprints |
+| `api_usage.jsonl` | Estimated provider usage/reservations for budgeted generation |
+| `memory/<uid>.json` | Profile, earlier episodes and learned preference rules |
+
+Inspect the printed completion summary and `failed_cases.json`; the CLI reports case failures in those records rather than guaranteeing a nonzero process exit for each failed case. A failed execution is distinct from a successful `none` action.
+
+Compatible reruns resume by default, making no new generation calls for a completed chronological prefix. An earlier missing/failed case causes its later same-student suffix to run again because its memory can change. Each student's cases run chronologically across episode IDs; different students may run concurrently. A changed configuration, source, data or input fingerprint rejects resume. Use a new output root for changed experiments.
+
+### Export and complete 10 independent human ratings
+
+```text
+uv run asl human-sheet --run-id full --cases runs_local/inputs/cases.jsonl --profiles runs_local/inputs/profiles.json --out-root runs_local --max-items 10
+```
+
+Open `runs_local/full/human_eval/blind_rating_sheet.html`, rate each message on the full displayed rubric **before viewing automated scores**, and use its Save button. Place the downloaded `human_ratings.json` in that same `human_eval/` directory, replacing the blank template. CSV and JSON templates are also exported. Export requires at least 10 successful non-null messages; silence cannot be rated as a message. Existing ratings are preserved on a matching export and rejected if the selected message/context fingerprints differ. New generations require matching new human ratings.
+
+### Judge saved messages (OpenAI API calls only for uncached items)
+
+```text
+uv run python -B scripts/judge_corrected.py --root runs_local --runs full
+```
+
+Use this specialized entry point for the reported OpenAI settings. It reads `inputs/cases.jsonl`, `inputs/profiles.json` and saved outputs, writes `judge_scores.jsonl` under each selected run, and records shared estimates in `runs_local/judge_api_usage.jsonl`. Despite its filename, `--root` accepts a new evaluation root. It never regenerates coach messages. Cached scores are reused only when message/context, rubric, model and temperature fingerprints match. The script checks for `OPENAI_API_KEY` even if all scores are cached.
+
+The complete evaluation prompt and anchored rubric are in [prompts/judge.md](prompts/judge.md). Human and LLM evaluators receive the same frozen `evaluation_context`, decision and final message, excluding expected labels, rationales and current feedback. The saved packet contains deterministic default-window summaries; it may omit dynamically retrieved windows, resource results and full skill documents seen during generation. This limits claims of exact information equivalence.
+
+### Analyze the new outputs (offline)
+
+```text
+uv run asl analyze --cases runs_local/inputs/cases.jsonl --out-root runs_local --fig-dir runs_local/report/figures --table-dir runs_local/report/tables
+```
+
+This writes `runs_local/summary_metrics.json`, `matched_comparisons.json`, PDF/PNG figures and LaTeX tables. It measures execution success, agreement with manually allowed actions, non-null-message rubric scores, prior-feedback preference checks, human/LLM mean absolute differences, and per-case latency/calls/tokens. Latency includes tools and all coaching model steps, including post-action preference extraction, and excludes judging. Preference checks are a lexical proxy with possible false positives; action labels are authored references, not measured student outcomes. The generic matched-comparison JSON retains a conservative legacy-interpretation note; it is not a statistical causal test.
+
+## 4. Ablations, controls and custom inputs
+
+### Run all nine current conditions
+
+After preparing inputs as above:
+
+```text
+uv run asl ablate --config configs/evaluation.toml --cases runs_local/inputs/cases.jsonl --profiles runs_local/inputs/profiles.json --cache-dir cache/features --out-root runs_local
+```
+
+This resumes a compatible `full` run and executes the other conditions in isolated directories: `single`, `no_refl`, `no_plan`, `refl1`, `refl3`, `plan1`, `plan3`, `modelB`. All use the same 20 case definitions. The consolidated coach keeps the same baseline inputs, tools, skills and memory policy, but retains auxiliary post-feedback extraction. Histories can diverge as each condition generates its own earlier messages/rules. Its tool loop permits seven turns versus five for the multi-agent Analyst/Writer loops; this is not an identical-compute comparison.
+
+To judge the complete suite, use the following **instead of** the full-only judge command, or run it afterward to reuse matching full scores:
+
+```text
+uv run python -B scripts/judge_corrected.py --root runs_local --runs full single no_refl no_plan refl1 refl3 plan1 plan3 modelB
+```
+
+Then rerun the analysis command. `asl ablate --only no_refl,plan1` limits generation to named conditions when supplied with the same explicit `--config`, cases, profiles, cache and output-root options above. Do not use bare `asl run`, `asl ablate` or `asl judge` to reproduce the reported settings: their older default configuration files use different models/transports.
+
+| Required pattern / component | Control | Full behavior and disabled behavior |
 |---|---|---|
-| `case_id` | `str` | Unique case identifier (`case_001` .. `case_020`) |
-| `participant_id` | `str` | StudentLife participant ID (e.g., `"u59"`, `"u16"`) |
-| `decision_time` | `str` | ISO-8601 timestamp in `America/New_York` (`"2013-04-29T20:00:00-04:00"`) |
-| `category` | `str` | Case category (`typical_high_stress`, `typical_doing_fine`, `missing_data`, `preference_update`, `safety_or_restraint`) |
-| `episode_id` | `str` | Episode identifier grouping consecutive steps in preference-update episodes |
-| `step` | `int` | Interaction step within the episode (`1`, `2`, or `3`) |
-| `config_id` | `str` | Configuration ID (`full`, `single`, `no_refl`, `refl1`, `refl3`, `no_plan`, `plan1`, `plan3`, `modelB`) |
-| `model` | `str` | Agent LLM identifier (the configured model; actual models also appear in trace.models_used) |
-| `status` | `str` | Execution status (`"ok"` or `"failed"`) |
-| `error` | `str \| null` | Error message if `status == "failed"`, otherwise `null` |
-| `decision` | `str` | System coaching decision: `"suggest"`, `"ask"`, or `"none"` |
-| `expected_decision` | `list[str]` | Acceptable ground-truth decisions for evaluation |
-| `skill_used` | `str \| null` | Loaded coaching skill name (or `null` when `decision == "none"`) |
-| `plan` | `list[str]` | Information-gathering steps formulated by the Planner |
-| `evidence` | `list[dict]` | List of `{source, detail, simulated}` items from sensing/EMA tools (`simulated: false`) and profile/memory (`simulated: true`) |
-| evaluation_context | dict | Frozen time-bounded observations, profile, prior preferences/history, and labeled simulated interaction note shared with both evaluators; excludes expected labels, rationales, and current feedback |
-| `final_message` | `str \| null` | Final student-facing coaching message or clarifying question (`null` when `decision == "none"`) |
-| `reflection` | `dict` | `{"rounds_used": int, "critiques": list[str]}` from the Critic review loop |
-| `planning` | `dict` | `{"rounds_used": int}` from the Planner–Analyst loop |
-| `memory_updates` | `list[str]` | New preference rules extracted by the Memory Manager from simulated student feedback |
-| `trace` | `dict` | Efficiency trace: `llm_calls`, `tool_calls`, `prompt_tokens`, `completion_tokens`, `total_tokens`, `latency_s` (excluding judge evaluation), and `per_agent` breakdown |
+| Multi-agent system | `system.mode` | `multi_agent`: Planner, Analyst, Writer, Critic and Memory Manager. `single_agent`: consolidate online reasoning/writing; auxiliary feedback extraction remains. |
+| Planning | `planning.enabled`, `max_rounds` | On, maximum 2 actual Planner calls. Off: Analyst gathers evidence, Writer chooses action/skill. At depth 1, Analyst runs before the single Planner call. |
+| Tool use | `tools.enabled`, `max_turns` | On, 5 model turns per Analyst/Writer loop. Off removes autonomous Analyst data queries and provides a fixed summary; skill loading is controlled separately. Single-coach tool access is disabled by this flag. |
+| Reflection | `reflection.enabled`, `max_rounds` | On, maximum 2 Critic review/revision cycles, with early approval. Off omits Critic calls. A final budget-limited revision need not receive another review. |
+| Memory | `memory.enabled`, `history_k` | On, 5 recent episodes plus prior learned rules. Off removes earlier episodes/rules from prompts and skips rule extraction; the initial profile remains and episodes may still be logged. |
+| Skills | `skills.enabled` | On, 8 Markdown procedures. Off removes the index/documents/loading access and uses generic supportive instructions. |
 
----
+The Analyst can call `get_time_context`, `get_sleep_summary`, `get_activity_summary`, `get_social_summary`, `get_stress_mood_history`, `get_academic_load`, `compare_to_baseline`, and `search_campus_resources`. The Writer can use `load_skill`; the consolidated coach can also use `recall_memory`. Planner/Critic/Memory Manager use supplied structured context rather than an autonomous data-tool loop.
 
-## 5. Case Selection & Labeling of Simulated Information
+The skills are `micro_study_break`, `sleep_hygiene_nudge`, `gentle_movement`, `social_reconnection`, `deadline_chunking`, `campus_resource_referral`, `clarifying_question`, and `positive_reinforcement`. Resources are a manually curated catalogue in `resources/campus_resources.json`, not a StudentLife modality or live lookup.
 
-See [`cases/selection.md`](cases/selection.md) for the full coverage table and per-case rationale:
-- **Participant Selection:** All 49 participants were ranked by a coverage score combining EMA stress responses and days with valid sleep, physical activity, and conversation sensing. Six high-coverage participants (`u59`, `u08`, `u19`, `u10`, `u57`, `u16`) plus two additional participants with clean low-stress/natural-gap windows (`u00`, `u02`) were selected.
-- **Simulated Profiles (`cases/profiles.json`):** Because StudentLife does not contain personal coaching goals or tone/activity preferences, each selected participant has a deterministic profile explicitly marked `"simulated": true`, grounded in their real pre-term survey scores (`PerceivedStressScale`, `PHQ-9`, `BigFive`, `LonelinessScale`).
-- **Simulated Feedback (`cases/feedback_scripts.json` & `cases/cases.jsonl`):** Two 3-step longitudinal episodes (`ep_pref_u16` across `case_013`–`case_015`, and `ep_pref_u59` across `case_016`–`case_018`) include deterministic student feedback marked `"simulated": true` to evaluate cross-episode memory and preference updates.
-- **Missing-Data Masks:** `case_009` and `case_010` use real natural sensing gaps (`mask: []`, `mask_simulated: false`), while `case_011` and `case_012` apply synthetic modality masks (`mask_simulated: true`).
+### Choose particular cases and settings
 
----
+Create a configuration from the full preset, retaining its model/budget settings while selecting a preference interaction and its preceding feedback step:
 
-## 6. Model Settings
+```text
+uv run python -c "from pathlib import Path; from agentic_student_life.config import load_run_config; c=load_run_config('configs/2026-11-04/full-paid.toml'); c.config_id='custom'; c.case_ids=['case_013','case_014']; Path('configs/custom.toml').write_text(c.to_toml(), encoding='utf-8')"
+uv run asl run --config configs/custom.toml --cases runs_local/inputs/cases.jsonl --profiles runs_local/inputs/profiles.json --cache-dir cache/features --out-root runs_local
+```
 
-| Role | Model ID | Temperature | Notes |
-|---|---|---|---|
-| **Primary Agents (Model A)** | `gemini:gemini-3.6-flash` | `0.3` (`0.1` for Critic & Memory Manager) | Used in `full` and structural ablations |
-| **Ablation Model B** | `gemini:gemini-3.5-flash-lite` | `0.3` | Used in `modelB` ablation under identical multi-agent configuration |
-| **Independent LLM Judge** | `openai:gpt-5.4-mini-2026-03-17` | `0.0` | Fixed judge instance at temperature `0.0`; scores Context Awareness, Goal Alignment, and Clarity (1–5) |
+Edit that TOML to change the model or component controls, using a new run ID/output root for changed settings. For a single independent case, set only its ID. Running `case_014` alone does not replay `case_013`; include earlier cases when their feedback should be learned. To define a new participant/time input, supply a JSONL file with unique `case_id`, `participant_id`, `decision_time` and any optional `mask`/simulated interaction fields, plus a matching profile JSON and feature files for that participant. Pass those files through `--cases` and `--profiles`. Expected actions are optional offline labels and never answers given to the coach.
 
-## 7. Validation and interpretation
+## 5. Memory reset and validation
 
-Run the offline regression suite and the raw-data leakage checks:
+Memory uses plain per-participant **JSON files**, containing the simulated baseline profile, episodes, learned preferences and provenance timestamps/case IDs. There is no SQL/vector/graph database. Scripted feedback is deterministic and is released after the current action; it is not random or LLM-generated. Learned rules are available only to later decisions.
 
-```bash
+To delete memory for a local run:
+
+```text
+uv run asl reset-memory --out-root runs_local --run-id full
+```
+
+This removes only `runs_local/full/memory/`. A normal resume reconstructs memory from saved outputs. To actually regenerate that local run from an empty history, the following intentionally replaces its outputs/call traces and rebuilds its memory:
+
+```text
+uv run asl run --config configs/2026-11-04/full-paid.toml --cases runs_local/inputs/cases.jsonl --profiles runs_local/inputs/profiles.json --cache-dir cache/features --out-root runs_local --reset-memory --no-resume
+```
+
+Prefer a new output root to retain the prior local experiment. Regenerated messages need new matching judge scores and human ratings.
+
+Run verification without model API calls:
+
+```text
 uv run python -B -m unittest discover -s tests -v
 uv run python -B tests/test_leakage.py
 ```
 
-The first command uses synthetic fixtures and mocked model responses. The second requires preprocessing. Preprocessing was validated locally on all 49 participants. The restored preprocessing source is a reconstruction; rebuilt features are not represented as byte-identical to the unavailable original implementation.
+The unittest suite uses synthetic fixtures and mocked model responses. The separate leakage command requires `cache/features/` from preprocessing and checks raw-data temporal bounds, invariance to future observations, masks and output sizes. Local README verification also exercises preprocessing/case generation and the CLI generation/resume, human-sheet, judge, analysis and reset paths in disposable directories with blocked network access and mocked model responses. On November 4, 2026, dependency synchronization, all 49 participants' preprocessing, 31 regression tests, five leakage checks, and this isolated CLI integration check passed. This verifies command integration; it does not establish future provider availability or new message quality.
 
-A planning round is one actual Planner invocation. At depth 1, the Analyst gathers evidence first and the one Planner call decides afterward. At depths 2 and 3, the first Planner call proposes checks and later calls inspect the resulting evidence. There is no additional finalization call outside the budget.
+## 6. Evaluation cases and simulation labels
 
-Memory includes only interactions and feedback strictly earlier than the current decision. Participant histories execute in chronological order across all episode IDs. Resume rebuilds a compatible completed prefix and reruns later cases when an earlier output is missing or failed. Memory writes use an atomic read-modify-write lock.
+The 20 cases use `u59`, `u08`, `u19`, `u10`, `u57`, `u16`, `u00` and `u02`, all at 20:00 `America/New_York`. Coverage-based selection is deterministic, not random sampling. The authoritative case definitions are [cases/cases.jsonl](cases/cases.jsonl); [selection.md](cases/selection.md) provides contextual selection notes whose numeric rationales are not recomputed by the case builder.
 
-The corrected judge and human sheet use the same saved evaluation_context and complete anchored rubric. They receive no expected decision labels, case rationales, or current-case feedback. Cached judge scores are reused only if message, context, rubric, model, and temperature match. Human scores cannot be reused for changed messages or contexts.
+| Cases | Coverage |
+|---|---|
+| 001-005 | Typical high stress/academic load |
+| 006-008 | Doing well; appropriate restraint |
+| 009-010 | Unmasked observation absence after passive sensing ended May 31; June 10 for `u00` and June 6 for `u57`, not demonstrated in-term device failures |
+| 011-012 | Explicit synthetic modality masks (`mask_simulated: true`) |
+| 013-015, 016-018 | Two three-step simulated preference/feedback episodes |
+| 019-020 | Support/resource and recent-message restraint scenarios |
 
-Preference adherence checks only prior feedback: forbidden terms, at least one required theme from each applicable feedback step, and the latest word limit. A missing/failed message fails; no applicable observations are reported as unmeasured. This remains a deterministic proxy, not a complete semantic assessment.
+Goals, tone/activity preferences and constraints are labeled simulated in `profiles.json`, with real pre-term survey background labeled separately. Scripted replies and recent-interaction notes are labeled simulated; feedback scripts are also exported in `feedback_scripts.json`. The runtime reads replies embedded in each case; editing only the separate feedback file does not change runtime replies. Sensing/EMA values remain dataset observations/inferences rather than invented student responses. Historical survey scores are not current diagnoses. Campus-resource entries are static curated information, not verified availability at each historical decision date.
 
-To reproduce the offline reanalysis of the original runs:
+## 7. Models and generation settings
 
-```bash
-uv run asl analyze --out-root runs --fig-dir report/figures --table-dir report/tables
+| Use | Exact provider/model | Settings |
+|---|---|---|
+| Full and structural ablations | `gemini:gemini-3.6-flash` | Temperature 0.3, except Critic/Memory Manager 0.1; thinking `low`; 8,192 output-token cap |
+| Model B, same full architecture | `gemini:gemini-3.5-flash-lite` | Same role temperatures, thinking and output cap |
+| Independent judge | `openai:gpt-5.4-mini-2026-03-17` | Temperature 0, reasoning `none`, 2,048 completion-token cap, structured rubric response |
+
+The generation presets use four workers across independent student histories and one-second request spacing per credential. The judge uses two workers. Planning/reflection limits are maxima, not forced realized depths. `configs/evaluation.toml` matches the dated individual presets, including their estimated-usage allocations. The specialized judge script enforces transport settings beyond the basic `JudgeConfig` fields.
+
+## 8. Output JSONL schema
+
+Each line of `<out-root>/<config_id>/outputs.jsonl` represents one participant/time case. Successful records have these 21 fields; failed records omit `evaluation_context`.
+
+| Field | Type | Meaning |
+|---|---|---|
+| `case_id` | string | Unique evaluation identifier |
+| `participant_id` | string | StudentLife identifier |
+| `decision_time` | ISO timestamp | Localized decision time with UTC offset |
+| `category` | string | Offline scenario category |
+| `episode_id` | string | Declared episode group; chronological memory can span groups for the same student |
+| `step` | integer | Position within the declared episode |
+| `config_id` | string | Run/configuration identifier |
+| `model` | string | Configured generation provider/model |
+| `status` | string | `ok` or `failed` |
+| `error` | string/null | Failure description or null |
+| `decision` | string | `suggest`, `ask` or `none`; check `status` to distinguish failure from silence |
+| `expected_decision` | string list | Manually allowed offline actions, not empirical ground truth; withheld from agents/judge |
+| `skill_used` | string/null | Selected coaching procedure, null for silence |
+| `plan` | string list | Collected planning steps, or consolidated coach's stated checks |
+| `evidence` | object list | Source-tagged findings with `source`, `detail`, `simulated` |
+| `evaluation_context` | object | Frozen observations, simulated profile, prior rules/interactions and labeled interaction note; excludes expected labels and current feedback |
+| `final_message` | string/null | Final suggestion/question, or null for silence/failure |
+| `reflection` | object | `rounds_used` and collected critique/verdict strings |
+| `planning` | object | `rounds_used`: actual Planner invocations |
+| `memory_updates` | string list | Newly stored preference rules from post-action feedback |
+| `trace` | object | `llm_calls`, `tool_calls`, prompt/completion/total tokens, `latency_s`, `per_agent`, `models_used`; total tokens may include reasoning beyond visible completion text |
+
+## 9. Saved results, paper and submission
+
+The completed evaluated suite is under [runs_corrected/2026-11-04_v3/](runs_corrected/2026-11-04_v3/): nine conditions, **180 valid final outputs**, **140 non-null messages judged**, and **10 independent human ratings**. The full configuration has 20/20 allowed decisions and mean message quality 4.81/5; human/LLM criterion MAD is 0.267 across 30 ratings. These are descriptive results for selected offline cases, not clinical or population-effectiveness claims.
+
+- [Comparison CSV](runs_corrected/2026-11-04_v3/comparison.csv)
+- [Detailed metrics and human comparison](runs_corrected/2026-11-04_v3/summary_metrics.json)
+- [Execution/accounting summary](runs_corrected/2026-11-04_v3/execution_summary.json)
+- [Completed human ratings](runs_corrected/2026-11-04_v3/full/human_eval/human_ratings.json)
+
+Reported planning-three efficiency includes recovery accounting in `plan3/recovery_info.json`; generic analysis of final outputs alone does not include archived failed/dependent attempts. `scripts/analyze_corrected.py` is the dedicated offline reanalysis entry point for that saved suite, including provenance checks and recovery adjustments. `scripts/run_corrected_ablations.py` is an archival resume utility, not the fresh-run entry point; it rejects a changed source fingerprint, including the shared call-log write lock added during command verification. The logging fix does not change existing messages or ratings, but strict resume compatibility still requires the original source. The archived inputs, outputs and ratings need not be regenerated to inspect the submitted results.
+
+Rebuild the final research paper from saved evidence without model calls:
+
+```text
+uv run python -B scripts/build_research_paper_assets.py
+latexmk -pdf -interaction=nonstopmode -halt-on-error -cd output/pdf/studentlife_coach_paper/studentlife_coach.tex
 ```
 
-This writes runs/summary_metrics.json and runs/matched_comparisons.json. The latter compares each variant with the full run on identical case IDs. Original model mixing, inconsistent judges, memory contamination, and saturated judge scores still limit interpretation. The supplied human file contains one rating set per message; separate rater identities and the timing of blinding cannot be independently verified.
-
-The original PDF report describes the historical experiments. The corrected report linked above describes the completed v3 suite. New messages or evaluation contexts need matching judge fingerprints and new human ratings if used for human comparison.
-
-Validation on November 4: 30 offline regression tests and all five supplied leakage checks passed. One user-approved live case completed successfully on the configured gemini-3-flash-preview with no model fallback (129.64 seconds, 22,453 tokens), isolated under cache/live-smoke/. That smoke test is separate from the subsequently completed v3 full benchmark.
+The paper has 10 main pages, one reference page and three appendix pages. For submission, include the source/configurations/prompts/skills/resources, dependency lockfile, README, PDF report, case definitions and labeled profiles/feedback, final JSONL outputs, execution logs and evaluation materials needed to reproduce the results. Use a ZIP name such as `groupXX_moghaddami_piggott.zip` with the actual group number. Exclude raw `data/`, virtual environments, generated feature caches, temporary verification files and model weights, as required by the assignment.
