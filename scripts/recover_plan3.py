@@ -64,6 +64,12 @@ def main():
         trace = copy.deepcopy(new)
         for key in ["llm_calls", "tool_calls", "prompt_tokens", "completion_tokens", "total_tokens"]:
             trace[key] += old[key]
+        trace["models_used"] = sorted(set(old["models_used"]) | set(new["models_used"]))
+        trace["per_agent"] = {}
+        for agent in old["per_agent"].keys() | new["per_agent"].keys():
+            trace["per_agent"][agent] = {
+                key: old["per_agent"].get(agent, {}).get(key, 0) + new["per_agent"].get(agent, {}).get(key, 0)
+                for key in ["calls", "tokens"]}
         trace["active_attempt_latency_s"] = old["latency_s"] + new["latency_s"]
         trace["latency_s"] = round((finishes[cid] - starts[cid]).total_seconds(), 3)
         overrides[cid] = trace

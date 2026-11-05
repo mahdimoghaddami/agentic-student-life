@@ -26,6 +26,29 @@ def load_lines(path):
     return [json.loads(line) for line in path.read_text().splitlines() if line.strip()]
 
 
+def generation_efficiency_plot(all_metrics, figure_dir):
+    """Show server/recovery outliers rather than hiding them in latency boxes."""
+    fig, axes = plt.subplots(1, 3, figsize=(10, 3.3))
+    axes[0].boxplot([all_metrics[n]["latency_s"]["values"] for n in NAMES],
+                    tick_labels=NAMES, showfliers=True)
+    axes[0].set_yscale("log")
+    axes[0].set_ylabel("Seconds (log scale)")
+    axes[0].set_title("Case latency, including all outliers")
+    for ax, field, title, scale in [(axes[1], "llm_calls", "Completed LLM calls / case", 1),
+                                    (axes[2], "total_tokens", "Trace tokens / case (thousands)", 1000)]:
+        ax.bar(NAMES, [all_metrics[n][field]["mean"] / scale for n in NAMES],
+               yerr=[all_metrics[n][field]["std"] / scale for n in NAMES],
+               color="#0f766e", capsize=2)
+        ax.set_title(title)
+    for ax in axes:
+        ax.tick_params(axis="x", rotation=65, labelsize=7)
+        ax.grid(axis="y", alpha=.2)
+    fig.tight_layout()
+    fig.savefig(figure_dir / "fig3_efficiency_boxplots.pdf")
+    fig.savefig(figure_dir / "fig3_efficiency_boxplots.png", dpi=160)
+    plt.close(fig)
+
+
 def main():
     cases = {c["case_id"]: c for c in load_lines(ROOT / "inputs/cases.jsonl")}
     cfg = JudgeConfig.from_toml("configs/2026-11-04/judge.toml")
@@ -131,6 +154,7 @@ def main():
     generate_all_plots(all_metrics, human, ROOT / "report/figures")
     generate_all_tables(all_metrics, human, ROOT / "report/tables")
     figure_dir = ROOT / "report/figures"
+    generation_efficiency_plot(all_metrics, figure_dir)
     labels = NAMES[1:]
     fig, ax = plt.subplots(figsize=(7, 3.2))
     differences = [comparisons[n]["paired_quality_difference_variant_minus_full"] for n in labels]

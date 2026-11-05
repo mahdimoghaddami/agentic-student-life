@@ -147,6 +147,7 @@ Preference adherence checks prior feedback for forbidden words, required themes,
 \begin{itemize}
 @PREF_NOTES@
 \end{itemize}
+Inspection also shows that the no-reflection flag refers to ``sleep running around 6.5 hours,'' not exercise. Model B's flagged message proposes listening to ``a favorite song,'' which expresses the preferred music theme without matching the literal required-theme words. These three flags therefore appear to be proxy false positives. We retain the raw percentages for reproducibility and do not treat them as evidence of genuine preference violations. Inspecting flagged examples does not validate every unflagged message.
 
 \subsection{Efficiency and Cost}
 \begin{table*}[t]

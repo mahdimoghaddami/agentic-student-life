@@ -37,21 +37,21 @@
       "total_tokens": 37931,
       "latency_s": 352.157,
       "per_agent": {
-        "planner": {
-          "calls": 2,
-          "tokens": 6172
-        },
         "analyst": {
-          "calls": 2,
-          "tokens": 6184
+          "calls": 5,
+          "tokens": 15913
         },
         "writer": {
-          "calls": 1,
-          "tokens": 2487
+          "calls": 2,
+          "tokens": 4869
+        },
+        "planner": {
+          "calls": 4,
+          "tokens": 12857
         },
         "critic": {
-          "calls": 1,
-          "tokens": 1911
+          "calls": 2,
+          "tokens": 4292
         }
       },
       "models_used": [
@@ -67,17 +67,17 @@
       "total_tokens": 28495,
       "latency_s": 407.068,
       "per_agent": {
-        "planner": {
-          "calls": 2,
-          "tokens": 6135
-        },
         "analyst": {
-          "calls": 2,
-          "tokens": 5309
+          "calls": 4,
+          "tokens": 10644
         },
         "writer": {
-          "calls": 1,
-          "tokens": 2004
+          "calls": 2,
+          "tokens": 4107
+        },
+        "planner": {
+          "calls": 4,
+          "tokens": 12094
         },
         "critic": {
           "calls": 1,

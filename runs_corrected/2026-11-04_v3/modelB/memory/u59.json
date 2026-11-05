@@ -1,0 +1,208 @@
+{
+  "participant_id": "u59",
+  "simulated": true,
+  "profile": {
+    "participant_id": "u59",
+    "simulated": true,
+    "grounding_note": "Simulated coaching profile grounded in real StudentLife pre-term surveys (PSS=18.0, PHQ-9=5.0, UCLA Loneliness=34.0, PHQ-9 item 9=0, Extraversion=4.0, Neuroticism=2.88, Conscientiousness=2.56); courses: GERM 001, COSC 065, COSC 007.",
+    "pre_term_surveys": {
+      "pss_total": 18.0,
+      "phq9_total": 5.0,
+      "phq9_item9_selfharm": 0,
+      "loneliness_total": 34.0,
+      "bfi_extraversion": 4.0,
+      "bfi_agreeableness": 4.11,
+      "bfi_conscientiousness": 2.56,
+      "bfi_neuroticism": 2.88,
+      "bfi_openness": 3.5
+    },
+    "goals": [
+      "Protect at least 6.5-7 hours of sleep instead of pulling late-night all-nighters before CS and German deadlines",
+      "Break up heavy assignment and lab nights into manageable evening blocks",
+      "Unwind with calm solo routines (music or tea) when feeling drained"
+    ],
+    "preferences": {
+      "activity_style": "Calm solo wind-downs (listening to music, short tea break, light stretching)",
+      "tone": "Warm, encouraging, peer-like, never preachy",
+      "preferred_times": [
+        "evening (19:00-22:00)"
+      ],
+      "dislikes": [
+        "judgmental lectures about late bedtimes",
+        "rigid early-morning schedules"
+      ]
+    },
+    "constraints": [
+      "Takes 3 courses (GERM 001, COSC 065, COSC 007) with frequent weekly deadlines",
+      "Often works late in the evening and naps in the afternoon"
+    ],
+    "learned_preferences": []
+  },
+  "episodes": [
+    {
+      "case_id": "case_016",
+      "decision_time": "2013-04-12T20:00:00-04:00",
+      "decision": "suggest",
+      "skill_used": "micro_study_break",
+      "final_message": "Between tackling those upcoming deadlines and recovering while on medication for your tooth, you've got a lot on your plate tonight. Before diving back into your assignments, how about taking a quick 5-minute break to step away from the screen, make some warm tea, and reset?",
+      "simulated_feedback": {
+        "simulated": true,
+        "accepted": false,
+        "feedback_text": "Please don't suggest group hangouts, parties, or crowded social events when I'm swamped with deadlines\u2014socializing drains me on low sleep. I prefer solo unwinding with music or an early wind-down.",
+        "preference_updates": {
+          "dislikes_add": [
+            "group hangouts",
+            "parties",
+            "crowded social events"
+          ],
+          "preferred_activities_add": [
+            "solo music wind-down",
+            "quiet rest",
+            "early sleep routine"
+          ]
+        },
+        "forbidden_terms": [
+          "party",
+          "parties",
+          "group hangout",
+          "clubs",
+          "crowd"
+        ],
+        "required_themes": [
+          "music",
+          "sleep",
+          "rest",
+          "solo",
+          "quiet",
+          "wind",
+          "break",
+          "breath"
+        ]
+      },
+      "simulated": true
+    },
+    {
+      "case_id": "case_017",
+      "decision_time": "2013-04-15T20:00:00-04:00",
+      "decision": "suggest",
+      "skill_used": "micro_study_break",
+      "final_message": "With 3 deadlines today and stress running high during midterms, you've been working hard. Before diving back into your assignments tonight, how about pausing for 5 minutes to make some warm tea and listen to a favorite song completely away from your screen?",
+      "simulated_feedback": {
+        "simulated": true,
+        "accepted": true,
+        "feedback_text": "Solo music wind-down works well for me. Also please never suggest waking up early or morning workouts\u2014I'm a night owl and prefer chunking my evening task into one small block before sleeping.",
+        "preference_updates": {
+          "dislikes_add": [
+            "waking up early",
+            "morning workouts",
+            "morning runs"
+          ],
+          "preferred_activities_add": [
+            "chunking evening homework into one small focused block before music and sleep"
+          ]
+        },
+        "forbidden_terms": [
+          "party",
+          "parties",
+          "group hangout",
+          "wake up early",
+          "morning workout",
+          "morning run"
+        ],
+        "required_themes": [
+          "music",
+          "sleep",
+          "rest",
+          "solo",
+          "quiet",
+          "wind",
+          "break",
+          "chunk",
+          "step",
+          "block"
+        ]
+      },
+      "simulated": true
+    },
+    {
+      "case_id": "case_018",
+      "decision_time": "2013-04-18T20:00:00-04:00",
+      "decision": "suggest",
+      "skill_used": "deadline_chunking",
+      "final_message": "With 1 deadline today and 2 more coming up over the next few days during midterms\u2014especially on only 3.6 hours of sleep last night\u2014things are definitely feeling heavy. To keep things manageable, try picking just one priority task for a single 30-minute focused block, then wrap up your evening with some calm solo music or tea before getting some proper rest.",
+      "simulated_feedback": {
+        "simulated": true,
+        "accepted": true,
+        "feedback_text": "Spot on\u2014chunked tonight's task and paired it with a solo music/sleep wind-down, with no group social push or early-morning workout advice.",
+        "forbidden_terms": [
+          "party",
+          "parties",
+          "group hangout",
+          "wake up early",
+          "morning workout",
+          "morning run"
+        ],
+        "required_themes": [
+          "music",
+          "sleep",
+          "rest",
+          "solo",
+          "quiet",
+          "wind",
+          "break",
+          "chunk",
+          "step",
+          "block"
+        ]
+      },
+      "simulated": true
+    },
+    {
+      "case_id": "case_001",
+      "decision_time": "2013-04-29T20:00:00-04:00",
+      "decision": "suggest",
+      "skill_used": "deadline_chunking",
+      "final_message": "With 2 deadlines today and 3 more coming up over the next few days, plus only 4.3 hours of sleep last night and feeling so sleepy, things are definitely heavy. To keep it manageable, try tackling just one priority task for a single 30-minute focused block, then wrap up your evening with some calm solo music or tea before getting some proper rest.",
+      "simulated_feedback": null,
+      "simulated": true
+    }
+  ],
+  "learned_preferences": [
+    {
+      "preference": "NEVER suggest group hangouts, parties, or crowded social events when student is swamped; socializing drains them.",
+      "learned_at": "2013-04-12T20:00:00-04:00",
+      "from_case_id": "case_016",
+      "simulated": true
+    },
+    {
+      "preference": "ALWAYS suggest solo unwinding activities like listening to music, quiet rest, or an early wind-down routine.",
+      "learned_at": "2013-04-12T20:00:00-04:00",
+      "from_case_id": "case_016",
+      "simulated": true
+    },
+    {
+      "preference": "NEVER suggest waking up early, morning workouts, or morning runs (student is a night owl); focus on evening wind-down activities.",
+      "learned_at": "2013-04-15T20:00:00-04:00",
+      "from_case_id": "case_017",
+      "simulated": true
+    },
+    {
+      "preference": "Always support solo music wind-downs and chunking remaining evening tasks into one small focused block before sleep.",
+      "learned_at": "2013-04-15T20:00:00-04:00",
+      "from_case_id": "case_017",
+      "simulated": true
+    },
+    {
+      "preference": "NEVER suggest group socials, parties, early-morning workouts, or morning runs; strictly focus on solo activities, rest, and sleep.",
+      "learned_at": "2013-04-18T20:00:00-04:00",
+      "from_case_id": "case_018",
+      "simulated": true
+    },
+    {
+      "preference": "Continue to suggest deadline chunking, music, quiet solo wind-downs, and manageable 30-minute task blocks.",
+      "learned_at": "2013-04-18T20:00:00-04:00",
+      "from_case_id": "case_018",
+      "simulated": true
+    }
+  ]
+}

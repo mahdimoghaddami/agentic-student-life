@@ -16,7 +16,39 @@ The original experiments in runs/ are preserved as historical evidence. They use
 
 The corrected implementation restores the missing data package, bounds memory by decision time, executes each participant chronologically, fixes planning budgets and reflection consistency, and checks themes and word limits from prior feedback. Every ablation now uses the same 20 cases and one fixed configured model. API retries never switch models.
 
-New commands write to runs_corrected/ by default. A manifest fingerprints source, configuration, cases, profiles, and feature caches; incompatible or legacy outputs cannot be resumed. New messages require new human ratings. No new full evaluation or new human ratings are claimed here.
+New commands write to runs_corrected/ by default. A manifest fingerprints source, configuration, cases, profiles, and feature caches; incompatible or legacy outputs cannot be resumed. The corrected full run in `runs_corrected/2026-11-04_v3/full/` completed all 20 cases successfully. Ten new human ratings were committed before automated judging, which scored all 16 non-null messages. See `full_review.json` in that experiment directory.
+
+### Current corrected experiment
+
+The completed suite has **nine configurations × 20 cases = 180 valid final outputs**, with all 140 non-null messages judged. One transient planning-three timeout required replaying two dependent cases; 182 total case attempts are preserved. The original full outputs and your 10 ratings were reused unchanged.
+
+- [Corrected six-page report](runs_corrected/2026-11-04_v3/report/corrected_report.pdf)
+- [Comparison CSV](runs_corrected/2026-11-04_v3/comparison.csv)
+- [Detailed metrics and human comparison](runs_corrected/2026-11-04_v3/summary_metrics.json)
+- [Execution and cost summary](runs_corrected/2026-11-04_v3/execution_summary.json)
+
+The full system scores 4.81/5 on message quality and matches 20/20 allowed decisions. Human--judge criterion MAD is 0.267 across 30 ratings. Preference proxy scores include three documented false positives; see `preference_proxy_review.json`. Latency includes server waits, and derived planning-three efficiency includes the archived recovery work. The standalone latency figure shows all outliers. PDF compilation requires a LaTeX installation with `latexmk`.
+
+The dated configurations in `configs/2026-11-04/` and scripts below reproduce the current experiment. The original `configs/full.toml`, `configs/ablations.toml`, and `configs/judge.toml` are retained legacy configurations; the generic CLI examples later in this README use those older defaults.
+
+```bash
+# Offline analysis and report source generation: no API calls.
+# Run after all required variants have completed and been judged.
+uv run python -B scripts/analyze_corrected.py
+uv run python -B scripts/build_corrected_report.py
+latexmk -pdf -interaction=nonstopmode -halt-on-error -cd runs_corrected/2026-11-04_v3/report/corrected_report.tex
+
+# Generation entry point: only the eight required variants; full is reused.
+# Compatible completed prefixes are reused. No reset/no-resume flag is needed.
+uv run python -B scripts/run_corrected_ablations.py
+
+# Judge saved messages; matching cached scores make no new API calls.
+uv run python -B scripts/judge_corrected.py --runs full single no_refl no_plan refl1 refl3 plan1 plan3 modelB
+```
+
+The ablation runner uses the exact v3 case/profile snapshots and frozen generation source. A shared conservative Google guard covers $20 of v3 generation estimates; judging has a separate shared $2 guard. Prices use the November 2026 rates in the dated configurations. Retry failures can carry conservative reservations that are not confirmed charges. Neither guard reads actual account balances. The OpenAI judge uses the standard-library HTTP client and needs no additional SDK.
+
+`v1` is an interrupted attempt before schedule/retry fixes; `v2` stopped at the daily free-tier quota. They are archived attempts, not additional experimental conditions. Original `runs/` files and the earlier report remain historical evidence.
 
 ## 1. Repository Structure
 
@@ -195,9 +227,9 @@ See [`cases/selection.md`](cases/selection.md) for the full coverage table and p
 
 | Role | Model ID | Temperature | Notes |
 |---|---|---|---|
-| **Primary Agents (Model A)** | `gemini:gemini-3-flash-preview` | `0.3` (`0.1` for Critic & Memory Manager) | Used in `full` and structural ablations |
-| **Ablation Model B** | `gemini:gemma-4-26b-a4b-it` | `0.3` | Used in `modelB` ablation under identical multi-agent configuration |
-| **Independent LLM Judge** | `gemini:gemma-4-26b-a4b-it` | `0.0` | Fixed judge instance at temperature `0.0`; scores Context Awareness, Goal Alignment, and Clarity (1–5) |
+| **Primary Agents (Model A)** | `gemini:gemini-3.6-flash` | `0.3` (`0.1` for Critic & Memory Manager) | Used in `full` and structural ablations |
+| **Ablation Model B** | `gemini:gemini-3.5-flash-lite` | `0.3` | Used in `modelB` ablation under identical multi-agent configuration |
+| **Independent LLM Judge** | `openai:gpt-5.4-mini-2026-03-17` | `0.0` | Fixed judge instance at temperature `0.0`; scores Context Awareness, Goal Alignment, and Clarity (1–5) |
 
 ## 7. Validation and interpretation
 
@@ -226,6 +258,6 @@ uv run asl analyze --out-root runs --fig-dir report/figures --table-dir report/t
 
 This writes runs/summary_metrics.json and runs/matched_comparisons.json. The latter compares each variant with the full run on identical case IDs. Original model mixing, inconsistent judges, memory contamination, and saturated judge scores still limit interpretation. The supplied human file contains one rating set per message; separate rater identities and the timing of blinding cannot be independently verified.
 
-The PDF report distinguishes historical results from corrected implementation behavior. For new experiments use runs_corrected/, rate at least 10 new messages before viewing automated scores, and rerun the fixed judge and analysis.
+The original PDF report describes the historical experiments. The corrected report linked above describes the completed v3 suite. New messages or evaluation contexts need matching judge fingerprints and new human ratings if used for human comparison.
 
-Validation on November 4: 22 offline regression tests and all five supplied leakage checks passed. One user-approved live case completed successfully on the configured gemini-3-flash-preview with no model fallback (129.64 seconds, 22,453 tokens), isolated under cache/live-smoke/. This is not a full corrected benchmark run.
+Validation on November 4: 30 offline regression tests and all five supplied leakage checks passed. One user-approved live case completed successfully on the configured gemini-3-flash-preview with no model fallback (129.64 seconds, 22,453 tokens), isolated under cache/live-smoke/. That smoke test is separate from the subsequently completed v3 full benchmark.

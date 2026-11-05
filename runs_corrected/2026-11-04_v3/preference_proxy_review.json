@@ -1,0 +1,28 @@
+{
+  "review_type": "Post-hoc qualitative inspection of flagged messages; not additional human ratings",
+  "raw_scores_preserved": true,
+  "adjusted_scores_reported": false,
+  "flagged_messages": [
+    {
+      "config": "single",
+      "case_id": "case_014",
+      "proxy_flag": "forbidden running",
+      "phrase": "stress running elevated",
+      "interpretation": "Idiom about stress; no exercise recommendation."
+    },
+    {
+      "config": "no_refl",
+      "case_id": "case_014",
+      "proxy_flag": "forbidden running",
+      "phrase": "sleep running around 6.5 hours",
+      "interpretation": "Idiom about measured sleep; no exercise recommendation."
+    },
+    {
+      "config": "modelB",
+      "case_id": "case_017",
+      "proxy_flag": "missing preferred theme",
+      "phrase": "listen to a favorite song",
+      "interpretation": "A music suggestion expressed without one of the literal required-theme keywords."
+    }
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "protocol_version": 2,
+  "fingerprint": "3393d3b7d74540dc2ee1e00135b69b18a98d07a80d4092c1d621838b15280803",
+  "source_digest": "c590427cc56d98ee32561fac7c89274ce152c771b1c1c321ca7529935127ae86",
+  "data_digest": "78e50310444082eae241a80b21f4b2f6fb3ee80b8de4bb0d4da9a522c997da07",
+  "model": "gemini:gemini-3.5-flash-lite",
+  "case_ids": [
+    "case_001",
+    "case_002",
+    "case_003",
+    "case_004",
+    "case_005",
+    "case_006",
+    "case_007",
+    "case_008",
+    "case_009",
+    "case_010",
+    "case_011",
+    "case_012",
+    "case_013",
+    "case_014",
+    "case_015",
+    "case_016",
+    "case_017",
+    "case_018",
+    "case_019",
+    "case_020"
+  ]
+}

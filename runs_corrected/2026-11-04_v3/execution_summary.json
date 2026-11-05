@@ -1,26 +1,44 @@
 {
-  "status": "Full configuration complete, independently judged, and human-rated; ablations in progress",
-  "total_cases": 20,
-  "ok_cases": 20,
-  "failed_cases": 0,
-  "model": "gemini:gemini-3.6-flash",
-  "successful_api_requests": 130,
-  "request_status_counts": {
-    "ok": 130,
-    "uncertain": 15
+  "status": "complete",
+  "configurations": [
+    "full",
+    "single",
+    "no_refl",
+    "no_plan",
+    "refl1",
+    "refl3",
+    "plan1",
+    "plan3",
+    "modelB"
+  ],
+  "unique_case_definitions": 20,
+  "final_case_outputs": 180,
+  "successful_final_outputs": 180,
+  "failed_final_outputs": 0,
+  "total_case_attempts": 182,
+  "generation_models": {
+    "model_a": "gemini:gemini-3.6-flash",
+    "model_b": "gemini:gemini-3.5-flash-lite"
   },
-  "credential_status_counts": {
-    "GEMINI_API_KEY": {
-      "ok": 130,
-      "uncertain": 15
-    }
+  "judge_model": "openai:gpt-5.4-mini-2026-03-17",
+  "judged_messages": 140,
+  "human_ratings": 10,
+  "human_criterion_mad": 0.26666666666666666,
+  "usage": {
+    "google_successful_response_estimate_usd": 3.4808248,
+    "google_uncertain_failure_reservation_usd": 9.4398193,
+    "openai_estimate_usd": 0.401094,
+    "note": "Google includes v3 preflight. Earlier interrupted attempts are excluded. Uncertain reservations are not confirmed charges; token estimates exclude caching discounts and do not verify credit balances."
   },
-  "successful_response_token_cost_usd": 0.410175,
-  "uncertain_failure_cost_upper_bound_usd": 0.819594,
-  "cost_note": "Token estimates include the v3 preflight. Uncertain server failures are reserved at a conservative upper bound; these are not confirmed billed charges. Earlier attempts are excluded.",
-  "prompt_tokens": 316710,
-  "billable_output_tokens": 46038,
-  "legacy_files_verified_unchanged": 127,
+  "recovery": {
+    "config": "plan3",
+    "initial_failure": "case_011: provider HTTP 504",
+    "replayed_cases": [
+      "case_011",
+      "case_002"
+    ],
+    "other_cases_reused": 18
+  },
   "validation": {
     "unique_complete_cohort": true,
     "decision_message_consistency": true,
@@ -30,14 +48,10 @@
     "offline_regression_tests_passed": 30,
     "data_leakage_checks_passed": 5
   },
-  "human_eval": {
-    "csv_path": "runs_corrected\\2026-11-04_v3\\full\\human_eval\\blind_rating_sheet.csv",
-    "html_path": "runs_corrected\\2026-11-04_v3\\full\\human_eval\\blind_rating_sheet.html",
-    "json_path": "runs_corrected\\2026-11-04_v3\\full\\human_eval\\human_ratings.json",
-    "num_items": "10"
-  },
-  "judge_run": true,
-  "ablations_run": true,
-  "human_ratings_complete": true,
-  "ablations_complete": false
+  "original_run_files_unchanged": 127,
+  "baseline_outputs_and_human_ratings_unchanged": true,
+  "report": "report/corrected_report.pdf",
+  "metrics": "summary_metrics.json",
+  "comparison": "comparison.csv",
+  "matched_comparisons": "matched_comparisons.json"
 }
