@@ -1,0 +1,18 @@
+{
+  "participant_id": "u16",
+  "decision_time": "2013-04-18T20:00:00-04:00",
+  "mask": [],
+  "profile_simulated": true,
+  "goals": [
+    "Manage coursework stress with short breaks"
+  ],
+  "observations": {
+    "deadline_count_today": 1,
+    "recent_stress_mean_1to5": 3.3,
+    "recent_stress_max": 4,
+    "inferred_sleep_hours_mean": 6.5,
+    "nights_with_data": 1
+  },
+  "prior_feedback_simulated": true,
+  "prior_feedback_summary": "Avoid running/gym; prefer quiet indoor breathing, stretching, or tea."
+}

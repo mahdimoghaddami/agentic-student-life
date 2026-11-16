@@ -1,0 +1,62 @@
+{
+  "participant_id": "u08",
+  "simulated": true,
+  "profile": {
+    "participant_id": "u08",
+    "simulated": true,
+    "grounding_note": "Simulated coaching profile grounded in real StudentLife pre-term surveys (PSS=23.0, PHQ-9=5.0, UCLA Loneliness=33.0, PHQ-9 item 9=0, Extraversion=2.62, Neuroticism=3.25, Conscientiousness=4.22); courses: CHIN 062, COSC 089 1, COSC 065.",
+    "pre_term_surveys": {
+      "pss_total": 23.0,
+      "phq9_total": 5.0,
+      "phq9_item9_selfharm": 0,
+      "loneliness_total": 33.0,
+      "bfi_extraversion": 2.62,
+      "bfi_agreeableness": 3.78,
+      "bfi_conscientiousness": 4.22,
+      "bfi_neuroticism": 3.25,
+      "bfi_openness": 3.3
+    },
+    "goals": [
+      "Avoid severe sleep crashes (<5 hours) during CS 65 and CS 89 project weeks",
+      "Take 10-minute movement or posture resets during long coding sessions",
+      "Keep stress manageable ahead of back-to-back technical deadlines"
+    ],
+    "preferences": {
+      "activity_style": "Short campus walks or quick desk/hallway stretches between coding blocks",
+      "tone": "Practical, direct, and concise",
+      "preferred_times": [
+        "evening (19:00-21:30)"
+      ],
+      "dislikes": [
+        "long multi-step checklists",
+        "vague motivational quotes"
+      ]
+    },
+    "constraints": [
+      "Heavy computer science courseload (CHIN 062, COSC 089, COSC 065)",
+      "Limited free time on Monday/Tuesday/Thursday afternoons due to language and CS classes"
+    ],
+    "learned_preferences": []
+  },
+  "episodes": [
+    {
+      "case_id": "case_011",
+      "decision_time": "2013-04-12T20:00:00-04:00",
+      "decision": "ask",
+      "skill_used": "clarifying_question",
+      "final_message": "I don't have your recent sleep or stress check-ins from the last few days, but I know you have a deadline tonight. How are your energy and stress levels holding up right now?",
+      "simulated_feedback": null,
+      "simulated": true
+    },
+    {
+      "case_id": "case_002",
+      "decision_time": "2013-04-21T20:00:00-04:00",
+      "decision": "suggest",
+      "skill_used": "sleep_hygiene_nudge",
+      "final_message": "With 2.8 hours of sleep last night and three upcoming deadlines, protecting tonight's rest is key. Consider setting a hard stop for coding tonight by 11:30 PM and jotting down tomorrow's first task so your mind can unplug before heading to bed.",
+      "simulated_feedback": null,
+      "simulated": true
+    }
+  ],
+  "learned_preferences": []
+}

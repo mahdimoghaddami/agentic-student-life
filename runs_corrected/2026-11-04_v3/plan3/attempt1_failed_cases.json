@@ -1,0 +1,7 @@
+[
+  {
+    "case_id": "case_011",
+    "participant_id": "u08",
+    "error": "RuntimeError: 504 DEADLINE_EXCEEDED. {'error': {'code': 504, 'message': 'Deadline expired before operation could complete.', 'status': 'DEADLINE_EXCEEDED'}}"
+  }
+]

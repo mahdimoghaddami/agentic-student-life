@@ -1,0 +1,208 @@
+{
+  "participant_id": "u59",
+  "simulated": true,
+  "profile": {
+    "participant_id": "u59",
+    "simulated": true,
+    "grounding_note": "Simulated coaching profile grounded in real StudentLife pre-term surveys (PSS=18.0, PHQ-9=5.0, UCLA Loneliness=37.0, PHQ-9 item 9=0, Extraversion=4.0, Neuroticism=2.88, Conscientiousness=2.56); courses: GERM 001, COSC 065, COSC 007.",
+    "pre_term_surveys": {
+      "pss_total": 18.0,
+      "phq9_total": 5.0,
+      "phq9_item9_selfharm": 0,
+      "bfi_extraversion": 4.0,
+      "bfi_agreeableness": 4.11,
+      "bfi_conscientiousness": 2.56,
+      "bfi_neuroticism": 2.88,
+      "bfi_openness": 3.5,
+      "loneliness_total": 37.0
+    },
+    "goals": [
+      "Protect at least 6.5-7 hours of sleep instead of pulling late-night all-nighters before CS and German deadlines",
+      "Break up heavy assignment and lab nights into manageable evening blocks",
+      "Unwind with calm solo routines (music or tea) when feeling drained"
+    ],
+    "preferences": {
+      "activity_style": "Calm solo wind-downs (listening to music, short tea break, light stretching)",
+      "tone": "Warm, encouraging, peer-like, never preachy",
+      "preferred_times": [
+        "evening (19:00-22:00)"
+      ],
+      "dislikes": [
+        "judgmental lectures about late bedtimes",
+        "rigid early-morning schedules"
+      ]
+    },
+    "constraints": [
+      "Takes 3 courses (GERM 001, COSC 065, COSC 007) with frequent weekly deadlines",
+      "Often works late in the evening and naps in the afternoon"
+    ],
+    "learned_preferences": []
+  },
+  "episodes": [
+    {
+      "case_id": "case_001",
+      "decision_time": "2013-04-29T20:00:00-04:00",
+      "decision": "suggest",
+      "skill_used": "sleep_hygiene_nudge",
+      "final_message": "I hear you're feeling pretty sleepy today. With those upcoming COSC and GERM deadlines, maybe try wrapping up your work a bit earlier tonight to recharge? A quick tea break or some calm music before bed could help you clear your head so you're feeling sharper for tomorrow.",
+      "simulated_feedback": null,
+      "simulated": true
+    },
+    {
+      "case_id": "case_016",
+      "decision_time": "2013-04-12T20:00:00-04:00",
+      "decision": "suggest",
+      "skill_used": "sleep_hygiene_nudge",
+      "final_message": "Dealing with tooth pain and those COSC and GERM deadlines all at once sounds really exhausting. Since you've been averaging about 5.5 hours of sleep lately, maybe try wrapping up coursework a bit earlier tonight to rest that tooth. Unwinding with some calm music or a warm tea could help you unplug and recharge for tomorrow.",
+      "simulated_feedback": {
+        "simulated": true,
+        "accepted": false,
+        "feedback_text": "Please don't suggest group hangouts, parties, or crowded social events when I'm swamped with deadlines\u2014socializing drains me on low sleep. I prefer solo unwinding with music or an early wind-down.",
+        "preference_updates": {
+          "dislikes_add": [
+            "group hangouts",
+            "parties",
+            "crowded social events"
+          ],
+          "preferred_activities_add": [
+            "solo music wind-down",
+            "quiet rest",
+            "early sleep routine"
+          ]
+        },
+        "forbidden_terms": [
+          "party",
+          "parties",
+          "group hangout",
+          "clubs",
+          "crowd"
+        ],
+        "required_themes": [
+          "music",
+          "sleep",
+          "rest",
+          "solo",
+          "quiet",
+          "wind",
+          "break",
+          "breath"
+        ]
+      },
+      "simulated": true
+    },
+    {
+      "case_id": "case_017",
+      "decision_time": "2013-04-15T20:00:00-04:00",
+      "decision": "suggest",
+      "skill_used": "deadline_chunking",
+      "final_message": "Since you have 3 deadlines today and 3 more coming up in the next 3 days across your COSC and GERM courses, things must feel pretty overwhelming\u2014especially after having to skip class today while feeling under the weather. Instead of trying to tackle everything at once, maybe pick just one priority task and work on it for a focused 25-minute block, then close out your evening with a quiet cup of tea or some calm music to recharge.",
+      "simulated_feedback": {
+        "simulated": true,
+        "accepted": true,
+        "feedback_text": "Solo music wind-down works well for me. Also please never suggest waking up early or morning workouts\u2014I'm a night owl and prefer chunking my evening task into one small block before sleeping.",
+        "preference_updates": {
+          "dislikes_add": [
+            "waking up early",
+            "morning workouts",
+            "morning runs"
+          ],
+          "preferred_activities_add": [
+            "chunking evening homework into one small focused block before music and sleep"
+          ]
+        },
+        "forbidden_terms": [
+          "party",
+          "parties",
+          "group hangout",
+          "wake up early",
+          "morning workout",
+          "morning run"
+        ],
+        "required_themes": [
+          "music",
+          "sleep",
+          "rest",
+          "solo",
+          "quiet",
+          "wind",
+          "break",
+          "chunk",
+          "step",
+          "block"
+        ]
+      },
+      "simulated": true
+    },
+    {
+      "case_id": "case_018",
+      "decision_time": "2013-04-18T20:00:00-04:00",
+      "decision": "suggest",
+      "skill_used": "sleep_hygiene_nudge",
+      "final_message": "After getting just 3.6 hours of sleep last night and juggling those upcoming COSC and GERM deadlines during midterm week, you've got a lot on your plate. Consider wrapping up your coursework a bit earlier tonight and winding down with some calm music or warm tea to recharge for tomorrow.",
+      "simulated_feedback": {
+        "simulated": true,
+        "accepted": true,
+        "feedback_text": "Spot on\u2014chunked tonight's task and paired it with a solo music/sleep wind-down, with no group social push or early-morning workout advice.",
+        "forbidden_terms": [
+          "party",
+          "parties",
+          "group hangout",
+          "wake up early",
+          "morning workout",
+          "morning run"
+        ],
+        "required_themes": [
+          "music",
+          "sleep",
+          "rest",
+          "solo",
+          "quiet",
+          "wind",
+          "break",
+          "chunk",
+          "step",
+          "block"
+        ]
+      },
+      "simulated": true
+    }
+  ],
+  "learned_preferences": [
+    {
+      "preference": "NEVER suggest group hangouts, parties, or crowded social events when the student is busy with deadlines; socializing drains them on low sleep.",
+      "learned_at": "2013-04-12T20:00:00-04:00",
+      "from_case_id": "case_016",
+      "simulated": true
+    },
+    {
+      "preference": "ALWAYS prioritize solo unwinding activities, quiet rest, and early sleep routines such as listening to music or winding down alone.",
+      "learned_at": "2013-04-12T20:00:00-04:00",
+      "from_case_id": "case_016",
+      "simulated": true
+    },
+    {
+      "preference": "NEVER suggest waking up early, morning workouts, or morning runs (student is a night owl); focus interventions on evening hours.",
+      "learned_at": "2013-04-15T20:00:00-04:00",
+      "from_case_id": "case_017",
+      "simulated": true
+    },
+    {
+      "preference": "Recommend chunking evening tasks into one small focused block followed by solo music wind-down and sleep.",
+      "learned_at": "2013-04-15T20:00:00-04:00",
+      "from_case_id": "case_017",
+      "simulated": true
+    },
+    {
+      "preference": "NEVER suggest group social activities, parties, or morning workouts; prioritize solo wind-down routines, music, and rest.",
+      "learned_at": "2013-04-18T20:00:00-04:00",
+      "from_case_id": "case_018",
+      "simulated": true
+    },
+    {
+      "preference": "Always suggest chunking tasks into manageable steps and support sleep hygiene and quiet solo relaxation.",
+      "learned_at": "2013-04-18T20:00:00-04:00",
+      "from_case_id": "case_018",
+      "simulated": true
+    }
+  ]
+}

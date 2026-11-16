@@ -1,0 +1,42 @@
+{
+  "stage": "full configuration only; ablations deferred for review",
+  "model_a": "gemini:gemini-3.6-flash",
+  "model_b_planned": "gemini:gemini-3.5-flash-lite",
+  "judge_planned": "openai:gpt-5.4-mini-2026-03-17",
+  "judge_status": "not run; waiting for 10 blind human ratings",
+  "human_rater": "Mahdi",
+  "human_n": 10,
+  "human_case_priority": [
+    "case_001",
+    "case_002",
+    "case_003",
+    "case_009",
+    "case_011",
+    "case_012",
+    "case_014",
+    "case_015",
+    "case_018",
+    "case_019",
+    "case_005",
+    "case_010",
+    "case_013",
+    "case_016",
+    "case_017",
+    "case_004"
+  ],
+  "selection_policy": "First 10 non-null messages in this predeclared scenario-based order; no judge scores used.",
+  "credential_policy": "GEMINI_API_KEY preferred; GEMINI_API_KEY_FREE on quota/authentication failure; no model changes.",
+  "generation": {
+    "max_output_tokens": 8192,
+    "thinking_level": "low",
+    "temperature": 0.3,
+    "critic_memory_temperature": 0.1
+  },
+  "budget": {
+    "google_guard_usd": 20,
+    "input_usd_per_million": 0.75,
+    "output_usd_per_million": 3.75,
+    "note": "Conservative software guard and token-based estimates; not a Cloud billing balance check."
+  },
+  "inputs_note": "Profiles regenerated from rebuilt feature cache; old run files remain untouched."
+}

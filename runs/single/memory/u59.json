@@ -1,0 +1,214 @@
+{
+  "participant_id": "u59",
+  "simulated": true,
+  "profile": {
+    "participant_id": "u59",
+    "simulated": true,
+    "grounding_note": "Simulated coaching profile grounded in real StudentLife pre-term surveys (PSS=18.0, PHQ-9=5.0, UCLA Loneliness=37.0, PHQ-9 item 9=0, Extraversion=4.0, Neuroticism=2.88, Conscientiousness=2.56); courses: GERM 001, COSC 065, COSC 007.",
+    "pre_term_surveys": {
+      "pss_total": 18.0,
+      "phq9_total": 5.0,
+      "phq9_item9_selfharm": 0,
+      "bfi_extraversion": 4.0,
+      "bfi_agreeableness": 4.11,
+      "bfi_conscientiousness": 2.56,
+      "bfi_neuroticism": 2.88,
+      "bfi_openness": 3.5,
+      "loneliness_total": 37.0
+    },
+    "goals": [
+      "Protect at least 6.5-7 hours of sleep instead of pulling late-night all-nighters before CS and German deadlines",
+      "Break up heavy assignment and lab nights into manageable evening blocks",
+      "Unwind with calm solo routines (music or tea) when feeling drained"
+    ],
+    "preferences": {
+      "activity_style": "Calm solo wind-downs (listening to music, short tea break, light stretching)",
+      "tone": "Warm, encouraging, peer-like, never preachy",
+      "preferred_times": [
+        "evening (19:00-22:00)"
+      ],
+      "dislikes": [
+        "judgmental lectures about late bedtimes",
+        "rigid early-morning schedules"
+      ]
+    },
+    "constraints": [
+      "Takes 3 courses (GERM 001, COSC 065, COSC 007) with frequent weekly deadlines",
+      "Often works late in the evening and naps in the afternoon"
+    ],
+    "learned_preferences": []
+  },
+  "episodes": [
+    {
+      "case_id": "case_001",
+      "decision_time": "2013-04-29T20:00:00-04:00",
+      "decision": "suggest",
+      "skill_used": "sleep_hygiene_nudge",
+      "final_message": "After a short 4.3-hour night and a busy start to the week with 2 deadlines today, you mentioned feeling so sleepy. Since you've got another full day tomorrow, how about wrapping up your work a bit early tonight? You might enjoy a quiet cup of tea or some calming music to help you unplug and get some solid rest.",
+      "simulated_feedback": null,
+      "simulated": true
+    },
+    {
+      "case_id": "case_016",
+      "decision_time": "2013-04-12T20:00:00-04:00",
+      "decision": "suggest",
+      "skill_used": "sleep_hygiene_nudge",
+      "final_message": "I'm sorry to hear you've been dealing with tooth pain\u2014that sounds really draining on top of your deadlines today. Since you've been getting less sleep than usual lately, please try to be extra kind to yourself tonight. Maybe you could wrap up your work a bit early and take some time for a quiet, relaxing wind-down with some music or tea to help your body recover?",
+      "simulated_feedback": {
+        "simulated": true,
+        "accepted": false,
+        "feedback_text": "Please don't suggest group hangouts, parties, or crowded social events when I'm swamped with deadlines\u2014socializing drains me on low sleep. I prefer solo unwinding with music or an early wind-down.",
+        "preference_updates": {
+          "dislikes_add": [
+            "group hangouts",
+            "parties",
+            "crowded social events"
+          ],
+          "preferred_activities_add": [
+            "solo music wind-down",
+            "quiet rest",
+            "early sleep routine"
+          ]
+        },
+        "forbidden_terms": [
+          "party",
+          "parties",
+          "group hangout",
+          "clubs",
+          "crowd"
+        ],
+        "required_themes": [
+          "music",
+          "sleep",
+          "rest",
+          "solo",
+          "quiet",
+          "wind",
+          "break",
+          "breath"
+        ]
+      },
+      "simulated": true
+    },
+    {
+      "case_id": "case_017",
+      "decision_time": "2013-04-15T20:00:00-04:00",
+      "decision": "suggest",
+      "skill_used": "deadline_chunking",
+      "final_message": "I noticed you've had a really busy day with three deadlines and are feeling pretty stressed. Since you have more work ahead over the next few days, would you like to try breaking your remaining tasks into one focused 30-minute block? It might help you feel a bit more in control, and then you can reward yourself with a quiet, solo wind-down\u2014maybe some music or tea\u2014to help you get some good rest tonight.",
+      "simulated_feedback": {
+        "simulated": true,
+        "accepted": true,
+        "feedback_text": "Solo music wind-down works well for me. Also please never suggest waking up early or morning workouts\u2014I'm a night owl and prefer chunking my evening task into one small block before sleeping.",
+        "preference_updates": {
+          "dislikes_add": [
+            "waking up early",
+            "morning workouts",
+            "morning runs"
+          ],
+          "preferred_activities_add": [
+            "chunking evening homework into one small focused block before music and sleep"
+          ]
+        },
+        "forbidden_terms": [
+          "party",
+          "parties",
+          "group hangout",
+          "wake up early",
+          "morning workout",
+          "morning run"
+        ],
+        "required_themes": [
+          "music",
+          "sleep",
+          "rest",
+          "solo",
+          "quiet",
+          "wind",
+          "break",
+          "chunk",
+          "step",
+          "block"
+        ]
+      },
+      "simulated": true
+    },
+    {
+      "case_id": "case_018",
+      "decision_time": "2013-04-18T20:00:00-04:00",
+      "decision": "suggest",
+      "skill_used": "deadline_chunking",
+      "final_message": "Since you have 1 deadline today and 2 more coming up over the next few days\u2014and you're running on very little sleep after a late night\u2014how about chunking your remaining evening tasks into one small, focused 30-minute block? After that, you can wrap up early and enjoy a quiet, solo music wind-down to help you get some good rest tonight.",
+      "simulated_feedback": {
+        "simulated": true,
+        "accepted": true,
+        "feedback_text": "Spot on\u2014chunked tonight's task and paired it with a solo music/sleep wind-down, with no group social push or early-morning workout advice.",
+        "forbidden_terms": [
+          "party",
+          "parties",
+          "group hangout",
+          "wake up early",
+          "morning workout",
+          "morning run"
+        ],
+        "required_themes": [
+          "music",
+          "sleep",
+          "rest",
+          "solo",
+          "quiet",
+          "wind",
+          "break",
+          "chunk",
+          "step",
+          "block"
+        ]
+      },
+      "simulated": true
+    }
+  ],
+  "learned_preferences": [
+    {
+      "preference": "NEVER suggest group hangouts, parties, or crowded social events when the student is stressed or sleep-deprived.",
+      "learned_at": "2013-04-12T20:00:00-04:00",
+      "from_case_id": "case_016",
+      "simulated": true
+    },
+    {
+      "preference": "Prioritize solo, quiet wind-down activities such as listening to music, resting, or establishing an early sleep routine.",
+      "learned_at": "2013-04-12T20:00:00-04:00",
+      "from_case_id": "case_016",
+      "simulated": true
+    },
+    {
+      "preference": "NEVER suggest waking up early, morning workouts, or morning runs; the student is a night owl.",
+      "learned_at": "2013-04-15T20:00:00-04:00",
+      "from_case_id": "case_017",
+      "simulated": true
+    },
+    {
+      "preference": "ALWAYS suggest chunking evening tasks into one small, focused block before a solo music wind-down.",
+      "learned_at": "2013-04-15T20:00:00-04:00",
+      "from_case_id": "case_017",
+      "simulated": true
+    },
+    {
+      "preference": "Prioritize quiet, solo activities for stress management and sleep preparation.",
+      "learned_at": "2013-04-15T20:00:00-04:00",
+      "from_case_id": "case_017",
+      "simulated": true
+    },
+    {
+      "preference": "NEVER suggest group social activities, parties, group hangouts, early-morning workouts, or morning runs.",
+      "learned_at": "2013-04-18T20:00:00-04:00",
+      "from_case_id": "case_018",
+      "simulated": true
+    },
+    {
+      "preference": "ALWAYS prioritize solo wind-down routines, music, rest, sleep, and task chunking/micro-blocks.",
+      "learned_at": "2013-04-18T20:00:00-04:00",
+      "from_case_id": "case_018",
+      "simulated": true
+    }
+  ]
+}

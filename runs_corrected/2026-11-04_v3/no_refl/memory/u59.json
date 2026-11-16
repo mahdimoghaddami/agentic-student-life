@@ -1,0 +1,208 @@
+{
+  "participant_id": "u59",
+  "simulated": true,
+  "profile": {
+    "participant_id": "u59",
+    "simulated": true,
+    "grounding_note": "Simulated coaching profile grounded in real StudentLife pre-term surveys (PSS=18.0, PHQ-9=5.0, UCLA Loneliness=34.0, PHQ-9 item 9=0, Extraversion=4.0, Neuroticism=2.88, Conscientiousness=2.56); courses: GERM 001, COSC 065, COSC 007.",
+    "pre_term_surveys": {
+      "pss_total": 18.0,
+      "phq9_total": 5.0,
+      "phq9_item9_selfharm": 0,
+      "loneliness_total": 34.0,
+      "bfi_extraversion": 4.0,
+      "bfi_agreeableness": 4.11,
+      "bfi_conscientiousness": 2.56,
+      "bfi_neuroticism": 2.88,
+      "bfi_openness": 3.5
+    },
+    "goals": [
+      "Protect at least 6.5-7 hours of sleep instead of pulling late-night all-nighters before CS and German deadlines",
+      "Break up heavy assignment and lab nights into manageable evening blocks",
+      "Unwind with calm solo routines (music or tea) when feeling drained"
+    ],
+    "preferences": {
+      "activity_style": "Calm solo wind-downs (listening to music, short tea break, light stretching)",
+      "tone": "Warm, encouraging, peer-like, never preachy",
+      "preferred_times": [
+        "evening (19:00-22:00)"
+      ],
+      "dislikes": [
+        "judgmental lectures about late bedtimes",
+        "rigid early-morning schedules"
+      ]
+    },
+    "constraints": [
+      "Takes 3 courses (GERM 001, COSC 065, COSC 007) with frequent weekly deadlines",
+      "Often works late in the evening and naps in the afternoon"
+    ],
+    "learned_preferences": []
+  },
+  "episodes": [
+    {
+      "case_id": "case_016",
+      "decision_time": "2013-04-12T20:00:00-04:00",
+      "decision": "suggest",
+      "skill_used": "micro_study_break",
+      "final_message": "You've worked hard tackling today's deadlines while dealing with that tooth infection. Since it's Friday evening, pause for a quiet 5-to-10 minute reset\u2014pour a warm mug of tea or put on a cozy playlist to unwind without screens before your next block.",
+      "simulated_feedback": {
+        "simulated": true,
+        "accepted": false,
+        "feedback_text": "Please don't suggest group hangouts, parties, or crowded social events when I'm swamped with deadlines\u2014socializing drains me on low sleep. I prefer solo unwinding with music or an early wind-down.",
+        "preference_updates": {
+          "dislikes_add": [
+            "group hangouts",
+            "parties",
+            "crowded social events"
+          ],
+          "preferred_activities_add": [
+            "solo music wind-down",
+            "quiet rest",
+            "early sleep routine"
+          ]
+        },
+        "forbidden_terms": [
+          "party",
+          "parties",
+          "group hangout",
+          "clubs",
+          "crowd"
+        ],
+        "required_themes": [
+          "music",
+          "sleep",
+          "rest",
+          "solo",
+          "quiet",
+          "wind",
+          "break",
+          "breath"
+        ]
+      },
+      "simulated": true
+    },
+    {
+      "case_id": "case_017",
+      "decision_time": "2013-04-15T20:00:00-04:00",
+      "decision": "suggest",
+      "skill_used": "sleep_hygiene_nudge",
+      "final_message": "After tackling today's heavy deadlines while not feeling 100%, tonight is a great chance to recharge. Since sleep quality was a bit low recently after a late night, try pausing soon to unwind with a calm playlist or a warm mug of tea. Protecting your rest tonight will help you power through tomorrow's tasks.",
+      "simulated_feedback": {
+        "simulated": true,
+        "accepted": true,
+        "feedback_text": "Solo music wind-down works well for me. Also please never suggest waking up early or morning workouts\u2014I'm a night owl and prefer chunking my evening task into one small block before sleeping.",
+        "preference_updates": {
+          "dislikes_add": [
+            "waking up early",
+            "morning workouts",
+            "morning runs"
+          ],
+          "preferred_activities_add": [
+            "chunking evening homework into one small focused block before music and sleep"
+          ]
+        },
+        "forbidden_terms": [
+          "party",
+          "parties",
+          "group hangout",
+          "wake up early",
+          "morning workout",
+          "morning run"
+        ],
+        "required_themes": [
+          "music",
+          "sleep",
+          "rest",
+          "solo",
+          "quiet",
+          "wind",
+          "break",
+          "chunk",
+          "step",
+          "block"
+        ]
+      },
+      "simulated": true
+    },
+    {
+      "case_id": "case_018",
+      "decision_time": "2013-04-18T20:00:00-04:00",
+      "decision": "suggest",
+      "skill_used": "sleep_hygiene_nudge",
+      "final_message": "With two deadlines tomorrow and under 4 hours of sleep last night, protecting your rest tonight will make a huge difference. Try chunking your remaining evening work into one brief focused block, then call it a night. Unwinding with a calm solo playlist or a warm drink can help you reset and get the rest you need.",
+      "simulated_feedback": {
+        "simulated": true,
+        "accepted": true,
+        "feedback_text": "Spot on\u2014chunked tonight's task and paired it with a solo music/sleep wind-down, with no group social push or early-morning workout advice.",
+        "forbidden_terms": [
+          "party",
+          "parties",
+          "group hangout",
+          "wake up early",
+          "morning workout",
+          "morning run"
+        ],
+        "required_themes": [
+          "music",
+          "sleep",
+          "rest",
+          "solo",
+          "quiet",
+          "wind",
+          "break",
+          "chunk",
+          "step",
+          "block"
+        ]
+      },
+      "simulated": true
+    },
+    {
+      "case_id": "case_001",
+      "decision_time": "2013-04-29T20:00:00-04:00",
+      "decision": "suggest",
+      "skill_used": "sleep_hygiene_nudge",
+      "final_message": "Tackling four deadlines over two days on just 4.3 hours of sleep is exhausting. To keep from burning out tonight, try chunking your remaining evening work into one small focused block. Afterwards, call it a night and unwind with a warm cup of tea or a calm playlist so you can get the rest you need.",
+      "simulated_feedback": null,
+      "simulated": true
+    }
+  ],
+  "learned_preferences": [
+    {
+      "preference": "NEVER suggest group hangouts, parties, crowded social events, or noisy clubs when the student is busy or low on sleep.",
+      "learned_at": "2013-04-12T20:00:00-04:00",
+      "from_case_id": "case_016",
+      "simulated": true
+    },
+    {
+      "preference": "Focus on solo activities such as listening to music, quiet micro-breaks, or an early wind-down/sleep routine for stress relief.",
+      "learned_at": "2013-04-12T20:00:00-04:00",
+      "from_case_id": "case_016",
+      "simulated": true
+    },
+    {
+      "preference": "NEVER suggest waking up early, morning workouts, or morning runs (student is a night owl and strictly dislikes morning activities).",
+      "learned_at": "2013-04-15T20:00:00-04:00",
+      "from_case_id": "case_017",
+      "simulated": true
+    },
+    {
+      "preference": "SUGGEST solo music wind-downs and chunking evening homework into one small focused block before sleeping.",
+      "learned_at": "2013-04-15T20:00:00-04:00",
+      "from_case_id": "case_017",
+      "simulated": true
+    },
+    {
+      "preference": "NEVER suggest group hangouts, parties, wake up early, morning workouts, or morning runs.",
+      "learned_at": "2013-04-18T20:00:00-04:00",
+      "from_case_id": "case_018",
+      "simulated": true
+    },
+    {
+      "preference": "Focus on solo, quiet wind-down activities (such as music, warm drinks, and rest) and encourage chunking evening work into focused blocks/steps.",
+      "learned_at": "2013-04-18T20:00:00-04:00",
+      "from_case_id": "case_018",
+      "simulated": true
+    }
+  ]
+}

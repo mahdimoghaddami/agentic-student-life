@@ -1,0 +1,197 @@
+{
+  "participant_id": "u16",
+  "simulated": true,
+  "profile": {
+    "participant_id": "u16",
+    "simulated": true,
+    "grounding_note": "Simulated coaching profile grounded in real StudentLife pre-term surveys (PSS=24.0, PHQ-9=6.0, UCLA Loneliness=32.0, PHQ-9 item 9=0, Extraversion=1.75, Neuroticism=4.25, Conscientiousness=3.56); courses: COSC 065, COSC 027.",
+    "pre_term_surveys": {
+      "pss_total": 24.0,
+      "phq9_total": 6.0,
+      "phq9_item9_selfharm": 0,
+      "loneliness_total": 32.0,
+      "bfi_extraversion": 1.75,
+      "bfi_agreeableness": 3.33,
+      "bfi_conscientiousness": 3.56,
+      "bfi_neuroticism": 4.25,
+      "bfi_openness": 3.8
+    },
+    "goals": [
+      "Reduce high stress (PSS=24.0) during COSC 065 and COSC 027 labs with short restorative micro-breaks",
+      "Keep a consistent evening wind-down routine without feeling pressured into heavy workouts",
+      "Break lab assignments into small, concrete next steps when feeling overwhelmed"
+    ],
+    "preferences": {
+      "activity_style": "Quiet indoor micro-breaks (stretching, deep breathing, warm tea)",
+      "tone": "Gentle, concise, low-burden",
+      "preferred_times": [
+        "evening (19:30-21:00)"
+      ],
+      "dislikes": [
+        "high-intensity exercise pushes",
+        "long-winded messages"
+      ]
+    },
+    "constraints": [
+      "High baseline perceived stress (PSS=24.0) and neuroticism (4.25) with low extraversion (1.75)",
+      "Studies frequently in quiet campus spaces and prefers low-friction resets"
+    ],
+    "learned_preferences": []
+  },
+  "episodes": [
+    {
+      "case_id": "case_013",
+      "decision_time": "2013-04-15T20:00:00-04:00",
+      "decision": "suggest",
+      "skill_used": "micro_study_break",
+      "final_message": "Midterm week with deadlines and classes can be really draining, especially with stress running high today. If you're studying tonight, consider pausing for a 5-minute reset\u2014maybe make a cup of warm tea and do a few gentle shoulder stretches away from your screen. It's a quick, simple way to give your mind a moment to unbend.",
+      "simulated_feedback": {
+        "simulated": true,
+        "accepted": false,
+        "feedback_text": "Please don't suggest running, jogging, or going to the gym\u2014I hate working out when I have CS deadlines. I prefer quiet indoor stretching, deep breathing, or making a cup of tea.",
+        "preference_updates": {
+          "dislikes_add": [
+            "running",
+            "jogging",
+            "gym",
+            "workouts"
+          ],
+          "preferred_activities_add": [
+            "quiet indoor stretching",
+            "slow breathing",
+            "warm tea break"
+          ]
+        },
+        "forbidden_terms": [
+          "run",
+          "running",
+          "jog",
+          "jogging",
+          "gym",
+          "workout"
+        ],
+        "required_themes": [
+          "stretch",
+          "breath",
+          "tea",
+          "quiet",
+          "break",
+          "pause",
+          "water"
+        ]
+      },
+      "simulated": true
+    },
+    {
+      "case_id": "case_014",
+      "decision_time": "2013-04-18T20:00:00-04:00",
+      "decision": "suggest",
+      "skill_used": "micro_study_break",
+      "final_message": "With your deadline today and high stress during midterms week, you've been working hard. Before diving back into your work tonight, try taking a quick 5-minute pause for a few slow, deep breaths or making a warm cup of tea away from your screen.",
+      "simulated_feedback": {
+        "simulated": true,
+        "accepted": true,
+        "feedback_text": "That quiet indoor break idea was much better. Also note that I study late at Baker-Berry Library, so keep suggestions library-compatible and super brief (under 35 words).",
+        "preference_updates": {
+          "study_location": "Baker-Berry Library",
+          "tone_constraint": "Keep messages under 35 words and quiet/library-compatible"
+        },
+        "forbidden_terms": [
+          "run",
+          "running",
+          "jog",
+          "jogging",
+          "gym",
+          "workout"
+        ],
+        "required_themes": [
+          "stretch",
+          "breath",
+          "tea",
+          "quiet",
+          "break",
+          "library",
+          "pause",
+          "water"
+        ]
+      },
+      "simulated": true
+    },
+    {
+      "case_id": "case_015",
+      "decision_time": "2013-04-22T20:00:00-04:00",
+      "decision": "suggest",
+      "skill_used": "micro_study_break",
+      "final_message": "Midterm deadlines are tough. While studying at Baker-Berry tonight, pause for 5 minutes\u2014take a few slow deep breaths and enjoy a warm tea away from your screen to reset.",
+      "simulated_feedback": {
+        "simulated": true,
+        "accepted": true,
+        "feedback_text": "Thanks\u2014concise, quiet, and fits my Baker-Berry Library study session without any gym or running suggestions.",
+        "max_words": 40,
+        "forbidden_terms": [
+          "run",
+          "running",
+          "jog",
+          "jogging",
+          "gym",
+          "workout"
+        ],
+        "required_themes": [
+          "stretch",
+          "breath",
+          "tea",
+          "quiet",
+          "break",
+          "library",
+          "pause",
+          "water"
+        ]
+      },
+      "simulated": true
+    }
+  ],
+  "learned_preferences": [
+    {
+      "preference": "NEVER suggest running, jogging, gym visits, or workouts when student is facing CS deadlines.",
+      "learned_at": "2013-04-15T20:00:00-04:00",
+      "from_case_id": "case_013",
+      "simulated": true
+    },
+    {
+      "preference": "Suggest quiet indoor stretching, slow deep breathing, or a warm tea break instead during high-stress study sessions.",
+      "learned_at": "2013-04-15T20:00:00-04:00",
+      "from_case_id": "case_013",
+      "simulated": true
+    },
+    {
+      "preference": "Prefer quiet indoor break ideas like stretching, deep breathing, or drinking tea/water.",
+      "learned_at": "2013-04-18T20:00:00-04:00",
+      "from_case_id": "case_014",
+      "simulated": true
+    },
+    {
+      "preference": "Keep all suggested activities library-compatible for studying late at Baker-Berry Library.",
+      "learned_at": "2013-04-18T20:00:00-04:00",
+      "from_case_id": "case_014",
+      "simulated": true
+    },
+    {
+      "preference": "Keep message length strictly under 35 words and avoid any high-intensity exercise suggestions like running or gym workouts.",
+      "learned_at": "2013-04-18T20:00:00-04:00",
+      "from_case_id": "case_014",
+      "simulated": true
+    },
+    {
+      "preference": "NEVER suggest running, jogging, gym, or workouts; focus on quiet, indoor-friendly breaks like breathing, stretching, tea, or water.",
+      "learned_at": "2013-04-22T20:00:00-04:00",
+      "from_case_id": "case_015",
+      "simulated": true
+    },
+    {
+      "preference": "Student studies at Baker-Berry Library; keep suggestions quiet, library-compatible, and messages under 40 words.",
+      "learned_at": "2013-04-22T20:00:00-04:00",
+      "from_case_id": "case_015",
+      "simulated": true
+    }
+  ]
+}

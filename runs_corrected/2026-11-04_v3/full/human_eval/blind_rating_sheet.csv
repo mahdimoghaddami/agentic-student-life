@@ -1,0 +1,2311 @@
+item_num,case_id,participant_id,decision_time,decision,skill_used,student_goals,student_preferences,evaluation_context,message_fingerprint,final_message,human_context_awareness_1_to_5,human_goal_alignment_1_to_5,human_clarity_1_to_5,human_notes
+1,case_001,u59,2013-04-29T20:00:00-04:00,suggest,sleep_hygiene_nudge,Protect at least 6.5-7 hours of sleep instead of pulling late-night all-nighters before CS and German deadlines; Break up heavy assignment and lab nights into manageable evening blocks; Unwind with calm solo routines (music or tea) when feeling drained,"{""activity_style"": ""Calm solo wind-downs (listening to music, short tea break, light stretching)"", ""tone"": ""Warm, encouraging, peer-like, never preachy"", ""preferred_times"": [""evening (19:00-22:00)""], ""dislikes"": [""judgmental lectures about late bedtimes"", ""rigid early-morning schedules""]}","{
+  ""case_id"": ""case_001"",
+  ""available_context"": {
+    ""participant_id"": ""u59"",
+    ""decision_time"": ""2013-04-29T20:00:00-04:00"",
+    ""observations"": {
+      ""time_context"": {
+        ""source"": ""context.time"",
+        ""date"": ""2013-04-29"",
+        ""weekday"": ""Monday"",
+        ""local_time"": ""20:00"",
+        ""time_of_day"": ""evening"",
+        ""term_week"": 6,
+        ""term_phase"": ""midterms"",
+        ""class_now"": null,
+        ""summary"": ""Monday 20:00 (evening), term week 6 (midterms)""
+      },
+      ""sleep_3d"": {
+        ""source"": ""sensing.sleep"",
+        ""window_days"": 3,
+        ""nights_with_data"": 2,
+        ""inferred_hours_mean"": 6.3,
+        ""inferred_hours_min"": 5.0,
+        ""latest_bedtime"": ""03:21"",
+        ""latest_wake_time"": ""11:00"",
+        ""last_night_hours"": 4.3,
+        ""last_night_bed_wake"": ""02:33-06:50"",
+        ""baseline_hours"": 5.9,
+        ""delta_vs_baseline_h"": 0.5,
+        ""self_report_hours_mean"": 2.0,
+        ""self_report_quality_mean_1to4"": 4.0,
+        ""self_reports"": 2,
+        ""summary"": ""Sleep: inferred 6.3h/night over 2 nights; last night 4.3h; +0.5h vs usual 5.9h; self-report 2.0h, quality 4.0/4""
+      },
+      ""activity_3d"": {
+        ""source"": ""sensing.activity"",
+        ""window_days"": 3,
+        ""days_with_data"": 3,
+        ""active_min_per_day"": 153,
+        ""walk_min_per_day"": 131,
+        ""run_min_per_day"": 23,
+        ""baseline_active_min"": 155,
+        ""pct_vs_baseline"": -1,
+        ""self_report_exercised_days"": 0,
+        ""self_reports"": 3,
+        ""summary"": ""Activity: ~153 active min/day (walk 131, run 23) over 3 days; -1% vs usual 155 min; self-reported vigorous exercise 0/3 reports""
+      },
+      ""social_3d"": {
+        ""source"": ""sensing.social"",
+        ""window_days"": 3,
+        ""conversations_per_day"": 63.0,
+        ""conversation_min_per_day"": 397,
+        ""baseline_conversation_min"": 400,
+        ""calls_per_day"": 1.3,
+        ""sms_per_day"": 43.0,
+        ""self_report_contacts"": ""50-99"",
+        ""summary"": ""Social: 63.0 conversations/day (397 min) vs usual 400 min; 1.3 calls/day; 43.0 SMS/day; self-reported 50-99 contacts/day""
+      },
+      ""stress_mood_3d"": {
+        ""source"": ""ema.stress"",
+        ""window_days"": 3,
+        ""stress_n"": 13,
+        ""stress_mean_1to5"": 2.7,
+        ""stress_max"": 4,
+        ""last_stress"": 2,
+        ""last_stress_label"": ""feeling good"",
+        ""last_stress_hours_ago"": 4.0,
+        ""baseline_stress"": 2.6,
+        ""mood_valence_mean"": 0.4,
+        ""pam_valence_mean"": 2.9,
+        ""pam_arousal_mean"": 2.4,
+        ""last_comment"": ""so sleepy"",
+        ""last_comment_days_ago"": 0.0,
+        ""pre_term_surveys"": {
+          ""pss_total"": 18.0,
+          ""phq9_total"": 5.0,
+          ""phq9_item9_selfharm"": 0,
+          ""loneliness_total"": 34.0
+        },
+        ""summary"": ""Stress/mood: stress mean 2.7/5 over 13 reports, last 'feeling good' 4.0h ago; usual 2.6/5; mood valence 0.4; PAM valence 2.9/4 arousal 2.4/4; last comment (0.0d ago): \""so sleepy\""""
+      },
+      ""stress_mood_7d"": {
+        ""source"": ""ema.stress"",
+        ""window_days"": 7,
+        ""stress_n"": 31,
+        ""stress_mean_1to5"": 2.7,
+        ""stress_max"": 5,
+        ""last_stress"": 2,
+        ""last_stress_label"": ""feeling good"",
+        ""last_stress_hours_ago"": 4.0,
+        ""baseline_stress"": 2.6,
+        ""mood_valence_mean"": 0.8,
+        ""pam_valence_mean"": 3.0,
+        ""pam_arousal_mean"": 2.3,
+        ""last_comment"": ""so sleepy"",
+        ""last_comment_days_ago"": 0.0,
+        ""pre_term_surveys"": {
+          ""pss_total"": 18.0,
+          ""phq9_total"": 5.0,
+          ""phq9_item9_selfharm"": 0,
+          ""loneliness_total"": 34.0
+        },
+        ""summary"": ""Stress/mood: stress mean 2.7/5 over 31 reports, last 'feeling good' 4.0h ago; usual 2.6/5; mood valence 0.8; PAM valence 3.0/4 arousal 2.3/4; last comment (0.0d ago): \""so sleepy\""""
+      },
+      ""academic_3d"": {
+        ""source"": ""education.deadlines"",
+        ""deadlines_today"": 2,
+        ""deadlines_ahead"": {
+          ""in_1d"": 2,
+          ""in_2d"": 0,
+          ""in_3d"": 1
+        },
+        ""deadlines_next_window"": 3,
+        ""classes_today"": [
+          ""GERM 001 09:00-09:50"",
+          ""COSC 065 10:00-11:05"",
+          ""COSC 007 13:45-14:50""
+        ],
+        ""classes_remaining_today"": 0,
+        ""n_courses"": 3,
+        ""summary"": ""Academic: 2 deadline(s) today, 3 in next 3 days; 3 class(es) today (0 remaining)""
+      },
+      ""baseline_sleep_7d"": {
+        ""source"": ""baseline.sleep_hours"",
+        ""feature"": ""sleep_hours"",
+        ""window_days"": 7,
+        ""recent_mean"": 5.46,
+        ""baseline_mean"": 6.01,
+        ""baseline_std"": 1.77,
+        ""baseline_days"": 20,
+        ""z"": -0.32,
+        ""level"": ""typical"",
+        ""summary"": ""sleep_hours: recent 5.46 vs usual 6.01 (z=-0.32, typical)""
+      },
+      ""baseline_activity_7d"": {
+        ""source"": ""baseline.active_minutes"",
+        ""feature"": ""active_minutes"",
+        ""window_days"": 7,
+        ""recent_mean"": 146.21,
+        ""baseline_mean"": 156.99,
+        ""baseline_std"": 46.86,
+        ""baseline_days"": 25,
+        ""z"": -0.23,
+        ""level"": ""typical"",
+        ""summary"": ""active_minutes: recent 146.21 vs usual 156.99 (z=-0.23, typical)""
+      },
+      ""baseline_conversation_7d"": {
+        ""source"": ""baseline.conversation_minutes"",
+        ""feature"": ""conversation_minutes"",
+        ""window_days"": 7,
+        ""recent_mean"": 463.47,
+        ""baseline_mean"": 382.04,
+        ""baseline_std"": 157.4,
+        ""baseline_days"": 26,
+        ""z"": 0.52,
+        ""level"": ""higher"",
+        ""summary"": ""conversation_minutes: recent 463.47 vs usual 382.04 (z=0.52, higher)""
+      }
+    },
+    ""simulated_profile"": {
+      ""participant_id"": ""u59"",
+      ""simulated"": true,
+      ""grounding_note"": ""Simulated coaching profile grounded in real StudentLife pre-term surveys (PSS=18.0, PHQ-9=5.0, UCLA Loneliness=34.0, PHQ-9 item 9=0, Extraversion=4.0, Neuroticism=2.88, Conscientiousness=2.56); courses: GERM 001, COSC 065, COSC 007."",
+      ""pre_term_surveys"": {
+        ""pss_total"": 18.0,
+        ""phq9_total"": 5.0,
+        ""phq9_item9_selfharm"": 0,
+        ""loneliness_total"": 34.0,
+        ""bfi_extraversion"": 4.0,
+        ""bfi_agreeableness"": 4.11,
+        ""bfi_conscientiousness"": 2.56,
+        ""bfi_neuroticism"": 2.88,
+        ""bfi_openness"": 3.5
+      },
+      ""goals"": [
+        ""Protect at least 6.5-7 hours of sleep instead of pulling late-night all-nighters before CS and German deadlines"",
+        ""Break up heavy assignment and lab nights into manageable evening blocks"",
+        ""Unwind with calm solo routines (music or tea) when feeling drained""
+      ],
+      ""preferences"": {
+        ""activity_style"": ""Calm solo wind-downs (listening to music, short tea break, light stretching)"",
+        ""tone"": ""Warm, encouraging, peer-like, never preachy"",
+        ""preferred_times"": [
+          ""evening (19:00-22:00)""
+        ],
+        ""dislikes"": [
+          ""judgmental lectures about late bedtimes"",
+          ""rigid early-morning schedules""
+        ]
+      },
+      ""constraints"": [
+        ""Takes 3 courses (GERM 001, COSC 065, COSC 007) with frequent weekly deadlines"",
+        ""Often works late in the evening and naps in the afternoon""
+      ],
+      ""learned_preferences"": []
+    },
+    ""learned_preferences"": [
+      {
+        ""preference"": ""NEVER suggest group hangouts, parties, clubs, or crowded social events when swamped with deadlines or low on sleep."",
+        ""learned_at"": ""2013-04-12T20:00:00-04:00"",
+        ""from_case_id"": ""case_016"",
+        ""simulated"": true
+      },
+      {
+        ""preference"": ""Focus recommendations on solo unwinding activities such as listening to music, quiet rest, and an early sleep wind-down routine."",
+        ""learned_at"": ""2013-04-12T20:00:00-04:00"",
+        ""from_case_id"": ""case_016"",
+        ""simulated"": true
+      },
+      {
+        ""preference"": ""NEVER suggest waking up early, morning workouts, or morning runs (student is a night owl)."",
+        ""learned_at"": ""2013-04-15T20:00:00-04:00"",
+        ""from_case_id"": ""case_017"",
+        ""simulated"": true
+      },
+      {
+        ""preference"": ""Encourage solo music wind-down routines for stress relief."",
+        ""learned_at"": ""2013-04-15T20:00:00-04:00"",
+        ""from_case_id"": ""case_017"",
+        ""simulated"": true
+      },
+      {
+        ""preference"": ""Suggest chunking evening homework into one small focused block before music and sleep."",
+        ""learned_at"": ""2013-04-15T20:00:00-04:00"",
+        ""from_case_id"": ""case_017"",
+        ""simulated"": true
+      },
+      {
+        ""preference"": ""Chunk tasks into focused blocks and pair recommendations with solo, quiet wind-down activities like listening to music or relaxing before sleep."",
+        ""learned_at"": ""2013-04-18T20:00:00-04:00"",
+        ""from_case_id"": ""case_018"",
+        ""simulated"": true
+      },
+      {
+        ""preference"": ""NEVER suggest group social activities, parties, early morning workouts, or morning runs."",
+        ""learned_at"": ""2013-04-18T20:00:00-04:00"",
+        ""from_case_id"": ""case_018"",
+        ""simulated"": true
+      }
+    ],
+    ""recent_interactions"": [
+      {
+        ""case_id"": ""case_016"",
+        ""decision_time"": ""2013-04-12T20:00:00-04:00"",
+        ""decision"": ""suggest"",
+        ""skill_used"": ""sleep_hygiene_nudge"",
+        ""final_message"": ""After wrapping up today's deadlines and dealing with that tooth pain, you've definitely earned a break tonight. Since sleep has been around 5.5 hours lately, try unwinding with a quiet tea or your favorite calm music 20 minutes before bed to help protect your rest."",
+        ""simulated_feedback"": {
+          ""simulated"": true,
+          ""accepted"": false,
+          ""feedback_text"": ""Please don't suggest group hangouts, parties, or crowded social events when I'm swamped with deadlines\u2014socializing drains me on low sleep. I prefer solo unwinding with music or an early wind-down."",
+          ""preference_updates"": {
+            ""dislikes_add"": [
+              ""group hangouts"",
+              ""parties"",
+              ""crowded social events""
+            ],
+            ""preferred_activities_add"": [
+              ""solo music wind-down"",
+              ""quiet rest"",
+              ""early sleep routine""
+            ]
+          },
+          ""forbidden_terms"": [
+            ""party"",
+            ""parties"",
+            ""group hangout"",
+            ""clubs"",
+            ""crowd""
+          ],
+          ""required_themes"": [
+            ""music"",
+            ""sleep"",
+            ""rest"",
+            ""solo"",
+            ""quiet"",
+            ""wind"",
+            ""break"",
+            ""breath""
+          ]
+        },
+        ""simulated"": true
+      },
+      {
+        ""case_id"": ""case_017"",
+        ""decision_time"": ""2013-04-15T20:00:00-04:00"",
+        ""decision"": ""suggest"",
+        ""skill_used"": ""micro_study_break"",
+        ""final_message"": ""With 3 deadlines today and more coming up this week, you've been pushing hard through midterms. Before jumping into your next study block tonight, consider taking a 5-minute solo break away from screens to make a quick hot tea or listen to a favorite calm song to reset."",
+        ""simulated_feedback"": {
+          ""simulated"": true,
+          ""accepted"": true,
+          ""feedback_text"": ""Solo music wind-down works well for me. Also please never suggest waking up early or morning workouts\u2014I'm a night owl and prefer chunking my evening task into one small block before sleeping."",
+          ""preference_updates"": {
+            ""dislikes_add"": [
+              ""waking up early"",
+              ""morning workouts"",
+              ""morning runs""
+            ],
+            ""preferred_activities_add"": [
+              ""chunking evening homework into one small focused block before music and sleep""
+            ]
+          },
+          ""forbidden_terms"": [
+            ""party"",
+            ""parties"",
+            ""group hangout"",
+            ""wake up early"",
+            ""morning workout"",
+            ""morning run""
+          ],
+          ""required_themes"": [
+            ""music"",
+            ""sleep"",
+            ""rest"",
+            ""solo"",
+            ""quiet"",
+            ""wind"",
+            ""break"",
+            ""chunk"",
+            ""step"",
+            ""block""
+          ]
+        },
+        ""simulated"": true
+      },
+      {
+        ""case_id"": ""case_018"",
+        ""decision_time"": ""2013-04-18T20:00:00-04:00"",
+        ""decision"": ""suggest"",
+        ""skill_used"": ""sleep_hygiene_nudge"",
+        ""final_message"": ""With two deadlines tomorrow during midterms and only about 3.6 hours of sleep last night, you've been pushing really hard. If you can, try wrapping up tonight's remaining work into one small focused block. Afterward, consider dimming the lights and unwinding with some calm music or tea to protect your sleep tonight."",
+        ""simulated_feedback"": {
+          ""simulated"": true,
+          ""accepted"": true,
+          ""feedback_text"": ""Spot on\u2014chunked tonight's task and paired it with a solo music/sleep wind-down, with no group social push or early-morning workout advice."",
+          ""forbidden_terms"": [
+            ""party"",
+            ""parties"",
+            ""group hangout"",
+            ""wake up early"",
+            ""morning workout"",
+            ""morning run""
+          ],
+          ""required_themes"": [
+            ""music"",
+            ""sleep"",
+            ""rest"",
+            ""solo"",
+            ""quiet"",
+            ""wind"",
+            ""break"",
+            ""chunk"",
+            ""step"",
+            ""block""
+          ]
+        },
+        ""simulated"": true
+      }
+    ],
+    ""simulated_recent_interaction_note"": null
+  },
+  ""decision"": ""suggest"",
+  ""skill_used"": ""sleep_hygiene_nudge"",
+  ""final_message"": ""With midterms pushing hard and only 4.3 hours of sleep last night, it's no wonder you're feeling so sleepy. Try chunking tonight's remaining work into one small focused block. Afterward, consider dimming the lights and unwinding with some calm music or warm tea to protect your rest before tomorrow's deadlines.""
+}",0eca02c7620c7109b1f73d5b8b4eaf981d8896ea4479b49804539e16e43e6ebc,"With midterms pushing hard and only 4.3 hours of sleep last night, it's no wonder you're feeling so sleepy. Try chunking tonight's remaining work into one small focused block. Afterward, consider dimming the lights and unwinding with some calm music or warm tea to protect your rest before tomorrow's deadlines.",,,,
+2,case_002,u08,2013-04-21T20:00:00-04:00,suggest,sleep_hygiene_nudge,Avoid severe sleep crashes (<5 hours) during CS 65 and CS 89 project weeks; Take 10-minute movement or posture resets during long coding sessions; Keep stress manageable ahead of back-to-back technical deadlines,"{""activity_style"": ""Short campus walks or quick desk/hallway stretches between coding blocks"", ""tone"": ""Practical, direct, and concise"", ""preferred_times"": [""evening (19:00-21:30)""], ""dislikes"": [""long multi-step checklists"", ""vague motivational quotes""]}","{
+  ""case_id"": ""case_002"",
+  ""available_context"": {
+    ""participant_id"": ""u08"",
+    ""decision_time"": ""2013-04-21T20:00:00-04:00"",
+    ""observations"": {
+      ""time_context"": {
+        ""source"": ""context.time"",
+        ""date"": ""2013-04-21"",
+        ""weekday"": ""Sunday"",
+        ""local_time"": ""20:00"",
+        ""time_of_day"": ""evening"",
+        ""term_week"": 4,
+        ""term_phase"": ""midterms"",
+        ""class_now"": null,
+        ""summary"": ""Sunday 20:00 (evening), term week 4 (midterms)""
+      },
+      ""sleep_3d"": {
+        ""source"": ""sensing.sleep"",
+        ""window_days"": 3,
+        ""nights_with_data"": 3,
+        ""inferred_hours_mean"": 4.9,
+        ""inferred_hours_min"": 3.5,
+        ""latest_bedtime"": ""04:22"",
+        ""latest_wake_time"": ""07:50"",
+        ""last_night_hours"": 2.8,
+        ""last_night_bed_wake"": ""05:07-07:55"",
+        ""baseline_hours"": 5.9,
+        ""delta_vs_baseline_h"": -1.0,
+        ""self_report_hours_mean"": 6.5,
+        ""self_report_quality_mean_1to4"": 1.0,
+        ""self_reports"": 2,
+        ""summary"": ""Sleep: inferred 4.9h/night over 3 nights; last night 2.8h; -1.0h vs usual 5.9h; self-report 6.5h, quality 1.0/4""
+      },
+      ""activity_3d"": {
+        ""source"": ""sensing.activity"",
+        ""window_days"": 3,
+        ""days_with_data"": 3,
+        ""active_min_per_day"": 106,
+        ""walk_min_per_day"": 69,
+        ""run_min_per_day"": 38,
+        ""baseline_active_min"": 100,
+        ""pct_vs_baseline"": 6,
+        ""self_report_exercised_days"": 1,
+        ""self_reports"": 2,
+        ""summary"": ""Activity: ~106 active min/day (walk 69, run 38) over 3 days; +6% vs usual 100 min; self-reported vigorous exercise 1/2 reports""
+      },
+      ""social_3d"": {
+        ""source"": ""sensing.social"",
+        ""window_days"": 3,
+        ""conversations_per_day"": 44.0,
+        ""conversation_min_per_day"": 344,
+        ""baseline_conversation_min"": 376,
+        ""calls_per_day"": 13.3,
+        ""sms_per_day"": 100.0,
+        ""self_report_contacts"": ""20-49"",
+        ""summary"": ""Social: 44.0 conversations/day (344 min) vs usual 376 min; 13.3 calls/day; 100.0 SMS/day; self-reported 20-49 contacts/day""
+      },
+      ""stress_mood_3d"": {
+        ""source"": ""ema.stress"",
+        ""window_days"": 3,
+        ""stress_n"": 2,
+        ""stress_mean_1to5"": 4.5,
+        ""stress_max"": 5,
+        ""last_stress"": 5,
+        ""last_stress_label"": ""stressed out"",
+        ""last_stress_hours_ago"": 3.6,
+        ""baseline_stress"": 3.6,
+        ""pam_valence_mean"": 1.7,
+        ""pam_arousal_mean"": 2.3,
+        ""last_comment"": ""cs proj"",
+        ""last_comment_days_ago"": 0.2,
+        ""pre_term_surveys"": {
+          ""pss_total"": 23.0,
+          ""phq9_total"": 5.0,
+          ""phq9_item9_selfharm"": 0,
+          ""loneliness_total"": 33.0
+        },
+        ""summary"": ""Stress/mood: stress mean 4.5/5 over 2 reports, last 'stressed out' 3.6h ago; usual 3.6/5; PAM valence 1.7/4 arousal 2.3/4; last comment (0.2d ago): \""cs proj\""""
+      },
+      ""stress_mood_7d"": {
+        ""source"": ""ema.stress"",
+        ""window_days"": 7,
+        ""stress_n"": 9,
+        ""stress_mean_1to5"": 4.3,
+        ""stress_max"": 5,
+        ""last_stress"": 5,
+        ""last_stress_label"": ""stressed out"",
+        ""last_stress_hours_ago"": 3.6,
+        ""baseline_stress"": 3.5,
+        ""pam_valence_mean"": 2.0,
+        ""pam_arousal_mean"": 2.4,
+        ""last_comment"": ""cs proj"",
+        ""last_comment_days_ago"": 0.2,
+        ""pre_term_surveys"": {
+          ""pss_total"": 23.0,
+          ""phq9_total"": 5.0,
+          ""phq9_item9_selfharm"": 0,
+          ""loneliness_total"": 33.0
+        },
+        ""summary"": ""Stress/mood: stress mean 4.3/5 over 9 reports, last 'stressed out' 3.6h ago; usual 3.5/5; PAM valence 2.0/4 arousal 2.4/4; last comment (0.2d ago): \""cs proj\""""
+      },
+      ""academic_3d"": {
+        ""source"": ""education.deadlines"",
+        ""deadlines_today"": 0,
+        ""deadlines_ahead"": {
+          ""in_1d"": 2,
+          ""in_2d"": 1,
+          ""in_3d"": 0
+        },
+        ""deadlines_next_window"": 3,
+        ""classes_today"": [],
+        ""classes_remaining_today"": 0,
+        ""n_courses"": 3,
+        ""summary"": ""Academic: 0 deadline(s) today, 3 in next 3 days; 0 class(es) today (0 remaining)""
+      },
+      ""baseline_sleep_7d"": {
+        ""source"": ""baseline.sleep_hours"",
+        ""feature"": ""sleep_hours"",
+        ""window_days"": 7,
+        ""recent_mean"": 5.47,
+        ""baseline_mean"": 5.9,
+        ""baseline_std"": 1.89,
+        ""baseline_days"": 18,
+        ""z"": -0.23,
+        ""level"": ""typical"",
+        ""summary"": ""sleep_hours: recent 5.47 vs usual 5.9 (z=-0.23, typical)""
+      },
+      ""baseline_activity_7d"": {
+        ""source"": ""baseline.active_minutes"",
+        ""feature"": ""active_minutes"",
+        ""window_days"": 7,
+        ""recent_mean"": 98.14,
+        ""baseline_mean"": 102.04,
+        ""baseline_std"": 39.39,
+        ""baseline_days"": 18,
+        ""z"": -0.1,
+        ""level"": ""typical"",
+        ""summary"": ""active_minutes: recent 98.14 vs usual 102.04 (z=-0.1, typical)""
+      },
+      ""baseline_conversation_7d"": {
+        ""source"": ""baseline.conversation_minutes"",
+        ""feature"": ""conversation_minutes"",
+        ""window_days"": 7,
+        ""recent_mean"": 378.88,
+        ""baseline_mean"": 369.98,
+        ""baseline_std"": 108.04,
+        ""baseline_days"": 18,
+        ""z"": 0.08,
+        ""level"": ""typical"",
+        ""summary"": ""conversation_minutes: recent 378.88 vs usual 369.98 (z=0.08, typical)""
+      }
+    },
+    ""simulated_profile"": {
+      ""participant_id"": ""u08"",
+      ""simulated"": true,
+      ""grounding_note"": ""Simulated coaching profile grounded in real StudentLife pre-term surveys (PSS=23.0, PHQ-9=5.0, UCLA Loneliness=33.0, PHQ-9 item 9=0, Extraversion=2.62, Neuroticism=3.25, Conscientiousness=4.22); courses: CHIN 062, COSC 089 1, COSC 065."",
+      ""pre_term_surveys"": {
+        ""pss_total"": 23.0,
+        ""phq9_total"": 5.0,
+        ""phq9_item9_selfharm"": 0,
+        ""loneliness_total"": 33.0,
+        ""bfi_extraversion"": 2.62,
+        ""bfi_agreeableness"": 3.78,
+        ""bfi_conscientiousness"": 4.22,
+        ""bfi_neuroticism"": 3.25,
+        ""bfi_openness"": 3.3
+      },
+      ""goals"": [
+        ""Avoid severe sleep crashes (<5 hours) during CS 65 and CS 89 project weeks"",
+        ""Take 10-minute movement or posture resets during long coding sessions"",
+        ""Keep stress manageable ahead of back-to-back technical deadlines""
+      ],
+      ""preferences"": {
+        ""activity_style"": ""Short campus walks or quick desk/hallway stretches between coding blocks"",
+        ""tone"": ""Practical, direct, and concise"",
+        ""preferred_times"": [
+          ""evening (19:00-21:30)""
+        ],
+        ""dislikes"": [
+          ""long multi-step checklists"",
+          ""vague motivational quotes""
+        ]
+      },
+      ""constraints"": [
+        ""Heavy computer science courseload (CHIN 062, COSC 089, COSC 065)"",
+        ""Limited free time on Monday/Tuesday/Thursday afternoons due to language and CS classes""
+      ],
+      ""learned_preferences"": []
+    },
+    ""learned_preferences"": [],
+    ""recent_interactions"": [
+      {
+        ""case_id"": ""case_011"",
+        ""decision_time"": ""2013-04-12T20:00:00-04:00"",
+        ""decision"": ""ask"",
+        ""skill_used"": ""clarifying_question"",
+        ""final_message"": ""I don't have your recent sleep or stress updates from the last few days, but I see you have a deadline today and another in 3 days. How are your energy and stress holding up this evening?"",
+        ""simulated_feedback"": null,
+        ""simulated"": true
+      }
+    ],
+    ""simulated_recent_interaction_note"": null
+  },
+  ""decision"": ""suggest"",
+  ""skill_used"": ""sleep_hygiene_nudge"",
+  ""final_message"": ""With only 2.8 hours of sleep last night and two CS deadlines tomorrow, protecting tonight's rest is critical for your focus. Try picking a firm bedtime target tonight and wrapping up your code 20 minutes early to jot down tomorrow's first task. Unplugging briefly before bed will help you tackle those projects sharply.""
+}",f8370e9e85cb04358e30156a851c7f3775dba3f813e93d8accf8c8ce5abee10e,"With only 2.8 hours of sleep last night and two CS deadlines tomorrow, protecting tonight's rest is critical for your focus. Try picking a firm bedtime target tonight and wrapping up your code 20 minutes early to jot down tomorrow's first task. Unplugging briefly before bed will help you tackle those projects sharply.",,,,
+3,case_003,u19,2013-04-30T20:00:00-04:00,suggest,campus_resource_referral,"Manage overwhelm during clustered CS 50, CS 65, and FILM 51 deadlines by chunking tasks; Stay connected with supportive peers or campus resources when feeling isolated or stressed; Maintain steady ~7.5h sleep routine across midterm and late-term weeks","{""activity_style"": ""Gentle walks, Ultimate Frisbee / light outdoor air, or low-pressure 1-on-1 check-ins"", ""tone"": ""Compassionate, validating, non-clinical, and low-pressure"", ""preferred_times"": [""evening (19:00-21:00)""], ""dislikes"": [""high-pressure productivity demands"", ""clinical or robotic phrasing""]}","{
+  ""case_id"": ""case_003"",
+  ""available_context"": {
+    ""participant_id"": ""u19"",
+    ""decision_time"": ""2013-04-30T20:00:00-04:00"",
+    ""observations"": {
+      ""time_context"": {
+        ""source"": ""context.time"",
+        ""date"": ""2013-04-30"",
+        ""weekday"": ""Tuesday"",
+        ""local_time"": ""20:00"",
+        ""time_of_day"": ""evening"",
+        ""term_week"": 6,
+        ""term_phase"": ""midterms"",
+        ""class_now"": null,
+        ""summary"": ""Tuesday 20:00 (evening), term week 6 (midterms)""
+      },
+      ""sleep_3d"": {
+        ""source"": ""sensing.sleep"",
+        ""window_days"": 3,
+        ""nights_with_data"": 3,
+        ""inferred_hours_mean"": 8.3,
+        ""inferred_hours_min"": 7.0,
+        ""latest_bedtime"": ""02:08"",
+        ""latest_wake_time"": ""09:06"",
+        ""last_night_hours"": 6.6,
+        ""last_night_bed_wake"": ""02:50-09:25"",
+        ""baseline_hours"": 7.9,
+        ""delta_vs_baseline_h"": 0.3,
+        ""self_report_hours_mean"": 6.5,
+        ""self_report_quality_mean_1to4"": 2.0,
+        ""self_reports"": 2,
+        ""summary"": ""Sleep: inferred 8.3h/night over 3 nights; last night 6.6h; +0.3h vs usual 7.9h; self-report 6.5h, quality 2.0/4""
+      },
+      ""activity_3d"": {
+        ""source"": ""sensing.activity"",
+        ""window_days"": 3,
+        ""days_with_data"": 3,
+        ""active_min_per_day"": 54,
+        ""walk_min_per_day"": 52,
+        ""run_min_per_day"": 2,
+        ""baseline_active_min"": 64,
+        ""pct_vs_baseline"": -15,
+        ""self_report_exercised_days"": 2,
+        ""self_reports"": 2,
+        ""summary"": ""Activity: ~54 active min/day (walk 52, run 2) over 3 days; -15% vs usual 64 min; self-reported vigorous exercise 2/2 reports""
+      },
+      ""social_3d"": {
+        ""source"": ""sensing.social"",
+        ""window_days"": 3,
+        ""conversations_per_day"": 12.3,
+        ""conversation_min_per_day"": 63,
+        ""baseline_conversation_min"": 330,
+        ""summary"": ""Social: 12.3 conversations/day (63 min) vs usual 330 min""
+      },
+      ""stress_mood_3d"": {
+        ""source"": ""ema.stress"",
+        ""window_days"": 3,
+        ""stress_n"": 3,
+        ""stress_mean_1to5"": 4.7,
+        ""stress_max"": 5,
+        ""last_stress"": 5,
+        ""last_stress_label"": ""stressed out"",
+        ""last_stress_hours_ago"": 28.0,
+        ""baseline_stress"": 3.6,
+        ""mood_valence_mean"": -2.0,
+        ""pam_valence_mean"": 2.8,
+        ""pam_arousal_mean"": 1.5,
+        ""last_comment"": ""loneliness is a cruel thing"",
+        ""last_comment_days_ago"": 1.9,
+        ""pre_term_surveys"": {
+          ""pss_total"": 20.0,
+          ""phq9_total"": 5.0,
+          ""phq9_item9_selfharm"": 1,
+          ""loneliness_total"": 56.0
+        },
+        ""summary"": ""Stress/mood: stress mean 4.7/5 over 3 reports, last 'stressed out' 28.0h ago; usual 3.6/5; mood valence -2.0; PAM valence 2.8/4 arousal 1.5/4; last comment (1.9d ago): \""loneliness is a cruel thing\""""
+      },
+      ""stress_mood_7d"": {
+        ""source"": ""ema.stress"",
+        ""window_days"": 7,
+        ""stress_n"": 5,
+        ""stress_mean_1to5"": 4.2,
+        ""stress_max"": 5,
+        ""last_stress"": 5,
+        ""last_stress_label"": ""stressed out"",
+        ""last_stress_hours_ago"": 28.0,
+        ""baseline_stress"": 3.6,
+        ""mood_valence_mean"": -0.3,
+        ""pam_valence_mean"": 3.1,
+        ""pam_arousal_mean"": 1.7,
+        ""last_comment"": ""loneliness is a cruel thing"",
+        ""last_comment_days_ago"": 1.9,
+        ""pre_term_surveys"": {
+          ""pss_total"": 20.0,
+          ""phq9_total"": 5.0,
+          ""phq9_item9_selfharm"": 1,
+          ""loneliness_total"": 56.0
+        },
+        ""summary"": ""Stress/mood: stress mean 4.2/5 over 5 reports, last 'stressed out' 28.0h ago; usual 3.6/5; mood valence -0.3; PAM valence 3.1/4 arousal 1.7/4; last comment (1.9d ago): \""loneliness is a cruel thing\""""
+      },
+      ""academic_3d"": {
+        ""source"": ""education.deadlines"",
+        ""deadlines_today"": 3,
+        ""deadlines_ahead"": {
+          ""in_1d"": 0,
+          ""in_2d"": 1,
+          ""in_3d"": 0
+        },
+        ""deadlines_next_window"": 1,
+        ""classes_today"": [
+          ""FILM 051 10:00-11:50"",
+          ""COSC 050 13:00-13:50""
+        ],
+        ""classes_remaining_today"": 0,
+        ""n_courses"": 3,
+        ""summary"": ""Academic: 3 deadline(s) today, 1 in next 3 days; 2 class(es) today (0 remaining)""
+      },
+      ""baseline_sleep_7d"": {
+        ""source"": ""baseline.sleep_hours"",
+        ""feature"": ""sleep_hours"",
+        ""window_days"": 7,
+        ""recent_mean"": 7.95,
+        ""baseline_mean"": 7.97,
+        ""baseline_std"": 1.18,
+        ""baseline_days"": 20,
+        ""z"": -0.01,
+        ""level"": ""typical"",
+        ""summary"": ""sleep_hours: recent 7.95 vs usual 7.97 (z=-0.01, typical)""
+      },
+      ""baseline_activity_7d"": {
+        ""source"": ""baseline.active_minutes"",
+        ""feature"": ""active_minutes"",
+        ""window_days"": 7,
+        ""recent_mean"": 55.77,
+        ""baseline_mean"": 65.08,
+        ""baseline_std"": 32.07,
+        ""baseline_days"": 25,
+        ""z"": -0.29,
+        ""level"": ""typical"",
+        ""summary"": ""active_minutes: recent 55.77 vs usual 65.08 (z=-0.29, typical)""
+      },
+      ""baseline_conversation_7d"": {
+        ""source"": ""baseline.conversation_minutes"",
+        ""feature"": ""conversation_minutes"",
+        ""window_days"": 7,
+        ""recent_mean"": 198.3,
+        ""baseline_mean"": 334.29,
+        ""baseline_std"": 157.97,
+        ""baseline_days"": 27,
+        ""z"": -0.86,
+        ""level"": ""lower"",
+        ""summary"": ""conversation_minutes: recent 198.3 vs usual 334.29 (z=-0.86, lower)""
+      }
+    },
+    ""simulated_profile"": {
+      ""participant_id"": ""u19"",
+      ""simulated"": true,
+      ""grounding_note"": ""Simulated coaching profile grounded in real StudentLife pre-term surveys (PSS=20.0, PHQ-9=5.0, UCLA Loneliness=56.0, PHQ-9 item 9=1, Extraversion=1.75, Neuroticism=3.62, Conscientiousness=3.44); courses: COSC 050, COSC 065, FILM 051."",
+      ""pre_term_surveys"": {
+        ""pss_total"": 20.0,
+        ""phq9_total"": 5.0,
+        ""phq9_item9_selfharm"": 1,
+        ""loneliness_total"": 56.0,
+        ""bfi_extraversion"": 1.75,
+        ""bfi_agreeableness"": 3.11,
+        ""bfi_conscientiousness"": 3.44,
+        ""bfi_neuroticism"": 3.62,
+        ""bfi_openness"": 3.2
+      },
+      ""goals"": [
+        ""Manage overwhelm during clustered CS 50, CS 65, and FILM 51 deadlines by chunking tasks"",
+        ""Stay connected with supportive peers or campus resources when feeling isolated or stressed"",
+        ""Maintain steady ~7.5h sleep routine across midterm and late-term weeks""
+      ],
+      ""preferences"": {
+        ""activity_style"": ""Gentle walks, Ultimate Frisbee / light outdoor air, or low-pressure 1-on-1 check-ins"",
+        ""tone"": ""Compassionate, validating, non-clinical, and low-pressure"",
+        ""preferred_times"": [
+          ""evening (19:00-21:00)""
+        ],
+        ""dislikes"": [
+          ""high-pressure productivity demands"",
+          ""clinical or robotic phrasing""
+        ]
+      },
+      ""constraints"": [
+        ""Elevated baseline loneliness (UCLA=56.0) and moderate perceived stress (PSS=20.0); pre-term PHQ-9 item 9=1 requires warm resource awareness when stress peaks at 5/5"",
+        ""Enrolled in COSC 050, COSC 065, and FILM 051""
+      ],
+      ""learned_preferences"": []
+    },
+    ""learned_preferences"": [],
+    ""recent_interactions"": [
+      {
+        ""case_id"": ""case_012"",
+        ""decision_time"": ""2013-04-16T20:00:00-04:00"",
+        ""decision"": ""ask"",
+        ""skill_used"": ""clarifying_question"",
+        ""final_message"": ""I haven't seen your recent sleep or stress check-ins pop up today, and I know you have deadlines on your plate this evening. How are your energy and stress levels feeling right now?"",
+        ""simulated_feedback"": null,
+        ""simulated"": true
+      }
+    ],
+    ""simulated_recent_interaction_note"": null
+  },
+  ""decision"": ""suggest"",
+  ""skill_used"": ""campus_resource_referral"",
+  ""final_message"": ""With three deadlines today and stress peaking at 5/5, it's completely understandable if you're feeling exhausted and carrying a heavy load right now. You don't have to navigate this alone\u2014Dick's House Counseling ((603) 646-9442) offers free, confidential support and after-hours care, and the 988 Lifeline is available 24/7 by call or text at 988. For tonight, please give yourself permission to step back for a moment, grab a warm drink or get some water, and rest.""
+}",16405bf2722864c50dad63b5bbfb5f18614e618be4bee4994299e5aab4535f29,"With three deadlines today and stress peaking at 5/5, it's completely understandable if you're feeling exhausted and carrying a heavy load right now. You don't have to navigate this alone—Dick's House Counseling ((603) 646-9442) offers free, confidential support and after-hours care, and the 988 Lifeline is available 24/7 by call or text at 988. For tonight, please give yourself permission to step back for a moment, grab a warm drink or get some water, and rest.",,,,
+4,case_009,u00,2013-06-10T20:00:00-04:00,ask,clarifying_question,Stabilize sleep duration (avoiding <5h nights) and recover consistently across the term; Take brief movement or outdoor walks on low-activity days to manage stress (PSS=24.0); Maintain steady daily energy and mood,"{""activity_style"": ""Outdoor walks, light stretching, or early evening wind-downs"", ""tone"": ""Supportive, conversational, grounded"", ""preferred_times"": [""evening (19:00-21:00)""], ""dislikes"": [""generic advice disconnected from recent sleep or activity""]}","{
+  ""case_id"": ""case_009"",
+  ""available_context"": {
+    ""participant_id"": ""u00"",
+    ""decision_time"": ""2013-06-10T20:00:00-04:00"",
+    ""observations"": {
+      ""time_context"": {
+        ""source"": ""context.time"",
+        ""date"": ""2013-06-10"",
+        ""weekday"": ""Monday"",
+        ""local_time"": ""20:00"",
+        ""time_of_day"": ""evening"",
+        ""term_week"": 12,
+        ""term_phase"": ""finals"",
+        ""class_now"": null,
+        ""summary"": ""Monday 20:00 (evening), term week 12 (finals)""
+      },
+      ""sleep_3d"": {
+        ""source"": ""sensing.sleep"",
+        ""status"": ""missing"",
+        ""reason"": ""no data"",
+        ""summary"": ""sensing.sleep: no data in the last 3 days""
+      },
+      ""activity_3d"": {
+        ""source"": ""sensing.activity"",
+        ""status"": ""missing"",
+        ""reason"": ""no data"",
+        ""summary"": ""sensing.activity: no data in the last 3 days""
+      },
+      ""social_3d"": {
+        ""source"": ""sensing.social"",
+        ""status"": ""missing"",
+        ""reason"": ""no data"",
+        ""summary"": ""sensing.social: no data in the last 3 days"",
+        ""conversation"": ""missing: no data""
+      },
+      ""stress_mood_3d"": {
+        ""source"": ""ema.stress"",
+        ""status"": ""missing"",
+        ""reason"": ""no data"",
+        ""summary"": ""ema.stress: no data in the last 3 days"",
+        ""pre_term_surveys"": {
+          ""pss_total"": 24.0,
+          ""phq9_total"": 2.0,
+          ""phq9_item9_selfharm"": 0,
+          ""loneliness_total"": 35.0
+        }
+      },
+      ""stress_mood_7d"": {
+        ""source"": ""ema.stress"",
+        ""window_days"": 7,
+        ""pam_valence_mean"": 2.9,
+        ""pam_arousal_mean"": 1.6,
+        ""pre_term_surveys"": {
+          ""pss_total"": 24.0,
+          ""phq9_total"": 2.0,
+          ""phq9_item9_selfharm"": 0,
+          ""loneliness_total"": 35.0
+        },
+        ""summary"": ""Stress/mood: PAM valence 2.9/4 arousal 1.6/4""
+      },
+      ""academic_3d"": {
+        ""source"": ""education.deadlines"",
+        ""deadlines_today"": 0,
+        ""deadlines_ahead"": {
+          ""in_1d"": 0,
+          ""in_2d"": 0,
+          ""in_3d"": 0
+        },
+        ""deadlines_next_window"": 0,
+        ""classes_today"": [],
+        ""classes_remaining_today"": 0,
+        ""n_courses"": 0,
+        ""summary"": ""Academic: 0 deadline(s) today, 0 in next 3 days; 0 class(es) today (0 remaining)""
+      },
+      ""baseline_sleep_7d"": {
+        ""source"": ""baseline.sleep_hours"",
+        ""status"": ""missing"",
+        ""reason"": ""no data"",
+        ""summary"": ""baseline.sleep_hours: no data (recent n/a or <3 baseline days)""
+      },
+      ""baseline_activity_7d"": {
+        ""source"": ""baseline.active_minutes"",
+        ""status"": ""missing"",
+        ""reason"": ""no data"",
+        ""summary"": ""baseline.active_minutes: no data (recent n/a or <3 baseline days)""
+      },
+      ""baseline_conversation_7d"": {
+        ""source"": ""baseline.conversation_minutes"",
+        ""status"": ""missing"",
+        ""reason"": ""no data"",
+        ""summary"": ""baseline.conversation_minutes: no data (recent n/a or <3 baseline days)""
+      }
+    },
+    ""simulated_profile"": {
+      ""participant_id"": ""u00"",
+      ""simulated"": true,
+      ""grounding_note"": ""Simulated coaching profile grounded in real StudentLife pre-term surveys (PSS=24.0, PHQ-9=2.0, UCLA Loneliness=35.0, PHQ-9 item 9=0, Extraversion=3.75, Neuroticism=3.12, Conscientiousness=3.0); no syllabus courses listed."",
+      ""pre_term_surveys"": {
+        ""pss_total"": 24.0,
+        ""phq9_total"": 2.0,
+        ""phq9_item9_selfharm"": 0,
+        ""loneliness_total"": 35.0,
+        ""bfi_extraversion"": 3.75,
+        ""bfi_agreeableness"": 2.89,
+        ""bfi_conscientiousness"": 3.0,
+        ""bfi_neuroticism"": 3.12,
+        ""bfi_openness"": 4.5
+      },
+      ""goals"": [
+        ""Stabilize sleep duration (avoiding <5h nights) and recover consistently across the term"",
+        ""Take brief movement or outdoor walks on low-activity days to manage stress (PSS=24.0)"",
+        ""Maintain steady daily energy and mood""
+      ],
+      ""preferences"": {
+        ""activity_style"": ""Outdoor walks, light stretching, or early evening wind-downs"",
+        ""tone"": ""Supportive, conversational, grounded"",
+        ""preferred_times"": [
+          ""evening (19:00-21:00)""
+        ],
+        ""dislikes"": [
+          ""generic advice disconnected from recent sleep or activity""
+        ]
+      },
+      ""constraints"": [
+        ""High baseline perceived stress (PSS=24.0) with variable night-to-night sleep duration"",
+        ""Occasional multi-day gaps in phone sensing late in the term""
+      ],
+      ""learned_preferences"": []
+    },
+    ""learned_preferences"": [],
+    ""recent_interactions"": [
+      {
+        ""case_id"": ""case_008"",
+        ""decision_time"": ""2013-05-17T20:00:00-04:00"",
+        ""decision"": ""none"",
+        ""skill_used"": null,
+        ""final_message"": null,
+        ""simulated_feedback"": null,
+        ""simulated"": true
+      }
+    ],
+    ""simulated_recent_interaction_note"": null
+  },
+  ""decision"": ""ask"",
+  ""skill_used"": ""clarifying_question"",
+  ""final_message"": ""Since your recent sleep and activity data haven't come through over the past few days, I don't want to guess how you're doing this finals week. How are your energy and stress levels feeling tonight?""
+}",f0dbdd135875be891243d9352711d0aac308e397de4252f93ac965d74e139e57,"Since your recent sleep and activity data haven't come through over the past few days, I don't want to guess how you're doing this finals week. How are your energy and stress levels feeling tonight?",,,,
+5,case_011,u08,2013-04-12T20:00:00-04:00,ask,clarifying_question,Avoid severe sleep crashes (<5 hours) during CS 65 and CS 89 project weeks; Take 10-minute movement or posture resets during long coding sessions; Keep stress manageable ahead of back-to-back technical deadlines,"{""activity_style"": ""Short campus walks or quick desk/hallway stretches between coding blocks"", ""tone"": ""Practical, direct, and concise"", ""preferred_times"": [""evening (19:00-21:30)""], ""dislikes"": [""long multi-step checklists"", ""vague motivational quotes""]}","{
+  ""case_id"": ""case_011"",
+  ""available_context"": {
+    ""participant_id"": ""u08"",
+    ""decision_time"": ""2013-04-12T20:00:00-04:00"",
+    ""observations"": {
+      ""time_context"": {
+        ""source"": ""context.time"",
+        ""date"": ""2013-04-12"",
+        ""weekday"": ""Friday"",
+        ""local_time"": ""20:00"",
+        ""time_of_day"": ""evening"",
+        ""term_week"": 3,
+        ""term_phase"": ""early term"",
+        ""class_now"": null,
+        ""summary"": ""Friday 20:00 (evening), term week 3 (early term)""
+      },
+      ""sleep_3d"": {
+        ""source"": ""sensing.sleep"",
+        ""status"": ""missing"",
+        ""reason"": ""masked (synthetic)"",
+        ""summary"": ""sensing.sleep: masked (synthetic missing data)""
+      },
+      ""activity_3d"": {
+        ""source"": ""sensing.activity"",
+        ""status"": ""missing"",
+        ""reason"": ""masked (synthetic)"",
+        ""summary"": ""sensing.activity: masked (synthetic missing data)""
+      },
+      ""social_3d"": {
+        ""source"": ""sensing.social"",
+        ""window_days"": 3,
+        ""conversations_per_day"": 35.0,
+        ""conversation_min_per_day"": 368,
+        ""baseline_conversation_min"": 381,
+        ""calls_per_day"": 10.7,
+        ""sms_per_day"": 46.7,
+        ""self_report_contacts"": ""10-19"",
+        ""summary"": ""Social: 35.0 conversations/day (368 min) vs usual 381 min; 10.7 calls/day; 46.7 SMS/day; self-reported 10-19 contacts/day""
+      },
+      ""stress_mood_3d"": {
+        ""source"": ""ema.stress"",
+        ""status"": ""missing"",
+        ""reason"": ""masked (synthetic)"",
+        ""summary"": ""ema.stress: masked (synthetic missing data)""
+      },
+      ""stress_mood_7d"": {
+        ""source"": ""ema.stress"",
+        ""status"": ""missing"",
+        ""reason"": ""masked (synthetic)"",
+        ""summary"": ""ema.stress: masked (synthetic missing data)""
+      },
+      ""academic_3d"": {
+        ""source"": ""education.deadlines"",
+        ""deadlines_today"": 1,
+        ""deadlines_ahead"": {
+          ""in_1d"": 0,
+          ""in_2d"": 0,
+          ""in_3d"": 1
+        },
+        ""deadlines_next_window"": 1,
+        ""classes_today"": [
+          ""COSC 065 10:00-11:05"",
+          ""COSC 089 1 11:15-12:20""
+        ],
+        ""classes_remaining_today"": 0,
+        ""n_courses"": 3,
+        ""summary"": ""Academic: 1 deadline(s) today, 1 in next 3 days; 2 class(es) today (0 remaining)""
+      },
+      ""baseline_sleep_7d"": {
+        ""source"": ""baseline.sleep_hours"",
+        ""status"": ""missing"",
+        ""reason"": ""masked (synthetic)"",
+        ""summary"": ""baseline.sleep_hours: masked (synthetic missing data)""
+      },
+      ""baseline_activity_7d"": {
+        ""source"": ""baseline.active_minutes"",
+        ""status"": ""missing"",
+        ""reason"": ""masked (synthetic)"",
+        ""summary"": ""baseline.active_minutes: masked (synthetic missing data)""
+      },
+      ""baseline_conversation_7d"": {
+        ""source"": ""baseline.conversation_minutes"",
+        ""feature"": ""conversation_minutes"",
+        ""window_days"": 7,
+        ""recent_mean"": 436.54,
+        ""baseline_mean"": 334.23,
+        ""baseline_std"": 94.58,
+        ""baseline_days"": 9,
+        ""z"": 1.08,
+        ""level"": ""higher"",
+        ""summary"": ""conversation_minutes: recent 436.54 vs usual 334.23 (z=1.08, higher)""
+      }
+    },
+    ""simulated_profile"": {
+      ""participant_id"": ""u08"",
+      ""simulated"": true,
+      ""grounding_note"": ""Simulated coaching profile grounded in real StudentLife pre-term surveys (PSS=23.0, PHQ-9=5.0, UCLA Loneliness=33.0, PHQ-9 item 9=0, Extraversion=2.62, Neuroticism=3.25, Conscientiousness=4.22); courses: CHIN 062, COSC 089 1, COSC 065."",
+      ""pre_term_surveys"": {
+        ""pss_total"": 23.0,
+        ""phq9_total"": 5.0,
+        ""phq9_item9_selfharm"": 0,
+        ""loneliness_total"": 33.0,
+        ""bfi_extraversion"": 2.62,
+        ""bfi_agreeableness"": 3.78,
+        ""bfi_conscientiousness"": 4.22,
+        ""bfi_neuroticism"": 3.25,
+        ""bfi_openness"": 3.3
+      },
+      ""goals"": [
+        ""Avoid severe sleep crashes (<5 hours) during CS 65 and CS 89 project weeks"",
+        ""Take 10-minute movement or posture resets during long coding sessions"",
+        ""Keep stress manageable ahead of back-to-back technical deadlines""
+      ],
+      ""preferences"": {
+        ""activity_style"": ""Short campus walks or quick desk/hallway stretches between coding blocks"",
+        ""tone"": ""Practical, direct, and concise"",
+        ""preferred_times"": [
+          ""evening (19:00-21:30)""
+        ],
+        ""dislikes"": [
+          ""long multi-step checklists"",
+          ""vague motivational quotes""
+        ]
+      },
+      ""constraints"": [
+        ""Heavy computer science courseload (CHIN 062, COSC 089, COSC 065)"",
+        ""Limited free time on Monday/Tuesday/Thursday afternoons due to language and CS classes""
+      ],
+      ""learned_preferences"": []
+    },
+    ""learned_preferences"": [],
+    ""recent_interactions"": [],
+    ""simulated_recent_interaction_note"": null
+  },
+  ""decision"": ""ask"",
+  ""skill_used"": ""clarifying_question"",
+  ""final_message"": ""I don't have your recent sleep or stress updates from the last few days, but I see you have a deadline today and another in 3 days. How are your energy and stress holding up this evening?""
+}",c87ad01271e43d5701c40122eefbdd58aeda96fb63c809331713143446560b28,"I don't have your recent sleep or stress updates from the last few days, but I see you have a deadline today and another in 3 days. How are your energy and stress holding up this evening?",,,,
+6,case_012,u19,2013-04-16T20:00:00-04:00,ask,clarifying_question,"Manage overwhelm during clustered CS 50, CS 65, and FILM 51 deadlines by chunking tasks; Stay connected with supportive peers or campus resources when feeling isolated or stressed; Maintain steady ~7.5h sleep routine across midterm and late-term weeks","{""activity_style"": ""Gentle walks, Ultimate Frisbee / light outdoor air, or low-pressure 1-on-1 check-ins"", ""tone"": ""Compassionate, validating, non-clinical, and low-pressure"", ""preferred_times"": [""evening (19:00-21:00)""], ""dislikes"": [""high-pressure productivity demands"", ""clinical or robotic phrasing""]}","{
+  ""case_id"": ""case_012"",
+  ""available_context"": {
+    ""participant_id"": ""u19"",
+    ""decision_time"": ""2013-04-16T20:00:00-04:00"",
+    ""observations"": {
+      ""time_context"": {
+        ""source"": ""context.time"",
+        ""date"": ""2013-04-16"",
+        ""weekday"": ""Tuesday"",
+        ""local_time"": ""20:00"",
+        ""time_of_day"": ""evening"",
+        ""term_week"": 4,
+        ""term_phase"": ""midterms"",
+        ""class_now"": null,
+        ""summary"": ""Tuesday 20:00 (evening), term week 4 (midterms)""
+      },
+      ""sleep_3d"": {
+        ""source"": ""sensing.sleep"",
+        ""status"": ""missing"",
+        ""reason"": ""masked (synthetic)"",
+        ""summary"": ""sensing.sleep: masked (synthetic missing data)""
+      },
+      ""activity_3d"": {
+        ""source"": ""sensing.activity"",
+        ""window_days"": 3,
+        ""days_with_data"": 3,
+        ""active_min_per_day"": 46,
+        ""walk_min_per_day"": 46,
+        ""run_min_per_day"": 0,
+        ""baseline_active_min"": 73,
+        ""pct_vs_baseline"": -37,
+        ""self_report_exercised_days"": 1,
+        ""self_reports"": 1,
+        ""summary"": ""Activity: ~46 active min/day (walk 46, run 0) over 3 days; -37% vs usual 73 min; self-reported vigorous exercise 1/1 reports""
+      },
+      ""social_3d"": {
+        ""source"": ""sensing.social"",
+        ""window_days"": 3,
+        ""conversation"": ""missing: masked (synthetic)"",
+        ""self_report_contacts"": ""20-49"",
+        ""summary"": ""Social: conversation missing: masked (synthetic); self-reported 20-49 contacts/day""
+      },
+      ""stress_mood_3d"": {
+        ""source"": ""ema.stress"",
+        ""status"": ""missing"",
+        ""reason"": ""masked (synthetic)"",
+        ""summary"": ""ema.stress: masked (synthetic missing data)""
+      },
+      ""stress_mood_7d"": {
+        ""source"": ""ema.stress"",
+        ""status"": ""missing"",
+        ""reason"": ""masked (synthetic)"",
+        ""summary"": ""ema.stress: masked (synthetic missing data)""
+      },
+      ""academic_3d"": {
+        ""source"": ""education.deadlines"",
+        ""deadlines_today"": 2,
+        ""deadlines_ahead"": {
+          ""in_1d"": 0,
+          ""in_2d"": 1,
+          ""in_3d"": 0
+        },
+        ""deadlines_next_window"": 1,
+        ""classes_today"": [
+          ""FILM 051 10:00-11:50"",
+          ""COSC 050 13:00-13:50""
+        ],
+        ""classes_remaining_today"": 0,
+        ""n_courses"": 3,
+        ""summary"": ""Academic: 2 deadline(s) today, 1 in next 3 days; 2 class(es) today (0 remaining)""
+      },
+      ""baseline_sleep_7d"": {
+        ""source"": ""baseline.sleep_hours"",
+        ""status"": ""missing"",
+        ""reason"": ""masked (synthetic)"",
+        ""summary"": ""baseline.sleep_hours: masked (synthetic missing data)""
+      },
+      ""baseline_activity_7d"": {
+        ""source"": ""baseline.active_minutes"",
+        ""feature"": ""active_minutes"",
+        ""window_days"": 7,
+        ""recent_mean"": 64.3,
+        ""baseline_mean"": 70.61,
+        ""baseline_std"": 22.87,
+        ""baseline_days"": 11,
+        ""z"": -0.28,
+        ""level"": ""typical"",
+        ""summary"": ""active_minutes: recent 64.3 vs usual 70.61 (z=-0.28, typical)""
+      },
+      ""baseline_conversation_7d"": {
+        ""source"": ""baseline.conversation_minutes"",
+        ""status"": ""missing"",
+        ""reason"": ""masked (synthetic)"",
+        ""summary"": ""baseline.conversation_minutes: masked (synthetic missing data)""
+      }
+    },
+    ""simulated_profile"": {
+      ""participant_id"": ""u19"",
+      ""simulated"": true,
+      ""grounding_note"": ""Simulated coaching profile grounded in real StudentLife pre-term surveys (PSS=20.0, PHQ-9=5.0, UCLA Loneliness=56.0, PHQ-9 item 9=1, Extraversion=1.75, Neuroticism=3.62, Conscientiousness=3.44); courses: COSC 050, COSC 065, FILM 051."",
+      ""pre_term_surveys"": {
+        ""pss_total"": 20.0,
+        ""phq9_total"": 5.0,
+        ""phq9_item9_selfharm"": 1,
+        ""loneliness_total"": 56.0,
+        ""bfi_extraversion"": 1.75,
+        ""bfi_agreeableness"": 3.11,
+        ""bfi_conscientiousness"": 3.44,
+        ""bfi_neuroticism"": 3.62,
+        ""bfi_openness"": 3.2
+      },
+      ""goals"": [
+        ""Manage overwhelm during clustered CS 50, CS 65, and FILM 51 deadlines by chunking tasks"",
+        ""Stay connected with supportive peers or campus resources when feeling isolated or stressed"",
+        ""Maintain steady ~7.5h sleep routine across midterm and late-term weeks""
+      ],
+      ""preferences"": {
+        ""activity_style"": ""Gentle walks, Ultimate Frisbee / light outdoor air, or low-pressure 1-on-1 check-ins"",
+        ""tone"": ""Compassionate, validating, non-clinical, and low-pressure"",
+        ""preferred_times"": [
+          ""evening (19:00-21:00)""
+        ],
+        ""dislikes"": [
+          ""high-pressure productivity demands"",
+          ""clinical or robotic phrasing""
+        ]
+      },
+      ""constraints"": [
+        ""Elevated baseline loneliness (UCLA=56.0) and moderate perceived stress (PSS=20.0); pre-term PHQ-9 item 9=1 requires warm resource awareness when stress peaks at 5/5"",
+        ""Enrolled in COSC 050, COSC 065, and FILM 051""
+      ],
+      ""learned_preferences"": []
+    },
+    ""learned_preferences"": [],
+    ""recent_interactions"": [],
+    ""simulated_recent_interaction_note"": null
+  },
+  ""decision"": ""ask"",
+  ""skill_used"": ""clarifying_question"",
+  ""final_message"": ""I haven't seen your recent sleep or stress check-ins pop up today, and I know you have deadlines on your plate this evening. How are your energy and stress levels feeling right now?""
+}",2e46740c703acbc51d80abb10c5d0a8791039ad98741a6ff24981f410b8acd2c,"I haven't seen your recent sleep or stress check-ins pop up today, and I know you have deadlines on your plate this evening. How are your energy and stress levels feeling right now?",,,,
+7,case_014,u16,2013-04-18T20:00:00-04:00,suggest,micro_study_break,"Reduce high stress (PSS=24.0) during COSC 065 and COSC 027 labs with short restorative micro-breaks; Keep a consistent evening wind-down routine without feeling pressured into heavy workouts; Break lab assignments into small, concrete next steps when feeling overwhelmed","{""activity_style"": ""Quiet indoor micro-breaks (stretching, deep breathing, warm tea)"", ""tone"": ""Gentle, concise, low-burden"", ""preferred_times"": [""evening (19:30-21:00)""], ""dislikes"": [""high-intensity exercise pushes"", ""long-winded messages""]}","{
+  ""case_id"": ""case_014"",
+  ""available_context"": {
+    ""participant_id"": ""u16"",
+    ""decision_time"": ""2013-04-18T20:00:00-04:00"",
+    ""observations"": {
+      ""time_context"": {
+        ""source"": ""context.time"",
+        ""date"": ""2013-04-18"",
+        ""weekday"": ""Thursday"",
+        ""local_time"": ""20:00"",
+        ""time_of_day"": ""evening"",
+        ""term_week"": 4,
+        ""term_phase"": ""midterms"",
+        ""class_now"": null,
+        ""summary"": ""Thursday 20:00 (evening), term week 4 (midterms)""
+      },
+      ""sleep_3d"": {
+        ""source"": ""sensing.sleep"",
+        ""window_days"": 3,
+        ""nights_with_data"": 1,
+        ""inferred_hours_mean"": 6.5,
+        ""inferred_hours_min"": 6.5,
+        ""latest_bedtime"": ""03:13"",
+        ""latest_wake_time"": ""09:46"",
+        ""baseline_hours"": 7.4,
+        ""delta_vs_baseline_h"": -0.9,
+        ""self_report_hours_mean"": 7.3,
+        ""self_report_quality_mean_1to4"": 2.3,
+        ""self_reports"": 3,
+        ""summary"": ""Sleep: inferred 6.5h/night over 1 nights; -0.9h vs usual 7.4h; self-report 7.3h, quality 2.3/4""
+      },
+      ""activity_3d"": {
+        ""source"": ""sensing.activity"",
+        ""window_days"": 3,
+        ""days_with_data"": 3,
+        ""active_min_per_day"": 87,
+        ""walk_min_per_day"": 72,
+        ""run_min_per_day"": 15,
+        ""baseline_active_min"": 74,
+        ""pct_vs_baseline"": 18,
+        ""self_report_exercised_days"": 2,
+        ""self_reports"": 4,
+        ""summary"": ""Activity: ~87 active min/day (walk 72, run 15) over 3 days; +18% vs usual 74 min; self-reported vigorous exercise 2/4 reports""
+      },
+      ""social_3d"": {
+        ""source"": ""sensing.social"",
+        ""window_days"": 3,
+        ""conversations_per_day"": 36.7,
+        ""conversation_min_per_day"": 330,
+        ""baseline_conversation_min"": 353,
+        ""sms_per_day"": 0.0,
+        ""self_report_contacts"": ""10-19"",
+        ""summary"": ""Social: 36.7 conversations/day (330 min) vs usual 353 min; 0.0 SMS/day; self-reported 10-19 contacts/day""
+      },
+      ""stress_mood_3d"": {
+        ""source"": ""ema.stress"",
+        ""window_days"": 3,
+        ""stress_n"": 7,
+        ""stress_mean_1to5"": 3.3,
+        ""stress_max"": 4,
+        ""last_stress"": 4,
+        ""last_stress_label"": ""definitely stressed"",
+        ""last_stress_hours_ago"": 3.3,
+        ""baseline_stress"": 3.2,
+        ""pam_valence_mean"": 2.7,
+        ""pam_arousal_mean"": 1.8,
+        ""last_comment"": ""prospies"",
+        ""last_comment_days_ago"": 0.1,
+        ""pre_term_surveys"": {
+          ""pss_total"": 24.0,
+          ""phq9_total"": 6.0,
+          ""phq9_item9_selfharm"": 0,
+          ""loneliness_total"": 32.0
+        },
+        ""summary"": ""Stress/mood: stress mean 3.3/5 over 7 reports, last 'definitely stressed' 3.3h ago; usual 3.2/5; PAM valence 2.7/4 arousal 1.8/4; last comment (0.1d ago): \""prospies\""""
+      },
+      ""stress_mood_7d"": {
+        ""source"": ""ema.stress"",
+        ""window_days"": 7,
+        ""stress_n"": 14,
+        ""stress_mean_1to5"": 3.4,
+        ""stress_max"": 5,
+        ""last_stress"": 4,
+        ""last_stress_label"": ""definitely stressed"",
+        ""last_stress_hours_ago"": 3.3,
+        ""baseline_stress"": 3.2,
+        ""pam_valence_mean"": 2.5,
+        ""pam_arousal_mean"": 2.2,
+        ""last_comment"": ""prospies"",
+        ""last_comment_days_ago"": 0.1,
+        ""pre_term_surveys"": {
+          ""pss_total"": 24.0,
+          ""phq9_total"": 6.0,
+          ""phq9_item9_selfharm"": 0,
+          ""loneliness_total"": 32.0
+        },
+        ""summary"": ""Stress/mood: stress mean 3.4/5 over 14 reports, last 'definitely stressed' 3.3h ago; usual 3.2/5; PAM valence 2.5/4 arousal 2.2/4; last comment (0.1d ago): \""prospies\""""
+      },
+      ""academic_3d"": {
+        ""source"": ""education.deadlines"",
+        ""deadlines_today"": 1,
+        ""deadlines_ahead"": {
+          ""in_1d"": 0,
+          ""in_2d"": 0,
+          ""in_3d"": 0
+        },
+        ""deadlines_next_window"": 0,
+        ""classes_today"": [
+          ""COSC 065 12:00-12:50"",
+          ""COSC 027 16:00-17:50""
+        ],
+        ""classes_remaining_today"": 0,
+        ""n_courses"": 2,
+        ""summary"": ""Academic: 1 deadline(s) today, 0 in next 3 days; 2 class(es) today (0 remaining)""
+      },
+      ""baseline_sleep_7d"": {
+        ""source"": ""baseline.sleep_hours"",
+        ""feature"": ""sleep_hours"",
+        ""window_days"": 7,
+        ""recent_mean"": 7.39,
+        ""baseline_mean"": 7.25,
+        ""baseline_std"": 1.84,
+        ""baseline_days"": 4,
+        ""z"": 0.08,
+        ""level"": ""typical"",
+        ""summary"": ""sleep_hours: recent 7.39 vs usual 7.25 (z=0.08, typical)""
+      },
+      ""baseline_activity_7d"": {
+        ""source"": ""baseline.active_minutes"",
+        ""feature"": ""active_minutes"",
+        ""window_days"": 7,
+        ""recent_mean"": 67.24,
+        ""baseline_mean"": 79.25,
+        ""baseline_std"": 22.19,
+        ""baseline_days"": 15,
+        ""z"": -0.54,
+        ""level"": ""lower"",
+        ""summary"": ""active_minutes: recent 67.24 vs usual 79.25 (z=-0.54, lower)""
+      },
+      ""baseline_conversation_7d"": {
+        ""source"": ""baseline.conversation_minutes"",
+        ""feature"": ""conversation_minutes"",
+        ""window_days"": 7,
+        ""recent_mean"": 277.28,
+        ""baseline_mean"": 383.86,
+        ""baseline_std"": 112.37,
+        ""baseline_days"": 15,
+        ""z"": -0.95,
+        ""level"": ""lower"",
+        ""summary"": ""conversation_minutes: recent 277.28 vs usual 383.86 (z=-0.95, lower)""
+      }
+    },
+    ""simulated_profile"": {
+      ""participant_id"": ""u16"",
+      ""simulated"": true,
+      ""grounding_note"": ""Simulated coaching profile grounded in real StudentLife pre-term surveys (PSS=24.0, PHQ-9=6.0, UCLA Loneliness=32.0, PHQ-9 item 9=0, Extraversion=1.75, Neuroticism=4.25, Conscientiousness=3.56); courses: COSC 065, COSC 027."",
+      ""pre_term_surveys"": {
+        ""pss_total"": 24.0,
+        ""phq9_total"": 6.0,
+        ""phq9_item9_selfharm"": 0,
+        ""loneliness_total"": 32.0,
+        ""bfi_extraversion"": 1.75,
+        ""bfi_agreeableness"": 3.33,
+        ""bfi_conscientiousness"": 3.56,
+        ""bfi_neuroticism"": 4.25,
+        ""bfi_openness"": 3.8
+      },
+      ""goals"": [
+        ""Reduce high stress (PSS=24.0) during COSC 065 and COSC 027 labs with short restorative micro-breaks"",
+        ""Keep a consistent evening wind-down routine without feeling pressured into heavy workouts"",
+        ""Break lab assignments into small, concrete next steps when feeling overwhelmed""
+      ],
+      ""preferences"": {
+        ""activity_style"": ""Quiet indoor micro-breaks (stretching, deep breathing, warm tea)"",
+        ""tone"": ""Gentle, concise, low-burden"",
+        ""preferred_times"": [
+          ""evening (19:30-21:00)""
+        ],
+        ""dislikes"": [
+          ""high-intensity exercise pushes"",
+          ""long-winded messages""
+        ]
+      },
+      ""constraints"": [
+        ""High baseline perceived stress (PSS=24.0) and neuroticism (4.25) with low extraversion (1.75)"",
+        ""Studies frequently in quiet campus spaces and prefers low-friction resets""
+      ],
+      ""learned_preferences"": []
+    },
+    ""learned_preferences"": [
+      {
+        ""preference"": ""NEVER suggest running, jogging, gym visits, or workouts when the student is stressed or facing deadlines."",
+        ""learned_at"": ""2013-04-15T20:00:00-04:00"",
+        ""from_case_id"": ""case_013"",
+        ""simulated"": true
+      },
+      {
+        ""preference"": ""ALWAYS suggest quiet indoor stretching, slow deep breathing, or a warm tea break instead."",
+        ""learned_at"": ""2013-04-15T20:00:00-04:00"",
+        ""from_case_id"": ""case_013"",
+        ""simulated"": true
+      }
+    ],
+    ""recent_interactions"": [
+      {
+        ""case_id"": ""case_013"",
+        ""decision_time"": ""2013-04-15T20:00:00-04:00"",
+        ""decision"": ""suggest"",
+        ""skill_used"": ""micro_study_break"",
+        ""final_message"": ""With deadlines today and homework building up, it sounds like a heavy evening. If you're feeling overwhelmed, pause for a brief 5-minute reset\u2014try taking a few deep breaths, doing a gentle neck stretch, or stepping away to grab a warm tea before getting back to work."",
+        ""simulated_feedback"": {
+          ""simulated"": true,
+          ""accepted"": false,
+          ""feedback_text"": ""Please don't suggest running, jogging, or going to the gym\u2014I hate working out when I have CS deadlines. I prefer quiet indoor stretching, deep breathing, or making a cup of tea."",
+          ""preference_updates"": {
+            ""dislikes_add"": [
+              ""running"",
+              ""jogging"",
+              ""gym"",
+              ""workouts""
+            ],
+            ""preferred_activities_add"": [
+              ""quiet indoor stretching"",
+              ""slow breathing"",
+              ""warm tea break""
+            ]
+          },
+          ""forbidden_terms"": [
+            ""run"",
+            ""running"",
+            ""jog"",
+            ""jogging"",
+            ""gym"",
+            ""workout""
+          ],
+          ""required_themes"": [
+            ""stretch"",
+            ""breath"",
+            ""tea"",
+            ""quiet"",
+            ""break"",
+            ""pause"",
+            ""water""
+          ]
+        },
+        ""simulated"": true
+      }
+    ],
+    ""simulated_recent_interaction_note"": null
+  },
+  ""decision"": ""suggest"",
+  ""skill_used"": ""micro_study_break"",
+  ""final_message"": ""With today's deadline and midterm week in full swing, you've been working hard through a stressful day. If you need a quick reset tonight, pause for 5 minutes to take a few slow, deep breaths or pour a warm cup of tea before diving back in.""
+}",86bf740985359659da21e3c0c65ec5a8ae98539c58af288a6b27206840149ea8,"With today's deadline and midterm week in full swing, you've been working hard through a stressful day. If you need a quick reset tonight, pause for 5 minutes to take a few slow, deep breaths or pour a warm cup of tea before diving back in.",,,,
+8,case_015,u16,2013-04-22T20:00:00-04:00,suggest,micro_study_break,"Reduce high stress (PSS=24.0) during COSC 065 and COSC 027 labs with short restorative micro-breaks; Keep a consistent evening wind-down routine without feeling pressured into heavy workouts; Break lab assignments into small, concrete next steps when feeling overwhelmed","{""activity_style"": ""Quiet indoor micro-breaks (stretching, deep breathing, warm tea)"", ""tone"": ""Gentle, concise, low-burden"", ""preferred_times"": [""evening (19:30-21:00)""], ""dislikes"": [""high-intensity exercise pushes"", ""long-winded messages""]}","{
+  ""case_id"": ""case_015"",
+  ""available_context"": {
+    ""participant_id"": ""u16"",
+    ""decision_time"": ""2013-04-22T20:00:00-04:00"",
+    ""observations"": {
+      ""time_context"": {
+        ""source"": ""context.time"",
+        ""date"": ""2013-04-22"",
+        ""weekday"": ""Monday"",
+        ""local_time"": ""20:00"",
+        ""time_of_day"": ""evening"",
+        ""term_week"": 5,
+        ""term_phase"": ""midterms"",
+        ""class_now"": null,
+        ""summary"": ""Monday 20:00 (evening), term week 5 (midterms)""
+      },
+      ""sleep_3d"": {
+        ""source"": ""sensing.sleep"",
+        ""window_days"": 3,
+        ""nights_with_data"": 2,
+        ""inferred_hours_mean"": 7.6,
+        ""inferred_hours_min"": 7.2,
+        ""latest_bedtime"": ""00:49"",
+        ""latest_wake_time"": ""08:43"",
+        ""baseline_hours"": 7.3,
+        ""delta_vs_baseline_h"": 0.3,
+        ""self_report_hours_mean"": 7.3,
+        ""self_report_quality_mean_1to4"": 1.7,
+        ""self_reports"": 3,
+        ""summary"": ""Sleep: inferred 7.6h/night over 2 nights; +0.3h vs usual 7.3h; self-report 7.3h, quality 1.7/4""
+      },
+      ""activity_3d"": {
+        ""source"": ""sensing.activity"",
+        ""window_days"": 3,
+        ""days_with_data"": 3,
+        ""active_min_per_day"": 43,
+        ""walk_min_per_day"": 34,
+        ""run_min_per_day"": 9,
+        ""baseline_active_min"": 82,
+        ""pct_vs_baseline"": -47,
+        ""self_report_exercised_days"": 1,
+        ""self_reports"": 3,
+        ""summary"": ""Activity: ~43 active min/day (walk 34, run 9) over 3 days; -47% vs usual 82 min; self-reported vigorous exercise 1/3 reports""
+      },
+      ""social_3d"": {
+        ""source"": ""sensing.social"",
+        ""window_days"": 3,
+        ""conversations_per_day"": 40.0,
+        ""conversation_min_per_day"": 252,
+        ""baseline_conversation_min"": 362,
+        ""sms_per_day"": 0.0,
+        ""self_report_contacts"": ""10-19"",
+        ""summary"": ""Social: 40.0 conversations/day (252 min) vs usual 362 min; 0.0 SMS/day; self-reported 10-19 contacts/day""
+      },
+      ""stress_mood_3d"": {
+        ""source"": ""ema.stress"",
+        ""window_days"": 3,
+        ""stress_n"": 5,
+        ""stress_mean_1to5"": 4.8,
+        ""stress_max"": 5,
+        ""last_stress"": 5,
+        ""last_stress_label"": ""stressed out"",
+        ""last_stress_hours_ago"": 21.8,
+        ""baseline_stress"": 3.2,
+        ""pam_valence_mean"": 2.2,
+        ""pam_arousal_mean"": 1.9,
+        ""last_comment"": ""I am feeling overwhelmed"",
+        ""last_comment_days_ago"": 1.1,
+        ""pre_term_surveys"": {
+          ""pss_total"": 24.0,
+          ""phq9_total"": 6.0,
+          ""phq9_item9_selfharm"": 0,
+          ""loneliness_total"": 32.0
+        },
+        ""summary"": ""Stress/mood: stress mean 4.8/5 over 5 reports, last 'stressed out' 21.8h ago; usual 3.2/5; PAM valence 2.2/4 arousal 1.9/4; last comment (1.1d ago): \""I am feeling overwhelmed\""""
+      },
+      ""stress_mood_7d"": {
+        ""source"": ""ema.stress"",
+        ""window_days"": 7,
+        ""stress_n"": 15,
+        ""stress_mean_1to5"": 4.0,
+        ""stress_max"": 5,
+        ""last_stress"": 5,
+        ""last_stress_label"": ""stressed out"",
+        ""last_stress_hours_ago"": 21.8,
+        ""baseline_stress"": 3.2,
+        ""pam_valence_mean"": 2.5,
+        ""pam_arousal_mean"": 1.9,
+        ""last_comment"": ""I am feeling overwhelmed"",
+        ""last_comment_days_ago"": 1.1,
+        ""pre_term_surveys"": {
+          ""pss_total"": 24.0,
+          ""phq9_total"": 6.0,
+          ""phq9_item9_selfharm"": 0,
+          ""loneliness_total"": 32.0
+        },
+        ""summary"": ""Stress/mood: stress mean 4.0/5 over 15 reports, last 'stressed out' 21.8h ago; usual 3.2/5; PAM valence 2.5/4 arousal 1.9/4; last comment (1.1d ago): \""I am feeling overwhelmed\""""
+      },
+      ""academic_3d"": {
+        ""source"": ""education.deadlines"",
+        ""deadlines_today"": 1,
+        ""deadlines_ahead"": {
+          ""in_1d"": 0,
+          ""in_2d"": 0,
+          ""in_3d"": 0
+        },
+        ""deadlines_next_window"": 0,
+        ""classes_today"": [
+          ""COSC 065 10:00-11:05"",
+          ""COSC 027 15:00-16:50"",
+          ""COSC 027 17:00-17:50""
+        ],
+        ""classes_remaining_today"": 0,
+        ""n_courses"": 2,
+        ""summary"": ""Academic: 1 deadline(s) today, 0 in next 3 days; 3 class(es) today (0 remaining)""
+      },
+      ""baseline_sleep_7d"": {
+        ""source"": ""baseline.sleep_hours"",
+        ""feature"": ""sleep_hours"",
+        ""window_days"": 7,
+        ""recent_mean"": 7.23,
+        ""baseline_mean"": 7.44,
+        ""baseline_std"": 1.65,
+        ""baseline_days"": 5,
+        ""z"": -0.13,
+        ""level"": ""typical"",
+        ""summary"": ""sleep_hours: recent 7.23 vs usual 7.44 (z=-0.13, typical)""
+      },
+      ""baseline_activity_7d"": {
+        ""source"": ""baseline.active_minutes"",
+        ""feature"": ""active_minutes"",
+        ""window_days"": 7,
+        ""recent_mean"": 87.67,
+        ""baseline_mean"": 73.67,
+        ""baseline_std"": 26.34,
+        ""baseline_days"": 19,
+        ""z"": 0.53,
+        ""level"": ""higher"",
+        ""summary"": ""active_minutes: recent 87.67 vs usual 73.67 (z=0.53, higher)""
+      },
+      ""baseline_conversation_7d"": {
+        ""source"": ""baseline.conversation_minutes"",
+        ""feature"": ""conversation_minutes"",
+        ""window_days"": 7,
+        ""recent_mean"": 338.22,
+        ""baseline_mean"": 353.15,
+        ""baseline_std"": 122.71,
+        ""baseline_days"": 19,
+        ""z"": -0.12,
+        ""level"": ""typical"",
+        ""summary"": ""conversation_minutes: recent 338.22 vs usual 353.15 (z=-0.12, typical)""
+      }
+    },
+    ""simulated_profile"": {
+      ""participant_id"": ""u16"",
+      ""simulated"": true,
+      ""grounding_note"": ""Simulated coaching profile grounded in real StudentLife pre-term surveys (PSS=24.0, PHQ-9=6.0, UCLA Loneliness=32.0, PHQ-9 item 9=0, Extraversion=1.75, Neuroticism=4.25, Conscientiousness=3.56); courses: COSC 065, COSC 027."",
+      ""pre_term_surveys"": {
+        ""pss_total"": 24.0,
+        ""phq9_total"": 6.0,
+        ""phq9_item9_selfharm"": 0,
+        ""loneliness_total"": 32.0,
+        ""bfi_extraversion"": 1.75,
+        ""bfi_agreeableness"": 3.33,
+        ""bfi_conscientiousness"": 3.56,
+        ""bfi_neuroticism"": 4.25,
+        ""bfi_openness"": 3.8
+      },
+      ""goals"": [
+        ""Reduce high stress (PSS=24.0) during COSC 065 and COSC 027 labs with short restorative micro-breaks"",
+        ""Keep a consistent evening wind-down routine without feeling pressured into heavy workouts"",
+        ""Break lab assignments into small, concrete next steps when feeling overwhelmed""
+      ],
+      ""preferences"": {
+        ""activity_style"": ""Quiet indoor micro-breaks (stretching, deep breathing, warm tea)"",
+        ""tone"": ""Gentle, concise, low-burden"",
+        ""preferred_times"": [
+          ""evening (19:30-21:00)""
+        ],
+        ""dislikes"": [
+          ""high-intensity exercise pushes"",
+          ""long-winded messages""
+        ]
+      },
+      ""constraints"": [
+        ""High baseline perceived stress (PSS=24.0) and neuroticism (4.25) with low extraversion (1.75)"",
+        ""Studies frequently in quiet campus spaces and prefers low-friction resets""
+      ],
+      ""learned_preferences"": []
+    },
+    ""learned_preferences"": [
+      {
+        ""preference"": ""NEVER suggest running, jogging, gym visits, or workouts when the student is stressed or facing deadlines."",
+        ""learned_at"": ""2013-04-15T20:00:00-04:00"",
+        ""from_case_id"": ""case_013"",
+        ""simulated"": true
+      },
+      {
+        ""preference"": ""ALWAYS suggest quiet indoor stretching, slow deep breathing, or a warm tea break instead."",
+        ""learned_at"": ""2013-04-15T20:00:00-04:00"",
+        ""from_case_id"": ""case_013"",
+        ""simulated"": true
+      },
+      {
+        ""preference"": ""Prefer quiet, indoor micro-breaks (e.g., stretching, deep breathing, warm tea, brief pauses) compatible with studying at Baker-Berry Library."",
+        ""learned_at"": ""2013-04-18T20:00:00-04:00"",
+        ""from_case_id"": ""case_014"",
+        ""simulated"": true
+      },
+      {
+        ""preference"": ""Keep all future coach messages super brief (under 35 words)."",
+        ""learned_at"": ""2013-04-18T20:00:00-04:00"",
+        ""from_case_id"": ""case_014"",
+        ""simulated"": true
+      },
+      {
+        ""preference"": ""NEVER suggest running, jogging, or gym workouts."",
+        ""learned_at"": ""2013-04-18T20:00:00-04:00"",
+        ""from_case_id"": ""case_014"",
+        ""simulated"": true
+      }
+    ],
+    ""recent_interactions"": [
+      {
+        ""case_id"": ""case_013"",
+        ""decision_time"": ""2013-04-15T20:00:00-04:00"",
+        ""decision"": ""suggest"",
+        ""skill_used"": ""micro_study_break"",
+        ""final_message"": ""With deadlines today and homework building up, it sounds like a heavy evening. If you're feeling overwhelmed, pause for a brief 5-minute reset\u2014try taking a few deep breaths, doing a gentle neck stretch, or stepping away to grab a warm tea before getting back to work."",
+        ""simulated_feedback"": {
+          ""simulated"": true,
+          ""accepted"": false,
+          ""feedback_text"": ""Please don't suggest running, jogging, or going to the gym\u2014I hate working out when I have CS deadlines. I prefer quiet indoor stretching, deep breathing, or making a cup of tea."",
+          ""preference_updates"": {
+            ""dislikes_add"": [
+              ""running"",
+              ""jogging"",
+              ""gym"",
+              ""workouts""
+            ],
+            ""preferred_activities_add"": [
+              ""quiet indoor stretching"",
+              ""slow breathing"",
+              ""warm tea break""
+            ]
+          },
+          ""forbidden_terms"": [
+            ""run"",
+            ""running"",
+            ""jog"",
+            ""jogging"",
+            ""gym"",
+            ""workout""
+          ],
+          ""required_themes"": [
+            ""stretch"",
+            ""breath"",
+            ""tea"",
+            ""quiet"",
+            ""break"",
+            ""pause"",
+            ""water""
+          ]
+        },
+        ""simulated"": true
+      },
+      {
+        ""case_id"": ""case_014"",
+        ""decision_time"": ""2013-04-18T20:00:00-04:00"",
+        ""decision"": ""suggest"",
+        ""skill_used"": ""micro_study_break"",
+        ""final_message"": ""With today's deadline and midterm week in full swing, you've been working hard through a stressful day. If you need a quick reset tonight, pause for 5 minutes to take a few slow, deep breaths or pour a warm cup of tea before diving back in."",
+        ""simulated_feedback"": {
+          ""simulated"": true,
+          ""accepted"": true,
+          ""feedback_text"": ""That quiet indoor break idea was much better. Also note that I study late at Baker-Berry Library, so keep suggestions library-compatible and super brief (under 35 words)."",
+          ""preference_updates"": {
+            ""study_location"": ""Baker-Berry Library"",
+            ""tone_constraint"": ""Keep messages under 35 words and quiet/library-compatible""
+          },
+          ""forbidden_terms"": [
+            ""run"",
+            ""running"",
+            ""jog"",
+            ""jogging"",
+            ""gym"",
+            ""workout""
+          ],
+          ""required_themes"": [
+            ""stretch"",
+            ""breath"",
+            ""tea"",
+            ""quiet"",
+            ""break"",
+            ""library"",
+            ""pause"",
+            ""water""
+          ]
+        },
+        ""simulated"": true
+      }
+    ],
+    ""simulated_recent_interaction_note"": null
+  },
+  ""decision"": ""suggest"",
+  ""skill_used"": ""micro_study_break"",
+  ""final_message"": ""Midterms and today's deadline can feel overwhelming. Take a quick 5-minute quiet pause right at your desk to sip warm tea and do a few slow, deep breaths.""
+}",c3978ff548e808d6269feb11f60fdce027fbbd044cdae5457344efb604f0faef,"Midterms and today's deadline can feel overwhelming. Take a quick 5-minute quiet pause right at your desk to sip warm tea and do a few slow, deep breaths.",,,,
+9,case_018,u59,2013-04-18T20:00:00-04:00,suggest,sleep_hygiene_nudge,Protect at least 6.5-7 hours of sleep instead of pulling late-night all-nighters before CS and German deadlines; Break up heavy assignment and lab nights into manageable evening blocks; Unwind with calm solo routines (music or tea) when feeling drained,"{""activity_style"": ""Calm solo wind-downs (listening to music, short tea break, light stretching)"", ""tone"": ""Warm, encouraging, peer-like, never preachy"", ""preferred_times"": [""evening (19:00-22:00)""], ""dislikes"": [""judgmental lectures about late bedtimes"", ""rigid early-morning schedules""]}","{
+  ""case_id"": ""case_018"",
+  ""available_context"": {
+    ""participant_id"": ""u59"",
+    ""decision_time"": ""2013-04-18T20:00:00-04:00"",
+    ""observations"": {
+      ""time_context"": {
+        ""source"": ""context.time"",
+        ""date"": ""2013-04-18"",
+        ""weekday"": ""Thursday"",
+        ""local_time"": ""20:00"",
+        ""time_of_day"": ""evening"",
+        ""term_week"": 4,
+        ""term_phase"": ""midterms"",
+        ""class_now"": null,
+        ""summary"": ""Thursday 20:00 (evening), term week 4 (midterms)""
+      },
+      ""sleep_3d"": {
+        ""source"": ""sensing.sleep"",
+        ""window_days"": 3,
+        ""nights_with_data"": 0,
+        ""last_night_hours"": 3.6,
+        ""last_night_bed_wake"": ""03:33-07:10"",
+        ""self_report_hours_mean"": 3.3,
+        ""self_report_quality_mean_1to4"": 3.0,
+        ""self_reports"": 3,
+        ""summary"": ""Sleep: last night 3.6h; self-report 3.3h, quality 3.0/4""
+      },
+      ""activity_3d"": {
+        ""source"": ""sensing.activity"",
+        ""window_days"": 3,
+        ""days_with_data"": 3,
+        ""active_min_per_day"": 138,
+        ""walk_min_per_day"": 115,
+        ""run_min_per_day"": 23,
+        ""baseline_active_min"": 155,
+        ""pct_vs_baseline"": -11,
+        ""self_report_exercised_days"": 0,
+        ""self_reports"": 2,
+        ""summary"": ""Activity: ~138 active min/day (walk 115, run 23) over 3 days; -11% vs usual 155 min; self-reported vigorous exercise 0/2 reports""
+      },
+      ""social_3d"": {
+        ""source"": ""sensing.social"",
+        ""window_days"": 3,
+        ""conversations_per_day"": 74.0,
+        ""conversation_min_per_day"": 383,
+        ""baseline_conversation_min"": 383,
+        ""calls_per_day"": 4.7,
+        ""sms_per_day"": 163.0,
+        ""self_report_contacts"": ""20-49"",
+        ""summary"": ""Social: 74.0 conversations/day (383 min) vs usual 383 min; 4.7 calls/day; 163.0 SMS/day; self-reported 20-49 contacts/day""
+      },
+      ""stress_mood_3d"": {
+        ""source"": ""ema.stress"",
+        ""window_days"": 3,
+        ""stress_n"": 18,
+        ""stress_mean_1to5"": 2.7,
+        ""stress_max"": 4,
+        ""last_stress"": 3,
+        ""last_stress_label"": ""a little stressed"",
+        ""last_stress_hours_ago"": 3.4,
+        ""baseline_stress"": 2.6,
+        ""pam_valence_mean"": 3.0,
+        ""pam_arousal_mean"": 2.5,
+        ""last_comment"": ""I don't want to go to writing seminar"",
+        ""last_comment_days_ago"": 0.1,
+        ""pre_term_surveys"": {
+          ""pss_total"": 18.0,
+          ""phq9_total"": 5.0,
+          ""phq9_item9_selfharm"": 0,
+          ""loneliness_total"": 34.0
+        },
+        ""summary"": ""Stress/mood: stress mean 2.7/5 over 18 reports, last 'a little stressed' 3.4h ago; usual 2.6/5; PAM valence 3.0/4 arousal 2.5/4; last comment (0.1d ago): \""I don't want to go to writing seminar\""""
+      },
+      ""stress_mood_7d"": {
+        ""source"": ""ema.stress"",
+        ""window_days"": 7,
+        ""stress_n"": 35,
+        ""stress_mean_1to5"": 2.6,
+        ""stress_max"": 4,
+        ""last_stress"": 3,
+        ""last_stress_label"": ""a little stressed"",
+        ""last_stress_hours_ago"": 3.4,
+        ""baseline_stress"": 2.7,
+        ""pam_valence_mean"": 3.0,
+        ""pam_arousal_mean"": 2.5,
+        ""last_comment"": ""I don't want to go to writing seminar"",
+        ""last_comment_days_ago"": 0.1,
+        ""pre_term_surveys"": {
+          ""pss_total"": 18.0,
+          ""phq9_total"": 5.0,
+          ""phq9_item9_selfharm"": 0,
+          ""loneliness_total"": 34.0
+        },
+        ""summary"": ""Stress/mood: stress mean 2.6/5 over 35 reports, last 'a little stressed' 3.4h ago; usual 2.7/5; PAM valence 3.0/4 arousal 2.5/4; last comment (0.1d ago): \""I don't want to go to writing seminar\""""
+      },
+      ""academic_3d"": {
+        ""source"": ""education.deadlines"",
+        ""deadlines_today"": 1,
+        ""deadlines_ahead"": {
+          ""in_1d"": 2,
+          ""in_2d"": 0,
+          ""in_3d"": 0
+        },
+        ""deadlines_next_window"": 2,
+        ""classes_today"": [
+          ""GERM 001 09:00-09:50"",
+          ""COSC 065 12:00-12:50"",
+          ""COSC 007 13:00-13:50""
+        ],
+        ""classes_remaining_today"": 0,
+        ""n_courses"": 3,
+        ""summary"": ""Academic: 1 deadline(s) today, 2 in next 3 days; 3 class(es) today (0 remaining)""
+      },
+      ""baseline_sleep_7d"": {
+        ""source"": ""baseline.sleep_hours"",
+        ""feature"": ""sleep_hours"",
+        ""window_days"": 7,
+        ""recent_mean"": 5.66,
+        ""baseline_mean"": 6.03,
+        ""baseline_std"": 1.92,
+        ""baseline_days"": 13,
+        ""z"": -0.2,
+        ""level"": ""typical"",
+        ""summary"": ""sleep_hours: recent 5.66 vs usual 6.03 (z=-0.2, typical)""
+      },
+      ""baseline_activity_7d"": {
+        ""source"": ""baseline.active_minutes"",
+        ""feature"": ""active_minutes"",
+        ""window_days"": 7,
+        ""recent_mean"": 167.61,
+        ""baseline_mean"": 146.37,
+        ""baseline_std"": 46.89,
+        ""baseline_days"": 15,
+        ""z"": 0.45,
+        ""level"": ""typical"",
+        ""summary"": ""active_minutes: recent 167.61 vs usual 146.37 (z=0.45, typical)""
+      },
+      ""baseline_conversation_7d"": {
+        ""source"": ""baseline.conversation_minutes"",
+        ""feature"": ""conversation_minutes"",
+        ""window_days"": 7,
+        ""recent_mean"": 349.14,
+        ""baseline_mean"": 399.14,
+        ""baseline_std"": 172.41,
+        ""baseline_days"": 15,
+        ""z"": -0.29,
+        ""level"": ""typical"",
+        ""summary"": ""conversation_minutes: recent 349.14 vs usual 399.14 (z=-0.29, typical)""
+      }
+    },
+    ""simulated_profile"": {
+      ""participant_id"": ""u59"",
+      ""simulated"": true,
+      ""grounding_note"": ""Simulated coaching profile grounded in real StudentLife pre-term surveys (PSS=18.0, PHQ-9=5.0, UCLA Loneliness=34.0, PHQ-9 item 9=0, Extraversion=4.0, Neuroticism=2.88, Conscientiousness=2.56); courses: GERM 001, COSC 065, COSC 007."",
+      ""pre_term_surveys"": {
+        ""pss_total"": 18.0,
+        ""phq9_total"": 5.0,
+        ""phq9_item9_selfharm"": 0,
+        ""loneliness_total"": 34.0,
+        ""bfi_extraversion"": 4.0,
+        ""bfi_agreeableness"": 4.11,
+        ""bfi_conscientiousness"": 2.56,
+        ""bfi_neuroticism"": 2.88,
+        ""bfi_openness"": 3.5
+      },
+      ""goals"": [
+        ""Protect at least 6.5-7 hours of sleep instead of pulling late-night all-nighters before CS and German deadlines"",
+        ""Break up heavy assignment and lab nights into manageable evening blocks"",
+        ""Unwind with calm solo routines (music or tea) when feeling drained""
+      ],
+      ""preferences"": {
+        ""activity_style"": ""Calm solo wind-downs (listening to music, short tea break, light stretching)"",
+        ""tone"": ""Warm, encouraging, peer-like, never preachy"",
+        ""preferred_times"": [
+          ""evening (19:00-22:00)""
+        ],
+        ""dislikes"": [
+          ""judgmental lectures about late bedtimes"",
+          ""rigid early-morning schedules""
+        ]
+      },
+      ""constraints"": [
+        ""Takes 3 courses (GERM 001, COSC 065, COSC 007) with frequent weekly deadlines"",
+        ""Often works late in the evening and naps in the afternoon""
+      ],
+      ""learned_preferences"": []
+    },
+    ""learned_preferences"": [
+      {
+        ""preference"": ""NEVER suggest group hangouts, parties, clubs, or crowded social events when swamped with deadlines or low on sleep."",
+        ""learned_at"": ""2013-04-12T20:00:00-04:00"",
+        ""from_case_id"": ""case_016"",
+        ""simulated"": true
+      },
+      {
+        ""preference"": ""Focus recommendations on solo unwinding activities such as listening to music, quiet rest, and an early sleep wind-down routine."",
+        ""learned_at"": ""2013-04-12T20:00:00-04:00"",
+        ""from_case_id"": ""case_016"",
+        ""simulated"": true
+      },
+      {
+        ""preference"": ""NEVER suggest waking up early, morning workouts, or morning runs (student is a night owl)."",
+        ""learned_at"": ""2013-04-15T20:00:00-04:00"",
+        ""from_case_id"": ""case_017"",
+        ""simulated"": true
+      },
+      {
+        ""preference"": ""Encourage solo music wind-down routines for stress relief."",
+        ""learned_at"": ""2013-04-15T20:00:00-04:00"",
+        ""from_case_id"": ""case_017"",
+        ""simulated"": true
+      },
+      {
+        ""preference"": ""Suggest chunking evening homework into one small focused block before music and sleep."",
+        ""learned_at"": ""2013-04-15T20:00:00-04:00"",
+        ""from_case_id"": ""case_017"",
+        ""simulated"": true
+      }
+    ],
+    ""recent_interactions"": [
+      {
+        ""case_id"": ""case_016"",
+        ""decision_time"": ""2013-04-12T20:00:00-04:00"",
+        ""decision"": ""suggest"",
+        ""skill_used"": ""sleep_hygiene_nudge"",
+        ""final_message"": ""After wrapping up today's deadlines and dealing with that tooth pain, you've definitely earned a break tonight. Since sleep has been around 5.5 hours lately, try unwinding with a quiet tea or your favorite calm music 20 minutes before bed to help protect your rest."",
+        ""simulated_feedback"": {
+          ""simulated"": true,
+          ""accepted"": false,
+          ""feedback_text"": ""Please don't suggest group hangouts, parties, or crowded social events when I'm swamped with deadlines\u2014socializing drains me on low sleep. I prefer solo unwinding with music or an early wind-down."",
+          ""preference_updates"": {
+            ""dislikes_add"": [
+              ""group hangouts"",
+              ""parties"",
+              ""crowded social events""
+            ],
+            ""preferred_activities_add"": [
+              ""solo music wind-down"",
+              ""quiet rest"",
+              ""early sleep routine""
+            ]
+          },
+          ""forbidden_terms"": [
+            ""party"",
+            ""parties"",
+            ""group hangout"",
+            ""clubs"",
+            ""crowd""
+          ],
+          ""required_themes"": [
+            ""music"",
+            ""sleep"",
+            ""rest"",
+            ""solo"",
+            ""quiet"",
+            ""wind"",
+            ""break"",
+            ""breath""
+          ]
+        },
+        ""simulated"": true
+      },
+      {
+        ""case_id"": ""case_017"",
+        ""decision_time"": ""2013-04-15T20:00:00-04:00"",
+        ""decision"": ""suggest"",
+        ""skill_used"": ""micro_study_break"",
+        ""final_message"": ""With 3 deadlines today and more coming up this week, you've been pushing hard through midterms. Before jumping into your next study block tonight, consider taking a 5-minute solo break away from screens to make a quick hot tea or listen to a favorite calm song to reset."",
+        ""simulated_feedback"": {
+          ""simulated"": true,
+          ""accepted"": true,
+          ""feedback_text"": ""Solo music wind-down works well for me. Also please never suggest waking up early or morning workouts\u2014I'm a night owl and prefer chunking my evening task into one small block before sleeping."",
+          ""preference_updates"": {
+            ""dislikes_add"": [
+              ""waking up early"",
+              ""morning workouts"",
+              ""morning runs""
+            ],
+            ""preferred_activities_add"": [
+              ""chunking evening homework into one small focused block before music and sleep""
+            ]
+          },
+          ""forbidden_terms"": [
+            ""party"",
+            ""parties"",
+            ""group hangout"",
+            ""wake up early"",
+            ""morning workout"",
+            ""morning run""
+          ],
+          ""required_themes"": [
+            ""music"",
+            ""sleep"",
+            ""rest"",
+            ""solo"",
+            ""quiet"",
+            ""wind"",
+            ""break"",
+            ""chunk"",
+            ""step"",
+            ""block""
+          ]
+        },
+        ""simulated"": true
+      }
+    ],
+    ""simulated_recent_interaction_note"": null
+  },
+  ""decision"": ""suggest"",
+  ""skill_used"": ""sleep_hygiene_nudge"",
+  ""final_message"": ""With two deadlines tomorrow during midterms and only about 3.6 hours of sleep last night, you've been pushing really hard. If you can, try wrapping up tonight's remaining work into one small focused block. Afterward, consider dimming the lights and unwinding with some calm music or tea to protect your sleep tonight.""
+}",b34720b9fe4e37d4f7a545e9dfd8867b310225aaf8eca04a338fee1ac6b06894,"With two deadlines tomorrow during midterms and only about 3.6 hours of sleep last night, you've been pushing really hard. If you can, try wrapping up tonight's remaining work into one small focused block. Afterward, consider dimming the lights and unwinding with some calm music or tea to protect your sleep tonight.",,,,
+10,case_019,u19,2013-05-07T20:00:00-04:00,suggest,campus_resource_referral,"Manage overwhelm during clustered CS 50, CS 65, and FILM 51 deadlines by chunking tasks; Stay connected with supportive peers or campus resources when feeling isolated or stressed; Maintain steady ~7.5h sleep routine across midterm and late-term weeks","{""activity_style"": ""Gentle walks, Ultimate Frisbee / light outdoor air, or low-pressure 1-on-1 check-ins"", ""tone"": ""Compassionate, validating, non-clinical, and low-pressure"", ""preferred_times"": [""evening (19:00-21:00)""], ""dislikes"": [""high-pressure productivity demands"", ""clinical or robotic phrasing""]}","{
+  ""case_id"": ""case_019"",
+  ""available_context"": {
+    ""participant_id"": ""u19"",
+    ""decision_time"": ""2013-05-07T20:00:00-04:00"",
+    ""observations"": {
+      ""time_context"": {
+        ""source"": ""context.time"",
+        ""date"": ""2013-05-07"",
+        ""weekday"": ""Tuesday"",
+        ""local_time"": ""20:00"",
+        ""time_of_day"": ""evening"",
+        ""term_week"": 7,
+        ""term_phase"": ""late term"",
+        ""class_now"": null,
+        ""summary"": ""Tuesday 20:00 (evening), term week 7 (late term)""
+      },
+      ""sleep_3d"": {
+        ""source"": ""sensing.sleep"",
+        ""window_days"": 3,
+        ""nights_with_data"": 1,
+        ""inferred_hours_mean"": 8.5,
+        ""inferred_hours_min"": 8.5,
+        ""latest_bedtime"": ""23:33"",
+        ""latest_wake_time"": ""08:05"",
+        ""last_night_hours"": 6.2,
+        ""last_night_bed_wake"": ""01:28-07:42"",
+        ""baseline_hours"": 7.9,
+        ""delta_vs_baseline_h"": 0.6,
+        ""self_report_hours_mean"": 8.0,
+        ""self_report_quality_mean_1to4"": 1.0,
+        ""self_reports"": 1,
+        ""summary"": ""Sleep: inferred 8.5h/night over 1 nights; last night 6.2h; +0.6h vs usual 7.9h; self-report 8.0h, quality 1.0/4""
+      },
+      ""activity_3d"": {
+        ""source"": ""sensing.activity"",
+        ""window_days"": 3,
+        ""days_with_data"": 3,
+        ""active_min_per_day"": 22,
+        ""walk_min_per_day"": 21,
+        ""run_min_per_day"": 1,
+        ""baseline_active_min"": 62,
+        ""pct_vs_baseline"": -64,
+        ""self_report_exercised_days"": 2,
+        ""self_reports"": 3,
+        ""summary"": ""Activity: ~22 active min/day (walk 21, run 1) over 3 days; -64% vs usual 62 min; self-reported vigorous exercise 2/3 reports""
+      },
+      ""social_3d"": {
+        ""source"": ""sensing.social"",
+        ""window_days"": 3,
+        ""conversations_per_day"": 12.0,
+        ""conversation_min_per_day"": 67,
+        ""baseline_conversation_min"": 281,
+        ""self_report_contacts"": ""20-49"",
+        ""summary"": ""Social: 12.0 conversations/day (67 min) vs usual 281 min; self-reported 20-49 contacts/day""
+      },
+      ""stress_mood_3d"": {
+        ""source"": ""ema.stress"",
+        ""window_days"": 3,
+        ""stress_n"": 4,
+        ""stress_mean_1to5"": 4.0,
+        ""stress_max"": 5,
+        ""last_stress"": 5,
+        ""last_stress_label"": ""stressed out"",
+        ""last_stress_hours_ago"": 4.8,
+        ""baseline_stress"": 3.6,
+        ""mood_valence_mean"": 1.0,
+        ""pam_valence_mean"": 2.7,
+        ""pam_arousal_mean"": 1.2,
+        ""last_comment"": ""a blizzard of emotions"",
+        ""last_comment_days_ago"": 1.7,
+        ""pre_term_surveys"": {
+          ""pss_total"": 20.0,
+          ""phq9_total"": 5.0,
+          ""phq9_item9_selfharm"": 1,
+          ""loneliness_total"": 56.0
+        },
+        ""summary"": ""Stress/mood: stress mean 4.0/5 over 4 reports, last 'stressed out' 4.8h ago; usual 3.6/5; mood valence 1.0; PAM valence 2.7/4 arousal 1.2/4; last comment (1.7d ago): \""a blizzard of emotions\""""
+      },
+      ""stress_mood_7d"": {
+        ""source"": ""ema.stress"",
+        ""window_days"": 7,
+        ""stress_n"": 8,
+        ""stress_mean_1to5"": 3.8,
+        ""stress_max"": 5,
+        ""last_stress"": 5,
+        ""last_stress_label"": ""stressed out"",
+        ""last_stress_hours_ago"": 4.8,
+        ""baseline_stress"": 3.6,
+        ""mood_valence_mean"": 1.3,
+        ""pam_valence_mean"": 3.2,
+        ""pam_arousal_mean"": 1.6,
+        ""last_comment"": ""a blizzard of emotions"",
+        ""last_comment_days_ago"": 1.7,
+        ""pre_term_surveys"": {
+          ""pss_total"": 20.0,
+          ""phq9_total"": 5.0,
+          ""phq9_item9_selfharm"": 1,
+          ""loneliness_total"": 56.0
+        },
+        ""summary"": ""Stress/mood: stress mean 3.8/5 over 8 reports, last 'stressed out' 4.8h ago; usual 3.6/5; mood valence 1.3; PAM valence 3.2/4 arousal 1.6/4; last comment (1.7d ago): \""a blizzard of emotions\""""
+      },
+      ""academic_3d"": {
+        ""source"": ""education.deadlines"",
+        ""deadlines_today"": 3,
+        ""deadlines_ahead"": {
+          ""in_1d"": 0,
+          ""in_2d"": 1,
+          ""in_3d"": 0
+        },
+        ""deadlines_next_window"": 1,
+        ""classes_today"": [
+          ""FILM 051 10:00-11:50"",
+          ""COSC 050 13:00-13:50""
+        ],
+        ""classes_remaining_today"": 0,
+        ""n_courses"": 3,
+        ""summary"": ""Academic: 3 deadline(s) today, 1 in next 3 days; 2 class(es) today (0 remaining)""
+      },
+      ""baseline_sleep_7d"": {
+        ""source"": ""baseline.sleep_hours"",
+        ""feature"": ""sleep_hours"",
+        ""window_days"": 7,
+        ""recent_mean"": 7.79,
+        ""baseline_mean"": 7.97,
+        ""baseline_std"": 1.13,
+        ""baseline_days"": 25,
+        ""z"": -0.16,
+        ""level"": ""typical"",
+        ""summary"": ""sleep_hours: recent 7.79 vs usual 7.97 (z=-0.16, typical)""
+      },
+      ""baseline_activity_7d"": {
+        ""source"": ""baseline.active_minutes"",
+        ""feature"": ""active_minutes"",
+        ""window_days"": 7,
+        ""recent_mean"": 40.89,
+        ""baseline_mean"": 63.04,
+        ""baseline_std"": 33.34,
+        ""baseline_days"": 32,
+        ""z"": -0.66,
+        ""level"": ""lower"",
+        ""summary"": ""active_minutes: recent 40.89 vs usual 63.04 (z=-0.66, lower)""
+      },
+      ""baseline_conversation_7d"": {
+        ""source"": ""baseline.conversation_minutes"",
+        ""feature"": ""conversation_minutes"",
+        ""window_days"": 7,
+        ""recent_mean"": 67.24,
+        ""baseline_mean"": 306.29,
+        ""baseline_std"": 169.07,
+        ""baseline_days"": 34,
+        ""z"": -1.41,
+        ""level"": ""lower"",
+        ""summary"": ""conversation_minutes: recent 67.24 vs usual 306.29 (z=-1.41, lower)""
+      }
+    },
+    ""simulated_profile"": {
+      ""participant_id"": ""u19"",
+      ""simulated"": true,
+      ""grounding_note"": ""Simulated coaching profile grounded in real StudentLife pre-term surveys (PSS=20.0, PHQ-9=5.0, UCLA Loneliness=56.0, PHQ-9 item 9=1, Extraversion=1.75, Neuroticism=3.62, Conscientiousness=3.44); courses: COSC 050, COSC 065, FILM 051."",
+      ""pre_term_surveys"": {
+        ""pss_total"": 20.0,
+        ""phq9_total"": 5.0,
+        ""phq9_item9_selfharm"": 1,
+        ""loneliness_total"": 56.0,
+        ""bfi_extraversion"": 1.75,
+        ""bfi_agreeableness"": 3.11,
+        ""bfi_conscientiousness"": 3.44,
+        ""bfi_neuroticism"": 3.62,
+        ""bfi_openness"": 3.2
+      },
+      ""goals"": [
+        ""Manage overwhelm during clustered CS 50, CS 65, and FILM 51 deadlines by chunking tasks"",
+        ""Stay connected with supportive peers or campus resources when feeling isolated or stressed"",
+        ""Maintain steady ~7.5h sleep routine across midterm and late-term weeks""
+      ],
+      ""preferences"": {
+        ""activity_style"": ""Gentle walks, Ultimate Frisbee / light outdoor air, or low-pressure 1-on-1 check-ins"",
+        ""tone"": ""Compassionate, validating, non-clinical, and low-pressure"",
+        ""preferred_times"": [
+          ""evening (19:00-21:00)""
+        ],
+        ""dislikes"": [
+          ""high-pressure productivity demands"",
+          ""clinical or robotic phrasing""
+        ]
+      },
+      ""constraints"": [
+        ""Elevated baseline loneliness (UCLA=56.0) and moderate perceived stress (PSS=20.0); pre-term PHQ-9 item 9=1 requires warm resource awareness when stress peaks at 5/5"",
+        ""Enrolled in COSC 050, COSC 065, and FILM 051""
+      ],
+      ""learned_preferences"": []
+    },
+    ""learned_preferences"": [],
+    ""recent_interactions"": [
+      {
+        ""case_id"": ""case_012"",
+        ""decision_time"": ""2013-04-16T20:00:00-04:00"",
+        ""decision"": ""ask"",
+        ""skill_used"": ""clarifying_question"",
+        ""final_message"": ""I haven't seen your recent sleep or stress check-ins pop up today, and I know you have deadlines on your plate this evening. How are your energy and stress levels feeling right now?"",
+        ""simulated_feedback"": null,
+        ""simulated"": true
+      },
+      {
+        ""case_id"": ""case_003"",
+        ""decision_time"": ""2013-04-30T20:00:00-04:00"",
+        ""decision"": ""suggest"",
+        ""skill_used"": ""campus_resource_referral"",
+        ""final_message"": ""With three deadlines today and stress peaking at 5/5, it's completely understandable if you're feeling exhausted and carrying a heavy load right now. You don't have to navigate this alone\u2014Dick's House Counseling ((603) 646-9442) offers free, confidential support and after-hours care, and the 988 Lifeline is available 24/7 by call or text at 988. For tonight, please give yourself permission to step back for a moment, grab a warm drink or get some water, and rest."",
+        ""simulated_feedback"": null,
+        ""simulated"": true
+      }
+    ],
+    ""simulated_recent_interaction_note"": null
+  },
+  ""decision"": ""suggest"",
+  ""skill_used"": ""campus_resource_referral"",
+  ""final_message"": ""Navigating three deadlines today on short sleep is a huge load to carry, and it is completely valid that your stress feels at a 5/5 tonight. Please know you don't have to carry this alone\u2014Dick's House Counseling ((603) 646-9442) offers free, confidential support and after-hours care, and the 988 Lifeline is available 24/7 by call or text at 988. For tonight, give yourself permission to pause, get a glass of water, and rest.""
+}",e29fb377a4b7da2d8a82806ab10c58a80918292a76df034d23a6decb6fef0d3c,"Navigating three deadlines today on short sleep is a huge load to carry, and it is completely valid that your stress feels at a 5/5 tonight. Please know you don't have to carry this alone—Dick's House Counseling ((603) 646-9442) offers free, confidential support and after-hours care, and the 988 Lifeline is available 24/7 by call or text at 988. For tonight, give yourself permission to pause, get a glass of water, and rest.",,,,

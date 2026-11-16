@@ -1,0 +1,11 @@
+[judge]
+model = "openai:gpt-5.4-mini-2026-03-17"
+temperature = 0.0
+max_workers = 2
+
+# scripts/judge_corrected.py enforces these transport and shared-budget settings.
+reasoning_effort = "none"
+max_completion_tokens = 2048
+budget_usd = 2.0
+input_usd_per_million = 0.75
+output_usd_per_million = 4.50

@@ -1,0 +1,94 @@
+# Current nine-condition evaluation suite. Run with an explicit new --out-root.
+# Matches the dated per-condition presets; no model calls during configuration loading.
+
+[defaults.system]
+mode = "multi_agent"
+model = "gemini:gemini-3.6-flash"
+temperature = 0.3
+max_workers = 4
+min_request_interval_s = 1.0
+max_output_tokens = 8192
+thinking_level = "low"
+budget_usd = 20.0
+input_usd_per_million = 0.75
+output_usd_per_million = 3.75
+
+[defaults.planning]
+enabled = true
+max_rounds = 2
+
+[defaults.reflection]
+enabled = true
+max_rounds = 2
+
+[defaults.memory]
+enabled = true
+history_k = 5
+
+[defaults.skills]
+enabled = true
+
+[defaults.tools]
+enabled = true
+max_turns = 5
+
+[configs.full]
+description = "Corrected full system; Gemini 3.6 Flash; planning=2, reflection=2"
+
+[configs.single]
+description = "Corrected controlled variant: single"
+[configs.single.system]
+mode = "single_agent"
+budget_usd = 18.770231
+
+[configs.no_refl]
+description = "Corrected controlled variant: no_refl"
+[configs.no_refl.system]
+budget_usd = 18.0945605
+[configs.no_refl.reflection]
+enabled = false
+max_rounds = 0
+
+[configs.no_plan]
+description = "Corrected controlled variant: no_plan"
+[configs.no_plan.system]
+budget_usd = 15.373472
+[configs.no_plan.planning]
+enabled = false
+max_rounds = 0
+
+[configs.refl1]
+description = "Corrected controlled variant: refl1"
+[configs.refl1.system]
+budget_usd = 14.15277725
+[configs.refl1.reflection]
+max_rounds = 1
+
+[configs.refl3]
+description = "Corrected controlled variant: refl3"
+[configs.refl3.system]
+budget_usd = 12.4591295
+[configs.refl3.reflection]
+max_rounds = 3
+
+[configs.plan1]
+description = "Corrected controlled variant: plan1"
+[configs.plan1.system]
+budget_usd = 10.19140625
+[configs.plan1.planning]
+max_rounds = 1
+
+[configs.plan3]
+description = "Corrected controlled variant: plan3"
+[configs.plan3.system]
+budget_usd = 9.085214
+[configs.plan3.planning]
+max_rounds = 3
+
+[configs.modelB]
+description = "Corrected controlled variant: modelB"
+[configs.modelB.system]
+model = "gemini:gemini-3.5-flash-lite"
+budget_usd = 7.361363000000001
+input_usd_per_million = 0.3
+output_usd_per_million = 2.5

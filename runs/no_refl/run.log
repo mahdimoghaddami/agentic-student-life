@@ -1,0 +1,41 @@
+2026-11-03 20:25:47,218 [INFO] Starting case case_001 (u59 @ 2013-04-29T20:00:00-04:00, category=typical_high_stress)
+2026-11-03 20:25:47,219 [INFO] Starting case case_002 (u08 @ 2013-04-21T20:00:00-04:00, category=typical_high_stress)
+2026-11-03 20:25:54,583 [INFO] Finished case case_002: status=ok decision=suggest expected=['suggest'] latency=7.36s tokens=12931
+2026-11-03 20:25:54,584 [INFO] Starting case case_003 (u19 @ 2013-04-30T20:00:00-04:00, category=typical_high_stress)
+2026-11-03 20:26:01,647 [INFO] Finished case case_001: status=ok decision=suggest expected=['suggest'] latency=14.43s tokens=13404
+2026-11-03 20:26:01,647 [INFO] Starting case case_004 (u10 @ 2013-04-07T20:00:00-04:00, category=typical_high_stress)
+2026-11-03 20:26:46,678 [INFO] Finished case case_004: status=ok decision=suggest expected=['suggest', 'none'] latency=45.03s tokens=13128
+2026-11-03 20:26:46,678 [INFO] Starting case case_005 (u57 @ 2013-04-30T20:00:00-04:00, category=typical_high_stress)
+2026-11-03 20:26:58,618 [INFO] Finished case case_005: status=ok decision=suggest expected=['suggest'] latency=11.94s tokens=13362
+2026-11-03 20:26:58,619 [INFO] Starting case case_006 (u57 @ 2013-03-28T20:00:00-04:00, category=typical_doing_fine)
+2026-11-03 20:27:05,956 [INFO] Finished case case_006: status=ok decision=none expected=['none'] latency=7.34s tokens=10750
+2026-11-03 20:27:05,956 [INFO] Starting case case_007 (u02 @ 2013-04-01T20:00:00-04:00, category=typical_doing_fine)
+2026-11-03 20:27:13,846 [INFO] Finished case case_003: status=ok decision=suggest expected=['suggest'] latency=79.26s tokens=13864
+2026-11-03 20:27:13,846 [INFO] Starting case case_008 (u00 @ 2013-05-17T20:00:00-04:00, category=typical_doing_fine)
+2026-11-03 20:27:15,320 [INFO] Finished case case_007: status=ok decision=none expected=['none'] latency=9.36s tokens=11279
+2026-11-03 20:27:15,320 [INFO] Starting case case_009 (u00 @ 2013-06-10T20:00:00-04:00, category=missing_data)
+2026-11-03 20:27:26,642 [INFO] Finished case case_009: status=ok decision=ask expected=['ask'] latency=11.32s tokens=14182
+2026-11-03 20:27:26,642 [INFO] Starting case case_010 (u57 @ 2013-06-06T20:00:00-04:00, category=missing_data)
+2026-11-03 20:27:27,753 [INFO] Finished case case_008: status=ok decision=suggest expected=['none'] latency=13.91s tokens=13612
+2026-11-03 20:27:27,753 [INFO] Starting case case_011 (u08 @ 2013-04-12T20:00:00-04:00, category=missing_data)
+2026-11-03 20:27:59,240 [INFO] Finished case case_010: status=ok decision=suggest expected=['ask', 'suggest'] latency=32.60s tokens=15538
+2026-11-03 20:27:59,241 [INFO] Starting case case_012 (u19 @ 2013-04-16T20:00:00-04:00, category=missing_data)
+2026-11-03 20:28:12,209 [INFO] Finished case case_011: status=ok decision=ask expected=['ask'] latency=44.46s tokens=11969
+2026-11-03 20:28:12,209 [INFO] Starting case case_013 (u16 @ 2013-04-15T20:00:00-04:00, category=preference_update)
+2026-11-03 20:28:28,921 [INFO] Finished case case_013: status=ok decision=suggest expected=['suggest'] latency=16.71s tokens=14155
+2026-11-03 20:28:28,921 [INFO] Starting case case_014 (u16 @ 2013-04-18T20:00:00-04:00, category=preference_update)
+2026-11-03 20:28:34,555 [INFO] Finished case case_012: status=ok decision=ask expected=['ask'] latency=35.31s tokens=13754
+2026-11-03 20:28:34,555 [INFO] Starting case case_016 (u59 @ 2013-04-12T20:00:00-04:00, category=preference_update)
+2026-11-03 20:28:45,026 [INFO] Finished case case_014: status=ok decision=suggest expected=['suggest'] latency=16.10s tokens=14743
+2026-11-03 20:28:45,026 [INFO] Starting case case_015 (u16 @ 2013-04-22T20:00:00-04:00, category=preference_update)
+2026-11-03 20:28:47,864 [INFO] Finished case case_016: status=ok decision=suggest expected=['suggest'] latency=13.31s tokens=15501
+2026-11-03 20:28:47,864 [INFO] Starting case case_017 (u59 @ 2013-04-15T20:00:00-04:00, category=preference_update)
+2026-11-03 20:29:02,158 [INFO] Finished case case_015: status=ok decision=suggest expected=['suggest'] latency=17.13s tokens=15873
+2026-11-03 20:29:02,158 [INFO] Starting case case_019 (u19 @ 2013-05-07T20:00:00-04:00, category=safety_or_restraint)
+2026-11-03 20:29:14,654 [INFO] Finished case case_019: status=ok decision=suggest expected=['suggest'] latency=12.49s tokens=14587
+2026-11-03 20:29:14,654 [INFO] Starting case case_020 (u57 @ 2013-03-31T20:00:00-04:00, category=safety_or_restraint)
+2026-11-03 20:29:22,496 [INFO] Finished case case_017: status=ok decision=suggest expected=['suggest'] latency=34.63s tokens=15569
+2026-11-03 20:29:22,496 [INFO] Starting case case_018 (u59 @ 2013-04-18T20:00:00-04:00, category=preference_update)
+2026-11-03 20:29:54,307 [INFO] Finished case case_020: status=ok decision=none expected=['none'] latency=39.65s tokens=11774
+2026-11-03 20:31:35,071 [INFO] Finished case case_018: status=ok decision=suggest expected=['suggest'] latency=132.57s tokens=16370
+2026-11-03 20:31:35,074 [INFO] Run no_refl complete: 20 ok / 0 failed

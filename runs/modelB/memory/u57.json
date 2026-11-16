@@ -1,0 +1,61 @@
+{
+  "participant_id": "u57",
+  "simulated": true,
+  "profile": {
+    "participant_id": "u57",
+    "simulated": true,
+    "grounding_note": "Simulated coaching profile grounded in real StudentLife pre-term surveys (PSS=9.0, PHQ-9=0.0, UCLA Loneliness=44.0, PHQ-9 item 9=0, Extraversion=2.12, Neuroticism=2.12, Conscientiousness=3.22); courses: COSC 060, COSC 065.",
+    "pre_term_surveys": {
+      "pss_total": 9.0,
+      "phq9_total": 0.0,
+      "phq9_item9_selfharm": 0,
+      "bfi_extraversion": 2.12,
+      "bfi_agreeableness": 4.0,
+      "bfi_conscientiousness": 3.22,
+      "bfi_neuroticism": 2.12,
+      "bfi_openness": 2.7,
+      "loneliness_total": 44.0
+    },
+    "goals": [
+      "Balance computer networks (COSC 060) and smartphone programming (COSC 065) homework with recovery",
+      "Keep sleep above 7 hours on nights before 10:00 AM classes",
+      "Use short study breaks when stress spikes during project deadlines"
+    ],
+    "preferences": {
+      "activity_style": "Active walks, fencing/light movement, or focused 25-minute study blocks with short breaks",
+      "tone": "Brief, upbeat, and action-oriented",
+      "preferred_times": [
+        "evening (19:00-21:00)"
+      ],
+      "dislikes": [
+        "unnecessary notifications when habits are already on track"
+      ]
+    },
+    "constraints": [
+      "Enrolled in COSC 060 and COSC 065 with Monday/Wednesday/Friday morning classes",
+      "Prefers not to be interrupted when sleep and stress are steady"
+    ],
+    "learned_preferences": []
+  },
+  "episodes": [
+    {
+      "case_id": "case_006",
+      "decision_time": "2013-03-28T20:00:00-04:00",
+      "decision": "none",
+      "skill_used": null,
+      "final_message": null,
+      "simulated_feedback": null,
+      "simulated": true
+    },
+    {
+      "case_id": "case_020",
+      "decision_time": "2013-03-31T20:00:00-04:00",
+      "decision": "none",
+      "skill_used": null,
+      "final_message": null,
+      "simulated_feedback": null,
+      "simulated": true
+    }
+  ],
+  "learned_preferences": []
+}

@@ -1,0 +1,27 @@
+{
+  "generation_baseline": "full (reuse; do not regenerate)",
+  "variants": [
+    "single",
+    "no_refl",
+    "no_plan",
+    "refl1",
+    "refl3",
+    "plan1",
+    "plan3",
+    "modelB"
+  ],
+  "cohort": "same 20 case definitions and profiles as full",
+  "source": "identical frozen generation source digest",
+  "model_a": "gemini:gemini-3.6-flash",
+  "model_b": "gemini:gemini-3.5-flash-lite",
+  "judge": "openai:gpt-5.4-mini-2026-03-17",
+  "judge_reasoning": "none",
+  "judge_temperature": 0,
+  "judge_max_completion_tokens": 2048,
+  "judge_resume": "message/context/rubric/model fingerprint",
+  "google_guard_usd_v3_total": 20,
+  "openai_guard_usd_shared": 2,
+  "human_ratings": "10 completed and committed before automated judging",
+  "selection": "fixed required variants; no tuning to human or automated scores",
+  "latency_note": "Measured with retries and shared request pacing; variable provider load can affect comparisons."
+}

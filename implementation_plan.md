@@ -26,7 +26,7 @@ It has to **remember** the student's goals, preferences, past suggestions and fe
 | Ablations | 10 | Multi- vs single-agent, ± reflection, ± planning, reflection depth 1/2/3, planning depth 1/2/3, ≥2 LLMs |
 | Report / Presentation | 5 / 5 | **Bonus** for a polished ICML 2026 LaTeX report (`report/` is already set up with the title and both authors) |
 
-### Zip contents (`groupXX_moghaddami_piggot.zip`)
+### Zip contents (`groupXX_moghaddami_piggott.zip`)
 Code, README, PDF report, case definitions (with simulated profiles and feedback labelled), final JSONL files, execution logs, and the configs/scripts needed to reproduce everything. **Leave out** `data/`, `.venv`, caches and the feature parquet files.
 
 ---

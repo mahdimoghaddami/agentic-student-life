@@ -1,0 +1,6 @@
+2026-11-04 18:59:56,295 [INFO] Starting case case_016 (u59 @ 2013-04-12T20:00:00-04:00, category=preference_update)
+2026-11-04 18:59:56,296 [INFO] Starting case case_011 (u08 @ 2013-04-12T20:00:00-04:00, category=missing_data)
+2026-11-04 19:00:22,791 [INFO] Finished case case_011: status=failed decision=none expected=['ask'] latency=26.49s tokens=2709
+2026-11-04 19:00:22,792 [INFO] Starting case case_002 (u08 @ 2013-04-21T20:00:00-04:00, category=typical_high_stress)
+2026-11-04 19:00:23,039 [INFO] Finished case case_016: status=failed decision=none expected=['suggest'] latency=26.74s tokens=0
+2026-11-04 19:00:23,039 [INFO] Starting case case_017 (u59 @ 2013-04-15T20:00:00-04:00, category=preference_update)

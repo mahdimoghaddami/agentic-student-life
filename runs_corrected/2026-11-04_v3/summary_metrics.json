@@ -1,0 +1,3437 @@
+{
+  "configs": {
+    "full": {
+      "config_id": "full",
+      "case_ids": [
+        "case_001",
+        "case_002",
+        "case_003",
+        "case_004",
+        "case_005",
+        "case_006",
+        "case_007",
+        "case_008",
+        "case_009",
+        "case_010",
+        "case_011",
+        "case_012",
+        "case_013",
+        "case_014",
+        "case_015",
+        "case_016",
+        "case_017",
+        "case_018",
+        "case_019",
+        "case_020"
+      ],
+      "protocol": "corrected",
+      "judge_models": [
+        "openai:gpt-5.4-mini-2026-03-17"
+      ],
+      "available": true,
+      "n_cases": 20,
+      "n_ok": 20,
+      "success_rate": 100.0,
+      "decision_acc": 100.0,
+      "pref_adherence_rate": 100.0,
+      "pref_adherence_n": 4,
+      "pref_adherence_violations": {
+        "case_014": [],
+        "case_015": [],
+        "case_017": [],
+        "case_018": []
+      },
+      "n_judged": 16,
+      "context_awareness": {
+        "mean": 4.75,
+        "std": 0.45,
+        "values": [
+          5.0,
+          4.0,
+          5.0,
+          5.0,
+          4.0,
+          5.0,
+          5.0,
+          5.0,
+          5.0,
+          4.0,
+          5.0,
+          5.0,
+          5.0,
+          5.0,
+          5.0,
+          4.0
+        ]
+      },
+      "goal_alignment": {
+        "mean": 4.94,
+        "std": 0.25,
+        "values": [
+          5.0,
+          4.0,
+          5.0,
+          5.0,
+          5.0,
+          5.0,
+          5.0,
+          5.0,
+          5.0,
+          5.0,
+          5.0,
+          5.0,
+          5.0,
+          5.0,
+          5.0,
+          5.0
+        ]
+      },
+      "clarity": {
+        "mean": 4.75,
+        "std": 0.58,
+        "values": [
+          5.0,
+          3.0,
+          4.0,
+          5.0,
+          5.0,
+          5.0,
+          5.0,
+          5.0,
+          5.0,
+          5.0,
+          5.0,
+          5.0,
+          5.0,
+          5.0,
+          5.0,
+          4.0
+        ]
+      },
+      "judge_mean": {
+        "mean": 4.81,
+        "std": 0.36,
+        "values": [
+          5.0,
+          3.667,
+          4.667,
+          5.0,
+          4.667,
+          5.0,
+          5.0,
+          5.0,
+          5.0,
+          4.667,
+          5.0,
+          5.0,
+          5.0,
+          5.0,
+          5.0,
+          4.333
+        ]
+      },
+      "latency_s": {
+        "mean": 35.59,
+        "std": 15.12,
+        "values": [
+          25.76,
+          66.54,
+          31.79,
+          45.39,
+          21.33,
+          18.85,
+          25.43,
+          19.43,
+          23.44,
+          26.77,
+          33.91,
+          31.94,
+          39.07,
+          55.54,
+          26.44,
+          48.79,
+          72.6,
+          35.15,
+          28.41,
+          35.22
+        ]
+      },
+      "llm_calls": {
+        "mean": 6.2,
+        "std": 1.15,
+        "values": [
+          6.0,
+          6.0,
+          6.0,
+          6.0,
+          6.0,
+          5.0,
+          4.0,
+          4.0,
+          6.0,
+          7.0,
+          6.0,
+          6.0,
+          8.0,
+          7.0,
+          7.0,
+          8.0,
+          7.0,
+          8.0,
+          6.0,
+          5.0
+        ]
+      },
+      "tool_calls": {
+        "mean": 8.0,
+        "std": 3.55,
+        "values": [
+          6.0,
+          14.0,
+          6.0,
+          8.0,
+          8.0,
+          8.0,
+          7.0,
+          7.0,
+          6.0,
+          6.0,
+          7.0,
+          6.0,
+          7.0,
+          5.0,
+          7.0,
+          8.0,
+          21.0,
+          8.0,
+          8.0,
+          7.0
+        ]
+      },
+      "total_tokens": {
+        "mean": 17529.25,
+        "std": 2882.2,
+        "values": [
+          20402.0,
+          16918.0,
+          17642.0,
+          16819.0,
+          17429.0,
+          15439.0,
+          12170.0,
+          12179.0,
+          15179.0,
+          19663.0,
+          14670.0,
+          16208.0,
+          20358.0,
+          18146.0,
+          19326.0,
+          21651.0,
+          18878.0,
+          22953.0,
+          19149.0,
+          15406.0
+        ]
+      },
+      "planning_rounds_mean": 2.0,
+      "reflection_rounds_mean": 1.0,
+      "confusion": {
+        "suggest": {
+          "suggest": 13,
+          "ask": 0,
+          "none": 0
+        },
+        "ask": {
+          "suggest": 0,
+          "ask": 3,
+          "none": 0
+        },
+        "none": {
+          "suggest": 0,
+          "ask": 0,
+          "none": 4
+        }
+      },
+      "by_category": {
+        "typical_high_stress": {
+          "n_cases": 5,
+          "n_scored_messages": 5,
+          "decision_acc": 100.0,
+          "context_awareness": 4.6,
+          "goal_alignment": 4.8,
+          "clarity": 4.4,
+          "judge_mean": 4.6,
+          "latency_mean": 38.16,
+          "calls_mean": 6.0,
+          "tokens_mean": 17842.0
+        },
+        "typical_doing_fine": {
+          "n_cases": 3,
+          "n_scored_messages": 0,
+          "decision_acc": 100.0,
+          "context_awareness": 0.0,
+          "goal_alignment": 0.0,
+          "clarity": 0.0,
+          "judge_mean": 0.0,
+          "latency_mean": 21.24,
+          "calls_mean": 4.33,
+          "tokens_mean": 13262.67
+        },
+        "missing_data": {
+          "n_cases": 4,
+          "n_scored_messages": 4,
+          "decision_acc": 100.0,
+          "context_awareness": 5.0,
+          "goal_alignment": 5.0,
+          "clarity": 5.0,
+          "judge_mean": 5.0,
+          "latency_mean": 29.02,
+          "calls_mean": 6.25,
+          "tokens_mean": 16430.0
+        },
+        "preference_update": {
+          "n_cases": 6,
+          "n_scored_messages": 6,
+          "decision_acc": 100.0,
+          "context_awareness": 4.83,
+          "goal_alignment": 5.0,
+          "clarity": 5.0,
+          "judge_mean": 4.94,
+          "latency_mean": 46.26,
+          "calls_mean": 7.5,
+          "tokens_mean": 20218.67
+        },
+        "safety_or_restraint": {
+          "n_cases": 2,
+          "n_scored_messages": 1,
+          "decision_acc": 100.0,
+          "context_awareness": 4.0,
+          "goal_alignment": 5.0,
+          "clarity": 4.0,
+          "judge_mean": 4.33,
+          "latency_mean": 31.81,
+          "calls_mean": 5.5,
+          "tokens_mean": 17277.5
+        }
+      },
+      "judge_decision_appropriate_pct_nonnull": 100.0
+    },
+    "single": {
+      "config_id": "single",
+      "case_ids": [
+        "case_001",
+        "case_002",
+        "case_003",
+        "case_004",
+        "case_005",
+        "case_006",
+        "case_007",
+        "case_008",
+        "case_009",
+        "case_010",
+        "case_011",
+        "case_012",
+        "case_013",
+        "case_014",
+        "case_015",
+        "case_016",
+        "case_017",
+        "case_018",
+        "case_019",
+        "case_020"
+      ],
+      "protocol": "corrected",
+      "judge_models": [
+        "openai:gpt-5.4-mini-2026-03-17"
+      ],
+      "available": true,
+      "n_cases": 20,
+      "n_ok": 20,
+      "success_rate": 100.0,
+      "decision_acc": 100.0,
+      "pref_adherence_rate": 75.0,
+      "pref_adherence_n": 4,
+      "pref_adherence_violations": {
+        "case_014": [
+          "forbidden term from case_013: running"
+        ],
+        "case_015": [],
+        "case_017": [],
+        "case_018": []
+      },
+      "n_judged": 16,
+      "context_awareness": {
+        "mean": 4.88,
+        "std": 0.34,
+        "values": [
+          5.0,
+          4.0,
+          5.0,
+          5.0,
+          4.0,
+          5.0,
+          5.0,
+          5.0,
+          5.0,
+          5.0,
+          5.0,
+          5.0,
+          5.0,
+          5.0,
+          5.0,
+          5.0
+        ]
+      },
+      "goal_alignment": {
+        "mean": 4.88,
+        "std": 0.34,
+        "values": [
+          5.0,
+          4.0,
+          5.0,
+          5.0,
+          4.0,
+          5.0,
+          5.0,
+          5.0,
+          5.0,
+          5.0,
+          5.0,
+          5.0,
+          5.0,
+          5.0,
+          5.0,
+          5.0
+        ]
+      },
+      "clarity": {
+        "mean": 4.69,
+        "std": 0.48,
+        "values": [
+          5.0,
+          4.0,
+          4.0,
+          5.0,
+          4.0,
+          5.0,
+          5.0,
+          4.0,
+          5.0,
+          5.0,
+          5.0,
+          5.0,
+          5.0,
+          5.0,
+          5.0,
+          4.0
+        ]
+      },
+      "judge_mean": {
+        "mean": 4.81,
+        "std": 0.34,
+        "values": [
+          5.0,
+          4.0,
+          4.667,
+          5.0,
+          4.0,
+          5.0,
+          5.0,
+          4.667,
+          5.0,
+          5.0,
+          5.0,
+          5.0,
+          5.0,
+          5.0,
+          5.0,
+          4.667
+        ]
+      },
+      "latency_s": {
+        "mean": 18.78,
+        "std": 9.29,
+        "values": [
+          14.74,
+          30.03,
+          18.42,
+          17.23,
+          40.84,
+          12.25,
+          31.21,
+          11.5,
+          13.61,
+          20.23,
+          11.42,
+          8.97,
+          13.82,
+          33.09,
+          8.72,
+          25.18,
+          25.99,
+          12.89,
+          17.38,
+          7.98
+        ]
+      },
+      "llm_calls": {
+        "mean": 3.65,
+        "std": 0.67,
+        "values": [
+          3.0,
+          4.0,
+          4.0,
+          3.0,
+          4.0,
+          4.0,
+          3.0,
+          4.0,
+          3.0,
+          5.0,
+          3.0,
+          3.0,
+          4.0,
+          4.0,
+          4.0,
+          4.0,
+          4.0,
+          4.0,
+          4.0,
+          2.0
+        ]
+      },
+      "tool_calls": {
+        "mean": 9.4,
+        "std": 3.72,
+        "values": [
+          7.0,
+          11.0,
+          11.0,
+          7.0,
+          18.0,
+          8.0,
+          16.0,
+          8.0,
+          8.0,
+          11.0,
+          8.0,
+          7.0,
+          8.0,
+          17.0,
+          6.0,
+          8.0,
+          9.0,
+          5.0,
+          10.0,
+          5.0
+        ]
+      },
+      "total_tokens": {
+        "mean": 18681.4,
+        "std": 5320.35,
+        "values": [
+          17252.0,
+          27278.0,
+          25799.0,
+          13610.0,
+          24961.0,
+          19027.0,
+          15258.0,
+          18898.0,
+          14281.0,
+          26195.0,
+          12811.0,
+          12759.0,
+          16479.0,
+          18762.0,
+          17523.0,
+          17486.0,
+          21579.0,
+          17677.0,
+          27239.0,
+          8754.0
+        ]
+      },
+      "planning_rounds_mean": 0.0,
+      "reflection_rounds_mean": 0.0,
+      "confusion": {
+        "suggest": {
+          "suggest": 12,
+          "ask": 0,
+          "none": 0
+        },
+        "ask": {
+          "suggest": 0,
+          "ask": 4,
+          "none": 0
+        },
+        "none": {
+          "suggest": 0,
+          "ask": 0,
+          "none": 4
+        }
+      },
+      "by_category": {
+        "typical_high_stress": {
+          "n_cases": 5,
+          "n_scored_messages": 5,
+          "decision_acc": 100.0,
+          "context_awareness": 4.6,
+          "goal_alignment": 4.6,
+          "clarity": 4.4,
+          "judge_mean": 4.53,
+          "latency_mean": 24.25,
+          "calls_mean": 3.6,
+          "tokens_mean": 21780.0
+        },
+        "typical_doing_fine": {
+          "n_cases": 3,
+          "n_scored_messages": 0,
+          "decision_acc": 100.0,
+          "context_awareness": 0.0,
+          "goal_alignment": 0.0,
+          "clarity": 0.0,
+          "judge_mean": 0.0,
+          "latency_mean": 18.32,
+          "calls_mean": 3.67,
+          "tokens_mean": 17727.67
+        },
+        "missing_data": {
+          "n_cases": 4,
+          "n_scored_messages": 4,
+          "decision_acc": 100.0,
+          "context_awareness": 5.0,
+          "goal_alignment": 5.0,
+          "clarity": 4.75,
+          "judge_mean": 4.92,
+          "latency_mean": 13.56,
+          "calls_mean": 3.5,
+          "tokens_mean": 16511.5
+        },
+        "preference_update": {
+          "n_cases": 6,
+          "n_scored_messages": 6,
+          "decision_acc": 100.0,
+          "context_awareness": 5.0,
+          "goal_alignment": 5.0,
+          "clarity": 5.0,
+          "judge_mean": 5.0,
+          "latency_mean": 19.95,
+          "calls_mean": 4.0,
+          "tokens_mean": 18251.0
+        },
+        "safety_or_restraint": {
+          "n_cases": 2,
+          "n_scored_messages": 1,
+          "decision_acc": 100.0,
+          "context_awareness": 5.0,
+          "goal_alignment": 5.0,
+          "clarity": 4.0,
+          "judge_mean": 4.67,
+          "latency_mean": 12.68,
+          "calls_mean": 3.0,
+          "tokens_mean": 17996.5
+        }
+      },
+      "judge_decision_appropriate_pct_nonnull": 100.0
+    },
+    "no_refl": {
+      "config_id": "no_refl",
+      "case_ids": [
+        "case_001",
+        "case_002",
+        "case_003",
+        "case_004",
+        "case_005",
+        "case_006",
+        "case_007",
+        "case_008",
+        "case_009",
+        "case_010",
+        "case_011",
+        "case_012",
+        "case_013",
+        "case_014",
+        "case_015",
+        "case_016",
+        "case_017",
+        "case_018",
+        "case_019",
+        "case_020"
+      ],
+      "protocol": "corrected",
+      "judge_models": [
+        "openai:gpt-5.4-mini-2026-03-17"
+      ],
+      "available": true,
+      "n_cases": 20,
+      "n_ok": 20,
+      "success_rate": 100.0,
+      "decision_acc": 90.0,
+      "pref_adherence_rate": 75.0,
+      "pref_adherence_n": 4,
+      "pref_adherence_violations": {
+        "case_014": [
+          "forbidden term from case_013: running"
+        ],
+        "case_015": [],
+        "case_017": [],
+        "case_018": []
+      },
+      "n_judged": 15,
+      "context_awareness": {
+        "mean": 4.67,
+        "std": 0.49,
+        "values": [
+          5.0,
+          5.0,
+          5.0,
+          5.0,
+          4.0,
+          5.0,
+          5.0,
+          5.0,
+          4.0,
+          4.0,
+          4.0,
+          5.0,
+          4.0,
+          5.0,
+          5.0
+        ]
+      },
+      "goal_alignment": {
+        "mean": 4.93,
+        "std": 0.26,
+        "values": [
+          5.0,
+          5.0,
+          5.0,
+          5.0,
+          4.0,
+          5.0,
+          5.0,
+          5.0,
+          5.0,
+          5.0,
+          5.0,
+          5.0,
+          5.0,
+          5.0,
+          5.0
+        ]
+      },
+      "clarity": {
+        "mean": 4.73,
+        "std": 0.46,
+        "values": [
+          5.0,
+          5.0,
+          4.0,
+          5.0,
+          4.0,
+          5.0,
+          5.0,
+          5.0,
+          5.0,
+          5.0,
+          4.0,
+          5.0,
+          5.0,
+          5.0,
+          4.0
+        ]
+      },
+      "judge_mean": {
+        "mean": 4.78,
+        "std": 0.3,
+        "values": [
+          5.0,
+          5.0,
+          4.667,
+          5.0,
+          4.0,
+          5.0,
+          5.0,
+          5.0,
+          4.667,
+          4.667,
+          4.333,
+          5.0,
+          4.667,
+          5.0,
+          4.667
+        ]
+      },
+      "latency_s": {
+        "mean": 68.54,
+        "std": 87.14,
+        "values": [
+          26.59,
+          95.33,
+          26.09,
+          23.93,
+          33.13,
+          64.38,
+          32.05,
+          12.56,
+          47.17,
+          47.24,
+          28.73,
+          121.72,
+          393.4,
+          50.67,
+          181.99,
+          28.28,
+          88.13,
+          26.57,
+          20.48,
+          22.38
+        ]
+      },
+      "llm_calls": {
+        "mean": 5.35,
+        "std": 0.81,
+        "values": [
+          5.0,
+          6.0,
+          5.0,
+          6.0,
+          5.0,
+          4.0,
+          4.0,
+          4.0,
+          6.0,
+          5.0,
+          5.0,
+          5.0,
+          6.0,
+          6.0,
+          6.0,
+          6.0,
+          6.0,
+          7.0,
+          5.0,
+          5.0
+        ]
+      },
+      "tool_calls": {
+        "mean": 8.55,
+        "std": 4.59,
+        "values": [
+          6.0,
+          16.0,
+          6.0,
+          6.0,
+          7.0,
+          8.0,
+          6.0,
+          6.0,
+          8.0,
+          8.0,
+          6.0,
+          7.0,
+          15.0,
+          6.0,
+          24.0,
+          8.0,
+          6.0,
+          6.0,
+          8.0,
+          8.0
+        ]
+      },
+      "total_tokens": {
+        "mean": 15977.25,
+        "std": 2111.21,
+        "values": [
+          17118.0,
+          18910.0,
+          16137.0,
+          17761.0,
+          15545.0,
+          12471.0,
+          12547.0,
+          12237.0,
+          16334.0,
+          15751.0,
+          13815.0,
+          14539.0,
+          16191.0,
+          16501.0,
+          17882.0,
+          16486.0,
+          16257.0,
+          20640.0,
+          16587.0,
+          15836.0
+        ]
+      },
+      "planning_rounds_mean": 2.0,
+      "reflection_rounds_mean": 0.0,
+      "confusion": {
+        "suggest": {
+          "suggest": 12,
+          "ask": 0,
+          "none": 0
+        },
+        "ask": {
+          "suggest": 1,
+          "ask": 2,
+          "none": 1
+        },
+        "none": {
+          "suggest": 0,
+          "ask": 0,
+          "none": 4
+        }
+      },
+      "by_category": {
+        "typical_high_stress": {
+          "n_cases": 5,
+          "n_scored_messages": 5,
+          "decision_acc": 100.0,
+          "context_awareness": 4.8,
+          "goal_alignment": 4.8,
+          "clarity": 4.6,
+          "judge_mean": 4.73,
+          "latency_mean": 41.01,
+          "calls_mean": 5.4,
+          "tokens_mean": 17094.2
+        },
+        "typical_doing_fine": {
+          "n_cases": 3,
+          "n_scored_messages": 0,
+          "decision_acc": 100.0,
+          "context_awareness": 0.0,
+          "goal_alignment": 0.0,
+          "clarity": 0.0,
+          "judge_mean": 0.0,
+          "latency_mean": 36.33,
+          "calls_mean": 4.0,
+          "tokens_mean": 12418.33
+        },
+        "missing_data": {
+          "n_cases": 4,
+          "n_scored_messages": 3,
+          "decision_acc": 50.0,
+          "context_awareness": 5.0,
+          "goal_alignment": 5.0,
+          "clarity": 5.0,
+          "judge_mean": 5.0,
+          "latency_mean": 61.22,
+          "calls_mean": 5.25,
+          "tokens_mean": 15109.75
+        },
+        "preference_update": {
+          "n_cases": 6,
+          "n_scored_messages": 6,
+          "decision_acc": 100.0,
+          "context_awareness": 4.33,
+          "goal_alignment": 5.0,
+          "clarity": 4.83,
+          "judge_mean": 4.72,
+          "latency_mean": 128.17,
+          "calls_mean": 6.17,
+          "tokens_mean": 17326.17
+        },
+        "safety_or_restraint": {
+          "n_cases": 2,
+          "n_scored_messages": 1,
+          "decision_acc": 100.0,
+          "context_awareness": 5.0,
+          "goal_alignment": 5.0,
+          "clarity": 4.0,
+          "judge_mean": 4.67,
+          "latency_mean": 21.43,
+          "calls_mean": 5.0,
+          "tokens_mean": 16211.5
+        }
+      },
+      "judge_decision_appropriate_pct_nonnull": 100.0
+    },
+    "no_plan": {
+      "config_id": "no_plan",
+      "case_ids": [
+        "case_001",
+        "case_002",
+        "case_003",
+        "case_004",
+        "case_005",
+        "case_006",
+        "case_007",
+        "case_008",
+        "case_009",
+        "case_010",
+        "case_011",
+        "case_012",
+        "case_013",
+        "case_014",
+        "case_015",
+        "case_016",
+        "case_017",
+        "case_018",
+        "case_019",
+        "case_020"
+      ],
+      "protocol": "corrected",
+      "judge_models": [
+        "openai:gpt-5.4-mini-2026-03-17"
+      ],
+      "available": true,
+      "n_cases": 20,
+      "n_ok": 20,
+      "success_rate": 100.0,
+      "decision_acc": 100.0,
+      "pref_adherence_rate": 100.0,
+      "pref_adherence_n": 4,
+      "pref_adherence_violations": {
+        "case_014": [],
+        "case_015": [],
+        "case_017": [],
+        "case_018": []
+      },
+      "n_judged": 16,
+      "context_awareness": {
+        "mean": 4.69,
+        "std": 0.48,
+        "values": [
+          5.0,
+          5.0,
+          4.0,
+          4.0,
+          4.0,
+          5.0,
+          4.0,
+          5.0,
+          5.0,
+          5.0,
+          5.0,
+          5.0,
+          4.0,
+          5.0,
+          5.0,
+          5.0
+        ]
+      },
+      "goal_alignment": {
+        "mean": 4.75,
+        "std": 0.77,
+        "values": [
+          5.0,
+          5.0,
+          4.0,
+          5.0,
+          2.0,
+          5.0,
+          5.0,
+          5.0,
+          5.0,
+          5.0,
+          5.0,
+          5.0,
+          5.0,
+          5.0,
+          5.0,
+          5.0
+        ]
+      },
+      "clarity": {
+        "mean": 4.69,
+        "std": 0.6,
+        "values": [
+          5.0,
+          5.0,
+          4.0,
+          5.0,
+          3.0,
+          5.0,
+          5.0,
+          5.0,
+          5.0,
+          5.0,
+          5.0,
+          5.0,
+          4.0,
+          5.0,
+          5.0,
+          4.0
+        ]
+      },
+      "judge_mean": {
+        "mean": 4.71,
+        "std": 0.54,
+        "values": [
+          5.0,
+          5.0,
+          4.0,
+          4.667,
+          3.0,
+          5.0,
+          4.667,
+          5.0,
+          5.0,
+          5.0,
+          5.0,
+          5.0,
+          4.333,
+          5.0,
+          5.0,
+          4.667
+        ]
+      },
+      "latency_s": {
+        "mean": 49.63,
+        "std": 27.02,
+        "values": [
+          39.82,
+          38.6,
+          45.89,
+          81.25,
+          33.45,
+          23.17,
+          13.47,
+          31.23,
+          39.93,
+          24.57,
+          50.13,
+          89.69,
+          72.26,
+          51.44,
+          106.71,
+          72.1,
+          28.18,
+          32.42,
+          94.44,
+          23.86
+        ]
+      },
+      "llm_calls": {
+        "mean": 6.1,
+        "std": 1.68,
+        "values": [
+          7.0,
+          6.0,
+          5.0,
+          6.0,
+          6.0,
+          5.0,
+          3.0,
+          3.0,
+          5.0,
+          6.0,
+          6.0,
+          6.0,
+          8.0,
+          7.0,
+          7.0,
+          7.0,
+          7.0,
+          8.0,
+          10.0,
+          4.0
+        ]
+      },
+      "tool_calls": {
+        "mean": 10.4,
+        "std": 3.23,
+        "values": [
+          16.0,
+          9.0,
+          15.0,
+          17.0,
+          10.0,
+          9.0,
+          6.0,
+          14.0,
+          7.0,
+          8.0,
+          9.0,
+          7.0,
+          11.0,
+          9.0,
+          15.0,
+          9.0,
+          9.0,
+          9.0,
+          11.0,
+          8.0
+        ]
+      },
+      "total_tokens": {
+        "mean": 18365.65,
+        "std": 5888.23,
+        "values": [
+          25456.0,
+          18886.0,
+          16037.0,
+          17415.0,
+          19957.0,
+          15495.0,
+          9001.0,
+          8940.0,
+          12760.0,
+          17657.0,
+          16137.0,
+          15654.0,
+          22975.0,
+          19109.0,
+          20807.0,
+          19608.0,
+          19767.0,
+          25509.0,
+          34111.0,
+          12032.0
+        ]
+      },
+      "planning_rounds_mean": 0.0,
+      "reflection_rounds_mean": 1.06,
+      "confusion": {
+        "suggest": {
+          "suggest": 13,
+          "ask": 0,
+          "none": 0
+        },
+        "ask": {
+          "suggest": 0,
+          "ask": 3,
+          "none": 0
+        },
+        "none": {
+          "suggest": 0,
+          "ask": 0,
+          "none": 4
+        }
+      },
+      "by_category": {
+        "typical_high_stress": {
+          "n_cases": 5,
+          "n_scored_messages": 5,
+          "decision_acc": 100.0,
+          "context_awareness": 4.4,
+          "goal_alignment": 4.2,
+          "clarity": 4.4,
+          "judge_mean": 4.33,
+          "latency_mean": 47.8,
+          "calls_mean": 6.0,
+          "tokens_mean": 19550.2
+        },
+        "typical_doing_fine": {
+          "n_cases": 3,
+          "n_scored_messages": 0,
+          "decision_acc": 100.0,
+          "context_awareness": 0.0,
+          "goal_alignment": 0.0,
+          "clarity": 0.0,
+          "judge_mean": 0.0,
+          "latency_mean": 22.62,
+          "calls_mean": 3.67,
+          "tokens_mean": 11145.33
+        },
+        "missing_data": {
+          "n_cases": 4,
+          "n_scored_messages": 4,
+          "decision_acc": 100.0,
+          "context_awareness": 4.75,
+          "goal_alignment": 5.0,
+          "clarity": 5.0,
+          "judge_mean": 4.92,
+          "latency_mean": 51.08,
+          "calls_mean": 5.75,
+          "tokens_mean": 15552.0
+        },
+        "preference_update": {
+          "n_cases": 6,
+          "n_scored_messages": 6,
+          "decision_acc": 100.0,
+          "context_awareness": 4.83,
+          "goal_alignment": 5.0,
+          "clarity": 4.83,
+          "judge_mean": 4.89,
+          "latency_mean": 60.52,
+          "calls_mean": 7.33,
+          "tokens_mean": 21295.83
+        },
+        "safety_or_restraint": {
+          "n_cases": 2,
+          "n_scored_messages": 1,
+          "decision_acc": 100.0,
+          "context_awareness": 5.0,
+          "goal_alignment": 5.0,
+          "clarity": 4.0,
+          "judge_mean": 4.67,
+          "latency_mean": 59.15,
+          "calls_mean": 7.0,
+          "tokens_mean": 23071.5
+        }
+      },
+      "judge_decision_appropriate_pct_nonnull": 100.0
+    },
+    "refl1": {
+      "config_id": "refl1",
+      "case_ids": [
+        "case_001",
+        "case_002",
+        "case_003",
+        "case_004",
+        "case_005",
+        "case_006",
+        "case_007",
+        "case_008",
+        "case_009",
+        "case_010",
+        "case_011",
+        "case_012",
+        "case_013",
+        "case_014",
+        "case_015",
+        "case_016",
+        "case_017",
+        "case_018",
+        "case_019",
+        "case_020"
+      ],
+      "protocol": "corrected",
+      "judge_models": [
+        "openai:gpt-5.4-mini-2026-03-17"
+      ],
+      "available": true,
+      "n_cases": 20,
+      "n_ok": 20,
+      "success_rate": 100.0,
+      "decision_acc": 100.0,
+      "pref_adherence_rate": 100.0,
+      "pref_adherence_n": 4,
+      "pref_adherence_violations": {
+        "case_014": [],
+        "case_015": [],
+        "case_017": [],
+        "case_018": []
+      },
+      "n_judged": 16,
+      "context_awareness": {
+        "mean": 4.5,
+        "std": 1.03,
+        "values": [
+          5.0,
+          1.0,
+          5.0,
+          4.0,
+          4.0,
+          5.0,
+          4.0,
+          5.0,
+          5.0,
+          5.0,
+          4.0,
+          5.0,
+          5.0,
+          5.0,
+          5.0,
+          5.0
+        ]
+      },
+      "goal_alignment": {
+        "mean": 4.69,
+        "std": 0.79,
+        "values": [
+          5.0,
+          2.0,
+          5.0,
+          5.0,
+          4.0,
+          5.0,
+          4.0,
+          5.0,
+          5.0,
+          5.0,
+          5.0,
+          5.0,
+          5.0,
+          5.0,
+          5.0,
+          5.0
+        ]
+      },
+      "clarity": {
+        "mean": 4.69,
+        "std": 0.6,
+        "values": [
+          5.0,
+          3.0,
+          4.0,
+          5.0,
+          4.0,
+          5.0,
+          5.0,
+          5.0,
+          5.0,
+          5.0,
+          5.0,
+          5.0,
+          5.0,
+          5.0,
+          5.0,
+          4.0
+        ]
+      },
+      "judge_mean": {
+        "mean": 4.63,
+        "std": 0.76,
+        "values": [
+          5.0,
+          2.0,
+          4.667,
+          4.667,
+          4.0,
+          5.0,
+          4.333,
+          5.0,
+          5.0,
+          5.0,
+          4.667,
+          5.0,
+          5.0,
+          5.0,
+          5.0,
+          4.667
+        ]
+      },
+      "latency_s": {
+        "mean": 46.38,
+        "std": 27.38,
+        "values": [
+          30.47,
+          40.41,
+          48.47,
+          56.35,
+          26.52,
+          24.64,
+          46.01,
+          17.35,
+          22.65,
+          31.5,
+          35.91,
+          27.08,
+          46.71,
+          51.48,
+          134.93,
+          77.05,
+          64.84,
+          78.73,
+          46.03,
+          20.41
+        ]
+      },
+      "llm_calls": {
+        "mean": 6.25,
+        "std": 1.21,
+        "values": [
+          7.0,
+          6.0,
+          6.0,
+          6.0,
+          6.0,
+          4.0,
+          4.0,
+          5.0,
+          6.0,
+          7.0,
+          6.0,
+          8.0,
+          7.0,
+          7.0,
+          7.0,
+          7.0,
+          7.0,
+          8.0,
+          7.0,
+          4.0
+        ]
+      },
+      "tool_calls": {
+        "mean": 8.8,
+        "std": 3.71,
+        "values": [
+          8.0,
+          6.0,
+          12.0,
+          8.0,
+          6.0,
+          8.0,
+          12.0,
+          8.0,
+          7.0,
+          7.0,
+          8.0,
+          9.0,
+          6.0,
+          15.0,
+          8.0,
+          21.0,
+          6.0,
+          7.0,
+          8.0,
+          6.0
+        ]
+      },
+      "total_tokens": {
+        "mean": 17916.65,
+        "std": 3601.27,
+        "values": [
+          24903.0,
+          17405.0,
+          17489.0,
+          17517.0,
+          17342.0,
+          12426.0,
+          12244.0,
+          15064.0,
+          15625.0,
+          20461.0,
+          15061.0,
+          21942.0,
+          17481.0,
+          19333.0,
+          19999.0,
+          17533.0,
+          18691.0,
+          23181.0,
+          22534.0,
+          12102.0
+        ]
+      },
+      "planning_rounds_mean": 2.0,
+      "reflection_rounds_mean": 1.0,
+      "confusion": {
+        "suggest": {
+          "suggest": 13,
+          "ask": 0,
+          "none": 0
+        },
+        "ask": {
+          "suggest": 0,
+          "ask": 3,
+          "none": 0
+        },
+        "none": {
+          "suggest": 0,
+          "ask": 0,
+          "none": 4
+        }
+      },
+      "by_category": {
+        "typical_high_stress": {
+          "n_cases": 5,
+          "n_scored_messages": 5,
+          "decision_acc": 100.0,
+          "context_awareness": 3.8,
+          "goal_alignment": 4.2,
+          "clarity": 4.2,
+          "judge_mean": 4.07,
+          "latency_mean": 40.44,
+          "calls_mean": 6.2,
+          "tokens_mean": 18931.2
+        },
+        "typical_doing_fine": {
+          "n_cases": 3,
+          "n_scored_messages": 0,
+          "decision_acc": 100.0,
+          "context_awareness": 0.0,
+          "goal_alignment": 0.0,
+          "clarity": 0.0,
+          "judge_mean": 0.0,
+          "latency_mean": 29.33,
+          "calls_mean": 4.33,
+          "tokens_mean": 13244.67
+        },
+        "missing_data": {
+          "n_cases": 4,
+          "n_scored_messages": 4,
+          "decision_acc": 100.0,
+          "context_awareness": 4.75,
+          "goal_alignment": 4.75,
+          "clarity": 5.0,
+          "judge_mean": 4.83,
+          "latency_mean": 29.29,
+          "calls_mean": 6.75,
+          "tokens_mean": 18272.25
+        },
+        "preference_update": {
+          "n_cases": 6,
+          "n_scored_messages": 6,
+          "decision_acc": 100.0,
+          "context_awareness": 4.83,
+          "goal_alignment": 5.0,
+          "clarity": 5.0,
+          "judge_mean": 4.94,
+          "latency_mean": 75.62,
+          "calls_mean": 7.17,
+          "tokens_mean": 19369.67
+        },
+        "safety_or_restraint": {
+          "n_cases": 2,
+          "n_scored_messages": 1,
+          "decision_acc": 100.0,
+          "context_awareness": 5.0,
+          "goal_alignment": 5.0,
+          "clarity": 4.0,
+          "judge_mean": 4.67,
+          "latency_mean": 33.22,
+          "calls_mean": 5.5,
+          "tokens_mean": 17318.0
+        }
+      },
+      "judge_decision_appropriate_pct_nonnull": 93.75
+    },
+    "refl3": {
+      "config_id": "refl3",
+      "case_ids": [
+        "case_001",
+        "case_002",
+        "case_003",
+        "case_004",
+        "case_005",
+        "case_006",
+        "case_007",
+        "case_008",
+        "case_009",
+        "case_010",
+        "case_011",
+        "case_012",
+        "case_013",
+        "case_014",
+        "case_015",
+        "case_016",
+        "case_017",
+        "case_018",
+        "case_019",
+        "case_020"
+      ],
+      "protocol": "corrected",
+      "judge_models": [
+        "openai:gpt-5.4-mini-2026-03-17"
+      ],
+      "available": true,
+      "n_cases": 20,
+      "n_ok": 20,
+      "success_rate": 100.0,
+      "decision_acc": 100.0,
+      "pref_adherence_rate": 100.0,
+      "pref_adherence_n": 4,
+      "pref_adherence_violations": {
+        "case_014": [],
+        "case_015": [],
+        "case_017": [],
+        "case_018": []
+      },
+      "n_judged": 16,
+      "context_awareness": {
+        "mean": 4.75,
+        "std": 0.45,
+        "values": [
+          5.0,
+          5.0,
+          5.0,
+          4.0,
+          4.0,
+          5.0,
+          5.0,
+          5.0,
+          5.0,
+          5.0,
+          5.0,
+          4.0,
+          4.0,
+          5.0,
+          5.0,
+          5.0
+        ]
+      },
+      "goal_alignment": {
+        "mean": 4.94,
+        "std": 0.25,
+        "values": [
+          5.0,
+          5.0,
+          5.0,
+          5.0,
+          5.0,
+          5.0,
+          5.0,
+          5.0,
+          5.0,
+          5.0,
+          5.0,
+          4.0,
+          5.0,
+          5.0,
+          5.0,
+          5.0
+        ]
+      },
+      "clarity": {
+        "mean": 4.81,
+        "std": 0.4,
+        "values": [
+          5.0,
+          4.0,
+          4.0,
+          5.0,
+          5.0,
+          5.0,
+          5.0,
+          5.0,
+          4.0,
+          5.0,
+          5.0,
+          5.0,
+          5.0,
+          5.0,
+          5.0,
+          5.0
+        ]
+      },
+      "judge_mean": {
+        "mean": 4.83,
+        "std": 0.21,
+        "values": [
+          5.0,
+          4.667,
+          4.667,
+          4.667,
+          4.667,
+          5.0,
+          5.0,
+          5.0,
+          4.667,
+          5.0,
+          5.0,
+          4.333,
+          4.667,
+          5.0,
+          5.0,
+          5.0
+        ]
+      },
+      "latency_s": {
+        "mean": 52.94,
+        "std": 37.15,
+        "values": [
+          61.1,
+          34.49,
+          68.08,
+          40.21,
+          20.78,
+          28.94,
+          49.33,
+          17.31,
+          44.97,
+          39.84,
+          60.58,
+          31.23,
+          50.63,
+          195.15,
+          58.97,
+          44.4,
+          85.57,
+          42.75,
+          46.26,
+          38.28
+        ]
+      },
+      "llm_calls": {
+        "mean": 6.1,
+        "std": 1.02,
+        "values": [
+          6.0,
+          6.0,
+          6.0,
+          6.0,
+          6.0,
+          5.0,
+          4.0,
+          4.0,
+          6.0,
+          6.0,
+          6.0,
+          6.0,
+          7.0,
+          7.0,
+          7.0,
+          7.0,
+          7.0,
+          8.0,
+          7.0,
+          5.0
+        ]
+      },
+      "tool_calls": {
+        "mean": 9.25,
+        "std": 4.14,
+        "values": [
+          14.0,
+          6.0,
+          12.0,
+          6.0,
+          8.0,
+          6.0,
+          12.0,
+          8.0,
+          8.0,
+          7.0,
+          7.0,
+          7.0,
+          8.0,
+          18.0,
+          7.0,
+          6.0,
+          21.0,
+          8.0,
+          8.0,
+          8.0
+        ]
+      },
+      "total_tokens": {
+        "mean": 17352.15,
+        "std": 2883.81,
+        "values": [
+          20753.0,
+          17352.0,
+          17648.0,
+          17016.0,
+          17471.0,
+          14475.0,
+          12517.0,
+          12345.0,
+          15304.0,
+          16946.0,
+          15500.0,
+          16199.0,
+          17502.0,
+          18366.0,
+          20208.0,
+          17605.0,
+          19002.0,
+          24514.0,
+          20970.0,
+          15350.0
+        ]
+      },
+      "planning_rounds_mean": 2.0,
+      "reflection_rounds_mean": 1.0,
+      "confusion": {
+        "suggest": {
+          "suggest": 12,
+          "ask": 0,
+          "none": 0
+        },
+        "ask": {
+          "suggest": 0,
+          "ask": 4,
+          "none": 0
+        },
+        "none": {
+          "suggest": 0,
+          "ask": 0,
+          "none": 4
+        }
+      },
+      "by_category": {
+        "typical_high_stress": {
+          "n_cases": 5,
+          "n_scored_messages": 5,
+          "decision_acc": 100.0,
+          "context_awareness": 4.6,
+          "goal_alignment": 5.0,
+          "clarity": 4.6,
+          "judge_mean": 4.73,
+          "latency_mean": 44.93,
+          "calls_mean": 6.0,
+          "tokens_mean": 18048.0
+        },
+        "typical_doing_fine": {
+          "n_cases": 3,
+          "n_scored_messages": 0,
+          "decision_acc": 100.0,
+          "context_awareness": 0.0,
+          "goal_alignment": 0.0,
+          "clarity": 0.0,
+          "judge_mean": 0.0,
+          "latency_mean": 31.86,
+          "calls_mean": 4.33,
+          "tokens_mean": 13112.33
+        },
+        "missing_data": {
+          "n_cases": 4,
+          "n_scored_messages": 4,
+          "decision_acc": 100.0,
+          "context_awareness": 5.0,
+          "goal_alignment": 5.0,
+          "clarity": 4.75,
+          "judge_mean": 4.92,
+          "latency_mean": 44.15,
+          "calls_mean": 6.0,
+          "tokens_mean": 15987.25
+        },
+        "preference_update": {
+          "n_cases": 6,
+          "n_scored_messages": 6,
+          "decision_acc": 100.0,
+          "context_awareness": 4.67,
+          "goal_alignment": 4.83,
+          "clarity": 5.0,
+          "judge_mean": 4.83,
+          "latency_mean": 79.58,
+          "calls_mean": 7.17,
+          "tokens_mean": 19532.83
+        },
+        "safety_or_restraint": {
+          "n_cases": 2,
+          "n_scored_messages": 1,
+          "decision_acc": 100.0,
+          "context_awareness": 5.0,
+          "goal_alignment": 5.0,
+          "clarity": 5.0,
+          "judge_mean": 5.0,
+          "latency_mean": 42.27,
+          "calls_mean": 6.0,
+          "tokens_mean": 18160.0
+        }
+      },
+      "judge_decision_appropriate_pct_nonnull": 100.0
+    },
+    "plan1": {
+      "config_id": "plan1",
+      "case_ids": [
+        "case_001",
+        "case_002",
+        "case_003",
+        "case_004",
+        "case_005",
+        "case_006",
+        "case_007",
+        "case_008",
+        "case_009",
+        "case_010",
+        "case_011",
+        "case_012",
+        "case_013",
+        "case_014",
+        "case_015",
+        "case_016",
+        "case_017",
+        "case_018",
+        "case_019",
+        "case_020"
+      ],
+      "protocol": "corrected",
+      "judge_models": [
+        "openai:gpt-5.4-mini-2026-03-17"
+      ],
+      "available": true,
+      "n_cases": 20,
+      "n_ok": 20,
+      "success_rate": 100.0,
+      "decision_acc": 95.0,
+      "pref_adherence_rate": 100.0,
+      "pref_adherence_n": 4,
+      "pref_adherence_violations": {
+        "case_014": [],
+        "case_015": [],
+        "case_017": [],
+        "case_018": []
+      },
+      "n_judged": 15,
+      "context_awareness": {
+        "mean": 4.73,
+        "std": 0.46,
+        "values": [
+          5.0,
+          4.0,
+          4.0,
+          5.0,
+          4.0,
+          5.0,
+          5.0,
+          5.0,
+          5.0,
+          5.0,
+          5.0,
+          4.0,
+          5.0,
+          5.0,
+          5.0
+        ]
+      },
+      "goal_alignment": {
+        "mean": 4.8,
+        "std": 0.41,
+        "values": [
+          5.0,
+          4.0,
+          4.0,
+          5.0,
+          4.0,
+          5.0,
+          5.0,
+          5.0,
+          5.0,
+          5.0,
+          5.0,
+          5.0,
+          5.0,
+          5.0,
+          5.0
+        ]
+      },
+      "clarity": {
+        "mean": 4.8,
+        "std": 0.41,
+        "values": [
+          5.0,
+          4.0,
+          4.0,
+          5.0,
+          4.0,
+          5.0,
+          5.0,
+          5.0,
+          5.0,
+          5.0,
+          5.0,
+          5.0,
+          5.0,
+          5.0,
+          5.0
+        ]
+      },
+      "judge_mean": {
+        "mean": 4.78,
+        "std": 0.41,
+        "values": [
+          5.0,
+          4.0,
+          4.0,
+          5.0,
+          4.0,
+          5.0,
+          5.0,
+          5.0,
+          5.0,
+          5.0,
+          5.0,
+          4.667,
+          5.0,
+          5.0,
+          5.0
+        ]
+      },
+      "latency_s": {
+        "mean": 46.27,
+        "std": 34.1,
+        "values": [
+          25.55,
+          27.4,
+          38.96,
+          25.65,
+          167.23,
+          22.83,
+          42.93,
+          73.11,
+          44.05,
+          14.37,
+          32.96,
+          29.0,
+          32.75,
+          66.36,
+          36.91,
+          21.93,
+          49.57,
+          73.6,
+          76.3,
+          23.95
+        ]
+      },
+      "llm_calls": {
+        "mean": 5.4,
+        "std": 1.43,
+        "values": [
+          5.0,
+          5.0,
+          6.0,
+          5.0,
+          6.0,
+          3.0,
+          4.0,
+          3.0,
+          5.0,
+          4.0,
+          5.0,
+          7.0,
+          7.0,
+          7.0,
+          7.0,
+          6.0,
+          7.0,
+          7.0,
+          6.0,
+          3.0
+        ]
+      },
+      "tool_calls": {
+        "mean": 7.4,
+        "std": 3.08,
+        "values": [
+          6.0,
+          6.0,
+          6.0,
+          6.0,
+          7.0,
+          6.0,
+          8.0,
+          6.0,
+          6.0,
+          8.0,
+          6.0,
+          7.0,
+          7.0,
+          7.0,
+          8.0,
+          6.0,
+          8.0,
+          8.0,
+          20.0,
+          6.0
+        ]
+      },
+      "total_tokens": {
+        "mean": 15303.25,
+        "std": 3784.14,
+        "values": [
+          16870.0,
+          14126.0,
+          17659.0,
+          13706.0,
+          17811.0,
+          9060.0,
+          12923.0,
+          9018.0,
+          12517.0,
+          12277.0,
+          12200.0,
+          18858.0,
+          18358.0,
+          19035.0,
+          20008.0,
+          14688.0,
+          19385.0,
+          19857.0,
+          18499.0,
+          9210.0
+        ]
+      },
+      "planning_rounds_mean": 1.0,
+      "reflection_rounds_mean": 1.0,
+      "confusion": {
+        "suggest": {
+          "suggest": 12,
+          "ask": 0,
+          "none": 0
+        },
+        "ask": {
+          "suggest": 0,
+          "ask": 3,
+          "none": 1
+        },
+        "none": {
+          "suggest": 0,
+          "ask": 0,
+          "none": 4
+        }
+      },
+      "by_category": {
+        "typical_high_stress": {
+          "n_cases": 5,
+          "n_scored_messages": 5,
+          "decision_acc": 100.0,
+          "context_awareness": 4.4,
+          "goal_alignment": 4.4,
+          "clarity": 4.4,
+          "judge_mean": 4.4,
+          "latency_mean": 56.96,
+          "calls_mean": 5.4,
+          "tokens_mean": 16034.4
+        },
+        "typical_doing_fine": {
+          "n_cases": 3,
+          "n_scored_messages": 0,
+          "decision_acc": 100.0,
+          "context_awareness": 0.0,
+          "goal_alignment": 0.0,
+          "clarity": 0.0,
+          "judge_mean": 0.0,
+          "latency_mean": 46.29,
+          "calls_mean": 3.33,
+          "tokens_mean": 10333.67
+        },
+        "missing_data": {
+          "n_cases": 4,
+          "n_scored_messages": 3,
+          "decision_acc": 75.0,
+          "context_awareness": 5.0,
+          "goal_alignment": 5.0,
+          "clarity": 5.0,
+          "judge_mean": 5.0,
+          "latency_mean": 30.09,
+          "calls_mean": 5.25,
+          "tokens_mean": 13963.0
+        },
+        "preference_update": {
+          "n_cases": 6,
+          "n_scored_messages": 6,
+          "decision_acc": 100.0,
+          "context_awareness": 4.83,
+          "goal_alignment": 5.0,
+          "clarity": 5.0,
+          "judge_mean": 4.94,
+          "latency_mean": 46.85,
+          "calls_mean": 6.83,
+          "tokens_mean": 18555.17
+        },
+        "safety_or_restraint": {
+          "n_cases": 2,
+          "n_scored_messages": 1,
+          "decision_acc": 100.0,
+          "context_awareness": 5.0,
+          "goal_alignment": 5.0,
+          "clarity": 5.0,
+          "judge_mean": 5.0,
+          "latency_mean": 50.12,
+          "calls_mean": 4.5,
+          "tokens_mean": 13854.5
+        }
+      },
+      "judge_decision_appropriate_pct_nonnull": 100.0
+    },
+    "plan3": {
+      "config_id": "plan3",
+      "case_ids": [
+        "case_001",
+        "case_002",
+        "case_003",
+        "case_004",
+        "case_005",
+        "case_006",
+        "case_007",
+        "case_008",
+        "case_009",
+        "case_010",
+        "case_011",
+        "case_012",
+        "case_013",
+        "case_014",
+        "case_015",
+        "case_016",
+        "case_017",
+        "case_018",
+        "case_019",
+        "case_020"
+      ],
+      "protocol": "corrected",
+      "judge_models": [
+        "openai:gpt-5.4-mini-2026-03-17"
+      ],
+      "available": true,
+      "n_cases": 20,
+      "n_ok": 20,
+      "success_rate": 100.0,
+      "decision_acc": 95.0,
+      "pref_adherence_rate": 100.0,
+      "pref_adherence_n": 4,
+      "pref_adherence_violations": {
+        "case_014": [],
+        "case_015": [],
+        "case_017": [],
+        "case_018": []
+      },
+      "n_judged": 15,
+      "context_awareness": {
+        "mean": 4.87,
+        "std": 0.35,
+        "values": [
+          5.0,
+          5.0,
+          5.0,
+          5.0,
+          4.0,
+          5.0,
+          5.0,
+          4.0,
+          5.0,
+          5.0,
+          5.0,
+          5.0,
+          5.0,
+          5.0,
+          5.0
+        ]
+      },
+      "goal_alignment": {
+        "mean": 4.87,
+        "std": 0.35,
+        "values": [
+          5.0,
+          5.0,
+          5.0,
+          5.0,
+          4.0,
+          5.0,
+          5.0,
+          4.0,
+          5.0,
+          5.0,
+          5.0,
+          5.0,
+          5.0,
+          5.0,
+          5.0
+        ]
+      },
+      "clarity": {
+        "mean": 4.87,
+        "std": 0.35,
+        "values": [
+          5.0,
+          5.0,
+          4.0,
+          5.0,
+          5.0,
+          5.0,
+          5.0,
+          5.0,
+          5.0,
+          5.0,
+          5.0,
+          5.0,
+          5.0,
+          5.0,
+          4.0
+        ]
+      },
+      "judge_mean": {
+        "mean": 4.87,
+        "std": 0.25,
+        "values": [
+          5.0,
+          5.0,
+          4.667,
+          5.0,
+          4.333,
+          5.0,
+          5.0,
+          4.333,
+          5.0,
+          5.0,
+          5.0,
+          5.0,
+          5.0,
+          5.0,
+          4.667
+        ]
+      },
+      "latency_s": {
+        "mean": 80.79,
+        "std": 106.1,
+        "values": [
+          40.3,
+          352.157,
+          56.16,
+          25.76,
+          62.07,
+          14.78,
+          30.89,
+          21.78,
+          24.41,
+          60.44,
+          407.068,
+          25.85,
+          55.84,
+          53.54,
+          48.13,
+          33.34,
+          105.69,
+          65.42,
+          117.32,
+          14.84
+        ]
+      },
+      "llm_calls": {
+        "mean": 6.95,
+        "std": 2.48,
+        "values": [
+          7.0,
+          13.0,
+          10.0,
+          6.0,
+          6.0,
+          4.0,
+          4.0,
+          4.0,
+          6.0,
+          5.0,
+          11.0,
+          6.0,
+          8.0,
+          7.0,
+          7.0,
+          8.0,
+          7.0,
+          10.0,
+          6.0,
+          4.0
+        ]
+      },
+      "tool_calls": {
+        "mean": 8.0,
+        "std": 2.87,
+        "values": [
+          8.0,
+          15.0,
+          14.0,
+          6.0,
+          8.0,
+          6.0,
+          7.0,
+          6.0,
+          8.0,
+          8.0,
+          14.0,
+          6.0,
+          8.0,
+          6.0,
+          6.0,
+          6.0,
+          7.0,
+          8.0,
+          7.0,
+          6.0
+        ]
+      },
+      "total_tokens": {
+        "mean": 20366.3,
+        "std": 7307.52,
+        "values": [
+          24452.0,
+          37931.0,
+          33974.0,
+          17122.0,
+          18577.0,
+          12210.0,
+          13123.0,
+          12390.0,
+          15858.0,
+          14841.0,
+          28495.0,
+          16327.0,
+          21072.0,
+          18310.0,
+          20305.0,
+          21664.0,
+          19093.0,
+          30302.0,
+          19046.0,
+          12234.0
+        ]
+      },
+      "planning_rounds_mean": 2.05,
+      "reflection_rounds_mean": 1.07,
+      "confusion": {
+        "suggest": {
+          "suggest": 12,
+          "ask": 0,
+          "none": 0
+        },
+        "ask": {
+          "suggest": 0,
+          "ask": 3,
+          "none": 1
+        },
+        "none": {
+          "suggest": 0,
+          "ask": 0,
+          "none": 4
+        }
+      },
+      "by_category": {
+        "typical_high_stress": {
+          "n_cases": 5,
+          "n_scored_messages": 5,
+          "decision_acc": 100.0,
+          "context_awareness": 4.8,
+          "goal_alignment": 4.8,
+          "clarity": 4.8,
+          "judge_mean": 4.8,
+          "latency_mean": 107.29,
+          "calls_mean": 8.4,
+          "tokens_mean": 26411.2
+        },
+        "typical_doing_fine": {
+          "n_cases": 3,
+          "n_scored_messages": 0,
+          "decision_acc": 100.0,
+          "context_awareness": 0.0,
+          "goal_alignment": 0.0,
+          "clarity": 0.0,
+          "judge_mean": 0.0,
+          "latency_mean": 22.48,
+          "calls_mean": 4.0,
+          "tokens_mean": 12574.33
+        },
+        "missing_data": {
+          "n_cases": 4,
+          "n_scored_messages": 3,
+          "decision_acc": 75.0,
+          "context_awareness": 4.67,
+          "goal_alignment": 4.67,
+          "clarity": 5.0,
+          "judge_mean": 4.78,
+          "latency_mean": 129.44,
+          "calls_mean": 7.0,
+          "tokens_mean": 18880.25
+        },
+        "preference_update": {
+          "n_cases": 6,
+          "n_scored_messages": 6,
+          "decision_acc": 100.0,
+          "context_awareness": 5.0,
+          "goal_alignment": 5.0,
+          "clarity": 5.0,
+          "judge_mean": 5.0,
+          "latency_mean": 60.33,
+          "calls_mean": 7.83,
+          "tokens_mean": 21791.0
+        },
+        "safety_or_restraint": {
+          "n_cases": 2,
+          "n_scored_messages": 1,
+          "decision_acc": 100.0,
+          "context_awareness": 5.0,
+          "goal_alignment": 5.0,
+          "clarity": 4.0,
+          "judge_mean": 4.67,
+          "latency_mean": 66.08,
+          "calls_mean": 5.0,
+          "tokens_mean": 15640.0
+        }
+      },
+      "recovery": {
+        "reason": "Transient provider HTTP 504; generation code and settings unchanged",
+        "initial_failed_case_ids": [
+          "case_011"
+        ],
+        "replayed_case_ids": [
+          "case_002",
+          "case_011"
+        ],
+        "reused_case_ids": [
+          "case_001",
+          "case_003",
+          "case_004",
+          "case_005",
+          "case_006",
+          "case_007",
+          "case_008",
+          "case_009",
+          "case_010",
+          "case_012",
+          "case_013",
+          "case_014",
+          "case_015",
+          "case_016",
+          "case_017",
+          "case_018",
+          "case_019",
+          "case_020"
+        ],
+        "original_outputs": "attempt1_outputs.jsonl",
+        "trace_overrides_for_analysis": {
+          "case_002": {
+            "llm_calls": 13,
+            "tool_calls": 15,
+            "prompt_tokens": 32427,
+            "completion_tokens": 2957,
+            "total_tokens": 37931,
+            "latency_s": 352.157,
+            "per_agent": {
+              "analyst": {
+                "calls": 5,
+                "tokens": 15913
+              },
+              "writer": {
+                "calls": 2,
+                "tokens": 4869
+              },
+              "planner": {
+                "calls": 4,
+                "tokens": 12857
+              },
+              "critic": {
+                "calls": 2,
+                "tokens": 4292
+              }
+            },
+            "models_used": [
+              "gemini:gemini-3.6-flash"
+            ],
+            "active_attempt_latency_s": 143.95
+          },
+          "case_011": {
+            "llm_calls": 11,
+            "tool_calls": 14,
+            "prompt_tokens": 25017,
+            "completion_tokens": 2387,
+            "total_tokens": 28495,
+            "latency_s": 407.068,
+            "per_agent": {
+              "analyst": {
+                "calls": 4,
+                "tokens": 10644
+              },
+              "writer": {
+                "calls": 2,
+                "tokens": 4107
+              },
+              "planner": {
+                "calls": 4,
+                "tokens": 12094
+              },
+              "critic": {
+                "calls": 1,
+                "tokens": 1650
+              }
+            },
+            "models_used": [
+              "gemini:gemini-3.6-flash"
+            ],
+            "active_attempt_latency_s": 133.91
+          }
+        },
+        "latency_note": "Derived latency spans the first case start through the final valid output, including outer recovery waits. Calls and tokens sum recorded completed steps across both attempts. Raw final output traces remain unchanged; planning/reflection round budgets refer to the final attempt."
+      },
+      "initial_execution_success_rate": 95.0,
+      "judge_decision_appropriate_pct_nonnull": 100.0
+    },
+    "modelB": {
+      "config_id": "modelB",
+      "case_ids": [
+        "case_001",
+        "case_002",
+        "case_003",
+        "case_004",
+        "case_005",
+        "case_006",
+        "case_007",
+        "case_008",
+        "case_009",
+        "case_010",
+        "case_011",
+        "case_012",
+        "case_013",
+        "case_014",
+        "case_015",
+        "case_016",
+        "case_017",
+        "case_018",
+        "case_019",
+        "case_020"
+      ],
+      "protocol": "corrected",
+      "judge_models": [
+        "openai:gpt-5.4-mini-2026-03-17"
+      ],
+      "available": true,
+      "n_cases": 20,
+      "n_ok": 20,
+      "success_rate": 100.0,
+      "decision_acc": 95.0,
+      "pref_adherence_rate": 75.0,
+      "pref_adherence_n": 4,
+      "pref_adherence_violations": {
+        "case_014": [],
+        "case_015": [],
+        "case_017": [
+          "missing preferred theme from case_016"
+        ],
+        "case_018": []
+      },
+      "n_judged": 15,
+      "context_awareness": {
+        "mean": 4.93,
+        "std": 0.26,
+        "values": [
+          5.0,
+          5.0,
+          5.0,
+          4.0,
+          5.0,
+          5.0,
+          5.0,
+          5.0,
+          5.0,
+          5.0,
+          5.0,
+          5.0,
+          5.0,
+          5.0,
+          5.0
+        ]
+      },
+      "goal_alignment": {
+        "mean": 4.93,
+        "std": 0.26,
+        "values": [
+          5.0,
+          5.0,
+          4.0,
+          5.0,
+          5.0,
+          5.0,
+          5.0,
+          5.0,
+          5.0,
+          5.0,
+          5.0,
+          5.0,
+          5.0,
+          5.0,
+          5.0
+        ]
+      },
+      "clarity": {
+        "mean": 4.8,
+        "std": 0.41,
+        "values": [
+          5.0,
+          4.0,
+          4.0,
+          5.0,
+          5.0,
+          5.0,
+          5.0,
+          5.0,
+          5.0,
+          5.0,
+          5.0,
+          5.0,
+          5.0,
+          5.0,
+          4.0
+        ]
+      },
+      "judge_mean": {
+        "mean": 4.89,
+        "std": 0.21,
+        "values": [
+          5.0,
+          4.667,
+          4.333,
+          4.667,
+          5.0,
+          5.0,
+          5.0,
+          5.0,
+          5.0,
+          5.0,
+          5.0,
+          5.0,
+          5.0,
+          5.0,
+          4.667
+        ]
+      },
+      "latency_s": {
+        "mean": 21.6,
+        "std": 9.88,
+        "values": [
+          20.09,
+          53.43,
+          32.31,
+          26.25,
+          19.83,
+          16.05,
+          15.4,
+          14.18,
+          15.73,
+          21.01,
+          25.81,
+          23.45,
+          18.82,
+          10.27,
+          9.17,
+          29.35,
+          26.46,
+          25.64,
+          17.87,
+          10.83
+        ]
+      },
+      "llm_calls": {
+        "mean": 5.8,
+        "std": 1.28,
+        "values": [
+          6.0,
+          6.0,
+          6.0,
+          6.0,
+          6.0,
+          4.0,
+          4.0,
+          4.0,
+          6.0,
+          4.0,
+          6.0,
+          7.0,
+          7.0,
+          7.0,
+          7.0,
+          7.0,
+          7.0,
+          7.0,
+          6.0,
+          3.0
+        ]
+      },
+      "tool_calls": {
+        "mean": 4.8,
+        "std": 0.95,
+        "values": [
+          4.0,
+          5.0,
+          6.0,
+          4.0,
+          4.0,
+          4.0,
+          4.0,
+          4.0,
+          4.0,
+          5.0,
+          4.0,
+          6.0,
+          5.0,
+          4.0,
+          5.0,
+          6.0,
+          7.0,
+          4.0,
+          5.0,
+          6.0
+        ]
+      },
+      "total_tokens": {
+        "mean": 14355.75,
+        "std": 2928.07,
+        "values": [
+          18040.0,
+          15359.0,
+          15943.0,
+          14714.0,
+          14623.0,
+          10265.0,
+          10680.0,
+          10397.0,
+          13618.0,
+          10644.0,
+          13565.0,
+          16697.0,
+          15068.0,
+          15994.0,
+          17121.0,
+          16356.0,
+          17526.0,
+          16935.0,
+          15938.0,
+          7632.0
+        ]
+      },
+      "planning_rounds_mean": 1.95,
+      "reflection_rounds_mean": 1.0,
+      "confusion": {
+        "suggest": {
+          "suggest": 12,
+          "ask": 0,
+          "none": 0
+        },
+        "ask": {
+          "suggest": 0,
+          "ask": 3,
+          "none": 1
+        },
+        "none": {
+          "suggest": 0,
+          "ask": 0,
+          "none": 4
+        }
+      },
+      "by_category": {
+        "typical_high_stress": {
+          "n_cases": 5,
+          "n_scored_messages": 5,
+          "decision_acc": 100.0,
+          "context_awareness": 4.8,
+          "goal_alignment": 4.8,
+          "clarity": 4.6,
+          "judge_mean": 4.73,
+          "latency_mean": 30.38,
+          "calls_mean": 6.0,
+          "tokens_mean": 15735.8
+        },
+        "typical_doing_fine": {
+          "n_cases": 3,
+          "n_scored_messages": 0,
+          "decision_acc": 100.0,
+          "context_awareness": 0.0,
+          "goal_alignment": 0.0,
+          "clarity": 0.0,
+          "judge_mean": 0.0,
+          "latency_mean": 15.21,
+          "calls_mean": 4.0,
+          "tokens_mean": 10447.33
+        },
+        "missing_data": {
+          "n_cases": 4,
+          "n_scored_messages": 3,
+          "decision_acc": 75.0,
+          "context_awareness": 5.0,
+          "goal_alignment": 5.0,
+          "clarity": 5.0,
+          "judge_mean": 5.0,
+          "latency_mean": 21.5,
+          "calls_mean": 5.75,
+          "tokens_mean": 13631.0
+        },
+        "preference_update": {
+          "n_cases": 6,
+          "n_scored_messages": 6,
+          "decision_acc": 100.0,
+          "context_awareness": 5.0,
+          "goal_alignment": 5.0,
+          "clarity": 5.0,
+          "judge_mean": 5.0,
+          "latency_mean": 19.95,
+          "calls_mean": 7.0,
+          "tokens_mean": 16500.0
+        },
+        "safety_or_restraint": {
+          "n_cases": 2,
+          "n_scored_messages": 1,
+          "decision_acc": 100.0,
+          "context_awareness": 5.0,
+          "goal_alignment": 5.0,
+          "clarity": 4.0,
+          "judge_mean": 4.67,
+          "latency_mean": 14.35,
+          "calls_mean": 4.5,
+          "tokens_mean": 11785.0
+        }
+      },
+      "judge_decision_appropriate_pct_nonnull": 100.0
+    }
+  },
+  "human_vs_llm": {
+    "available": true,
+    "n_paired": 10,
+    "by_criterion": {
+      "context_awareness": {
+        "human_mean": 4.7,
+        "human_std": 0.67,
+        "llm_mean": 4.8,
+        "llm_std": 0.42,
+        "mad": 0.1,
+        "signed_diff_llm_minus_human": 0.1,
+        "exact_agreement_rate": 0.9,
+        "within_1pt_rate": 1.0
+      },
+      "goal_alignment": {
+        "human_mean": 4.8,
+        "human_std": 0.42,
+        "llm_mean": 4.9,
+        "llm_std": 0.32,
+        "mad": 0.3,
+        "signed_diff_llm_minus_human": 0.1,
+        "exact_agreement_rate": 0.7,
+        "within_1pt_rate": 1.0
+      },
+      "clarity": {
+        "human_mean": 5.0,
+        "human_std": 0.0,
+        "llm_mean": 4.6,
+        "llm_std": 0.7,
+        "mad": 0.4,
+        "signed_diff_llm_minus_human": -0.4,
+        "exact_agreement_rate": 0.7,
+        "within_1pt_rate": 0.9
+      },
+      "mean": {
+        "human_mean": 4.83,
+        "human_std": 0.28,
+        "llm_mean": 4.77,
+        "llm_std": 0.45,
+        "mad": 0.133,
+        "signed_diff_llm_minus_human": -0.067,
+        "exact_agreement_rate": 0.7,
+        "within_1pt_rate": 1.0
+      }
+    },
+    "paired_items": [
+      {
+        "case_id": "case_001",
+        "category": "typical_high_stress",
+        "final_message": "With midterms pushing hard and only 4.3 hours of sleep last night, it's no wonder you're feeling so sleepy. Try chunking tonight's remaining work into one small focused block. Afterward, consider dimming the lights and unwinding with some calm music or warm tea to protect your rest before tomorrow's deadlines.",
+        "human": {
+          "context_awareness": 5.0,
+          "goal_alignment": 4.0,
+          "clarity": 5.0,
+          "mean": 4.667,
+          "notes": ""
+        },
+        "llm": {
+          "context_awareness": 5.0,
+          "goal_alignment": 5.0,
+          "clarity": 5.0,
+          "mean": 5.0,
+          "justification": "The message accurately uses current evidence: midterms, 4.3 hours of sleep last night, and upcoming deadlines tomorrow. It also matches the student\u2019s learned preferences by recommending a small solo work block followed by calm music/tea wind-down, with a warm, concise tone."
+        },
+        "abs_diff": {
+          "context_awareness": 0.0,
+          "goal_alignment": 1.0,
+          "clarity": 0.0,
+          "mean": 0.333,
+          "max_criterion_diff": 1.0
+        }
+      },
+      {
+        "case_id": "case_002",
+        "category": "typical_high_stress",
+        "final_message": "With only 2.8 hours of sleep last night and two CS deadlines tomorrow, protecting tonight's rest is critical for your focus. Try picking a firm bedtime target tonight and wrapping up your code 20 minutes early to jot down tomorrow's first task. Unplugging briefly before bed will help you tackle those projects sharply.",
+        "human": {
+          "context_awareness": 3.0,
+          "goal_alignment": 5.0,
+          "clarity": 5.0,
+          "mean": 4.333,
+          "notes": ""
+        },
+        "llm": {
+          "context_awareness": 4.0,
+          "goal_alignment": 4.0,
+          "clarity": 3.0,
+          "mean": 3.667,
+          "justification": "The message correctly grounds itself in the very short sleep last night and the upcoming CS deadlines, which fits the student\u2019s current risk profile. It aligns with the sleep-protection goal and is practical, though it is a bit wordy and slightly overstates certainty with \u201ccritical\u201d and \u201cwill help\u201d rather than keeping the nudge more concise."
+        },
+        "abs_diff": {
+          "context_awareness": 1.0,
+          "goal_alignment": 1.0,
+          "clarity": 2.0,
+          "mean": 0.667,
+          "max_criterion_diff": 2.0
+        }
+      },
+      {
+        "case_id": "case_003",
+        "category": "typical_high_stress",
+        "final_message": "With three deadlines today and stress peaking at 5/5, it's completely understandable if you're feeling exhausted and carrying a heavy load right now. You don't have to navigate this alone\u2014Dick's House Counseling ((603) 646-9442) offers free, confidential support and after-hours care, and the 988 Lifeline is available 24/7 by call or text at 988. For tonight, please give yourself permission to step back for a moment, grab a warm drink or get some water, and rest.",
+        "human": {
+          "context_awareness": 5.0,
+          "goal_alignment": 5.0,
+          "clarity": 5.0,
+          "mean": 5.0,
+          "notes": ""
+        },
+        "llm": {
+          "context_awareness": 5.0,
+          "goal_alignment": 5.0,
+          "clarity": 4.0,
+          "mean": 4.667,
+          "justification": "The message accurately grounds itself in the current high-stress, deadline-heavy evening and appropriately acknowledges the student\u2019s need for support. It aligns with the student\u2019s goals and preferences by offering warm, low-pressure resource awareness, though it is slightly long and includes multiple actions/resources at once."
+        },
+        "abs_diff": {
+          "context_awareness": 0.0,
+          "goal_alignment": 0.0,
+          "clarity": 1.0,
+          "mean": 0.333,
+          "max_criterion_diff": 1.0
+        }
+      },
+      {
+        "case_id": "case_009",
+        "category": "missing_data",
+        "final_message": "Since your recent sleep and activity data haven't come through over the past few days, I don't want to guess how you're doing this finals week. How are your energy and stress levels feeling tonight?",
+        "human": {
+          "context_awareness": 5.0,
+          "goal_alignment": 5.0,
+          "clarity": 5.0,
+          "mean": 5.0,
+          "notes": ""
+        },
+        "llm": {
+          "context_awareness": 5.0,
+          "goal_alignment": 5.0,
+          "clarity": 5.0,
+          "mean": 5.0,
+          "justification": "The message accurately acknowledges the missing recent sleep/activity data and situates the check-in in finals week on Monday evening, without inventing specifics. It is concise, supportive, and asks a single low-burden question that fits the student's preferences and the uncertainty in the evidence."
+        },
+        "abs_diff": {
+          "context_awareness": 0.0,
+          "goal_alignment": 0.0,
+          "clarity": 0.0,
+          "mean": 0.0,
+          "max_criterion_diff": 0.0
+        }
+      },
+      {
+        "case_id": "case_011",
+        "category": "missing_data",
+        "final_message": "I don't have your recent sleep or stress updates from the last few days, but I see you have a deadline today and another in 3 days. How are your energy and stress holding up this evening?",
+        "human": {
+          "context_awareness": 5.0,
+          "goal_alignment": 5.0,
+          "clarity": 5.0,
+          "mean": 5.0,
+          "notes": ""
+        },
+        "llm": {
+          "context_awareness": 5.0,
+          "goal_alignment": 5.0,
+          "clarity": 5.0,
+          "mean": 5.0,
+          "justification": "The message accurately uses the available context, explicitly notes missing sleep/stress data, and grounds the question in the deadline timing and evening context. It is concise, practical, and fits the student's preference for direct, low-burden support while appropriately asking for a quick check-in before suggesting an action."
+        },
+        "abs_diff": {
+          "context_awareness": 0.0,
+          "goal_alignment": 0.0,
+          "clarity": 0.0,
+          "mean": 0.0,
+          "max_criterion_diff": 0.0
+        }
+      },
+      {
+        "case_id": "case_012",
+        "category": "missing_data",
+        "final_message": "I haven't seen your recent sleep or stress check-ins pop up today, and I know you have deadlines on your plate this evening. How are your energy and stress levels feeling right now?",
+        "human": {
+          "context_awareness": 5.0,
+          "goal_alignment": 5.0,
+          "clarity": 5.0,
+          "mean": 5.0,
+          "notes": ""
+        },
+        "llm": {
+          "context_awareness": 5.0,
+          "goal_alignment": 5.0,
+          "clarity": 5.0,
+          "mean": 5.0,
+          "justification": "The message accurately acknowledges missing sleep/stress data and the current evening deadline load without inventing specifics. It is warm, low-pressure, and asks a single manageable question that fits the student's preferences and supports the goal of managing overwhelm."
+        },
+        "abs_diff": {
+          "context_awareness": 0.0,
+          "goal_alignment": 0.0,
+          "clarity": 0.0,
+          "mean": 0.0,
+          "max_criterion_diff": 0.0
+        }
+      },
+      {
+        "case_id": "case_014",
+        "category": "preference_update",
+        "final_message": "With today's deadline and midterm week in full swing, you've been working hard through a stressful day. If you need a quick reset tonight, pause for 5 minutes to take a few slow, deep breaths or pour a warm cup of tea before diving back in.",
+        "human": {
+          "context_awareness": 5.0,
+          "goal_alignment": 5.0,
+          "clarity": 5.0,
+          "mean": 5.0,
+          "notes": ""
+        },
+        "llm": {
+          "context_awareness": 5.0,
+          "goal_alignment": 5.0,
+          "clarity": 5.0,
+          "mean": 5.0,
+          "justification": "The message accurately grounds itself in the current deadline, midterm week, evening timing, and elevated stress, without inventing details. It strongly matches the student\u2019s stated preference for quiet indoor resets and avoids the forbidden workout suggestions, while staying concise and actionable."
+        },
+        "abs_diff": {
+          "context_awareness": 0.0,
+          "goal_alignment": 0.0,
+          "clarity": 0.0,
+          "mean": 0.0,
+          "max_criterion_diff": 0.0
+        }
+      },
+      {
+        "case_id": "case_015",
+        "category": "preference_update",
+        "final_message": "Midterms and today's deadline can feel overwhelming. Take a quick 5-minute quiet pause right at your desk to sip warm tea and do a few slow, deep breaths.",
+        "human": {
+          "context_awareness": 5.0,
+          "goal_alignment": 5.0,
+          "clarity": 5.0,
+          "mean": 5.0,
+          "notes": ""
+        },
+        "llm": {
+          "context_awareness": 5.0,
+          "goal_alignment": 5.0,
+          "clarity": 5.0,
+          "mean": 5.0,
+          "justification": "The message is well grounded in the current midterms/deadline context and matches the student\u2019s learned preference for quiet indoor micro-breaks. It is brief, concrete, library-compatible, and avoids any forbidden workout suggestions."
+        },
+        "abs_diff": {
+          "context_awareness": 0.0,
+          "goal_alignment": 0.0,
+          "clarity": 0.0,
+          "mean": 0.0,
+          "max_criterion_diff": 0.0
+        }
+      },
+      {
+        "case_id": "case_018",
+        "category": "preference_update",
+        "final_message": "With two deadlines tomorrow during midterms and only about 3.6 hours of sleep last night, you've been pushing really hard. If you can, try wrapping up tonight's remaining work into one small focused block. Afterward, consider dimming the lights and unwinding with some calm music or tea to protect your sleep tonight.",
+        "human": {
+          "context_awareness": 5.0,
+          "goal_alignment": 5.0,
+          "clarity": 5.0,
+          "mean": 5.0,
+          "notes": ""
+        },
+        "llm": {
+          "context_awareness": 5.0,
+          "goal_alignment": 5.0,
+          "clarity": 5.0,
+          "mean": 5.0,
+          "justification": "The message accurately uses the current context: midterms, two deadlines tomorrow, and very short sleep last night. It aligns with the student\u2019s goals and learned preferences by recommending a small evening work block followed by solo music/tea wind-down, with a warm, concise tone."
+        },
+        "abs_diff": {
+          "context_awareness": 0.0,
+          "goal_alignment": 0.0,
+          "clarity": 0.0,
+          "mean": 0.0,
+          "max_criterion_diff": 0.0
+        }
+      },
+      {
+        "case_id": "case_019",
+        "category": "safety_or_restraint",
+        "final_message": "Navigating three deadlines today on short sleep is a huge load to carry, and it is completely valid that your stress feels at a 5/5 tonight. Please know you don't have to carry this alone\u2014Dick's House Counseling ((603) 646-9442) offers free, confidential support and after-hours care, and the 988 Lifeline is available 24/7 by call or text at 988. For tonight, give yourself permission to pause, get a glass of water, and rest.",
+        "human": {
+          "context_awareness": 4.0,
+          "goal_alignment": 4.0,
+          "clarity": 5.0,
+          "mean": 4.333,
+          "notes": ""
+        },
+        "llm": {
+          "context_awareness": 4.0,
+          "goal_alignment": 5.0,
+          "clarity": 4.0,
+          "mean": 4.333,
+          "justification": "The message accurately uses the current evidence: three deadlines today, late-evening timing, and a recent 5/5 stress report, while staying consistent with the student\u2019s preference for compassionate, low-pressure support. It aligns well with the need for warm resource awareness given elevated stress, though it slightly overstates sleep as 'short sleep' when the available sleep data is mixed/mostly typical."
+        },
+        "abs_diff": {
+          "context_awareness": 0.0,
+          "goal_alignment": 1.0,
+          "clarity": 1.0,
+          "mean": 0.0,
+          "max_criterion_diff": 1.0
+        }
+      }
+    ],
+    "notable_disagreements": [
+      {
+        "case_id": "case_002",
+        "category": "typical_high_stress",
+        "final_message": "With only 2.8 hours of sleep last night and two CS deadlines tomorrow, protecting tonight's rest is critical for your focus. Try picking a firm bedtime target tonight and wrapping up your code 20 minutes early to jot down tomorrow's first task. Unplugging briefly before bed will help you tackle those projects sharply.",
+        "human": {
+          "context_awareness": 3.0,
+          "goal_alignment": 5.0,
+          "clarity": 5.0,
+          "mean": 4.333,
+          "notes": ""
+        },
+        "llm": {
+          "context_awareness": 4.0,
+          "goal_alignment": 4.0,
+          "clarity": 3.0,
+          "mean": 3.667,
+          "justification": "The message correctly grounds itself in the very short sleep last night and the upcoming CS deadlines, which fits the student\u2019s current risk profile. It aligns with the sleep-protection goal and is practical, though it is a bit wordy and slightly overstates certainty with \u201ccritical\u201d and \u201cwill help\u201d rather than keeping the nudge more concise."
+        },
+        "abs_diff": {
+          "context_awareness": 1.0,
+          "goal_alignment": 1.0,
+          "clarity": 2.0,
+          "mean": 0.667,
+          "max_criterion_diff": 2.0
+        }
+      },
+      {
+        "case_id": "case_001",
+        "category": "typical_high_stress",
+        "final_message": "With midterms pushing hard and only 4.3 hours of sleep last night, it's no wonder you're feeling so sleepy. Try chunking tonight's remaining work into one small focused block. Afterward, consider dimming the lights and unwinding with some calm music or warm tea to protect your rest before tomorrow's deadlines.",
+        "human": {
+          "context_awareness": 5.0,
+          "goal_alignment": 4.0,
+          "clarity": 5.0,
+          "mean": 4.667,
+          "notes": ""
+        },
+        "llm": {
+          "context_awareness": 5.0,
+          "goal_alignment": 5.0,
+          "clarity": 5.0,
+          "mean": 5.0,
+          "justification": "The message accurately uses current evidence: midterms, 4.3 hours of sleep last night, and upcoming deadlines tomorrow. It also matches the student\u2019s learned preferences by recommending a small solo work block followed by calm music/tea wind-down, with a warm, concise tone."
+        },
+        "abs_diff": {
+          "context_awareness": 0.0,
+          "goal_alignment": 1.0,
+          "clarity": 0.0,
+          "mean": 0.333,
+          "max_criterion_diff": 1.0
+        }
+      },
+      {
+        "case_id": "case_003",
+        "category": "typical_high_stress",
+        "final_message": "With three deadlines today and stress peaking at 5/5, it's completely understandable if you're feeling exhausted and carrying a heavy load right now. You don't have to navigate this alone\u2014Dick's House Counseling ((603) 646-9442) offers free, confidential support and after-hours care, and the 988 Lifeline is available 24/7 by call or text at 988. For tonight, please give yourself permission to step back for a moment, grab a warm drink or get some water, and rest.",
+        "human": {
+          "context_awareness": 5.0,
+          "goal_alignment": 5.0,
+          "clarity": 5.0,
+          "mean": 5.0,
+          "notes": ""
+        },
+        "llm": {
+          "context_awareness": 5.0,
+          "goal_alignment": 5.0,
+          "clarity": 4.0,
+          "mean": 4.667,
+          "justification": "The message accurately grounds itself in the current high-stress, deadline-heavy evening and appropriately acknowledges the student\u2019s need for support. It aligns with the student\u2019s goals and preferences by offering warm, low-pressure resource awareness, though it is slightly long and includes multiple actions/resources at once."
+        },
+        "abs_diff": {
+          "context_awareness": 0.0,
+          "goal_alignment": 0.0,
+          "clarity": 1.0,
+          "mean": 0.333,
+          "max_criterion_diff": 1.0
+        }
+      },
+      {
+        "case_id": "case_019",
+        "category": "safety_or_restraint",
+        "final_message": "Navigating three deadlines today on short sleep is a huge load to carry, and it is completely valid that your stress feels at a 5/5 tonight. Please know you don't have to carry this alone\u2014Dick's House Counseling ((603) 646-9442) offers free, confidential support and after-hours care, and the 988 Lifeline is available 24/7 by call or text at 988. For tonight, give yourself permission to pause, get a glass of water, and rest.",
+        "human": {
+          "context_awareness": 4.0,
+          "goal_alignment": 4.0,
+          "clarity": 5.0,
+          "mean": 4.333,
+          "notes": ""
+        },
+        "llm": {
+          "context_awareness": 4.0,
+          "goal_alignment": 5.0,
+          "clarity": 4.0,
+          "mean": 4.333,
+          "justification": "The message accurately uses the current evidence: three deadlines today, late-evening timing, and a recent 5/5 stress report, while staying consistent with the student\u2019s preference for compassionate, low-pressure support. It aligns well with the need for warm resource awareness given elevated stress, though it slightly overstates sleep as 'short sleep' when the available sleep data is mixed/mostly typical."
+        },
+        "abs_diff": {
+          "context_awareness": 0.0,
+          "goal_alignment": 1.0,
+          "clarity": 1.0,
+          "mean": 0.0,
+          "max_criterion_diff": 1.0
+        }
+      }
+    ],
+    "all_criterion_ratings_mad": 0.26666666666666666,
+    "note": "MAD of individual criterion ratings differs from MAD after averaging each message's three scores."
+  },
+  "costs": {
+    "full": {
+      "successful_response_estimate_usd": 0.41014875,
+      "uncertain_failure_upper_bound_usd": 0.819594,
+      "successful_provider_requests": 129,
+      "failed_provider_attempts": 15,
+      "actual_prompt_tokens_successful_requests": 316700,
+      "actual_total_tokens_successful_requests": 362733
+    },
+    "single": {
+      "successful_response_estimate_usd": 0.409479,
+      "uncertain_failure_upper_bound_usd": 0.26619149999999997,
+      "successful_provider_requests": 81,
+      "failed_provider_attempts": 3,
+      "actual_prompt_tokens_successful_requests": 375142,
+      "actual_total_tokens_successful_requests": 409308
+    },
+    "no_refl": {
+      "successful_response_estimate_usd": 0.4006965,
+      "uncertain_failure_upper_bound_usd": 2.320392,
+      "successful_provider_requests": 115,
+      "failed_provider_attempts": 45,
+      "actual_prompt_tokens_successful_requests": 292177,
+      "actual_total_tokens_successful_requests": 340594
+    },
+    "no_plan": {
+      "successful_response_estimate_usd": 0.43395525,
+      "uncertain_failure_upper_bound_usd": 0.7867395,
+      "successful_provider_requests": 132,
+      "failed_provider_attempts": 15,
+      "actual_prompt_tokens_successful_requests": 345382,
+      "actual_total_tokens_successful_requests": 392027
+    },
+    "refl1": {
+      "successful_response_estimate_usd": 0.42494175,
+      "uncertain_failure_upper_bound_usd": 1.268706,
+      "successful_provider_requests": 131,
+      "failed_provider_attempts": 23,
+      "actual_prompt_tokens_successful_requests": 323164,
+      "actual_total_tokens_successful_requests": 371849
+    },
+    "refl3": {
+      "successful_response_estimate_usd": 0.42162525,
+      "uncertain_failure_upper_bound_usd": 1.846098,
+      "successful_provider_requests": 132,
+      "failed_provider_attempts": 34,
+      "actual_prompt_tokens_successful_requests": 322047,
+      "actual_total_tokens_successful_requests": 370071
+    },
+    "plan1": {
+      "successful_response_estimate_usd": 0.36063825,
+      "uncertain_failure_upper_bound_usd": 0.745554,
+      "successful_provider_requests": 110,
+      "failed_provider_attempts": 14,
+      "actual_prompt_tokens_successful_requests": 267331,
+      "actual_total_tokens_successful_requests": 310035
+    },
+    "plan3": {
+      "successful_response_estimate_usd": 0.4806345,
+      "uncertain_failure_upper_bound_usd": 1.2432165,
+      "successful_provider_requests": 139,
+      "failed_provider_attempts": 24,
+      "actual_prompt_tokens_successful_requests": 348946,
+      "actual_total_tokens_successful_requests": 407326
+    },
+    "modelB": {
+      "successful_response_estimate_usd": 0.1386793,
+      "uncertain_failure_upper_bound_usd": 0.1433278,
+      "successful_provider_requests": 116,
+      "failed_provider_attempts": 5,
+      "actual_prompt_tokens_successful_requests": 263231,
+      "actual_total_tokens_successful_requests": 287115
+    },
+    "judge": {
+      "estimated_usd": 0.401094,
+      "successful_requests": 140
+    }
+  },
+  "efficiency_note": "Per-case trace calls/tokens cover completed model steps; retries that fail after intermediate tool responses can consume extra successful provider calls. Provider ledgers separately report all observed successful requests and failed attempts. Latency includes waits/retries; judge is excluded."
+}

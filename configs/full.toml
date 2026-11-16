@@ -1,0 +1,26 @@
+[system]
+config_id = "full"
+description = "Full multi-agent system (Planner + Analyst + Writer + Critic + Memory, plan=2, refl=2)"
+mode = "multi_agent"
+model = "gemini:gemini-3-flash-preview"
+temperature = 0.3
+max_workers = 4
+
+[planning]
+enabled = true
+max_rounds = 2
+
+[reflection]
+enabled = true
+max_rounds = 2
+
+[memory]
+enabled = true
+history_k = 5
+
+[skills]
+enabled = true
+
+[tools]
+enabled = true
+max_turns = 5

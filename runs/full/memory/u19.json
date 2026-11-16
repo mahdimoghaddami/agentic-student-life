@@ -1,0 +1,71 @@
+{
+  "participant_id": "u19",
+  "simulated": true,
+  "profile": {
+    "participant_id": "u19",
+    "simulated": true,
+    "grounding_note": "Simulated coaching profile grounded in real StudentLife pre-term surveys (PSS=20.0, PHQ-9=5.0, UCLA Loneliness=55.0, PHQ-9 item 9=1, Extraversion=1.75, Neuroticism=3.62, Conscientiousness=3.44); courses: COSC 050, COSC 065, FILM 051.",
+    "pre_term_surveys": {
+      "pss_total": 20.0,
+      "phq9_total": 5.0,
+      "phq9_item9_selfharm": 1,
+      "bfi_extraversion": 1.75,
+      "bfi_agreeableness": 3.11,
+      "bfi_conscientiousness": 3.44,
+      "bfi_neuroticism": 3.62,
+      "bfi_openness": 3.2,
+      "loneliness_total": 55.0
+    },
+    "goals": [
+      "Manage overwhelm during clustered CS 50, CS 65, and FILM 51 deadlines by chunking tasks",
+      "Stay connected with supportive peers or campus resources when feeling isolated or stressed",
+      "Maintain steady ~7.5h sleep routine across midterm and late-term weeks"
+    ],
+    "preferences": {
+      "activity_style": "Gentle walks, Ultimate Frisbee / light outdoor air, or low-pressure 1-on-1 check-ins",
+      "tone": "Compassionate, validating, non-clinical, and low-pressure",
+      "preferred_times": [
+        "evening (19:00-21:00)"
+      ],
+      "dislikes": [
+        "high-pressure productivity demands",
+        "clinical or robotic phrasing"
+      ]
+    },
+    "constraints": [
+      "Elevated baseline loneliness (UCLA=55.0) and moderate perceived stress (PSS=20.0); pre-term PHQ-9 item 9=1 requires warm resource awareness when stress peaks at 5/5",
+      "Enrolled in COSC 050, COSC 065, and FILM 051"
+    ],
+    "learned_preferences": []
+  },
+  "episodes": [
+    {
+      "case_id": "case_003",
+      "decision_time": "2013-04-30T20:00:00-04:00",
+      "decision": "suggest",
+      "skill_used": "deadline_chunking",
+      "final_message": "It is completely understandable to feel overwhelmed with three deadlines today; please be kind to yourself as you navigate this heavy load. To make things feel a bit more manageable, try picking just one priority task and working on it for a single 25-minute block, followed by a short, restorative walk outside to clear your head. You don't have to do it all at once, and reaching out to a friend for a quick check-in might help you feel a little less isolated while you work.",
+      "simulated_feedback": null,
+      "simulated": true
+    },
+    {
+      "case_id": "case_012",
+      "decision_time": "2013-04-16T20:00:00-04:00",
+      "decision": "ask",
+      "skill_used": "clarifying_question",
+      "final_message": "I noticed you have two deadlines today and your activity levels have been a bit lower than usual. Since I don't have your recent sleep or stress data, how are you holding up this evening\u2014would you like a quick break idea or some space?",
+      "simulated_feedback": null,
+      "simulated": true
+    },
+    {
+      "case_id": "case_019",
+      "decision_time": "2013-05-07T20:00:00-04:00",
+      "decision": "suggest",
+      "skill_used": "campus_resource_referral",
+      "final_message": "I'm so sorry to hear you're feeling a 'blizzard of emotions' today with those three deadlines; please know that you don't have to carry this weight alone. If you need someone to talk to, Dartmouth's Counseling Center at Dick's House is available at (603) 646-9442, or you can reach the 24/7 Crisis Text Line by texting HOME to 741741. For now, please try to step away from your desk for just five minutes of fresh air or a few slow breaths\u2014you've been working incredibly hard and deserve a moment of kindness.",
+      "simulated_feedback": null,
+      "simulated": true
+    }
+  ],
+  "learned_preferences": []
+}

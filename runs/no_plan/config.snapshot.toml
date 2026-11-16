@@ -1,0 +1,26 @@
+[system]
+config_id = "no_plan"
+description = "Multi-agent without Planner (Analyst gathers evidence directly)"
+mode = "multi_agent"
+model = "gemini:gemini-3-flash-preview"
+temperature = 0.3
+max_workers = 2
+
+[planning]
+enabled = false
+max_rounds = 0
+
+[reflection]
+enabled = true
+max_rounds = 2
+
+[memory]
+enabled = true
+history_k = 5
+
+[skills]
+enabled = true
+
+[tools]
+enabled = true
+max_turns = 5

@@ -1,0 +1,62 @@
+{
+  "participant_id": "u08",
+  "simulated": true,
+  "profile": {
+    "participant_id": "u08",
+    "simulated": true,
+    "grounding_note": "Simulated coaching profile grounded in real StudentLife pre-term surveys (PSS=23.0, PHQ-9=5.0, UCLA Loneliness=34.0, PHQ-9 item 9=0, Extraversion=2.62, Neuroticism=3.25, Conscientiousness=4.22); courses: CHIN 062, COSC 089 1, COSC 065.",
+    "pre_term_surveys": {
+      "pss_total": 23.0,
+      "phq9_total": 5.0,
+      "phq9_item9_selfharm": 0,
+      "bfi_extraversion": 2.62,
+      "bfi_agreeableness": 3.78,
+      "bfi_conscientiousness": 4.22,
+      "bfi_neuroticism": 3.25,
+      "bfi_openness": 3.3,
+      "loneliness_total": 34.0
+    },
+    "goals": [
+      "Avoid severe sleep crashes (<5 hours) during CS 65 and CS 89 project weeks",
+      "Take 10-minute movement or posture resets during long coding sessions",
+      "Keep stress manageable ahead of back-to-back technical deadlines"
+    ],
+    "preferences": {
+      "activity_style": "Short campus walks or quick desk/hallway stretches between coding blocks",
+      "tone": "Practical, direct, and concise",
+      "preferred_times": [
+        "evening (19:00-21:30)"
+      ],
+      "dislikes": [
+        "long multi-step checklists",
+        "vague motivational quotes"
+      ]
+    },
+    "constraints": [
+      "Heavy computer science courseload (CHIN 062, COSC 089, COSC 065)",
+      "Limited free time on Monday/Tuesday/Thursday afternoons due to language and CS classes"
+    ],
+    "learned_preferences": []
+  },
+  "episodes": [
+    {
+      "case_id": "case_002",
+      "decision_time": "2013-04-21T20:00:00-04:00",
+      "decision": "suggest",
+      "skill_used": "campus_resource_referral",
+      "final_message": "It sounds like you're under a lot of pressure with your CS projects and the upcoming deadlines. Please remember you don't have to manage this alone; you can reach out to the Counseling Center at Dick's House (603-646-9442) for confidential support or the Academic Skills Center (603-646-2014) for help managing your workload. For tonight, please consider stepping away from the screen for a few minutes to rest and prioritize getting some sleep.",
+      "simulated_feedback": null,
+      "simulated": true
+    },
+    {
+      "case_id": "case_011",
+      "decision_time": "2013-04-12T20:00:00-04:00",
+      "decision": "ask",
+      "skill_used": "clarifying_question",
+      "final_message": "Since your recent sleep and stress check-ins haven't come through today, I want to check in directly. How are your energy and stress holding up tonight with your COSC coursework?",
+      "simulated_feedback": null,
+      "simulated": true
+    }
+  ],
+  "learned_preferences": []
+}

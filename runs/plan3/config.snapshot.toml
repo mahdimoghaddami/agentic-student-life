@@ -1,0 +1,27 @@
+[system]
+config_id = "plan3"
+description = "Planning depth = 3 rounds (10-case stratified subset)"
+mode = "multi_agent"
+model = "gemini:gemini-3-flash-preview"
+temperature = 0.3
+max_workers = 2
+case_ids = ["case_001", "case_002", "case_006", "case_009", "case_011", "case_013", "case_014", "case_015", "case_019", "case_020"]
+
+[planning]
+enabled = true
+max_rounds = 3
+
+[reflection]
+enabled = true
+max_rounds = 2
+
+[memory]
+enabled = true
+history_k = 5
+
+[skills]
+enabled = true
+
+[tools]
+enabled = true
+max_turns = 5
